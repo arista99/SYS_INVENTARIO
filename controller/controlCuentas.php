@@ -49,6 +49,14 @@ class ControlCuentas
         include_once('views/paginas/administrador/cuentas/creacion.php');
     }
 
+    public function listaCentro()
+    {
+        // Simula datos desde la BD
+        $centros = $this->CENTRO->readCentro(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($centros);
+    }
+
     public function registrarUsuario()
     {
         try {
@@ -108,9 +116,9 @@ class ControlCuentas
         $nombre = $_POST['nombre'] ?? '';
 
         // Llama al modelo
-        $resultados = $this->CUENTAS->findUsuario('kevin');
+        $resultados = $this->CUENTAS->findUsuario($nombre);
 
-        var_dump($resultados);
+        // var_dump($resultados);
         //Enviar respuesta al frontend
         header('Content-Type: application/json');
         echo json_encode(['data' => $resultados]);

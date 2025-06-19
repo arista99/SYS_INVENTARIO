@@ -11,6 +11,11 @@
         <a class="nav-link active ms-0" href="ListaUsuarios">Lista de Usuarios</a>
         <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a>
     </nav>
+
+    <script>
+        const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
+    </script>
+
     <hr class="mt-0 mb-4">
     <!-- Filtro -->
     <div class="row mb-3">
@@ -47,6 +52,99 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <form id="formEditarUsuario" class="modal-content" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Edificio</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="id" name="id">
+
+                    <div class="mb-3">
+                        <label for="edit_usuario" class="form-label">Usuario</label>
+                        <input type="text" id="edit_usuario" name="edit_usuario" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_usu_red" class="form-label">Usuario de Red</label>
+                        <input type="text" id="edit_usu_red" name="edit_usu_red" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_centro_cosoto" class="form-label">Centro de Costo</label>
+                        <select class="form-control text-uppercase" id="edit_centro_costo" name="edit_centro_costo">
+                            <option selected disabled>Seleccionar Centro de Costo</option>
+                            <script>
+                                function cargarCentrosCosto(selectedValue = null) {
+                                    $.ajax({
+                                        url: "listaCentro",
+                                        type: "GET",
+                                        dataType: "json",
+                                        success: function(data) {
+                                            let select = $("#edit_centro_costo");
+                                            select.empty(); // limpia
+                                            select.append(`<option disabled selected>Seleccionar Centro de Costo</option>`);
+
+                                            data.forEach((centro) => {
+                                                select.append(
+                                                    `<option value="${centro.id}">${centro.centro_costo}</option>`
+                                                );
+                                            });
+
+                                            if (selectedValue) {
+                                                select.append(
+                                                    `<option>${selectedValue}</option>`
+                                                );
+                                                // select.val(selectedValue);
+                                            }
+                                        },
+                                        error: function(xhr, status, error) {
+                                            console.error("Error cargando centros de costo:", error);
+                                        },
+                                    });
+                                }
+                            </script>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_email" class="form-label">Email</label>
+                        <input type="text" id="edit_email" name="edit_email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_sede" class="form-label">Sede</label>
+                        <select class="form-control text-uppercase" id="edit_sede">
+                            <option selected disabled>Seleccionar Centro de Costo</option>
+                            <?php foreach ($centros_tra as $centro) : ?>
+                                <option value="<?php echo $centro->id ?>"><?php echo $centro->centro_costo ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_perfil" class="form-label">Perfil</label>
+                        <select class="form-control text-uppercase" id="edit_perfil">
+                            <option selected disabled>Seleccionar Centro de Costo</option>
+                            <?php foreach ($centros_tra as $centro) : ?>
+                                <option value="<?php echo $centro->id ?>"><?php echo $centro->centro_costo ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_area" class="form-label">Area</label>
+                        <select class="form-control text-uppercase" id="edit_area">
+                            <option selected disabled>Seleccionar Centro de Costo</option>
+                            <?php foreach ($centros_tra as $centro) : ?>
+                                <option value="<?php echo $centro->id ?>"><?php echo $centro->centro_costo ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+                    <button type="submit" name="updateInfoButtonUsuario" id="updateInfoButtonUsuario" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
         </div>
     </div>
 

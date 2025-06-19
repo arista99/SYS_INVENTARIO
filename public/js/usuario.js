@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
+
     $(document).ready(function () {
         $("#btn-registrar-usuario").click(function (event) {
             event.preventDefault();
@@ -31,7 +32,10 @@ window.addEventListener("DOMContentLoaded", () => {
                             icon: 'success',
                             title: 'Se creo edificio',
                             timer: 1500,
-                            showConfirButton: false,
+                            showConfirmButton: false,
+                        }).then(function () {
+                            location.reload(); // Recargar la página
+                            $("#formCrearUsuario")[0].reset();
                         });
                     } else {
                         alert("Error: " + response.message); // Mostrar el mensaje de error del servidor

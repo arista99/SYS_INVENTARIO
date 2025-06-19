@@ -20,7 +20,7 @@ $(document).ready(function () {
       {
         data: "id",
         render: function (data, type, row) {
-          if (id == 2) {
+          if (id_perfil == 2) {
             return `
                 <button class="btn btn-sm btn-warning btnEditar"
                   data-id="${row.id}"
@@ -44,9 +44,33 @@ $(document).ready(function () {
     columnDefs: [
       {
         targets: 7,
-        visible: id == 2, // solo mostrar si rol == 2
+        visible: id_perfil == 2, // solo mostrar si rol == 2
         searchable: false,
       },
     ],
   });
+
+  // Botón Buscar
+  $("#btnBuscarUsuario").click(function () {
+    tabla.ajax.reload();
+  });
+
+  // Evento click para llenar el modal de edición
+  $("#tablaDatosUsuario").on("click", ".btnEditar", function () {
+    let btn = $(this);
+
+    $("#id").val(btn.data("id")); 
+    $("#edit_usuario").val(btn.data("usuario"));
+    $("#edit_usu_red").val(btn.data("usuario_red"));
+    $("#edit_email").val(btn.data("email"));
+    $("#edit_sede").val(btn.data("sede"));
+    $("#edit_perfil").val(btn.data("perfil"));
+    $("#edit_area").val(btn.data("area"));
+
+    // Llenar el select y seleccionar el valor actual
+    cargarCentrosCosto(btn.data("centro_costo"));
+
+    $("#modalEditarUsuario").modal("show"); // Bootstrap 4/5
+  });
+
 });

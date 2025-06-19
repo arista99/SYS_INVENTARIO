@@ -36,7 +36,7 @@ class ModeloCuentas
     public function findUsuario($nombre)
     {
         try {
-            $sql = "SELECT tu.usuario,tu.usuario_red,tcc.centro_costo,tu.email,ts.sede,tp.perfil,ta.area
+            $sql = "SELECT tu.id,tu.usuario,tu.usuario_red,tcc.id AS idcentro,tcc.centro_costo,tu.email,ts.sede,tp.perfil,ta.area
 							FROM tbl_usuarios AS tu
 							INNER JOIN tbl_centro_costo AS tcc ON tu.id_centro_costo=tcc.id
 							INNER JOIN tbl_sedes AS ts ON tu.id_sede=ts.id
