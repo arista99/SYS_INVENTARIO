@@ -36,7 +36,7 @@ class ModeloCuentas
     public function findUsuario($nombre)
     {
         try {
-            $sql = "SELECT tu.id,tu.usuario,tu.usuario_red,tcc.id AS idcentro,tcc.centro_costo,tu.email,ts.sede,tp.perfil,ta.area
+            $sql = "SELECT tu.id,tu.usuario,tu.usuario_red,tcc.id AS idcentro,tcc.centro_costo,tu.email,ts.id AS idsede,ts.sede,tp.id AS idperfil,tp.perfil,ta.id AS idarea,ta.area
 							FROM tbl_usuarios AS tu
 							INNER JOIN tbl_centro_costo AS tcc ON tu.id_centro_costo=tcc.id
 							INNER JOIN tbl_sedes AS ts ON tu.id_sede=ts.id
@@ -87,6 +87,28 @@ class ModeloCuentas
     /*********************************************************************************************************/
 
     /*******************************************ACTUALIZAR USUARIOS********************************************/
+    public function updateUsuario(Usuario $usuario)
+    {
+        try {
+            $sql = "UPDATE usuario SET usuario = ? , usuario_red = ? , id_centro_costo = ? , cargo = ? , email = ?, id_sede = ?, id_perfil = ?, id_area = ? WHERE id = ?";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
+                array(
+                    $usuario->getusuario(),
+                    $usuario->getusuario_red(),
+                    $usuario->getid_centro_costo(),
+                    $usuario->getcargo(),
+                    $usuario->getemail(),
+                    $usuario->getid_sede(),
+                    $usuario->getid_perfil(),
+                    $usuario->getid_area(),
+                    $usuario->getid()
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
 
     /*********************************************************************************************************/
 

@@ -59,7 +59,7 @@
         <div class="modal-dialog modal-lg">
             <form id="formEditarUsuario" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Edificio</h5>
+                    <h5 class="modal-title">Editar Usuario</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
@@ -75,37 +75,6 @@
                     <div class="mb-3">
                         <label for="edit_centro_cosoto" class="form-label">Centro de Costo</label>
                         <select class="form-control text-uppercase" id="edit_centro_costo" name="edit_centro_costo">
-                            <option selected disabled>Seleccionar Centro de Costo</option>
-                            <script>
-                                function cargarCentrosCosto(selectedValue = null) {
-                                    $.ajax({
-                                        url: "listaCentro",
-                                        type: "GET",
-                                        dataType: "json",
-                                        success: function(data) {
-                                            let select = $("#edit_centro_costo");
-                                            select.empty(); // limpia
-                                            select.append(`<option disabled selected>Seleccionar Centro de Costo</option>`);
-
-                                            data.forEach((centro) => {
-                                                select.append(
-                                                    `<option value="${centro.id}">${centro.centro_costo}</option>`
-                                                );
-                                            });
-
-                                            if (selectedValue) {
-                                                select.append(
-                                                    `<option>${selectedValue}</option>`
-                                                );
-                                                // select.val(selectedValue);
-                                            }
-                                        },
-                                        error: function(xhr, status, error) {
-                                            console.error("Error cargando centros de costo:", error);
-                                        },
-                                    });
-                                }
-                            </script>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -114,29 +83,20 @@
                     </div>
                     <div class="mb-3">
                         <label for="edit_sede" class="form-label">Sede</label>
-                        <select class="form-control text-uppercase" id="edit_sede">
-                            <option selected disabled>Seleccionar Centro de Costo</option>
-                            <?php foreach ($centros_tra as $centro) : ?>
-                                <option value="<?php echo $centro->id ?>"><?php echo $centro->centro_costo ?></option>
-                            <?php endforeach; ?>
+                        <select class="form-control text-uppercase" id="edit_sede" name="edit_sede">
+                            
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="edit_perfil" class="form-label">Perfil</label>
-                        <select class="form-control text-uppercase" id="edit_perfil">
-                            <option selected disabled>Seleccionar Centro de Costo</option>
-                            <?php foreach ($centros_tra as $centro) : ?>
-                                <option value="<?php echo $centro->id ?>"><?php echo $centro->centro_costo ?></option>
-                            <?php endforeach; ?>
+                        <select class="form-control text-uppercase" id="edit_perfil" name="edit_perfil">
+                            
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="edit_area" class="form-label">Area</label>
-                        <select class="form-control text-uppercase" id="edit_area">
-                            <option selected disabled>Seleccionar Centro de Costo</option>
-                            <?php foreach ($centros_tra as $centro) : ?>
-                                <option value="<?php echo $centro->id ?>"><?php echo $centro->centro_costo ?></option>
-                            <?php endforeach; ?>
+                        <select class="form-control text-uppercase" id="edit_area" name="edit_area">
+                            
                         </select>
                     </div>
                 </div>
@@ -220,6 +180,7 @@
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
 <script src="public/js/ajaxEventosUsuario.js"></script>
+<script src="public/js/ajaxSelectUsuario.js"></script>
 
 </body>
 

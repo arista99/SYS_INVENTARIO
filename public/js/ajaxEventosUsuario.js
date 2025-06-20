@@ -26,10 +26,14 @@ $(document).ready(function () {
                   data-id="${row.id}"
                   data-usuario="${row.usuario}"
                   data-usuario_red="${row.usuario_red}"
+                  data-id-centro_costo="${row.id_centro_costo}"
                   data-centro_costo="${row.centro_costo}"
                   data-email="${row.email}"
+                  data-id-sede="${row.id_sede}"
                   data-sede="${row.sede}"
+                  data-id-perfil="${row.id_perfil}"
                   data-perfil="${row.perfil}"
+                  data-id-area="${row.id_area}"
                   data-area="${row.area}">
                   ✏️
                 </button>
@@ -59,18 +63,58 @@ $(document).ready(function () {
   $("#tablaDatosUsuario").on("click", ".btnEditar", function () {
     let btn = $(this);
 
-    $("#id").val(btn.data("id")); 
+    $("#id").val(btn.data("id"));
     $("#edit_usuario").val(btn.data("usuario"));
     $("#edit_usu_red").val(btn.data("usuario_red"));
     $("#edit_email").val(btn.data("email"));
-    $("#edit_sede").val(btn.data("sede"));
-    $("#edit_perfil").val(btn.data("perfil"));
-    $("#edit_area").val(btn.data("area"));
 
-    // Llenar el select y seleccionar el valor actual
-    cargarCentrosCosto(btn.data("centro_costo"));
+     // Llenar selects con valor seleccionado correctamente usando los IDs
+    cargarCentrosCosto(btn.data("id-centro_costo"));
+    cargarSede(btn.data("id-sede"));
+    cargarPerfil(btn.data("id-perfil"));
+    cargarArea(btn.data("id-area"));
 
     $("#modalEditarUsuario").modal("show"); // Bootstrap 4/5
   });
 
+  //Actualizar edificio
+  $("#formEditarUsuario").on("submit", function (e) {
+    e.preventDefault();
+
+    $.ajax({
+      url: "actualizarUsuario",
+      type: "POST",
+      data: $(this).serialize(),
+      success: function (response) {
+        const res = JSON.parse(response);
+
+        if (res.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Actualizado correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          $("#modalEditarUsuario").modal("hide");
+
+          // 🔁 Recarga la tabla
+          $("#tablaDatosUsuario").DataTable().ajax.reload(null, false);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: res.message,
+          });
+        }
+      },
+      error: function () {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo conectar con el servidor.",
+        });
+      },
+    });
+  });
 });

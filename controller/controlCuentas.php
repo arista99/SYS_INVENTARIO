@@ -39,7 +39,6 @@ class ControlCuentas
         }
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
-
         
         $sedes_tra = $this->SEDES->readSedes();
         $centros_tra = $this->CENTRO->readCentro();
@@ -55,6 +54,30 @@ class ControlCuentas
         $centros = $this->CENTRO->readCentro(); // Array de objetos con idcentro y centro_costo
 
         echo json_encode($centros);
+    }
+
+    public function listaSede()
+    {
+        // Simula datos desde la BD
+        $sedes = $this->SEDES->readSedes(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($sedes);
+    }
+
+    public function listaPerfil()
+    {
+        // Simula datos desde la BD
+        $perfiles = $this->PERFILES->readPefiles(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($perfiles);
+    }
+
+    public function listaArea()
+    {
+        // Simula datos desde la BD
+        $areas = $this->AREA->readAreas(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($areas);
     }
 
     public function registrarUsuario()
@@ -124,19 +147,40 @@ class ControlCuentas
         echo json_encode(['data' => $resultados]);
     }
 
-    public function EditarUsuarios()
+    public function actualizarUsuario()
     {
-        // Iniciar sesión
-        session_start();
-        
-        // Verificar si el usuario está autenticado
-        if (!isset($_SESSION['id'])) {
-        //     Redirigir al login si no está autenticado
-           header("Location: Index");
-            exit;
-        }
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        
+                $usuario = new Usuario();
+                $usuario->setid($_POST['id']);
+                $usuario->setusuario($_POST['edit_usuario']);
+                $usuario->setusuario_red($_POST['edit_usu_red']);
+                $usuario->setid_centro_costo($_POST['edit_centro_costo']);
+                $usuario->setemail($_POST['edit_email']);
+                $usuario->setid_sede($_POST['edit_sede']);
+                $usuario->setid_perfil($_POST['edit_perfil']);
+                $usuario->setid_area($_POST['edit_area']);
+            
+                // var_dump($edificio);
+                //llmando al inser de modelo solicitud
+                $update_usuario = $this->CUENTAS->updateUsuario($usuario);
+
+                // Responder con JSON para que AJAX pueda manejar la respuesta
+                if ($update_usuario) {
+                    echo json_encode(['success' => true, 'message' => 'Ticket actualizado correctamente']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Error al actualizar el ticket']);
+                }
+            } else {
+                // Si no es una solicitud POST, enviar un mensaje de error
+                echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+            }
+        } catch (Exception $th) {
+            // Manejo de excepciones: devolver el mensaje de error
+            echo json_encode(['success' => false, 'message' => $th->getMessage()]);
+            // echo $th->getMessage();
+        }
     }
 
     public function EliminarUsuarios()
