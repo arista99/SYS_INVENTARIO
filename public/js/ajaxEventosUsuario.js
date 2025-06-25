@@ -26,14 +26,10 @@ $(document).ready(function () {
                   data-id="${row.id}"
                   data-usuario="${row.usuario}"
                   data-usuario_red="${row.usuario_red}"
-                  data-id-centro_costo="${row.id_centro_costo}"
                   data-centro_costo="${row.centro_costo}"
                   data-email="${row.email}"
-                  data-id-sede="${row.id_sede}"
                   data-sede="${row.sede}"
-                  data-id-perfil="${row.id_perfil}"
                   data-perfil="${row.perfil}"
-                  data-id-area="${row.id_area}"
                   data-area="${row.area}">
                   ✏️
                 </button>
@@ -68,53 +64,66 @@ $(document).ready(function () {
     $("#edit_usu_red").val(btn.data("usuario_red"));
     $("#edit_email").val(btn.data("email"));
 
-     // Llenar selects con valor seleccionado correctamente usando los IDs
-    cargarCentrosCosto(btn.data("id-centro_costo"));
-    cargarSede(btn.data("id-sede"));
-    cargarPerfil(btn.data("id-perfil"));
-    cargarArea(btn.data("id-area"));
+    // Llenar selects con valor seleccionado correctamente usando los IDs
+    cargarCentrosCosto(btn.data("centro_costo"));
+    cargarSede(btn.data("sede"));
+    cargarPerfil(btn.data("perfil"));
+    cargarArea(btn.data("area"));
 
     $("#modalEditarUsuario").modal("show"); // Bootstrap 4/5
   });
 
   //Actualizar edificio
-  $("#formEditarUsuario").on("submit", function (e) {
-    e.preventDefault();
+  $("#updateInfoButtonUsuario").on("submit", function (e) {
+    // e.preventDefault();
 
-    $.ajax({
-      url: "actualizarUsuario",
-      type: "POST",
-      data: $(this).serialize(),
-      success: function (response) {
-        const res = JSON.parse(response);
+    // Obtener los datos del formulario
+    var formData = {
+      id: $("#id").val(),
+      edit_usuario: $("#edit_usuario").val(),
+      edit_usu_red: $("#edit_usu_red").val(),
+      edit_centro_costo: $("#edit_centro_costo").val(),
+      edit_email: $("#edit_email").val(),
+      edit_sede: $("#edit_sede").val(),
+      edit_perfil: $("#edit_perfil").val(),
+      edit_area: $("#edit_area").val(),
+    };
 
-        if (res.success) {
-          Swal.fire({
-            icon: "success",
-            title: "Actualizado correctamente",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+    console.log(formData);
+    // $.ajax({
+    //   url: "actualizarUsuario",
+    //   type: "POST",
+    //   data: formData,
+    //   success: function (response) {
+    //     // const res = JSON.parse(response);
+    //     if (response.success) {
+    //       Swal.fire({
+    //         icon: "success",
+    //         title: "Actualizado correctamente",
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
 
-          $("#modalEditarUsuario").modal("hide");
+    //       $("#modalEditarUsuario").modal("hide");
 
-          // 🔁 Recarga la tabla
-          $("#tablaDatosUsuario").DataTable().ajax.reload(null, false);
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: res.message,
-          });
-        }
-      },
-      error: function () {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "No se pudo conectar con el servidor.",
-        });
-      },
-    });
+    //       // 🔁 Recarga la tabla
+    //       $("#tablaDatosUsuario").DataTable().ajax.reload(null, false);
+    //     } else {
+    //       Swal.fire({
+    //         icon: "error",
+    //         title: "Error",
+    //         text: res.message,
+    //       });
+    //     }
+    //   },
+    //   error: function (xhr, status, error) {
+    //     // Manejar errores de la solicitud AJAX
+    //     console.error("Error en la solicitud AJAX:", error);
+    //     console.error("Respuesta del servidor:", xhr.responseText); // Mostrar la respuesta en la consola
+    //     alert(
+    //       "Ocurrió un error al procesar la solicitud. Por favor, intenta nuevamente."
+    //     );
+    //   },
+    // });
   });
 });

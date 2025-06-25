@@ -14,10 +14,9 @@ function cargarCentrosCosto(selectedValue = null) {
       });
 
       if (selectedValue) {
-        
         // Selecciona automáticamente el valor del usuario
-        setTimeout(() => select.val(selectedValue), 100); // esperar DOM update
-        // select.append(`<option disabled selected>${selectedValue}</option>`);
+        //setTimeout(() => select.val(selectedValue), 100); // esperar DOM update
+        select.append(`<option disabled selected>${selectedValue} - Opción actual </option>`);
       }
     },
     error: function(xhr, status, error) {
@@ -38,7 +37,12 @@ function cargarCentrosCosto(selectedValue = null) {
         data.forEach((sede) => {
           select.append(`<option value="${sede.id}">${sede.sede}</option>`);
         });
-        if (selectedValue) select.val(selectedValue);
+        // if (selectedValue) select.val(selectedValue);
+        if (selectedValue) {
+          // Selecciona automáticamente el valor del usuario
+          //setTimeout(() => select.val(selectedValue), 100); // esperar DOM update
+          select.append(`<option disabled selected>${selectedValue} - Opción actual </option>`);
+        }
       }
     });
   }
@@ -55,7 +59,12 @@ function cargarCentrosCosto(selectedValue = null) {
         data.forEach((perfil) => {
           select.append(`<option value="${perfil.id}">${perfil.perfil}</option>`);
         });
-        if (selectedValue) select.val(selectedValue);
+        // if (selectedValue) select.val(selectedValue);
+        if (selectedValue) {
+          // Selecciona automáticamente el valor del usuario
+          //setTimeout(() => select.val(selectedValue), 100); // esperar DOM update
+          select.append(`<option disabled selected>${selectedValue} - Opción actual </option>`);
+        }
       }
     });
   }
@@ -72,7 +81,12 @@ function cargarCentrosCosto(selectedValue = null) {
         data.forEach((area) => {
           select.append(`<option value="${area.id}">${area.area}</option>`);
         });
-        if (selectedValue) select.val(selectedValue);
+        // if (selectedValue) select.val(selectedValue);
+        if (selectedValue) {
+          // Selecciona automáticamente el valor del usuario
+          //setTimeout(() => select.val(selectedValue), 100); // esperar DOM update
+          select.append(`<option disabled selected>${selectedValue} - Opción actual </option>`);
+        }
       }
     });
   }

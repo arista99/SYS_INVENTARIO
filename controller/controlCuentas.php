@@ -164,8 +164,11 @@ class ControlCuentas
             
                 // var_dump($edificio);
                 //llmando al inser de modelo solicitud
+                echo '<pre>';
+                var_dump($usuario);
+                echo '</pre>';
                 $update_usuario = $this->CUENTAS->updateUsuario($usuario);
-
+                var_dump($update_usuario);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
                 if ($update_usuario) {
                     echo json_encode(['success' => true, 'message' => 'Ticket actualizado correctamente']);

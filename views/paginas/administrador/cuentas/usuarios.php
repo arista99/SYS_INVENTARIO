@@ -57,7 +57,8 @@
 
     <div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form id="formEditarUsuario" class="modal-content" enctype="multipart/form-data">
+        <!-- id="formEditarUsuario"  -->
+            <form action="actualizarUsuario" method="POST" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title">Editar Usuario</h5>
                 </div>
