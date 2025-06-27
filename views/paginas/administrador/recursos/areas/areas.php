@@ -7,9 +7,11 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionUsuarios">Crear Usuario</a>
-        <a class="nav-link active ms-0" href="ListaUsuarios">Lista de Usuarios</a>
-        <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a>
+        <a class="nav-link" href="CreacionUsuarios">Crear Area</a>
+        <a class="nav-link active ms-0" href="ListaUsuarios">Crear Categorias</a>
+        <a class="nav-link active ms-0" href="ListaEquiAcce">Crear Centro de Costo</a>
+        <a class="nav-link active ms-0" href="ListaEquiAcce">Crear Fabricantes</a>
+        <a class="nav-link active ms-0" href="ListaEquiAcce">Crear Modelos</a>
     </nav>
 
     <script>
@@ -19,30 +21,33 @@
     <hr class="mt-0 mb-4">
     <!-- Filtro -->
     <div class="row mb-3">
-        <div class="col-md-4">
-            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre Usuario">
-        </div>
-        <div class="col-md-2">
-            <button id="btnBuscarUsuario" class="btn btn-primary w-100">Buscar</button>
+        <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+        <!-- style="gap: 0.5rem; min-width: 500px;" Mejora Estilo de input y escritorio en web -->
+            <!-- Izquierda: input y botón Buscar -->
+            <!-- <div class="d-flex align-items-center" style="gap: 0.5rem; min-width: 300px;">
+                <input type="text" name="area" id="area" class="form-control" placeholder="Nombre Area" autocomplete="off">
+                <button id="btnBuscarArea" class="btn btn-primary">Buscar</button>
+            </div> -->
+
+            <!-- Derecha: botón Crear nuevo -->
+            <div>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearArea">+ Crear nuevo</button>
+            </div>
+
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-12">
+
+    <div class="row justify-content-center">
+        <div class="col-xl-8">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Lista de Usuarios</div>
+                <div class="card-header">Lista de Area</div>
                 <div class="card-body">
                     <!-- Table -->
-                    <table class="table table-bordered" id="tablaDatosUsuario" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tablaDatosArea" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center">Usuario</th>
-                                <th class="text-center">Usuario de Red</th>
-                                <th class="text-center">Centro de Costo</th>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Sede</th>
-                                <th class="text-center">Pefil</th>
-                                <th class="text-center">Area</th>
+                                <th class="text-center">Nombre de Area</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -55,12 +60,35 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <!-- Modal Crear -->
+    <div class="modal fade" id="modalCrearArea" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <!-- id="formCrear" -->
+            <form action="registrarArea" method="POST" class="modal-content" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear nuevo Edifico</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="area" class="form-label">Nombre de Area</label>
+                        <input type="text" id="area" name="area" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+                    <button type="submit" name="saveInfoButtonArea" id="saveInfoButtonArea" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Editar -->
+    <div class="modal fade" id="modalEditarArea" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <!-- id="formEditarUsuario"  -->
-            <form id="formEditarUsuario" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formEditarArea" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Usuario</h5>
+                    <h5 class="modal-title">Editar Area</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
@@ -74,43 +102,10 @@
                             <input type="text" id="edit_usu_red" name="edit_usu_red" class="form-control">
                         </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="edit_email" class="form-label">Email</label>
-                        <input type="text" id="edit_email" name="edit_email" class="form-control">
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-6">
-                            <label for="edit_centro_cosoto" class="form-label">Centro de Costo</label>
-                            <select class="form-control text-uppercase" id="edit_centro_costo" name="edit_centro_costo">
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="edit_sede" class="form-label">Sede</label>
-                            <select class="form-control text-uppercase" id="edit_sede" name="edit_sede">
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-6">
-                            <label for="edit_perfil" class="form-label">Perfil</label>
-                            <select class="form-control text-uppercase" id="edit_perfil" name="edit_perfil">
-
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="edit_area" class="form-label">Area</label>
-                            <select class="form-control text-uppercase" id="edit_area" name="edit_area">
-
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonUsuario" id="updateInfoButtonUsuario" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" name="updateInfoButtonArea" id="updateInfoButtonArea" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
@@ -187,8 +182,7 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxEventosUsuario.js"></script>
-<script src="public/js/ajaxSelectUsuario.js"></script>
+<!-- <script src="public/js/ajaxEventosArea.js"></script> -->
 
 </body>
 

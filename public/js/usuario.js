@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     if (response.success) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Se creo edificio',
+                            title: 'Se creo Usuario',
                             timer: 1500,
                             showConfirmButton: false,
                         }).then(function () {

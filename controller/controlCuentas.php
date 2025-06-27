@@ -162,13 +162,8 @@ class ControlCuentas
                 $usuario->setid_perfil($_POST['edit_perfil']);
                 $usuario->setid_area($_POST['edit_area']);
             
-                // var_dump($edificio);
-                //llmando al inser de modelo solicitud
-                echo '<pre>';
-                var_dump($usuario);
-                echo '</pre>';
                 $update_usuario = $this->CUENTAS->updateUsuario($usuario);
-                var_dump($update_usuario);
+                // var_dump($update_usuario);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
                 if ($update_usuario) {
                     echo json_encode(['success' => true, 'message' => 'Ticket actualizado correctamente']);
@@ -188,14 +183,22 @@ class ControlCuentas
 
     public function EliminarUsuarios()
     {
-        // Iniciar sesión
-        session_start();
-        
-        // Verificar si el usuario está autenticado
-        if (!isset($_SESSION['id'])) {
-        //     Redirigir al login si no está autenticado
-           header("Location: Index");
+        // Obtener valores desde la solicitud AJAX
+        if (!isset($_POST['id'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'ID no proporcionado']);
             exit;
+        }
+
+        $idusuario = $_POST['id'] ?? '';
+
+        $resultado = $this->CUENTAS->deleteUsuario($idusuario);
+
+        if ($resultado) {
+            echo json_encode(['success' => true]);
+        } else {
+            http_response_code(500);
+            echo json_encode(['error' => 'No se pudo eliminar']);
         }
     }
 

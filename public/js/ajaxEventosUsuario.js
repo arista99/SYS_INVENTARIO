@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // Inicializar DataTable
+  // Inicializar DataTable de Usuario
 
   var tabla = $("#tablaDatosUsuario").DataTable({
     ajax: {
@@ -74,56 +74,90 @@ $(document).ready(function () {
   });
 
   //Actualizar edificio
-  $("#updateInfoButtonUsuario").on("submit", function (e) {
-    // e.preventDefault();
+  $("#formEditarUsuario").on("submit", function (e) {
+    e.preventDefault();
 
     // Obtener los datos del formulario
-    var formData = {
-      id: $("#id").val(),
-      edit_usuario: $("#edit_usuario").val(),
-      edit_usu_red: $("#edit_usu_red").val(),
-      edit_centro_costo: $("#edit_centro_costo").val(),
-      edit_email: $("#edit_email").val(),
-      edit_sede: $("#edit_sede").val(),
-      edit_perfil: $("#edit_perfil").val(),
-      edit_area: $("#edit_area").val(),
-    };
+    // var formData = {
+    //   id: $("#id").val(),
+    //   edit_usuario: $("#edit_usuario").val(),
+    //   edit_usu_red: $("#edit_usu_red").val(),
+    //   edit_centro_costo: $("#edit_centro_costo").val(),
+    //   edit_email: $("#edit_email").val(),
+    //   edit_sede: $("#edit_sede").val(),
+    //   edit_perfil: $("#edit_perfil").val(),
+    //   edit_area: $("#edit_area").val(),
+    // };
 
-    console.log(formData);
-    // $.ajax({
-    //   url: "actualizarUsuario",
-    //   type: "POST",
-    //   data: formData,
-    //   success: function (response) {
-    //     // const res = JSON.parse(response);
-    //     if (response.success) {
-    //       Swal.fire({
-    //         icon: "success",
-    //         title: "Actualizado correctamente",
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
+    // console.log(formData);
+    $.ajax({
+      url: "actualizarUsuario",
+      type: "POST",
+      // data: formData,
+      data: $(this).serialize(),
+      dataType: "json", // ✅ Asegura que jQuery ya lo parsee
+      success: function (response) {
+        if (response.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Actualizado correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
 
-    //       $("#modalEditarUsuario").modal("hide");
+          $("#modalEditarUsuario").modal("hide");
+          $("#tablaDatosUsuario").DataTable().ajax.reload(null, false);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: response.message || "Ocurrió un error al actualizar.",
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error AJAX:", error);
+        console.error("Respuesta:", xhr.responseText);
 
-    //       // 🔁 Recarga la tabla
-    //       $("#tablaDatosUsuario").DataTable().ajax.reload(null, false);
-    //     } else {
-    //       Swal.fire({
-    //         icon: "error",
-    //         title: "Error",
-    //         text: res.message,
-    //       });
-    //     }
-    //   },
-    //   error: function (xhr, status, error) {
-    //     // Manejar errores de la solicitud AJAX
-    //     console.error("Error en la solicitud AJAX:", error);
-    //     console.error("Respuesta del servidor:", xhr.responseText); // Mostrar la respuesta en la consola
-    //     alert(
-    //       "Ocurrió un error al procesar la solicitud. Por favor, intenta nuevamente."
-    //     );
-    //   },
-    // });
+        Swal.fire({
+          icon: "error",
+          title: "Error de servidor",
+          text: "No se pudo procesar la solicitud. Intenta más tarde.",
+        });
+      },
+    });
+  });
+
+  // Acciones de eliminar
+  $("#tablaDatosUsuario").on("click", ".btnEliminar", function () {
+    const id = $(this).data("id");
+
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.post("EliminarUsuarios", { id }, function () {
+          Swal.fire(
+            "¡Eliminado!",
+            "El Usuario ha sido eliminado.",
+            "success"
+          );
+          tabla.ajax.reload();
+        }).fail(function () {
+          Swal.fire(
+            "Error",
+            "Hubo un problema al eliminar el usuario.",
+            "error"
+          );
+        });
+      }
+    });
   });
 });

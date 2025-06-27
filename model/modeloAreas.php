@@ -30,4 +30,45 @@ class ModeloAreas
     }
     /*********************************************************************************************************/
 
+      /*******************************************Lista - Busqueda Area*****************************************/
+      public function findArea($area)
+      {
+          try {
+              $sql = "SELECT * FROM tbl_areas";
+              
+              if (!empty($area)) {
+                  $sql .= " WHERE LOWER(area) LIKE LOWER(?)";
+                  $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+                  $stm->execute(['%' . $area . '%']);
+              } else {
+                  $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+                  $stm->execute();
+              }
+  
+              return $stm->fetchAll(PDO::FETCH_OBJ);
+          } catch (Exception $th) {
+              echo $th->getMessage();
+          }
+      }
+  
+      /******************************************************************************************************/
+
+      /*******************************************CREAR AREAS********************************************/
+    public function createAreas(Area $area)
+    {
+        try {
+            $sql = "INSERT INTO tbl_areas(area) values(?) ";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute(
+                array(
+                    $area->getarea()
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*********************************************************************************************************/
+  
 }

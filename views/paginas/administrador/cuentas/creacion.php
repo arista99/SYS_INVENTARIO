@@ -18,7 +18,7 @@
             <div class="card mb-4">
                 <div class="card-header">Detalle de Usuario</div>
                 <div class="card-body">
-                    <form id="formCrearUsuario">
+                    <form id="formCrearUsuario" autocomplete="off">
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="usuarioRed">Usuario de red</label>

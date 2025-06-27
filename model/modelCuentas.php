@@ -90,13 +90,12 @@ class ModeloCuentas
     public function updateUsuario(Usuario $usuario)
     {
         try {
-            $sql = "UPDATE usuario SET usuario = ? , usuario_red = ? , id_centro_costo = ? , cargo = ? , email = ?, id_sede = ?, id_perfil = ?, id_area = ? WHERE id = ?";
+            $sql = "UPDATE tbl_usuarios SET usuario = ? , usuario_red = ? , id_centro_costo = ? , email = ?, id_sede = ?, id_perfil = ?, id_area = ? WHERE id = ?";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
                 array(
                     $usuario->getusuario(),
                     $usuario->getusuario_red(),
                     $usuario->getid_centro_costo(),
-                    $usuario->getcargo(),
                     $usuario->getemail(),
                     $usuario->getid_sede(),
                     $usuario->getid_perfil(),
@@ -113,6 +112,20 @@ class ModeloCuentas
     /*********************************************************************************************************/
 
     /*******************************************ELIMINAR USUARIOS********************************************/
+    public function deleteUsuario($idusuario)
+    {
+        try {
+            $sql = "DELETE FROM tbl_usuarios WHERE id = ?";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
+                array(
+                    $idusuario
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
 
     /*********************************************************************************************************/
 

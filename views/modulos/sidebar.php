@@ -17,7 +17,7 @@
 
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
+    <!-- CONTROL -->
     <div class="sidebar-heading">Interfaces</div>
 
     <!-- Módulos -->
@@ -50,7 +50,7 @@
     </li>
 
     <!-- Utilities -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
            aria-expanded="false" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
@@ -65,47 +65,41 @@
                 <a class="collapse-item" href="utilities-other.html">Other</a>
             </div>
         </div>
-    </li>
+    </li> -->
 
     <hr class="sidebar-divider">
 
-    <!-- Addons -->
-    <div class="sidebar-heading">Addons</div>
+    <!-- Parametros -->
+    <div class="sidebar-heading">Parametros</div>
 
-    <!-- Pages -->
+    <!-- Recursos -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesAddon"
            aria-expanded="false" aria-controls="collapsePagesAddon">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
+            <span>Recursos</span>
         </a>
         <div id="collapsePagesAddon" class="collapse" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="login.html">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                <div class="collapse-divider"></div>
+                <!-- <h6 class="collapse-header">Login Screens:</h6> -->
+                <a class="collapse-item" href="creacionAreas">Areas</a>
+                <a class="collapse-item" href="#">Categorias</a>
+                <a class="collapse-item" href="#">Centro de Costo</a>
+                <a class="collapse-item" href="#">Fabricante</a>
+                <a class="collapse-item" href="#">Modelos</a>
+                <!-- <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>
+                <a class="collapse-item" href="blank.html">Blank Page</a> -->
             </div>
         </div>
     </li>
 
-    <!-- Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span>
-        </a>
-    </li>
-
-    <!-- Tables -->
+    <!-- Reportes -->
     <li class="nav-item">
         <a class="nav-link" href="tables.html">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span>
+            <span>Reportes</span>
         </a>
     </li>
 
