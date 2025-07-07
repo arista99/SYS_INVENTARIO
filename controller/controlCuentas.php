@@ -3,8 +3,8 @@
 require_once('model/modelCuentas.php');
 require_once('model/modelPerfiles.php');
 require_once('model/modelSede.php');
-require_once('model/modelCentro.php');
-require_once('model/modeloAreas.php');
+require_once('model/modelCentroCostos.php');
+require_once('model/modelAreas.php');
 //DATA
 require_once('data/usuario.php');
 
@@ -22,7 +22,7 @@ class ControlCuentas
         $this->CUENTAS = new ModeloCuentas();
         $this->PERFILES = new ModeloPerfiles();
         $this->SEDES = new ModeloSedes();
-        $this->CENTRO = new ModeloCentro();
+        $this->CENTRO = new ModeloCentroCostos();
         $this->AREA = new ModeloAreas();
     }
 
@@ -46,38 +46,6 @@ class ControlCuentas
         $perfiles_tra = $this->PERFILES->readPefiles();
 
         include_once('views/paginas/administrador/cuentas/creacion.php');
-    }
-
-    public function listaCentro()
-    {
-        // Simula datos desde la BD
-        $centros = $this->CENTRO->readCentro(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($centros);
-    }
-
-    public function listaSede()
-    {
-        // Simula datos desde la BD
-        $sedes = $this->SEDES->readSedes(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($sedes);
-    }
-
-    public function listaPerfil()
-    {
-        // Simula datos desde la BD
-        $perfiles = $this->PERFILES->readPefiles(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($perfiles);
-    }
-
-    public function listaArea()
-    {
-        // Simula datos desde la BD
-        $areas = $this->AREA->readAreas(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($areas);
     }
 
     public function registrarUsuario()
@@ -202,6 +170,37 @@ class ControlCuentas
         }
     }
 
+    public function listaCentro()
+    {
+        // Simula datos desde la BD
+        $centros = $this->CENTRO->readCentro(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($centros);
+    }
+
+    public function listaSede()
+    {
+        // Simula datos desde la BD
+        $sedes = $this->SEDES->readSedes(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($sedes);
+    }
+
+    public function listaPerfil()
+    {
+        // Simula datos desde la BD
+        $perfiles = $this->PERFILES->readPefiles(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($perfiles);
+    }
+
+    public function listaArea()
+    {
+        // Simula datos desde la BD
+        $areas = $this->AREA->readAreas(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($areas);
+    }
 
 
 }

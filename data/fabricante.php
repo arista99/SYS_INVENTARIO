@@ -1,15 +1,15 @@
 <?php
 
-class Area
+class fabricante
 {
 
     private $id;
-    private $area;
+    private $fabricante;
 
     public function __construct()
     {
         $this->id = "";
-        $this->area = "";
+        $this->fabricante = "";
     }
 
     function setid($id)
@@ -22,13 +22,13 @@ class Area
         return $this->id;
     }
 
-    function setarea($area)
+    function setfabricante($fabricante)
     {
-        $this->area= $area;
+        $this->fabricante= $fabricante;
     }
 
-    function getarea()
+    function getfabricante()
     {
-        return $this->area;
+        return $this->fabricante;
     }
 }

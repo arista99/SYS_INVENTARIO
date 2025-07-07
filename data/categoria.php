@@ -1,15 +1,15 @@
 <?php
 
-class Area
+class Categoria
 {
 
     private $id;
-    private $area;
+    private $categoria;
 
     public function __construct()
     {
         $this->id = "";
-        $this->area = "";
+        $this->categoria = "";
     }
 
     function setid($id)
@@ -22,13 +22,13 @@ class Area
         return $this->id;
     }
 
-    function setarea($area)
+    function setcategoria($categoria)
     {
-        $this->area= $area;
+        $this->categoria= $categoria;
     }
 
-    function getarea()
+    function getcategoria()
     {
-        return $this->area;
+        return $this->categoria;
     }
 }

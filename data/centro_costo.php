@@ -1,15 +1,15 @@
 <?php
 
-class Area
+class CentroCosto
 {
 
     private $id;
-    private $area;
+    private $centro_costo;
 
     public function __construct()
     {
         $this->id = "";
-        $this->area = "";
+        $this->centro_costo = "";
     }
 
     function setid($id)
@@ -22,13 +22,13 @@ class Area
         return $this->id;
     }
 
-    function setarea($area)
+    function setcentro_costo($centro_costo)
     {
-        $this->area= $area;
+        $this->centro_costo= $centro_costo;
     }
 
-    function getarea()
+    function getcentro_costo()
     {
-        return $this->area;
+        return $this->centro_costo;
     }
 }

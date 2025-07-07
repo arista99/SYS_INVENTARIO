@@ -23,7 +23,7 @@
     <div class="row mb-3">
         <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
             <div>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearArea">+ Crear nuevo</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearCategoria">+ Crear nuevo</button>
             </div>
 
         </div>
@@ -33,13 +33,13 @@
         <div class="col-xl-8">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Lista de Area</div>
+                <div class="card-header">Lista de Categoria</div>
                 <div class="card-body">
                     <!-- Table -->
-                    <table class="table table-bordered" id="tablaDatosArea" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tablaDatosCategoria" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center">Nombre de Area</th>
+                                <th class="text-center">Nombre de Categoria</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -53,45 +53,44 @@
     </div>
 
     <!-- Modal Crear -->
-    <div class="modal fade" id="modalCrearArea" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
+    <div class="modal fade" id="modalCrearCategoria" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
         <div class="modal-dialog">
             <!-- id="formCrear" -->
-            <form id="formCrearArea" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formCrearCategoria" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Crear nuevo Area</h5>
+                    <h5 class="modal-title">Crear Categoria</h5>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="area" class="form-label">Nombre de Area</label>
-                        <input type="text" id="area" name="area" class="form-control">
+                        <label for="categoria" class="form-label">Nombre de Categoriaa</label>
+                        <input type="text" id="categoria" name="categoria" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="saveInfoButtonArea" id="saveInfoButtonArea" class="btn btn-success">Guardar</button>
+                    <button type="submit" name="saveInfoButtonCategoria" id="saveInfoButtonCategoria" class="btn btn-success">Guardar</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Modal Editar -->
-    <div class="modal fade" id="modalEditarArea" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarCategoria" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-    <!-- id="formEditarUsuario"  -->
-            <form id="formEditarArea" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formEditarCategoria" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Area</h5>
+                    <h5 class="modal-title">Editar Categoria</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
                     <div class="mb-3">
-                        <label for="edit_area" class="form-label">Nombre de Area</label>
-                        <input type="text" id="edit_area" name="edit_area" class="form-control">
+                        <label for="edit_categoria" class="form-label">Nombre de Categoria</label>
+                        <input type="text" id="edit_categoria" name="edit_categoria" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonArea" id="updateInfoButtonArea" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" name="updateInfoButtonCategoria" id="updateInfoButtonCategoria" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
@@ -168,7 +167,7 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxEventosArea.js"></script>
+<script src="public/js/ajaxEventosCategoria.js"></script>
 
 </body>
 

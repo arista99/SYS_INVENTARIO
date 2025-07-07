@@ -1,23 +1,23 @@
 <?php
 //MODEL
-require_once('model/modelAreas.php');
+require_once('model/modelCentroCostos.php');
 require_once('model/modelCuentas.php');
 //DATA
-require_once('data/area.php');
+require_once('data/centro_costo.php');
 
-class ControlAreas
+class controlCentroCostos
 {
     //VARIABLE MODELO
     public $CUENTAS;
-    public $AREAS;
+    public $CENTRO;
 
     public function __construct()
     {
         $this->CUENTAS = new ModeloCuentas();
-        $this->AREAS = new ModeloAreas();
+        $this->CENTRO = new ModeloCentroCostos();
     }
 
-    public function CreacionAreas()
+    public function CreacionCentroCostos()
     {
         // Iniciar sesión
         session_start();
@@ -31,16 +31,17 @@ class ControlAreas
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/recursos/areas/areas.php');
+        include_once('views/paginas/administrador/recursos/centro_costos/centro_costo.php');
     }
 
-    public function vistaArea()
+    
+    public function vistaCentro()
     {
         // Obtener valores desde la solicitud AJAX
-        $area = $_POST['area'] ?? '';
+        $centro = $_POST['centro'] ?? '';
 
         // Llama al modelo
-        $resultados = $this->AREAS->findArea($area);
+        $resultados = $this->CENTRO->findCentroCosto($centro);
 
         // var_dump($resultados);
         //Enviar respuesta al frontend
@@ -48,20 +49,20 @@ class ControlAreas
         echo json_encode(['data' => $resultados]);
     }
 
-    public function registrarArea()
+    public function registrarCentro()
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $area = new Area();
-                $area->setarea($_POST['area']);
+                $centro = new CentroCosto();
+                $centro->setcentro_costo($_POST['centro']);
                 
                 //llamando al insert de modelo area
-                $create_area = $this->AREAS->createAreas($area);
+                $create_centro = $this->CENTRO->createCentros($centro);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
-                if ($create_area) {
-                    echo json_encode(['success' => true, 'message' => 'Area registrada correctamento']);
+                if ($create_centro) {
+                    echo json_encode(['success' => true, 'message' => 'Centro de Costo registrada correctamento']);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error al crear area']);
+                    echo json_encode(['success' => false, 'message' => 'Error al crear Centro de Costo']);
                 }
             } else {
                 // Si no es una solicitud POST, enviar un mensaje de error
@@ -74,21 +75,21 @@ class ControlAreas
         }
     }
 
-    public function actualizarArea()
+    public function actualizarCentro()
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $area = new Area();
-                $area->setid($_POST['id']);
-                $area->setarea($_POST['edit_area']);
+                $centro = new CentroCosto();
+                $centro->setid($_POST['id']);
+                $centro->setcentro_costo($_POST['edit_centro']);
                 
                 //llamando al insert de modelo area
-                $update_area = $this->AREAS->updateAreas($area);
+                $update_centro = $this->CENTRO->updateCentros($centro);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
-                if ($update_area) {
-                    echo json_encode(['success' => true, 'message' => 'Area registrada correctamento']);
+                if ($update_centro) {
+                    echo json_encode(['success' => true, 'message' => 'Centro de Costo registrada correctamento']);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error al crear area']);
+                    echo json_encode(['success' => false, 'message' => 'Error al crear Centro de Costo']);
                 }
             } else {
                 // Si no es una solicitud POST, enviar un mensaje de error
@@ -101,7 +102,7 @@ class ControlAreas
         }
     }
 
-    public function eliminarArea()
+    public function eliminarCentro()
     {
         // Obtener valores desde la solicitud AJAX
         if (!isset($_POST['id'])) {
@@ -110,9 +111,9 @@ class ControlAreas
             exit;
         }
 
-        $idarea = $_POST['id'] ?? '';
+        $idcentro= $_POST['id'] ?? '';
 
-        $resultado = $this->AREAS->deleteAreas($idarea);
+        $resultado = $this->CENTRO->deleteCentros($idcentro);
 
         if ($resultado) {
             echo json_encode(['success' => true]);

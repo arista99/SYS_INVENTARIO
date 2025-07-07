@@ -1,23 +1,22 @@
 <?php
 //MODEL
-require_once('model/modelAreas.php');
-require_once('model/modelCuentas.php');
+require_once('model/modelCategorias.php');
 //DATA
-require_once('data/area.php');
+require_once('data/categoria.php');
 
-class ControlAreas
+class ControlCategorias
 {
     //VARIABLE MODELO
     public $CUENTAS;
-    public $AREAS;
+    public $CATEGORIAS;
 
     public function __construct()
     {
         $this->CUENTAS = new ModeloCuentas();
-        $this->AREAS = new ModeloAreas();
+        $this->CATEGORIAS = new ModeloCategorias();
     }
 
-    public function CreacionAreas()
+    public function CreacionCategorias()
     {
         // Iniciar sesión
         session_start();
@@ -31,16 +30,16 @@ class ControlAreas
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/recursos/areas/areas.php');
+        include_once('views/paginas/administrador/recursos/categorias/categoria.php');
     }
 
-    public function vistaArea()
+    public function vistaCategoria()
     {
         // Obtener valores desde la solicitud AJAX
-        $area = $_POST['area'] ?? '';
+        $categoria = $_POST['categoria'] ?? '';
 
         // Llama al modelo
-        $resultados = $this->AREAS->findArea($area);
+        $resultados = $this->CATEGORIAS->findCategoria($categoria);
 
         // var_dump($resultados);
         //Enviar respuesta al frontend
@@ -48,20 +47,20 @@ class ControlAreas
         echo json_encode(['data' => $resultados]);
     }
 
-    public function registrarArea()
+    public function registrarCategoria()
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $area = new Area();
-                $area->setarea($_POST['area']);
+                $categoria = new Categoria();
+                $categoria->setcategoria($_POST['categoria']);
                 
                 //llamando al insert de modelo area
-                $create_area = $this->AREAS->createAreas($area);
+                $create_area = $this->CATEGORIAS->createCategorias($categoria);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
                 if ($create_area) {
-                    echo json_encode(['success' => true, 'message' => 'Area registrada correctamento']);
+                    echo json_encode(['success' => true, 'message' => 'Categoria registrada correctamento']);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error al crear area']);
+                    echo json_encode(['success' => false, 'message' => 'Error al crear Categoria']);
                 }
             } else {
                 // Si no es una solicitud POST, enviar un mensaje de error
@@ -74,21 +73,21 @@ class ControlAreas
         }
     }
 
-    public function actualizarArea()
+    public function actualizarCategoria()
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $area = new Area();
-                $area->setid($_POST['id']);
-                $area->setarea($_POST['edit_area']);
+                $categoria = new Categoria();
+                $categoria->setid($_POST['id']);
+                $categoria->setcategoria($_POST['edit_categoria']);
                 
                 //llamando al insert de modelo area
-                $update_area = $this->AREAS->updateAreas($area);
+                $update_categoria = $this->CATEGORIAS->updateCategorias($categoria);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
-                if ($update_area) {
-                    echo json_encode(['success' => true, 'message' => 'Area registrada correctamento']);
+                if ($update_categoria) {
+                    echo json_encode(['success' => true, 'message' => 'Categoria actualizada correctamento']);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error al crear area']);
+                    echo json_encode(['success' => false, 'message' => 'Error al actualizada Categoria']);
                 }
             } else {
                 // Si no es una solicitud POST, enviar un mensaje de error
@@ -101,7 +100,7 @@ class ControlAreas
         }
     }
 
-    public function eliminarArea()
+    public function eliminarCategoria()
     {
         // Obtener valores desde la solicitud AJAX
         if (!isset($_POST['id'])) {
@@ -110,9 +109,9 @@ class ControlAreas
             exit;
         }
 
-        $idarea = $_POST['id'] ?? '';
+        $idcategoria = $_POST['id'] ?? '';
 
-        $resultado = $this->AREAS->deleteAreas($idarea);
+        $resultado = $this->CATEGORIAS->deleteCategorias($idcategoria);
 
         if ($resultado) {
             echo json_encode(['success' => true]);
@@ -121,4 +120,5 @@ class ControlAreas
             echo json_encode(['error' => 'No se pudo eliminar']);
         }
     }
+
 }

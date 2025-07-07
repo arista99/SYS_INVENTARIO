@@ -1,27 +1,27 @@
 window.addEventListener("DOMContentLoaded", () => {
   // Iniciar DataTable de Area
-  var tabla = $("#tablaDatosArea").DataTable({
+  var tabla = $("#tablaDatosCategoria").DataTable({
     ajax: {
-      url: "vistaArea",
+      url: "vistaCategoria",
       type: "POST",
       // data: function (d) {
       //   d.area = $("#area").val();
       // },
     },
     columns: [
-      { data: "area" },
+      { data: "categoria" },
       {
         data: "id",
         render: function (data, type, row) {
           if (id_perfil == 2) {
             return `
-                            <button class="btn btn-sm btn-warning btnEditar"
-                            data-id="${row.id}"
-                            data-area="${row.area}">
-                            ✏️
-                            </button>
-                            <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
-                        `;
+                  <button class="btn btn-sm btn-warning btnEditar"
+                  data-id="${row.id}"
+                  data-categoria="${row.categoria}">
+                  ✏️
+                  </button>
+                  <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
+              `;
           } else {
             return "";
           }
@@ -37,20 +37,20 @@ window.addEventListener("DOMContentLoaded", () => {
     ],
   });
 
-  // Registrar area
-  $("#saveInfoButtonArea").click(function (event) {
+  // Registrar Categoria
+  $("#saveInfoButtonCategoria").click(function (event) {
     event.preventDefault();
 
     // Obtener los datos del formulario
     var formData = {
-      area: $("#area").val(),
+      categoria: $("#categoria").val(),
     };
 
     console.log(formData);
 
     // Realizar la solicitud AJAX
     $.ajax({
-      url: "registrarArea", // Cambia a la URL de tu controlador
+      url: "registrarCategoria", // Cambia a la URL de tu controlador
       method: "POST",
       data: formData,
       dataType: "json",
@@ -59,7 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (response.success) {
           Swal.fire({
             icon: "success",
-            title: "Se creo Area",
+            title: "Se creo Categoria",
             timer: 1500,
             showConfirButton: false,
           }).then(function () {
@@ -80,24 +80,24 @@ window.addEventListener("DOMContentLoaded", () => {
       },
     });
   });
-
+  
   // Evento click para llenar el modal de edición
-  $("#tablaDatosArea").on("click", ".btnEditar", function () {
+  $("#tablaDatosCategoria").on("click", ".btnEditar", function () {
     let btn = $(this);
 
     $("#id").val(btn.data("id"));
-    $("#edit_area").val(btn.data("area"));
+    $("#edit_categoria").val(btn.data("categoria"));
 
-    $("#modalEditarArea").modal("show"); // Bootstrap 4/5
+    $("#modalEditarCategoria").modal("show"); // Bootstrap 4/5
   });
 
-  //Actualizar edificio
-  $("#formEditarArea").on("submit", function (e) {
+   //Actualizar edificio
+   $("#formEditarCategoria").on("submit", function (e) {
     e.preventDefault();
 
     // console.log(formData);
     $.ajax({
-      url: "actualizarArea",
+      url: "actualizarCategoria",
       type: "POST",
       // data: formData,
       data: $(this).serialize(),
@@ -111,8 +111,8 @@ window.addEventListener("DOMContentLoaded", () => {
             timer: 1500,
           });
 
-          $("#modalEditarArea").modal("hide");
-          $("#tablaDatosArea").DataTable().ajax.reload(null, false);
+          $("#modalEditarCategoria").modal("hide");
+          $("#tablaDatosCategoria").DataTable().ajax.reload(null, false);
         } else {
           Swal.fire({
             icon: "error",
@@ -135,7 +135,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // Acciones de eliminar
-  $("#tablaDatosArea").on("click", ".btnEliminar", function () {
+  $("#tablaDatosCategoria").on("click", ".btnEliminar", function () {
     const id = $(this).data("id");
 
     Swal.fire({
@@ -149,7 +149,7 @@ window.addEventListener("DOMContentLoaded", () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        $.post("eliminarArea", { id }, function () {
+        $.post("eliminarCategoria", { id }, function () {
           Swal.fire("¡Eliminado!", "El area ha sido eliminado correctamente.", "success");
           tabla.ajax.reload();
         }).fail(function () {
