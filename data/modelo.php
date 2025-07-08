@@ -1,15 +1,15 @@
 <?php
 
-class Fabricante
+class Modelo
 {
 
     private $id;
-    private $fabricante;
+    private $modelo;
 
     public function __construct()
     {
         $this->id = "";
-        $this->fabricante = "";
+        $this->modelo = "";
     }
 
     function setid($id)
@@ -22,13 +22,13 @@ class Fabricante
         return $this->id;
     }
 
-    function setfabricante($fabricante)
+    function setmodelo($modelo)
     {
-        $this->fabricante= $fabricante;
+        $this->modelo= $modelo;
     }
 
-    function getfabricante()
+    function getmodelo()
     {
-        return $this->fabricante;
+        return $this->modelo;
     }
 }

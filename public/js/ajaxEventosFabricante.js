@@ -1,15 +1,15 @@
 window.addEventListener("DOMContentLoaded", () => {
     // Iniciar DataTable de Area
-    var tabla = $("#tablaDatosCentro").DataTable({
+    var tabla = $("#tablaDatosFabricante").DataTable({
       ajax: {
-        url: "vistaCentro",
+        url: "vistaFabricante",
         type: "POST",
         // data: function (d) {
         //   d.area = $("#area").val();
         // },
       },
       columns: [
-        { data: "centro_costo" },
+        { data: "fabricante" },
         {
           data: "id",
           render: function (data, type, row) {
@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
               return `
                               <button class="btn btn-sm btn-warning btnEditar"
                               data-id="${row.id}"
-                              data-centro_costo="${row.centro_costo}">
+                              data-fabricante="${row.fabricante}">
                               ✏️
                               </button>
                               <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
@@ -37,20 +37,20 @@ window.addEventListener("DOMContentLoaded", () => {
       ],
     });
 
-     // Registrar Centro
-  $("#saveInfoButtonCentro").click(function (event) {
+      // Registrar Fabricante
+  $("#saveInfoButtonFabricante").click(function (event) {
     event.preventDefault();
 
     // Obtener los datos del formulario
     var formData = {
-      centro: $("#centro").val(),
+      fabricante: $("#fabricante").val(),
     };
 
     // console.log(formData);
 
     // Realizar la solicitud AJAX
     $.ajax({
-      url: "registrarCentro", // Cambia a la URL de tu controlador
+      url: "registrarFabricante", // Cambia a la URL de tu controlador
       method: "POST",
       data: formData,
       dataType: "json",
@@ -59,11 +59,11 @@ window.addEventListener("DOMContentLoaded", () => {
         if (response.success) {
           Swal.fire({
             icon: "success",
-            title: "Se creo Centro Costo",
+            title: "Se creo Fabricante",
             timer: 1500,
             showConfirButton: false,
           }).then(function () {
-            $("#modalCrearCentro").modal("hide"); // Cerrar el modal
+            $("#modalCrearFabricante").modal("hide"); // Cerrar el modal
             location.reload(); // Recargar la página
           });
         } else {
@@ -81,23 +81,23 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-   // Evento click para llenar el modal de edición
-   $("#tablaDatosCentro").on("click", ".btnEditar", function () {
-    let btn = $(this);
+    // Evento click para llenar el modal de edición
+    $("#tablaDatosFabricante").on("click", ".btnEditar", function () {
+      let btn = $(this);
+  
+      $("#id").val(btn.data("id"));
+      $("#edit_fabricante").val(btn.data("fabricante"));
+  
+      $("#modalEditarFabricante").modal("show"); // Bootstrap 4/5
+    });
 
-    $("#id").val(btn.data("id"));
-    $("#edit_centro").val(btn.data("centro_costo"));
-
-    $("#modalEditarCentro").modal("show"); // Bootstrap 4/5
-  });
-
-   //Actualizar Centro
-   $("#formEditarCentro").on("submit", function (e) {
+    //Actualizar fabricante
+   $("#formEditarFabricante").on("submit", function (e) {
     e.preventDefault();
 
     // console.log(formData);
     $.ajax({
-      url: "actualizarCentro",
+      url: "actualizarFabricante",
       type: "POST",
       // data: formData,
       data: $(this).serialize(),
@@ -111,8 +111,8 @@ window.addEventListener("DOMContentLoaded", () => {
             timer: 1500,
           });
 
-          $("#modalEditarCentro").modal("hide");
-          $("#tablaDatosCentro").DataTable().ajax.reload(null, false);
+          $("#modalEditarFabricante").modal("hide");
+          $("#tablaDatosFabricante").DataTable().ajax.reload(null, false);
         } else {
           Swal.fire({
             icon: "error",
@@ -133,33 +133,33 @@ window.addEventListener("DOMContentLoaded", () => {
       },
     });
   });
-  
-    // Acciones de eliminar
-    $("#tablaDatosCentro").on("click", ".btnEliminar", function () {
-      const id = $(this).data("id");
-  
-      Swal.fire({
-        title: "¿Estás seguro?",
-        text: "Esta acción no se puede deshacer.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Sí, eliminar",
-        cancelButtonText: "Cancelar",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          $.post("eliminarCentro", { id }, function () {
-            Swal.fire("¡Eliminado!", "El area ha sido eliminado correctamente.", "success");
-            tabla.ajax.reload();
-          }).fail(function () {
-            Swal.fire(
-              "Error",
-              "Hubo un problema al eliminar el area, esta asociado a un usuario.",
-              "error"
-            );
-          });
-        }
-      });
+
+   // Acciones de eliminar
+   $("#tablaDatosFabricante").on("click", ".btnEliminar", function () {
+    const id = $(this).data("id");
+
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.post("eliminarFabricante", { id }, function () {
+          Swal.fire("¡Eliminado!", "El area ha sido eliminado correctamente.", "success");
+          tabla.ajax.reload();
+        }).fail(function () {
+          Swal.fire(
+            "Error",
+            "Hubo un problema al eliminar el area, esta asociado a un usuario.",
+            "error"
+          );
+        });
+      }
     });
+  });
 });  

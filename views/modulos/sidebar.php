@@ -28,7 +28,14 @@
             <span>Módulos</span>
         </a>
         <div id="collapsePages" class="collapse" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded" id="accordionSidenavPagesMenu">
+        <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
+                <a class="collapse-item" href="CreacionUsuarios">Usuarios</a>
+                <a class="collapse-item" href="CreacionProveedores">Proveedores</a>
+                <a class="collapse-item" href="CreacionLicencias">Licencias</a>
+                <!-- <a class="collapse-item" href="utilities-other.html">Other</a> -->
+            </div>
+            <!-- <div class="bg-white py-2 collapse-inner rounded" id="accordionSidenavPagesMenu">
 
                 <a class="nav-link collapsed" style="color:#000;" href="#" data-toggle="collapse"
                    data-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
@@ -45,7 +52,7 @@
                         <a class="nav-link" href="ListaEquiAcce" style="color:#000;">Equipos & Accesorios</a>
                     </nav>
                 </div>
-            </div>
+            </div> -->
         </div>
     </li>
 
@@ -83,10 +90,10 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Login Screens:</h6> -->
                 <a class="collapse-item" href="creacionAreas">Areas</a>
-                <a class="collapse-item" href="#">Categorias</a>
-                <a class="collapse-item" href="#">Centro de Costo</a>
-                <a class="collapse-item" href="#">Fabricante</a>
-                <a class="collapse-item" href="#">Modelos</a>
+                <a class="collapse-item" href="CreacionCategorias">Categorias</a>
+                <a class="collapse-item" href="CreacionCentroCostos">Centro de Costo</a>
+                <a class="collapse-item" href="CreacionFabricantes">Fabricante</a>
+                <a class="collapse-item" href="CreacionModelos">Modelos</a>
                 <!-- <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="404.html">404 Page</a>

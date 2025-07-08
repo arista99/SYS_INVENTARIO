@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
       categoria: $("#categoria").val(),
     };
 
-    console.log(formData);
+    // console.log(formData);
 
     // Realizar la solicitud AJAX
     $.ajax({

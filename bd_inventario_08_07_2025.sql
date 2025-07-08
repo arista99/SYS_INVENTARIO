@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `tbl_areas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `area` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_areas: ~1 rows (aproximadamente)
 DELETE FROM `tbl_areas`;
@@ -113,10 +113,14 @@ CREATE TABLE IF NOT EXISTS `tbl_categorias` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `categoria` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_categorias: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_categorias: ~3 rows (aproximadamente)
 DELETE FROM `tbl_categorias`;
+INSERT INTO `tbl_categorias` (`id`, `categoria`) VALUES
+	(1, 'laptop'),
+	(2, 'desktop'),
+	(3, 'impresora');
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_celulares
 CREATE TABLE IF NOT EXISTS `tbl_celulares` (
@@ -163,9 +167,9 @@ CREATE TABLE IF NOT EXISTS `tbl_centro_costo` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `centro_costo` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_centro_costo: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_centro_costo: ~3 rows (aproximadamente)
 DELETE FROM `tbl_centro_costo`;
 INSERT INTO `tbl_centro_costo` (`id`, `centro_costo`) VALUES
 	(1, 'sistemas'),
@@ -277,10 +281,13 @@ CREATE TABLE IF NOT EXISTS `tbl_fabricantes` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fabricante` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_fabricantes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_fabricantes: ~2 rows (aproximadamente)
 DELETE FROM `tbl_fabricantes`;
+INSERT INTO `tbl_fabricantes` (`id`, `fabricante`) VALUES
+	(1, 'hp'),
+	(2, 'lenovo');
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_historial_activos
 CREATE TABLE IF NOT EXISTS `tbl_historial_activos` (
@@ -450,10 +457,13 @@ CREATE TABLE IF NOT EXISTS `tbl_modelos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `modelo` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_modelos: ~0 rows (aproximadamente)
 DELETE FROM `tbl_modelos`;
+INSERT INTO `tbl_modelos` (`id`, `modelo`) VALUES
+	(1, 'think pad'),
+	(2, 'gamer thinkk');
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_perfiles
 CREATE TABLE IF NOT EXISTS `tbl_perfiles` (
@@ -473,10 +483,13 @@ CREATE TABLE IF NOT EXISTS `tbl_productos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `producto` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_productos: ~0 rows (aproximadamente)
 DELETE FROM `tbl_productos`;
+INSERT INTO `tbl_productos` (`id`, `producto`) VALUES
+	(1, 'servicios'),
+	(2, 'activos');
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_proveedores
 CREATE TABLE IF NOT EXISTS `tbl_proveedores` (
@@ -493,10 +506,12 @@ CREATE TABLE IF NOT EXISTS `tbl_proveedores` (
   KEY `id_documento` (`id_documento`),
   CONSTRAINT `tbl_proveedores_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `tbl_productos` (`id`),
   CONSTRAINT `tbl_proveedores_ibfk_2` FOREIGN KEY (`id_documento`) REFERENCES `tbl_documentos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_proveedores: ~0 rows (aproximadamente)
 DELETE FROM `tbl_proveedores`;
+INSERT INTO `tbl_proveedores` (`id`, `proveedor`, `direccion`, `contacto`, `email`, `telefono`, `id_producto`, `id_documento`) VALUES
+	(1, 'digital', 'jr digital 123', 'alberto', 'alberto@gmail.com', '987456123', 1, NULL);
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_sedes
 CREATE TABLE IF NOT EXISTS `tbl_sedes` (
@@ -505,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sedes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_sedes: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_sedes: ~9 rows (aproximadamente)
 DELETE FROM `tbl_sedes`;
 INSERT INTO `tbl_sedes` (`id`, `sede`) VALUES
 	(1, 'arequipa'),
@@ -541,13 +556,13 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   CONSTRAINT `tbl_usuarios_ibfk_2` FOREIGN KEY (`id_sede`) REFERENCES `tbl_sedes` (`id`),
   CONSTRAINT `tbl_usuarios_ibfk_3` FOREIGN KEY (`id_perfil`) REFERENCES `tbl_perfiles` (`id`),
   CONSTRAINT `tbl_usuarios_ibfk_4` FOREIGN KEY (`id_area`) REFERENCES `tbl_areas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_usuarios: ~2 rows (aproximadamente)
 DELETE FROM `tbl_usuarios`;
 INSERT INTO `tbl_usuarios` (`id`, `usuario`, `usuario_red`, `contrasena`, `id_centro_costo`, `cargo`, `email`, `id_sede`, `id_perfil`, `id_area`) VALUES
-	(1, 'kevin torres', 'ktorres', '1234', 1, 'auxiliar de sistemas', 'ktorres@transberperu.com', 2, 2, 1),
-	(6, 'prueba', 'prueba', '7412', 1, 'au', 'ktorres@transberperu.com', 1, 1, 1);
+	(1, 'Kevin Torres', 'ktorres', '1234', 1, 'auxiliar de sistemas', 'ktorres@transberperu.com', 2, 2, 1),
+	(11, 'Sergio Ventura Maco', 'sventura', '1234', 1, 'Auxiliar de Sistemas', 'sventura@transberperu.com', 2, 1, 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
