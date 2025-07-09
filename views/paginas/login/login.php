@@ -42,7 +42,7 @@
                                         <img src="public/img/logo.jpg" alt="Logo transber" class="w-75 h-75 img-fluid" style="max-height: 300px;">
                                         <hr class="w-50 mx-auto border-primary">
                                     </div>
-                                    <form id="frmAjaxLogin" class="user">
+                                    <form id="frmAjaxLogin" class="user" autocomplete="off">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="usuario_red" name="usuario_red" placeholder="Usuario" autocomplete="current-username">
                                         </div>

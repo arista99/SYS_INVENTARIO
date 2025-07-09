@@ -7,6 +7,7 @@ include_once('controller/controlCategorias.php');
 include_once('controller/controlCentroCostos.php');
 include_once('controller/controlFabricantes.php');
 include_once('controller/controlModelos.php');
+include_once('controller/controlProveedores.php');
 
 //PARA LOS CARACTERES EXTRAÑOS
 header('Content-Type: text/html; charset=utf-8');
@@ -23,6 +24,7 @@ $controlCategorias = new ControlCategorias();
 $controlCentroCostos = new controlCentroCostos();
 $controlFabricantes = new controlFabricantes();
 $controlModelos = new controlModelos();
+$controlProveedores = new ControlProveedores();
 
 //LLAMADA DE LOS METODOS
 if (!isset($_REQUEST['ruta'])) {
@@ -45,6 +47,8 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($controlFabricantes, $peticion));
     }elseif (method_exists($controlModelos, $peticion)) {
         call_user_func(array($controlModelos, $peticion));
+    }elseif (method_exists($controlProveedores, $peticion)) {
+        call_user_func(array($controlProveedores, $peticion));
     }else{
         $controlIndex->Index();
     }

@@ -73,7 +73,7 @@ $(document).ready(function () {
     $("#modalEditarUsuario").modal("show"); // Bootstrap 4/5
   });
 
-  //Actualizar edificio
+  //Actualizar Usuario
   $("#formEditarUsuario").on("submit", function (e) {
     e.preventDefault();
 
