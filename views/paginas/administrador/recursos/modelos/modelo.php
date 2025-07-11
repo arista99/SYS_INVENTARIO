@@ -7,11 +7,12 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionAreas">Crear Area</a>
+        <a class="nav-link" href="CreacionAreas">Crear Areas</a>
         <a class="nav-link active ms-0" href="CreacionCategorias">Crear Categorias</a>
         <a class="nav-link active ms-0" href="CreacionCentroCostos">Crear Centro de Costo</a>
         <a class="nav-link active ms-0" href="CreacionFabricantes">Crear Fabricantes</a>
         <a class="nav-link active ms-0" href="CreacionModelos">Crear Modelos</a>
+        <a class="nav-link active ms-0" href="CreacionAdjuntos">Crear Adjuntos</a>
     </nav>
 
     <script>

@@ -150,12 +150,12 @@ window.addEventListener("DOMContentLoaded", () => {
     }).then((result) => {
       if (result.isConfirmed) {
         $.post("eliminarFabricante", { id }, function () {
-          Swal.fire("¡Eliminado!", "El area ha sido eliminado correctamente.", "success");
+          Swal.fire("¡Eliminado!", "El fabricante ha sido eliminado correctamente.", "success");
           tabla.ajax.reload();
         }).fail(function () {
           Swal.fire(
             "Error",
-            "Hubo un problema al eliminar el area, esta asociado a un usuario.",
+            "Hubo un problema al eliminar el fabricante.",
             "error"
           );
         });

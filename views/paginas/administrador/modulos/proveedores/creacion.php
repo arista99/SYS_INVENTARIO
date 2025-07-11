@@ -11,6 +11,11 @@
         <a class="nav-link active ms-0" href="ListaProveedores">Lista de Proveedores</a>
         <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
+
+    <script>
+        const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
+    </script>
+
     <hr class="mt-0 mb-4">
     <div class="row">
         <div class="col-xl-12">
@@ -65,7 +70,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="btn-registrar-proveedor" name="btn-registrar-proveedor" type="button">Crear usuario</button>
+                        <button class="btn btn-primary" id="btn-registrar-proveedor" name="btn-registrar-proveedor" type="button">Crear proveedor</button>
                     </form>
                 </div>
             </div>
@@ -144,6 +149,7 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
+<script src="public/js/ajaxEventosProveedor.js"></script>
 
 </body>
 

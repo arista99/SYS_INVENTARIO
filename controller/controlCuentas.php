@@ -45,7 +45,7 @@ class ControlCuentas
         $areas_tra = $this->AREA->readAreas();
         $perfiles_tra = $this->PERFILES->readPefiles();
 
-        include_once('views/paginas/administrador/cuentas/creacion.php');
+        include_once('views/paginas/administrador/modulos/cuentas/creacion.php');
     }
 
     public function registrarUsuario()
@@ -56,7 +56,8 @@ class ControlCuentas
                 $usuario->setusuario_red($_POST['usuarioRed']);
                 $usuario->setusuario($_POST['usuario']);
                 $usuario->setid_sede($_POST['filtrarSede']);
-                $usuario->setcontrasena($_POST['contrasena']);
+                $hash = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
+                $usuario->setcontrasena($hash);
                 $usuario->setid_centro_costo($_POST['filtrarCentro']);
                 $usuario->setid_area($_POST['filtrarArea']);
                 $usuario->setemail($_POST['correo']);
@@ -68,9 +69,9 @@ class ControlCuentas
 
                 // Responder con JSON para que AJAX pueda manejar la respuesta
                 if ($create_usuario) {
-                    echo json_encode(['success' => true, 'message' => 'Ticket actualizado correctamente']);
+                    echo json_encode(['success' => true, 'message' => 'Usuario registrado correctamente']);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error al actualizar el ticket']);
+                    echo json_encode(['success' => false, 'message' => 'Error al crear el usuario']);
                 }
             } else {
                 // Si no es una solicitud POST, enviar un mensaje de error
@@ -98,7 +99,7 @@ class ControlCuentas
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/cuentas/usuarios.php');
+        include_once('views/paginas/administrador/modulos/cuentas/usuarios.php');
     }
 
     public function vistaUsuario()
@@ -134,9 +135,9 @@ class ControlCuentas
                 // var_dump($update_usuario);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
                 if ($update_usuario) {
-                    echo json_encode(['success' => true, 'message' => 'Ticket actualizado correctamente']);
+                    echo json_encode(['success' => true, 'message' => 'Usuario actualizado correctamente']);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error al actualizar el ticket']);
+                    echo json_encode(['success' => false, 'message' => 'Error al actualizar el usuario']);
                 }
             } else {
                 // Si no es una solicitud POST, enviar un mensaje de error

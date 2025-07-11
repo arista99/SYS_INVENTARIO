@@ -22,6 +22,43 @@
 
     <!-- Módulos -->
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesActivos"
+           aria-expanded="false" aria-controls="collapsePagesActivos">
+            <i class="fas fa-fw fa-th-large"></i>
+            <span>Activos</span>
+        </a>
+        <div id="collapsePagesActivos" class="collapse" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
+                <a class="collapse-item" href="CreacionActivos">Laptops & Desktop</a>
+                <!-- <a class="collapse-item" href="CreacionProveedores">Proveedores</a> -->
+                <!-- <a class="collapse-item" href="CreacionDocumentos">Documentos</a> -->
+                <!-- <a class="collapse-item" href="CreacionLicencias">Licencias</a> -->
+                <!-- <a class="collapse-item" href="utilities-other.html">Other</a> -->
+            </div>
+            <!-- <div class="bg-white py-2 collapse-inner rounded" id="accordionSidenavPagesMenu">
+
+                <a class="nav-link collapsed" style="color:#000;" href="#" data-toggle="collapse"
+                   data-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
+                    Usuarios
+                    <div class="sidenav-collapse-arrow float-right">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </a>
+
+                <div class="collapse" id="pagesCollapseAccount" data-parent="#accordionSidenavPagesMenu">
+                    <nav class="sidenav-menu-nested nav">
+                        <a class="nav-link" href="CreacionUsuarios" style="color:#000;">Crear Usuario</a>
+                        <a class="nav-link" href="ListaUsuarios" style="color:#000;">Lista de Usuarios</a>
+                        <a class="nav-link" href="ListaEquiAcce" style="color:#000;">Equipos & Accesorios</a>
+                    </nav>
+                </div>
+            </div> -->
+        </div>
+    </li>    
+
+    <!-- Módulos -->
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
            aria-expanded="false" aria-controls="collapsePages">
             <i class="fas fa-fw fa-th-large"></i>
@@ -32,6 +69,7 @@
                 <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
                 <a class="collapse-item" href="CreacionUsuarios">Usuarios</a>
                 <a class="collapse-item" href="CreacionProveedores">Proveedores</a>
+                <a class="collapse-item" href="CreacionDocumentos">Documentos</a>
                 <a class="collapse-item" href="CreacionLicencias">Licencias</a>
                 <!-- <a class="collapse-item" href="utilities-other.html">Other</a> -->
             </div>
@@ -94,6 +132,7 @@
                 <a class="collapse-item" href="CreacionCentroCostos">Centro de Costo</a>
                 <a class="collapse-item" href="CreacionFabricantes">Fabricante</a>
                 <a class="collapse-item" href="CreacionModelos">Modelos</a>
+                <a class="collapse-item" href="CreacionAdjuntos">Adjuntos</a>
                 <!-- <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="404.html">404 Page</a>

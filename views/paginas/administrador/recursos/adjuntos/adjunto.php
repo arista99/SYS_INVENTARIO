@@ -14,6 +14,7 @@
         <a class="nav-link active ms-0" href="CreacionModelos">Crear Modelos</a>
         <a class="nav-link active ms-0" href="CreacionAdjuntos">Crear Adjuntos</a>
     </nav>
+
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
     </script>
@@ -23,7 +24,7 @@
     <div class="row mb-3">
         <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
             <div>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearCentro">+ Crear nuevo</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearAdjunto">+ Crear nuevo</button>
             </div>
 
         </div>
@@ -33,13 +34,13 @@
         <div class="col-xl-8">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Lista de Centro Costo</div>
+                <div class="card-header">Lista de Adjunto</div>
                 <div class="card-body">
                     <!-- Table -->
-                    <table class="table table-bordered" id="tablaDatosCentro" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tablaDatosAdjunto" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center">Nombre de Centro Costo</th>
+                                <th class="text-center">Nombre de Adjunto</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -53,44 +54,43 @@
     </div>
 
     <!-- Modal Crear -->
-    <div class="modal fade" id="modalCrearCentro" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
+    <div class="modal fade" id="modalCrearAdjunto" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <!-- id="formCrear" -->
-            <form id="formCrearCentro" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formCrearAdjunto" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Crear Centro Costo</h5>
+                    <h5 class="modal-title">Crear nuevo Adjunto</h5>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="centro" class="form-label">Nombre de centro costo</label>
-                        <input type="text" id="centro" name="centro" class="form-control">
+                        <label for="adjunto" class="form-label">Nombre de Adjunto</label>
+                        <input type="text" id="adjunto" name="adjunto" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="saveInfoButtonCentro" id="saveInfoButtonCentro" class="btn btn-success">Guardar</button>
+                    <button type="submit" name="saveInfoButtonAdjunto" id="saveInfoButtonAdjunto" class="btn btn-success">Guardar</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Modal Editar -->
-    <div class="modal fade" id="modalEditarCentro" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarAdjunto" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form id="formEditarCentro" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formEditarAdjunto" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Centro Costo</h5>
+                    <h5 class="modal-title">Editar Adjunto</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
                     <div class="mb-3">
-                        <label for="edit_centro" class="form-label">Nombre de centro costo</label>
-                        <input type="text" id="edit_centro" name="edit_centro" class="form-control">
+                        <label for="edit_adjunto" class="form-label">Actualizar Adjunto</label>
+                        <input type="text" id="edit_adjunto" name="edit_adjunto" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonCentro" id="updateInfoButtonCentro" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" name="updateInfoButtonAdjunto" id="updateInfoButtonAdjunto" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
@@ -167,7 +167,7 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxEventosCentro.js"></script>
+<script src="public/js/ajaxEventosAdjunto.js"></script>
 
 </body>
 

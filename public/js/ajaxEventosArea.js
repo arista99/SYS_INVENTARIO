@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
       area: $("#area").val(),
     };
 
-    console.log(formData);
+    // console.log(formData);
 
     // Realizar la solicitud AJAX
     $.ajax({
@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", () => {
             timer: 1500,
             showConfirButton: false,
           }).then(function () {
-            $("#modalCrearCategoria").modal("hide"); // Cerrar el modal
+            $("#modalCrearArea").modal("hide"); // Cerrar el modal
             location.reload(); // Recargar la página
           });
         } else {

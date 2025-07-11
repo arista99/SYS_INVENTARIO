@@ -8,8 +8,8 @@ class Documento
     private $id_adjunto;
     private $ruta_adjunto;
     // private $fecha_registro;
-    // private $fecha_inicio;
-    // private $fecha_termino;
+    private $fecha_inicio;
+    private $fecha_termino;
 
     public function __construct()
     {
@@ -18,8 +18,8 @@ class Documento
         $this->id_adjunto = "";
         $this->ruta_adjunto = "";
         // $this->fecha_registro = "";
-        // $this->fecha_inicio = "";
-        // $this->fecha_termino = "";
+        $this->fecha_inicio = "";
+        $this->fecha_termino = "";
     }
 
     function setid($id)
@@ -60,5 +60,25 @@ class Documento
     function getruta_adjunto()
     {
         return $this->ruta_adjunto;
+    }
+
+    function setfecha_inicio($fecha_inicio)
+    {
+        $this->fecha_inicio= $fecha_inicio;
+    }
+
+    function getfecha_inicio()
+    {
+        return $this->fecha_inicio;
+    }
+
+    function setfecha_termino($fecha_termino)
+    {
+        $this->fecha_termino= $fecha_termino;
+    }
+
+    function getfecha_termino()
+    {
+        return $this->fecha_termino;
     }
 }

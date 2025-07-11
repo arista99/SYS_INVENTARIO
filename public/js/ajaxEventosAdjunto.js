@@ -1,27 +1,27 @@
-window.addEventListener("DOMContentLoaded", () => {
-  // Iniciar DataTable de Area
-  var tabla = $("#tablaDatosCategoria").DataTable({
+$(document).ready(function () {
+  // Iniciar DataTable de Adjunto
+  var tabla = $("#tablaDatosAdjunto").DataTable({
     ajax: {
-      url: "vistaCategoria",
+      url: "vistaAdjunto",
       type: "POST",
       // data: function (d) {
       //   d.area = $("#area").val();
       // },
     },
     columns: [
-      { data: "categoria" },
+      { data: "adjunto" },
       {
         data: "id",
         render: function (data, type, row) {
           if (id_perfil == 2) {
             return `
-                  <button class="btn btn-sm btn-warning btnEditar"
-                  data-id="${row.id}"
-                  data-categoria="${row.categoria}">
-                  ✏️
-                  </button>
-                  <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
-              `;
+                            <button class="btn btn-sm btn-warning btnEditar"
+                            data-id="${row.id}"
+                            data-adjunto="${row.adjunto}">
+                            ✏️
+                            </button>
+                            <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
+                        `;
           } else {
             return "";
           }
@@ -37,20 +37,20 @@ window.addEventListener("DOMContentLoaded", () => {
     ],
   });
 
-  // Registrar Categoria
-  $("#saveInfoButtonCategoria").click(function (event) {
+  // Registrar Adjunto
+  $("#saveInfoButtonAdjunto").click(function (event) {
     event.preventDefault();
 
     // Obtener los datos del formulario
     var formData = {
-      categoria: $("#categoria").val(),
+      adjunto: $("#adjunto").val(),
     };
 
     // console.log(formData);
 
     // Realizar la solicitud AJAX
     $.ajax({
-      url: "registrarCategoria", // Cambia a la URL de tu controlador
+      url: "registrarAdjunto", // Cambia a la URL de tu controlador
       method: "POST",
       data: formData,
       dataType: "json",
@@ -59,11 +59,11 @@ window.addEventListener("DOMContentLoaded", () => {
         if (response.success) {
           Swal.fire({
             icon: "success",
-            title: "Se creo Categoria",
+            title: "Se creo Adjunto",
             timer: 1500,
             showConfirButton: false,
           }).then(function () {
-            $("#modalCrearCategoria").modal("hide"); // Cerrar el modal
+            $("#modalCrearAdjunto").modal("hide"); // Cerrar el modal
             location.reload(); // Recargar la página
           });
         } else {
@@ -80,24 +80,24 @@ window.addEventListener("DOMContentLoaded", () => {
       },
     });
   });
-  
+
   // Evento click para llenar el modal de edición
-  $("#tablaDatosCategoria").on("click", ".btnEditar", function () {
+  $("#tablaDatosAdjunto").on("click", ".btnEditar", function () {
     let btn = $(this);
 
     $("#id").val(btn.data("id"));
-    $("#edit_categoria").val(btn.data("categoria"));
+    $("#edit_adjunto").val(btn.data("adjunto"));
 
-    $("#modalEditarCategoria").modal("show"); // Bootstrap 4/5
+    $("#modalEditarAdjunto").modal("show"); // Bootstrap 4/5
   });
 
-   //Actualizar Categoria
-   $("#formEditarCategoria").on("submit", function (e) {
+  //Actualizar Categoria
+  $("#formEditarAdjunto").on("submit", function (e) {
     e.preventDefault();
 
     // console.log(formData);
     $.ajax({
-      url: "actualizarCategoria",
+      url: "actualizarAdjunto",
       type: "POST",
       // data: formData,
       data: $(this).serialize(),
@@ -111,8 +111,8 @@ window.addEventListener("DOMContentLoaded", () => {
             timer: 1500,
           });
 
-          $("#modalEditarCategoria").modal("hide");
-          $("#tablaDatosCategoria").DataTable().ajax.reload(null, false);
+          $("#modalEditarAdjunto").modal("hide");
+          $("#tablaDatosAdjunto").DataTable().ajax.reload(null, false);
         } else {
           Swal.fire({
             icon: "error",
@@ -135,7 +135,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // Acciones de eliminar
-  $("#tablaDatosCategoria").on("click", ".btnEliminar", function () {
+  $("#tablaDatosAdjunto").on("click", ".btnEliminar", function () {
     const id = $(this).data("id");
 
     Swal.fire({
@@ -149,13 +149,17 @@ window.addEventListener("DOMContentLoaded", () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        $.post("eliminarCategoria", { id }, function () {
-          Swal.fire("¡Eliminado!", "La categoria ha sido eliminado correctamente.", "success");
+        $.post("eliminarAdjunto", { id }, function () {
+          Swal.fire(
+            "¡Eliminado!",
+            "El Adjunto ha sido eliminado correctamente.",
+            "success"
+          );
           tabla.ajax.reload();
         }).fail(function () {
           Swal.fire(
             "Error",
-            "Hubo un problema al eliminar la categoria.",
+            "Hubo un problema al eliminar el Adjunto",
             "error"
           );
         });

@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionProveedores">Crear Proveedor</a>
-        <a class="nav-link active ms-0" href="ListaProveedores">Lista de Proveedores</a>
+        <a class="nav-link" href="CreacionDocumentos">Crear Documento</a>
+        <a class="nav-link active ms-0" href="ListaDocumentos">Lista de Documentos</a>
         <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
 
@@ -20,29 +20,27 @@
     <!-- Filtro -->
     <div class="row mb-3">
         <div class="col-md-4">
-            <input type="text" name="proveedor" id="proveedor" class="form-control" placeholder="Nombre Proveedor">
+            <input type="text" name="documento" id="documento" class="form-control" placeholder="Nombre Documento">
         </div>
         <div class="col-md-2">
-            <button id="btnBuscarProveedor" class="btn btn-primary w-100">Buscar</button>
+            <button id="btnBuscarDocumento" class="btn btn-primary w-100">Buscar</button>
         </div>
     </div>
     <div class="row">
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Lista de Proveedores</div>
+                <div class="card-header">Lista de Documentos</div>
                 <div class="card-body">
                     <!-- Table -->
-                    <table class="table table-bordered" id="tablaDatosProveedor" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tablaDatosDocumento" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center">Proveedor</th>
-                                <th class="text-center">Dirección</th>
-                                <th class="text-center">Contacto</th>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Telefono</th>
-                                <th class="text-center">Producto</th>
                                 <th class="text-center">Documento</th>
+                                <th class="text-center">Tipo de Ajunto</th>
+                                <th class="text-center">Fecha de Registro</th>
+                                <th class="text-center">Fecha Inicio</th>
+                                <th class="text-center">Fecha Termino</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -55,53 +53,45 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalEditarProveedor" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <!---Modal Actualizar---->
+    <div class="modal fade" id="modalEditarDocumento" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form id="formEditarProveedor" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formEditarDocumento" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Usuario</h5>
+                    <h5 class="modal-title">Editar Documento</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
                     <div class="row gx-3 mb-3">
                         <div class="col-md-6">
-                            <label for="edit_proveedor" class="form-label">Actualizar Proveedor</label>
-                            <input type="text" id="edit_proveedor" name="edit_proveedor" class="form-control">
+                            <label class="small mb-1" for="edit_documento">Nombre de Documento</label>
+                            <input class="form-control" id="documento" name="documento" type="text" placeholder="Ingresar Nombre de Documento">
                         </div>
                         <div class="col-md-6">
-                            <label for="edit_direccion" class="form-label">Actualizar Dirección</label>
-                            <input type="text" id="edit_direccion" name="edit_direccion" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-6">
-                            <label for="edit_contacto" class="form-label">Actualizar Contacto</label>
-                            <input type="text" id="edit_contacto" name="edit_contacto" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="edit_email" class="form-label">Actualizar Email</label>
-                            <input type="email" id="edit_email" name="edit_email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-6">
-                            <label for="edit_telefono" class="form-label">Actualizar Telefono</label>
-                            <input type="text" id="edit_telefono" name="edit_telefono" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-6">
-                            <label for="edit_producto" class="form-label">Actualizar Tipo de Producto</label>
-                            <select class="form-control text-uppercase" id="edit_producto" name="edit_producto">
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="edit_documento" class="form-label">Actualizar Tipo de Documento</label>
-                            <select class="form-control text-uppercase" id="edit_documento" name="edit_documento">
+                            <label class="small mb-1" for="filtrarAdjunto">Tipo Adjunto</label>
+                            <select class="form-control text-uppercase" id="filtrarAdjunto" name="filtrarAdjunto">
+                                <option selected disabled>Seleccionar Tipo Adjunto</option>
+                                <?php foreach ($adjuntos_tra as $adjunto) : ?>
+                                    <option value="<?php echo $adjunto->id ?>"><?php echo $adjunto->adjunto ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
-                    
+                    <div class="mb-3">
+                        <label class="small mb-1" for="formFileAdjunto">Cargue Documento</label>
+                        <input class="form-control" id="formFileAdjunto" name="formFileAdjunto" type="file" placeholder="Ingresa corrreo">
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="fecha_inicio">Fecha Inicio</label>
+                            <input class="form-control" id="fecha_inicio" name="fecha_inicio" type="date">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="fecha_termino">Fecha Termino</label>
+                            <input class="form-control" id="fecha_termino" name="fecha_termino" type="date">
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
@@ -182,8 +172,7 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxEventosProveedor.js"></script>
-<script src="public/js/ajaxSelectProveedor.js"></script>
+<script src="public/js/ajaxEventosDocumento.js"></script>
 
 </body>
 
