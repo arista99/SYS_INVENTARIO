@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
             icon: "success",
             title: "Se creo Modelo",
             timer: 1500,
-            showConfirButton: false,
+            showConfirmButton: false,
           }).then(function () {
             $("#modalCrearModelo").modal("hide"); // Cerrar el modal
             location.reload(); // Recargar la página

@@ -61,7 +61,7 @@ $(document).ready(function () {
             icon: "success",
             title: "Se creo Adjunto",
             timer: 1500,
-            showConfirButton: false,
+            showConfirmButton: false,
           }).then(function () {
             $("#modalCrearAdjunto").modal("hide"); // Cerrar el modal
             location.reload(); // Recargar la página

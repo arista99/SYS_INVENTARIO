@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
             icon: "success",
             title: "Se creo Centro Costo",
             timer: 1500,
-            showConfirButton: false,
+            showConfirmButton: false,
           }).then(function () {
             $("#modalCrearCentro").modal("hide"); // Cerrar el modal
             location.reload(); // Recargar la página

@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionDocumentos">Crear Documento</a>
-        <a class="nav-link active ms-0" href="ListaDocumentos">Lista de Documentos</a>
+        <a class="nav-link" href="CreacionLicencias">Crear Licencia</a>
+        <a class="nav-link active ms-0" href="ListaLicencias">Lista de Licencias</a>
         <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
 
@@ -20,27 +20,29 @@
     <!-- Filtro -->
     <div class="row mb-3">
         <div class="col-md-4">
-            <input type="text" name="documento" id="documento" class="form-control" placeholder="Nombre Documento">
+            <input type="text" name="licencia" id="licencia" class="form-control" placeholder="Nombre licencia">
         </div>
         <div class="col-md-2">
-            <button id="btnBuscarDocumento" class="btn btn-primary w-100">Buscar</button>
+            <button id="btnBuscarLicencia" class="btn btn-primary w-100">Buscar</button>
         </div>
     </div>
     <div class="row">
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Lista de Documentos</div>
+                <div class="card-header">Lista de Licencias</div>
                 <div class="card-body">
                     <!-- Table -->
-                    <table class="table table-bordered" id="tablaDatosDocumento" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tablaDatosLicencia" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th class="text-center">Nombre Software</th>
+                                <th class="text-center">Version</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">Proveevor</th>
                                 <th class="text-center">Documento</th>
-                                <th class="text-center">Tipo de Ajunto</th>
-                                <th class="text-center">Fecha de Registro</th>
-                                <th class="text-center">Fecha Inicio</th>
-                                <th class="text-center">Fecha Termino</th>
+                                <th class="text-center">Fecha Registro</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -54,40 +56,50 @@
     </div>
 
     <!---Modal Actualizar---->
-    <div class="modal fade" id="modalEditarDocumento" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarLicencia" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form id="formEditarDocumento" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formEditarLicencia" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Documento</h5>
+                    <h5 class="modal-title">Editar Licencia</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
                     <div class="row gx-3 mb-3">
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_documento">Actualizar Nombre de documento</label>
-                            <input class="form-control" id="edit_documento" name="edit_documento" type="text" placeholder="Ingresar Nombre de Documento">
+                            <label class="small mb-1" for="edit_software">Actualizar Nombre de Software</label>
+                            <input class="form-control" id="edit_software" name="edit_software" type="text">
                         </div>
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_adjunto">Actualizar Tipo Adjunto</label>
-                            <select class="form-control text-uppercase" id="edit_adjunto" name="edit_adjunto">
-                            </select>
+                            <label class="small mb-1" for="edit_version">Actualizar Version</label>
+                            <input class="form-control" id="edit_version" name="edit_version">
                         </div>
                     </div>
                     <div class="row gx-3 mb-3">
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_fecha_ini">Actualizar Fecha Inicio</label>
-                            <input class="form-control" id="edit_fecha_ini" name="edit_fecha_ini" type="date">
+                            <label class="small mb-1" for="edit_cantidad">Actualizar Cantidad</label>
+                            <input class="form-control" id="edit_cantidad" name="edit_cantidad" type="text">
                         </div>
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_fecha_fin">Actualizar Fecha Termino</label>
-                            <input class="form-control" id="edit_fecha_fin" name="edit_fecha_fin" type="date">
+                            <label class="small mb-1" for="edit_tipo">Actualizar Tipo</label>
+                            <input class="form-control" id="edit_tipo" name="edit_tipo" type="text">
                         </div>
                     </div>
-
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="edit_proveedor">Actualizar Proveedor</label>
+                            <select class="form-control text-uppercase" id="edit_proveedor" name="edit_proveedor">
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="edit_documento">Actualizar Documento</label>
+                            <select class="form-control text-uppercase" id="edit_documento" name="edit_documento">
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonDocumento" id="updateInfoButtonDocumento" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" name="updateInfoButtonLicencia" id="updateInfoButtonLicencia" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
@@ -164,8 +176,8 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxEventosDocumento.js"></script>
-<script src="public/js/ajaxSelectDocumento.js"></script>
+<script src="public/js/ajaxEventosLicencia.js"></script>
+<script src="public/js/ajaxSelectLicencia.js"></script>
 
 </body>
 

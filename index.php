@@ -10,6 +10,8 @@ include_once('controller/controlModelos.php');
 include_once('controller/controlProveedores.php');
 include_once('controller/controlAdjuntos.php');
 include_once('controller/controlDocumentos.php');
+include_once('controller/controlLicencias.php');
+include_once('controller/controlActivosPC.php.php');
 
 //PARA LOS CARACTERES EXTRAÑOS
 header('Content-Type: text/html; charset=utf-8');
@@ -29,6 +31,8 @@ $controlModelos = new controlModelos();
 $controlProveedores = new ControlProveedores();
 $ControlAdjuntos = new ControlAdjuntos();
 $ControlDocumentos = new ControlDocumentos();
+$ControlLicencias = new ControlLicencias();
+$ControlActivosPc = new ControlActivosPc();
 
 //LLAMADA DE LOS METODOS
 if (!isset($_REQUEST['ruta'])) {
@@ -57,6 +61,10 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($ControlAdjuntos, $peticion));
     }elseif (method_exists($ControlDocumentos, $peticion)) {
         call_user_func(array($ControlDocumentos, $peticion));
+    }elseif (method_exists($ControlLicencias, $peticion)) {
+        call_user_func(array($ControlLicencias, $peticion));
+    }elseif (method_exists($ControlActivosPc, $peticion)) {
+        call_user_func(array($ControlActivosPc, $peticion));
     }else{
         $controlIndex->Index();
     }

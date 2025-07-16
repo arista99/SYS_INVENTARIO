@@ -23,11 +23,10 @@ $(document).ready(function () {
                             data-id="${row.id}"
                             data-documento="${row.documento}"
                             data-adjunto="${row.adjunto}"
-                            data-fecha_inicio="${row.fecha_inicio}"
-                            data-fecha_termino="${row.fecha_termino}">
+                            data-fecha_inicio="${row.fecha_ini}"
+                            data-fecha_termino="${row.fecha_fin}">
                             ✏️
                             </button>
-                            <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
                         `;
           } else {
             return "";
@@ -43,7 +42,7 @@ $(document).ready(function () {
       },
     ],
   });
-
+  // <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
   // Botón Buscar
   $("#btnBuscarDocumento").click(function () {
     tabla.ajax.reload();
@@ -90,4 +89,64 @@ $(document).ready(function () {
       },
     });
   });
+
+  // Evento click para llenar el modal de edición
+  $("#tablaDatosDocumento").on("click", ".btnEditar", function () {
+    let btn = $(this);
+
+    $("#id").val(btn.data("id"));
+    $("#edit_documento").val(btn.data("documento"));
+    $("#edit_fecha_ini").val(btn.data("fecha_inicio"));
+    $("#edit_fecha_fin").val(btn.data("fecha_termino"));
+
+    // Llenar selects con valor seleccionado correctamente usando los IDs
+    cargarAdjunto(btn.data("adjunto"));
+
+    $("#modalEditarDocumento").modal("show"); // Bootstrap 4/5
+  });
+
+  //Actualizar Documento
+  $("#formEditarDocumento").on("submit", function (e) {
+    e.preventDefault();
+
+    // console.log(formData);
+    $.ajax({
+      url: "actualizarDocumento",
+      type: "POST",
+      // data: formData,
+      data: $(this).serialize(),
+      dataType: "json", // ✅ Asegura que jQuery ya lo parsee
+      success: function (response) {
+        if (response.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Actualizado correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          $("#modalEditarDocumento").modal("hide");
+          $("#tablaDatosDocumento").DataTable().ajax.reload(null, false);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: response.message || "Ocurrió un error al actualizar.",
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error AJAX:", error);
+        console.error("Respuesta:", xhr.responseText);
+
+        Swal.fire({
+          icon: "error",
+          title: "Error de servidor",
+          text: "No se pudo procesar la solicitud. Intenta más tarde.",
+        });
+      },
+    });
+  });
+
+
 });

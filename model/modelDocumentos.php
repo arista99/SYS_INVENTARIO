@@ -60,7 +60,7 @@ class ModeloDocumentos
     {
         try {
             $fecha = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO tbl_documentos(documento,id_adjunto,ruta_adjunto,fecha_registro,fecha_inicio,fecha_termino) values (?,?,?,?,?,?) ";
+            $sql = "INSERT INTO tbl_documentos(documento,id_adjunto,ruta_adjunto,fecha_registro,fecha_inicio,fecha_termino,id_usuario_create) values (?,?,?,?,?,?,?) ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(
@@ -69,7 +69,31 @@ class ModeloDocumentos
                     $documento->getruta_adjunto(),
                     $fecha,
                     $documento->getfecha_inicio(),
-                    $documento->getfecha_termino()
+                    $documento->getfecha_termino(),
+                    $documento->getid_usuario_create()
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*********************************************************************************************************/
+
+    /*******************************************ACTUALIZAR DOCUMENTOS********************************************/
+    public function updateDocumentos(Documento $documento)
+    {
+        try {
+            $sql = "UPDATE tbl_documentos SET documento =?, id_adjunto =?, fecha_inicio =?, fecha_termino =?, id_usuario_update =? WHERE id=?";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute(
+                array(
+                    $documento->getdocumento(),
+                    $documento->getid_adjunto(),
+                    $documento->getfecha_inicio(),
+                    $documento->getfecha_termino(),
+                    $documento->getid_usuario_update(),
+                    $documento->getid()
                 )
             );
             return $stm;

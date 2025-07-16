@@ -7,6 +7,8 @@ class Documento
     private $documento;
     private $id_adjunto;
     private $ruta_adjunto;
+    private $id_usuario_create;
+    private $id_usuario_update;
     // private $fecha_registro;
     private $fecha_inicio;
     private $fecha_termino;
@@ -60,6 +62,26 @@ class Documento
     function getruta_adjunto()
     {
         return $this->ruta_adjunto;
+    }
+
+    function setid_usuario_create($id_usuario_create)
+    {
+        $this->id_usuario_create= $id_usuario_create;
+    }
+
+    function getid_usuario_create()
+    {
+        return $this->id_usuario_create;
+    }
+
+    function setid_usuario_update($id_usuario_update)
+    {
+        $this->id_usuario_update= $id_usuario_update;
+    }
+
+    function getid_usuario_update()
+    {
+        return $this->id_usuario_update;
     }
 
     function setfecha_inicio($fecha_inicio)

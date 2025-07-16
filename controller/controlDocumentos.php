@@ -50,6 +50,7 @@ class ControlDocumentos
                 $documento->setid_adjunto($_POST['filtrarAdjunto']);
                 $documento->setfecha_inicio($_POST['fecha_inicio']);
                 $documento->setfecha_termino($_POST['fecha_termino']);
+                $documento->setid_usuario_create($_POST['idusuario']);
 
                 if (isset($_FILES['formFileAdjunto']) && $_FILES['formFileAdjunto']['error'] === UPLOAD_ERR_OK) {
                     $nombreOriginal = $_FILES['formFileAdjunto']['name'];
@@ -132,19 +133,20 @@ class ControlDocumentos
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $documento = new Documento();
                 $documento->setid($_POST['id']);
-                $documento->setadjunto($_POST['edit_adjunto']);
-                $documento->setadjunto($_POST['edit_adjunto']);
-                $documento->setadjunto($_POST['edit_adjunto']);
-                $documento->setadjunto($_POST['edit_adjunto']);
+                $documento->setdocumento($_POST['edit_documento']);
+                $documento->setid_adjunto($_POST['edit_adjunto']);
+                $documento->setfecha_inicio($_POST['edit_fecha_ini']);
+                $documento->setfecha_termino($_POST['edit_fecha_fin']);
+                $documento->setid_usuario_update($_POST['idusuario']);
                 
                 
-                //llamando al insert de modelo area
-                $update_adjunto = $this->ADJUNTOS->updateAdjuntos($adjunto);
+                //llamando al insert de modelo documento
+                $update_documento = $this->DOCUMENTOS->updateDocumentos($documento);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
-                if ($update_adjunto) {
-                    echo json_encode(['success' => true, 'message' => 'Adjunto actualizado correctamento']);
+                if ($update_documento) {
+                    echo json_encode(['success' => true, 'message' => 'Documento actualizado correctamento']);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error al actualizar adjunto']);
+                    echo json_encode(['success' => false, 'message' => 'Error al actualizar documento']);
                 }
             } else {
                 // Si no es una solicitud POST, enviar un mensaje de error
@@ -155,5 +157,13 @@ class ControlDocumentos
             echo json_encode(['success' => false, 'message' => $th->getMessage()]);
             // echo $th->getMessage();
         }
+    }
+
+    public function listaAdjunto()
+    {
+        // Simula datos desde la BD
+        $adjuntos = $this->ADJUNTOS->readAdjunto(); // Array de objetos con idcentro y centro_costo
+
+        echo json_encode($adjuntos);
     }
 }

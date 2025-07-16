@@ -81,7 +81,7 @@ $(document).ready(function () {
             icon: "success",
             title: "Se creo Proveedor",
             timer: 1500,
-            showConfirButton: false,
+            showConfirmButton: false,
          }).then(function () {
             location.reload(); // Recargar la página
             $("#formCrearProveedor")[0].reset();

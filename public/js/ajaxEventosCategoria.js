@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
             icon: "success",
             title: "Se creo Categoria",
             timer: 1500,
-            showConfirButton: false,
+            showConfirmButton: false,
           }).then(function () {
             $("#modalCrearCategoria").modal("hide"); // Cerrar el modal
             location.reload(); // Recargar la página

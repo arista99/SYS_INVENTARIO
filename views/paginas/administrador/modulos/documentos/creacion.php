@@ -22,6 +22,7 @@
                 <div class="card-header">Detalle de Documento</div>
                 <div class="card-body">
                     <form id="formCrearDocumento" autocomplete="off">
+                        <input type="hidden" id="idusuario" name="idusuario" value="<?= json_encode($_SESSION['id']) ?>">
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="documento">Nombre de Documento</label>
@@ -39,7 +40,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1" for="formFileAdjunto">Cargue Documento</label>
-                            <input class="form-control" id="formFileAdjunto" name="formFileAdjunto" type="file" placeholder="Ingresa corrreo">
+                            <input class="form-control" id="formFileAdjunto" name="formFileAdjunto" type="file" placeholder="Ingresa Documento">
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
