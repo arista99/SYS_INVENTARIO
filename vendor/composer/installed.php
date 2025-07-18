@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'ktorres/sys_inventario',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'd9e8bc0b1221d651242af683e6c924687c4cb647',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -341,9 +341,9 @@
             ),
         ),
         'ktorres/sys_inventario' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'd9e8bc0b1221d651242af683e6c924687c4cb647',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -518,9 +518,9 @@
             'dev_requirement' => false,
         ),
         'phpoffice/phpspreadsheet' => array(
-            'pretty_version' => '4.2.0',
-            'version' => '4.2.0.0',
-            'reference' => '5f6d7410e5fd72cac1aa67d4f05f4fe664d01ba6',
+            'pretty_version' => '4.4.0',
+            'version' => '4.4.0.0',
+            'reference' => '747ccd1b443e85e0cfc0d52acf50e4d15ef959eb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpoffice/phpspreadsheet',
             'aliases' => array(),

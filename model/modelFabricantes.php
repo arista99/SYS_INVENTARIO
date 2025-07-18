@@ -16,6 +16,23 @@ class ModeloFabricantes
         }
     }
 
+    /*******************************************Lista Fabricante*****************************************/
+    public function readFabricante()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_fabricantes";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+
+    /******************************************************************************************************/
+
     /*******************************************Lista - Busqueda Area*****************************************/
     public function findFabricante($fabricante)
     {

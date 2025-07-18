@@ -11,7 +11,7 @@ include_once('controller/controlProveedores.php');
 include_once('controller/controlAdjuntos.php');
 include_once('controller/controlDocumentos.php');
 include_once('controller/controlLicencias.php');
-include_once('controller/controlActivosPC.php.php');
+include_once('controller/controlActivosPc.php');
 
 //PARA LOS CARACTERES EXTRAÑOS
 header('Content-Type: text/html; charset=utf-8');

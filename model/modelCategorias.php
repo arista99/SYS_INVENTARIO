@@ -16,6 +16,21 @@ class ModeloCategorias
         }
     }
 
+    /*******************************************Lista Categorias*****************************************/
+    public function readCategoria()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_categorias";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+     /******************************************************************************************************/
+
     
      /*******************************************Lista - Busqueda Categoria*****************************************/
      public function findCategoria($categoria)
