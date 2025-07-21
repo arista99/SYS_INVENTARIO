@@ -25,7 +25,6 @@ class Activopc
     private $id_modelo;
     private $id_documento;
     private $fecha_compra;
-    private $fecha_entrega;
 
     public function __construct()
     {
@@ -51,7 +50,6 @@ class Activopc
         $this->id_modelo = "";
         $this->id_documento = "";
         $this->fecha_compra = "";
-        $this->fecha_entrega = "";
     }
 
     function setid($id)
@@ -272,15 +270,5 @@ class Activopc
     function getfecha_compra()
     {
         return $this->fecha_compra;
-    }
-
-    function setfecha_entrega($fecha_entrega)
-    {
-        $this->fecha_entrega= $fecha_entrega;
-    }
-
-    function getfecha_entrega()
-    {
-        return $this->fecha_entrega;
     }
 }

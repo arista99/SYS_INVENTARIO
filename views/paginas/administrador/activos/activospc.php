@@ -21,6 +21,7 @@
             <div class="card mb-4">
                 <div class="card-header">Detalle de PC</div>
                 <div class="card-body">
+                <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST"-->
                     <form id="formCrearActivoPC" autocomplete="off">
                         <div class="row gx-3 mb-3">
                             <div class="col-md-4">
@@ -52,7 +53,6 @@
 
                         </div>
 
-
                         <!-- INICIO parte oculta -->
                         <div id="campos-extra" style="display: none;">
                             <div class="row gx-3 mb-3">
@@ -65,8 +65,8 @@
                                     <input class="form-control" id="wireless" name="wireless" type="text" placeholder="Ingresar Wireless">
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="small mb-1" for="serie">Ingrese IP</label>
-                                    <input class="form-control" id="serie" name="serie" type="text" placeholder="Ingresar Numero de IP">
+                                    <label class="small mb-1" for="ip">Ingrese IP</label>
+                                    <input class="form-control" id="ip" name="ip" type="text" placeholder="Ingresar Numero de IP">
                                 </div>
                             </div>
                             <div class="row gx-3 mb-3">
@@ -158,8 +158,8 @@
                             </div>
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="proveedor">Modelos</label>
-                                    <select class="form-control text-uppercase" id="proveedor" name="proveedor">
+                                    <label class="small mb-1" for="modelo">Modelos</label>
+                                    <select class="form-control text-uppercase" id="modelo" name="modelo">
                                         <option selected disabled>Seleccionar Modelo</option>
                                         <?php foreach ($lista_modelos as $modelos) : ?>
                                             <option value="<?php echo $modelos->id ?>"><?php echo $modelos->modelo ?></option>
@@ -189,12 +189,12 @@
                                 Crear Activo
                             </button>
 
-                            <div>
+                            <!-- <div>
                                 <label for="inputImportExcel" class="btn btn-success mb-0">
                                     <i class="fas fa-file-excel"></i> Importar Inventario Excel
                                 </label>
                                 <input class="form-control d-none" type="file" id="inputImportExcel" name="inputImportExcel" accept=".xls,.xlsx">
-                            </div>
+                            </div> -->
                         </div>
                     </form>
                 </div>
@@ -292,6 +292,7 @@
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
 <script src="public/js/ajaxEventosExcel.js"></script>
+<script src="public/js/ajaxEventosActivopc.js"></script>
 
 </body>
 

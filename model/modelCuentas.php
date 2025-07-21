@@ -50,12 +50,12 @@ class ModeloCuentas
     public function findUsuario($nombre)
     {
         try {
-            $sql = "SELECT tu.id,tu.usuario,tu.usuario_red,tcc.id AS idcentro,tcc.centro_costo,tu.email,ts.id AS idsede,ts.sede,tp.id AS idperfil,tp.perfil,ta.id AS idarea,ta.area
-							FROM tbl_usuarios AS tu
-							INNER JOIN tbl_centro_costo AS tcc ON tu.id_centro_costo=tcc.id
-							INNER JOIN tbl_sedes AS ts ON tu.id_sede=ts.id
-							INNER JOIN tbl_perfiles AS tp ON tu.id_perfil=tp.id
-							INNER JOIN tbl_areas AS ta ON tu.id_area=ta.id";
+            $sql = "SELECT tu.id,tu.usuario,tu.usuario_red,tcc.centro_costo,tu.cargo,tu.email,ts.sede,tp.perfil,ta.area
+                    FROM tbl_usuarios AS tu
+                    INNER JOIN tbl_centro_costo AS tcc ON tu.id_centro_costo=tcc.id
+                    INNER JOIN tbl_sedes AS ts ON tu.id_sede=ts.id
+                    INNER JOIN tbl_perfiles AS tp ON tu.id_perfil=tp.id
+                    INNER JOIN tbl_areas AS ta ON tu.id_area=ta.id";
             
             if (!empty($nombre)) {
                 $sql .= " WHERE LOWER(tu.usuario) LIKE LOWER(?)";

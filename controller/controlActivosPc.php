@@ -82,6 +82,57 @@ class ControlActivosPc{
         include_once('views/paginas/administrador/activos/activospc.php');
     }
 
+    public function registrarActivoPC()
+    {
+        try {
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $activopc = new Activopc();
+        
+                // Datos simples
+                $activopc->setnom_equipo($_POST['equipo']);
+                $activopc->setns($_POST['serie']);
+                $activopc->setnumero_part($_POST['part']);
+                $activopc->setprocesador($_POST['procesador']);
+                $activopc->setdisco($_POST['disco']);
+                $activopc->setmemoria($_POST['memoria']);
+                $activopc->setmac_ethernet($_POST['ethernet']);
+                $activopc->setmac_wireless($_POST['wireless']);
+                $activopc->setip($_POST['ip']);
+        
+                // IDs que podrían ser NULL
+                $activopc->setid_usuario(!empty($_POST['usuario']) ? $_POST['usuario'] : null);
+                $activopc->setid_sede(!empty($_POST['sede']) ? $_POST['sede'] : null);
+                $activopc->setid_categoria(!empty($_POST['categoria']) ? $_POST['categoria'] : null);
+                $activopc->setid_centro_costo(!empty($_POST['centro']) ? $_POST['centro'] : null);
+                $activopc->setid_area(!empty($_POST['area']) ? $_POST['area'] : null);
+                $activopc->setid_fabricante(!empty($_POST['fabricante']) ? $_POST['fabricante'] : null);
+                $activopc->setid_proveedor(!empty($_POST['proveedor']) ? $_POST['proveedor'] : null);
+                $activopc->setid_condicion(!empty($_POST['condicion']) ? $_POST['condicion'] : null);
+                $activopc->setid_estado(!empty($_POST['estado']) ? $_POST['estado'] : null);
+                $activopc->setid_modelo(!empty($_POST['modelo']) ? $_POST['modelo'] : null);
+                $activopc->setid_documento(!empty($_POST['documento']) ? $_POST['documento'] : null);
+                
+                //llamando al insert de modelo activopc
+                $create_activopc = $this->ACTIVOSPC->createActivosPC($activopc);
+
+                // Responder con JSON para que AJAX pueda manejar la respuesta
+                if ($create_activopc) {
+                    echo json_encode(['success' => true, 'message' => 'Activo Pc registrada correctamento']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Error al crear Activo pc']);
+                }
+            } else {
+                // Si no es una solicitud POST, enviar un mensaje de error
+                echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+            }
+        } catch (Exception $th) {
+            // Manejo de excepciones: devolver el mensaje de error
+            echo json_encode(['success' => false, 'message' => $th->getMessage()]);
+            // echo $th->getMessage();
+        }
+    }
+
     public function importarExcelActivoPC()
     {
         if (isset($_FILES['archivoExcel'])) {
@@ -91,20 +142,10 @@ class ControlActivosPc{
             $worksheet = $spreadsheet->getActiveSheet();
             $rows = $worksheet->toArray();
 
-            // echo "<pre>";
-            // print_r($rows);
-            // echo "</pre>";
-            // exit;
-
             // Procesar cada fila (saltando encabezado)
             for ($i = 1; $i < count($rows); $i++) {
               $insert_excel =  $this->ACTIVOSPC->insertarFilaInventario($rows[$i]);
             }
-
-            // echo "<pre>";
-            // var_dump($insert_excel);
-            // echo "</pre>";
-            // exit;
 
             echo "Importación exitosa";
         } else {
