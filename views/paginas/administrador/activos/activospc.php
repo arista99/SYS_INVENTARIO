@@ -11,201 +11,174 @@
         <a class="nav-link active ms-0" href="ListaActivoPC">Lista de PC</a>
         <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
+
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
     </script>
+
     <hr class="mt-0 mb-4">
+    <!-- Filtro -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="activopc" id="activopc" class="form-control" placeholder="Nombre Activo">
+        </div>
+        <div class="col-md-2">
+            <button id="btnBuscarActivoPC" class="btn btn-primary w-100">Buscar</button>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Detalle de PC</div>
+                <div class="card-header">Lista de ActivoPC</div>
                 <div class="card-body">
-                <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST"-->
-                    <form id="formCrearActivoPC" autocomplete="off">
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="equipo">Nombre del Equipo</label>
-                                <input class="form-control" id="equipo" name="equipo" type="text" placeholder="Ingresar Nombre de Equipo">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="serie">Numero de Serie del equipo</label>
-                                <input class="form-control" id="serie" name="serie" type="text" placeholder="Ingresar Numero de Serie">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="part">Ingrese Numero de Part</label>
-                                <input class="form-control" id="part" name="part" type="text" placeholder="Ingresar Numero de Part">
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="procesador">Ingrese Procesador</label>
-                                <input class="form-control" id="procesador" name="procesador" type="text" placeholder="Ingresar Procesasdor">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="disco">Ingrese Disco</label>
-                                <input class="form-control" id="disco" name="disco" type="text" placeholder="Ingresar Disco">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="memoria">Ingrese Memoria</label>
-                                <input class="form-control" id="memoria" name="memoria" type="text" placeholder="Ingresar Memoria">
-                            </div>
-
-                        </div>
-
-                        <!-- INICIO parte oculta -->
-                        <div id="campos-extra" style="display: none;">
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="ethernet">Mac Ethernet</label>
-                                    <input class="form-control" id="ethernet" name="ethernet" type="text" placeholder="Ingresar Ethernet">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="wireless">Mac Wireless</label>
-                                    <input class="form-control" id="wireless" name="wireless" type="text" placeholder="Ingresar Wireless">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="ip">Ingrese IP</label>
-                                    <input class="form-control" id="ip" name="ip" type="text" placeholder="Ingresar Numero de IP">
-                                </div>
-                            </div>
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="usuario">Usuarios</label>
-                                    <select class="form-control text-uppercase" id="usuario" name="usuario">
-                                        <option selected disabled>Seleccionar Usuario</option>
-                                        <?php foreach ($lista_usuarios as $usuarios) : ?>
-                                            <option value="<?php echo $usuarios->id ?>"><?php echo $usuarios->usuario ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="sede">Sedes</label>
-                                    <select class="form-control text-uppercase" id="sede" name="sede">
-                                        <option selected disabled>Seleccionar Sede</option>
-                                        <?php foreach ($lista_sedes as $sedes) : ?>
-                                            <option value="<?php echo $sedes->id ?>"><?php echo $sedes->sede ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="categoria">Categorias</label>
-                                    <select class="form-control text-uppercase" id="categoria" name="categoria">
-                                        <option selected disabled>Seleccionar Sede</option>
-                                        <?php foreach ($lista_categorias as $categorias) : ?>
-                                            <option value="<?php echo $categorias->id ?>"><?php echo $categorias->categoria ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="centro">Centro Costo</label>
-                                    <select class="form-control text-uppercase" id="centro" name="centro">
-                                        <option selected disabled>Seleccionar Centro de Costo</option>
-                                        <?php foreach ($lista_centros as $centros) : ?>
-                                            <option value="<?php echo $centros->id ?>"><?php echo $centros->centro_costo ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="area">Areas</label>
-                                    <select class="form-control text-uppercase" id="area" name="area">
-                                        <option selected disabled>Seleccionar Area</option>
-                                        <?php foreach ($lista_areas as $areas) : ?>
-                                            <option value="<?php echo $areas->id ?>"><?php echo $areas->area ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="fabricante">Fabricantes</label>
-                                    <select class="form-control text-uppercase" id="fabricante" name="fabricante">
-                                        <option selected disabled>Seleccionar Fabricante</option>
-                                        <?php foreach ($lista_fabricantes as $fabricantes) : ?>
-                                            <option value="<?php echo $fabricantes->id ?>"><?php echo $fabricantes->fabricante ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="proveedor">Proveedores</label>
-                                    <select class="form-control text-uppercase" id="proveedor" name="proveedor">
-                                        <option selected disabled>Seleccionar Proveedor</option>
-                                        <?php foreach ($lista_proveedores as $proveedores) : ?>
-                                            <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="condicion">Condiciones</label>
-                                    <select class="form-control text-uppercase" id="condicion" name="condicion">
-                                        <option selected disabled>Seleccionar Condicion</option>
-                                        <?php foreach ($lista_condiciones as $condiciones) : ?>
-                                            <option value="<?php echo $condiciones->id ?>"><?php echo $condiciones->condicion ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="estado">Estados</label>
-                                    <select class="form-control text-uppercase" id="estado" name="estado">
-                                        <option selected disabled>Seleccionar Estado</option>
-                                        <?php foreach ($lista_estados as $estados) : ?>
-                                            <option value="<?php echo $estados->id ?>"><?php echo $estados->estado ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="modelo">Modelos</label>
-                                    <select class="form-control text-uppercase" id="modelo" name="modelo">
-                                        <option selected disabled>Seleccionar Modelo</option>
-                                        <?php foreach ($lista_modelos as $modelos) : ?>
-                                            <option value="<?php echo $modelos->id ?>"><?php echo $modelos->modelo ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="documento">Documentos</label>
-                                    <select class="form-control text-uppercase" id="documento" name="documento">
-                                        <option selected disabled>Seleccionar documento</option>
-                                        <?php foreach ($lista_documentos as $docummentos) : ?>
-                                            <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FIN parte oculta -->
-
-                        <!-- BOTÓN toggle -->
-                        <div class="text-center mb-3">
-                            <button type="button" class="btn btn-outline-secondary" onclick="toggleCampos()">Ver más</button>
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn btn-primary" id="btn-registrar-activoPC" name="btn-registrar-activoPC" type="button">
-                                Crear Activo
-                            </button>
-
-                            <!-- <div>
-                                <label for="inputImportExcel" class="btn btn-success mb-0">
-                                    <i class="fas fa-file-excel"></i> Importar Inventario Excel
-                                </label>
-                                <input class="form-control d-none" type="file" id="inputImportExcel" name="inputImportExcel" accept=".xls,.xlsx">
-                            </div> -->
-                        </div>
-                    </form>
+                    <!-- Table -->
+                    <table class="table table-bordered" id="tablaDatosActivoPC" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Nombre Equipo</th>
+                                <th class="text-center">Numero de Serie</th>
+                                <th class="text-center">Nombre Procesador</th>
+                                <th class="text-center">Disco</th>
+                                <th class="text-center">Memoria</th>
+                                <th class="text-center">Numero Part</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se rellena dinamicamente -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="modal fade" id="modalEditarActivoPC" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <!-- id="formEditarUsuario"  -->
+            <form id="formEditarActivoPC" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Activo PC</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="id" name="id">
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_equipo">Actualizar nombre del equipo</label>
+                            <input class="form-control" id="edit_equipo" name="edit_equipo" type="text" placeholder="Actualizar Nombre de Equipo">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_serie">Actualizar numero de serie del equipo</label>
+                            <input class="form-control" id="edit_serie" name="edit_serie" type="text" placeholder="Actualizar numero de Serie">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_part">Actualizar Numero de Part</label>
+                            <input class="form-control" id="edit_part" name="edit_part" type="text" placeholder="Actualizar Numero de Part">
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_procesador">Actualizar Procesador</label>
+                            <input class="form-control" id="edit_procesador" name="edit_procesador" type="text" placeholder="Actualizar Procesasdor">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_disco">Actualizar Disco</label>
+                            <input class="form-control" id="edit_disco" name="edit_disco" type="text" placeholder="Actualizar Disco">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_memoria">Actualizar Memoria</label>
+                            <input class="form-control" id="edit_memoria" name="edit_memoria" type="text" placeholder="Actualizar Memoria">
+                        </div>
+                    </div>
 
-</div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_ethernet">Mac Ethernet</label>
+                            <input class="form-control" id="edit_ethernet" name="edit_ethernet" type="text" placeholder="Actualizar Ethernet">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_wireless">Mac Wireless</label>
+                            <input class="form-control" id="edit_wireless" name="edit_wireless" type="text" placeholder="Actualizar Wireless">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_ip">Ingrese IP</label>
+                            <input class="form-control" id="edit_ip" name="edit_ip" type="text" placeholder="Actualizar numero de IP">
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_usuario">Actualizar Usuario</label>
+                            <select class="form-control text-uppercase" id="edit_usuario" name="edit_usuario">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_sede">Actualizar Sede</label>
+                            <select class="form-control text-uppercase" id="edit_sede" name="edit_sede">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_categoria">Actualizar Categoria</label>
+                            <select class="form-control text-uppercase" id="edit_categoria" name="edit_categoria">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_centro">Actualizar Centro Costo</label>
+                            <select class="form-control text-uppercase" id="edit_centro" name="edit_centro">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_area">Actualizar Area</label>
+                            <select class="form-control text-uppercase" id="edit_area" name="edit_area">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_fabricante">Actualizar Fabricante</label>
+                            <select class="form-control text-uppercase" id="edit_fabricante" name="edit_fabricante">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_proveedor">Actualizar Proveedor</label>
+                            <select class="form-control text-uppercase" id="edit_proveedor" name="edit_proveedor">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_condicion">Actualizar Condición</label>
+                            <select class="form-control text-uppercase" id="edit_condicion" name="edit_condicion">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_estado">Actualizar Estado</label>
+                            <select class="form-control text-uppercase" id="edit_estado" name="edit_estado">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="edit_modelo">Actualizar Modelo</label>
+                            <select class="form-control text-uppercase" id="edit_modelo" name="edit_modelo">
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="edit_documento">Actualizar Documento</label>
+                            <select class="form-control text-uppercase" id="edit_documento" name="edit_documento">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+                    <button type="submit" name="updateInfoButtonActivoPC" id="updateInfoButtonActivoPC" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-<!-- Footer -->
+    <!-- Footer -->
 </div>
 <!-- End of Main Content -->
 
@@ -249,21 +222,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    function toggleCampos() {
-        const extra = document.getElementById('campos-extra');
-        const btn = event.target;
-        if (extra.style.display === 'none') {
-            extra.style.display = 'block';
-            btn.innerText = 'Ver menos';
-        } else {
-            extra.style.display = 'none';
-            btn.innerText = 'Ver más';
-        }
-    }
-</script>
-
 <!-- JS SWEETALERT -->
 <script src="vendor/realrashid/sweet-alert/resources/js/sweetalert.all.js"></script>
 
@@ -291,8 +249,12 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxEventosExcel.js"></script>
+<!-- Select2 CSS y JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script src="public/js/ajaxEventosActivopc.js"></script>
+<script src="public/js/ajaxSelectActivopc.js"></script>
 
 </body>
 

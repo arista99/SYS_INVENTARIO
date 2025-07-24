@@ -20,7 +20,10 @@
 
     <!-- Custom styles for this page -->
     <link href="public/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="public/css/styles.css">
 </head>
 
 <body id="page-top">

@@ -19,9 +19,11 @@ include_once('model/modelDocumentos.php');
 include_once('data/activospc.php');
 
 require 'vendor/autoload.php';
+
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class ControlActivosPc{
+class ControlActivosPc
+{
     //VARIABLE MODELO
     public $ACTIVOSPC;
     public $CUENTAS;
@@ -57,25 +59,42 @@ class ControlActivosPc{
     {
         // Iniciar sesión
         session_start();
-        
+
         // Verificar si el usuario está autenticado
         if (!isset($_SESSION['id'])) {
-        //     Redirigir al login si no está autenticado
-           header("Location: Index");
+            //     Redirigir al login si no está autenticado
+            header("Location: Index");
             exit;
         }
 
         $lista_usuarios = $this->CUENTAS->listUsuarios();
-        $lista_sedes= $this->SEDES->readSedes();
-        $lista_categorias= $this->CATEGORIAS->readCategoria();
+        $lista_sedes = $this->SEDES->readSedes();
+        $lista_categorias = $this->CATEGORIAS->readCategoria();
         $lista_centros = $this->CENTROCOSTO->readCentro();
-        $lista_areas= $this->AREAS->readAreas();
-        $lista_fabricantes= $this->FABRICANTES->readFabricante();
-        $lista_proveedores= $this->PROVEEDORES->readProveedores();
-        $lista_condiciones= $this->CONDICIONES->readCondicion();
-        $lista_estados= $this->ESTADOS->readEstado();
-        $lista_modelos= $this->MODELOS->readModelo();
-        $lista_documentos= $this->DOCUMENTOS->readDocumento();
+        $lista_areas = $this->AREAS->readAreas();
+        $lista_fabricantes = $this->FABRICANTES->readFabricante();
+        $lista_proveedores = $this->PROVEEDORES->readProveedores();
+        $lista_condiciones = $this->CONDICIONES->readCondicion();
+        $lista_estados = $this->ESTADOS->readEstado();
+        $lista_modelos = $this->MODELOS->readModelo();
+        $lista_documentos = $this->DOCUMENTOS->readDocumento();
+
+        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+
+        include_once('views/paginas/administrador/activos/creacion.php');
+    }
+
+    public function ListaActivoPC()
+    {
+        // Iniciar sesión
+        session_start();
+
+        // Verificar si el usuario está autenticado
+        if (!isset($_SESSION['id'])) {
+            //     Redirigir al login si no está autenticado
+            header("Location: Index");
+            exit;
+        }
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
@@ -88,7 +107,7 @@ class ControlActivosPc{
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $activopc = new Activopc();
-        
+
                 // Datos simples
                 $activopc->setnom_equipo($_POST['equipo']);
                 $activopc->setns($_POST['serie']);
@@ -99,7 +118,7 @@ class ControlActivosPc{
                 $activopc->setmac_ethernet($_POST['ethernet']);
                 $activopc->setmac_wireless($_POST['wireless']);
                 $activopc->setip($_POST['ip']);
-        
+
                 // IDs que podrían ser NULL
                 $activopc->setid_usuario(!empty($_POST['usuario']) ? $_POST['usuario'] : null);
                 $activopc->setid_sede(!empty($_POST['sede']) ? $_POST['sede'] : null);
@@ -112,7 +131,7 @@ class ControlActivosPc{
                 $activopc->setid_estado(!empty($_POST['estado']) ? $_POST['estado'] : null);
                 $activopc->setid_modelo(!empty($_POST['modelo']) ? $_POST['modelo'] : null);
                 $activopc->setid_documento(!empty($_POST['documento']) ? $_POST['documento'] : null);
-                
+
                 //llamando al insert de modelo activopc
                 $create_activopc = $this->ACTIVOSPC->createActivosPC($activopc);
 
@@ -121,6 +140,58 @@ class ControlActivosPc{
                     echo json_encode(['success' => true, 'message' => 'Activo Pc registrada correctamento']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Error al crear Activo pc']);
+                }
+            } else {
+                // Si no es una solicitud POST, enviar un mensaje de error
+                echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+            }
+        } catch (Exception $th) {
+            // Manejo de excepciones: devolver el mensaje de error
+            echo json_encode(['success' => false, 'message' => $th->getMessage()]);
+            // echo $th->getMessage();
+        }
+    }
+
+    public function actualizarActivoPC()
+    {
+        try {
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $activopc = new Activopc();
+
+                // Datos simples
+                $activopc->setid($_POST['id']);
+                $activopc->setnom_equipo($_POST['equipo']);
+                $activopc->setns($_POST['serie']);
+                $activopc->setnumero_part($_POST['part']);
+                $activopc->setprocesador($_POST['procesador']);
+                $activopc->setdisco($_POST['disco']);
+                $activopc->setmemoria($_POST['memoria']);
+                $activopc->setmac_ethernet($_POST['ethernet']);
+                $activopc->setmac_wireless($_POST['wireless']);
+                $activopc->setip($_POST['ip']);
+
+                // IDs que podrían ser NULL
+                $activopc->setid_usuario(!empty($_POST['usuario']) ? $_POST['usuario'] : null);
+                $activopc->setid_sede(!empty($_POST['sede']) ? $_POST['sede'] : null);
+                $activopc->setid_categoria(!empty($_POST['categoria']) ? $_POST['categoria'] : null);
+                $activopc->setid_centro_costo(!empty($_POST['centro']) ? $_POST['centro'] : null);
+                $activopc->setid_area(!empty($_POST['area']) ? $_POST['area'] : null);
+                $activopc->setid_fabricante(!empty($_POST['fabricante']) ? $_POST['fabricante'] : null);
+                $activopc->setid_proveedor(!empty($_POST['proveedor']) ? $_POST['proveedor'] : null);
+                $activopc->setid_condicion(!empty($_POST['condicion']) ? $_POST['condicion'] : null);
+                $activopc->setid_estado(!empty($_POST['estado']) ? $_POST['estado'] : null);
+                $activopc->setid_modelo(!empty($_POST['modelo']) ? $_POST['modelo'] : null);
+                $activopc->setid_documento(!empty($_POST['documento']) ? $_POST['documento'] : null);
+
+                //llamando al insert de modelo activopc
+                $update_activopc = $this->ACTIVOSPC->updateActivosPC($activopc);
+
+                // Responder con JSON para que AJAX pueda manejar la respuesta
+                if ($update_activopc) {
+                    echo json_encode(['success' => true, 'message' => 'Activo Pc actualizado correctamento']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Error al actualizar Activo pc']);
                 }
             } else {
                 // Si no es una solicitud POST, enviar un mensaje de error
@@ -144,12 +215,106 @@ class ControlActivosPc{
 
             // Procesar cada fila (saltando encabezado)
             for ($i = 1; $i < count($rows); $i++) {
-              $insert_excel =  $this->ACTIVOSPC->insertarFilaInventario($rows[$i]);
+                $insert_excel =  $this->ACTIVOSPC->insertarFilaInventario($rows[$i]);
             }
 
             echo "Importación exitosa";
         } else {
             echo "No se recibió el archivo.";
         }
+    }
+
+
+    public function vistaActivoPC()
+    {
+        // Obtener valores desde la solicitud AJAX
+        $activopc = $_POST['activopc'] ?? '';
+
+        // Llama al modelo
+        $resultados = $this->ACTIVOSPC->findActivopc($activopc);
+
+        // var_dump($resultados);
+        //Enviar respuesta al frontend
+        header('Content-Type: application/json');
+        echo json_encode(['data' => $resultados]);
+    }
+
+
+
+    public function listaSede()
+    {
+        $sede = $this->SEDES->readSedes();
+
+        echo json_encode($sede);
+    }
+
+    public function listaUsuario()
+    {
+        $usuario = $this->CUENTAS->listUsuarios();
+
+        echo json_encode($usuario);
+    }
+
+    public function listaCategoria()
+    {
+        $categoria = $this->CATEGORIAS->readCategoria();
+
+        echo json_encode($categoria);
+    }
+
+    public function listaCentro()
+    {
+        $centro = $this->CENTROCOSTO->readCentro();
+
+        echo json_encode($centro);
+    }
+
+    public function listaArea()
+    {
+        $area = $this->AREAS->readAreas();
+
+        echo json_encode($area);
+    }
+
+    public function listaFabricante()
+    {
+        $fabricante = $this->FABRICANTES->readFabricante();
+
+        echo json_encode($fabricante);
+    }
+
+    public function listaProveedoresOP()
+    {
+        $proveedor = $this->PROVEEDORES->readProveedores();
+
+        echo json_encode($proveedor);
+    }
+
+    public function listaCondiciones()
+    {
+        $condicion = $this->CONDICIONES->readCondicion();
+
+        echo json_encode($condicion);
+    }
+
+    public function listaEstado()
+    {
+        $estado = $this->ESTADOS->readEstado();
+
+        echo json_encode($estado);
+    }
+
+    public function listaModelo()
+    {
+        $modelo = $this->MODELOS->readModelo();
+
+        echo json_encode($modelo);
+    }
+
+    public function listaDocumentosOP()
+    {
+        $documento = $this->DOCUMENTOS->readDocumento();
+
+        echo json_encode($documento);
     }
 }
