@@ -161,28 +161,28 @@ class ControlActivosPc
 
                 // Datos simples
                 $activopc->setid($_POST['id']);
-                $activopc->setnom_equipo($_POST['equipo']);
-                $activopc->setns($_POST['serie']);
-                $activopc->setnumero_part($_POST['part']);
-                $activopc->setprocesador($_POST['procesador']);
-                $activopc->setdisco($_POST['disco']);
-                $activopc->setmemoria($_POST['memoria']);
-                $activopc->setmac_ethernet($_POST['ethernet']);
-                $activopc->setmac_wireless($_POST['wireless']);
-                $activopc->setip($_POST['ip']);
+                $activopc->setnom_equipo(!empty($_POST['edit_equipo']) ? $_POST['edit_equipo'] : null);
+                $activopc->setns(!empty($_POST['edit_serie']) ? $_POST['edit_serie'] : null);
+                $activopc->setnumero_part(!empty($_POST['edit_part']) ? $_POST['edit_part'] : null);
+                $activopc->setprocesador(!empty($_POST['edit_procesador']) ? $_POST['edit_procesador'] : null);
+                $activopc->setdisco(!empty($_POST['edit_disco']) ? $_POST['edit_disco'] : null);
+                $activopc->setmemoria(!empty($_POST['edit_memoria']) ? $_POST['edit_memoria'] : null);
+                $activopc->setmac_ethernet(!empty($_POST['edit_ethernet']) ? $_POST['edit_ethernet'] : null);
+                $activopc->setmac_wireless(!empty($_POST['edit_wireless']) ? $_POST['edit_wireless'] : null);
+                $activopc->setip(!empty($_POST['edit_ip']) ? $_POST['edit_ip'] : null);
 
                 // IDs que podrían ser NULL
-                $activopc->setid_usuario(!empty($_POST['usuario']) ? $_POST['usuario'] : null);
-                $activopc->setid_sede(!empty($_POST['sede']) ? $_POST['sede'] : null);
-                $activopc->setid_categoria(!empty($_POST['categoria']) ? $_POST['categoria'] : null);
-                $activopc->setid_centro_costo(!empty($_POST['centro']) ? $_POST['centro'] : null);
-                $activopc->setid_area(!empty($_POST['area']) ? $_POST['area'] : null);
-                $activopc->setid_fabricante(!empty($_POST['fabricante']) ? $_POST['fabricante'] : null);
-                $activopc->setid_proveedor(!empty($_POST['proveedor']) ? $_POST['proveedor'] : null);
-                $activopc->setid_condicion(!empty($_POST['condicion']) ? $_POST['condicion'] : null);
-                $activopc->setid_estado(!empty($_POST['estado']) ? $_POST['estado'] : null);
-                $activopc->setid_modelo(!empty($_POST['modelo']) ? $_POST['modelo'] : null);
-                $activopc->setid_documento(!empty($_POST['documento']) ? $_POST['documento'] : null);
+                $activopc->setid_usuario(!empty($_POST['edit_usuario']) ? $_POST['edit_usuario'] : null);
+                $activopc->setid_sede(!empty($_POST['edit_sede']) ? $_POST['edit_sede'] : null);
+                $activopc->setid_categoria(!empty($_POST['edit_categoria']) ? $_POST['edit_categoria'] : null);
+                $activopc->setid_centro_costo(!empty($_POST['edit_centro']) ? $_POST['edit_centro'] : null);
+                $activopc->setid_area(!empty($_POST['edit_area']) ? $_POST['edit_area'] : null);
+                $activopc->setid_fabricante(!empty($_POST['edit_fabricante']) ? $_POST['edit_fabricante'] : null);
+                $activopc->setid_proveedor(!empty($_POST['edit_proveedor']) ? $_POST['edit_proveedor'] : null);
+                $activopc->setid_condicion(!empty($_POST['edit_condicion']) ? $_POST['edit_condicion'] : null);
+                $activopc->setid_estado(!empty($_POST['edit_estado']) ? $_POST['edit_estado'] : null);
+                $activopc->setid_modelo(!empty($_POST['edit_modelo']) ? $_POST['edit_modelo'] : null);
+                $activopc->setid_documento(!empty($_POST['edit_documento']) ? $_POST['edit_documento'] : null);
 
                 //llamando al insert de modelo activopc
                 $update_activopc = $this->ACTIVOSPC->updateActivosPC($activopc);

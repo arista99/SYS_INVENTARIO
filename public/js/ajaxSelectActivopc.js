@@ -58,9 +58,9 @@ function cargarUsuario(selectedValue = null) {
       // }
 
       // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-      // if (!selectedValue) {
-      //   select.append(`<option disabled selected>Seleccionar Usuario</option>`);
-      // }
+      if (!selectedValue) {
+        select.append(`<option disabled selected>Seleccionar Usuario</option>`);
+      }
 
       data.forEach((usuarios) => {
         const isSelected = selectedValue === usuarios.usuario;
@@ -74,13 +74,13 @@ function cargarUsuario(selectedValue = null) {
       });
 
       // Reinicializar Select2 después de llenar las opciones
-      select.select2({
-        placeholder: "SELECCIONAR USUARIO",
-        width: "100%",
-        allowClear: true,
-        minimumResultsForSearch: 1,
-        dropdownParent: $('#modalEditarActivoPC') // <- muy importante dentro de modales
-      });
+      // select.select2({
+      //   placeholder: "SELECCIONAR USUARIO",
+      //   width: "100%",
+      //   allowClear: true,
+      //   minimumResultsForSearch: 1,
+      //   dropdownParent: $('#modalEditarActivoPC') // <- muy importante dentro de modales
+      // });
     },
     error: function (xhr, status, error) {
       console.error("Error cargando usuario:", error);

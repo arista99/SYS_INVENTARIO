@@ -145,34 +145,88 @@ $(document).ready(function () {
     $("#edit_part").val(btn.data("numero_part"));
 
     // Guarda los valores en variables temporales
-    const sede = btn.data("sede");
-    const usuario = btn.data("usuario");
-    const categoria = btn.data("categoria");
-    const centro = btn.data("centro_costo");
-    const area = btn.data("area");
-    const fabricante = btn.data("fabricante");
-    const proveedor = btn.data("proveedor");
-    const condicion = btn.data("condicion");
-    const estado = btn.data("estado");
-    const modelo = btn.data("modelo");
-    const documento = btn.data("documento");
+    cargarSede(btn.data("sede"));
+    cargarUsuario(btn.data("usuario"));
+    cargarCategoria(btn.data("categoria"));
+    cargarCentro(btn.data("centro_costo"));
+    cargarArea(btn.data("area"));
+    cargarFabricante(btn.data("fabricante"));
+    cargarProveedor(btn.data("proveedor"));
+    cargarCondicion( btn.data("condicion"));
+    cargarEstado(btn.data("estado"));
+    cargarModelo(btn.data("modelo"));
+    cargarDocumento( btn.data("documento"));
 
     // Mostrar el modal primero
     $("#modalEditarActivoPC").modal("show");
+  });
 
-    // Una vez visible, cargar los select2
-    $("#modalEditarActivoPC").on("shown.bs.modal", function () {
-      cargarSede(sede);
-      cargarUsuario(usuario);
-      cargarCategoria(categoria);
-      cargarCentro(centro);
-      cargarArea(area);
-      cargarFabricante(fabricante);
-      cargarProveedor(proveedor);
-      cargarCondicion(condicion);
-      cargarEstado(estado);
-      cargarModelo(modelo);
-      cargarDocumento(documento);
+  //Actualizar ActivoPC
+  $("#modalEditarActivoPC").on("submit", function (e) {
+    e.preventDefault();
+
+   // Obtener los datos del formulario
+    var formData = {
+      id: $("#id").val(),
+      edit_equipo: $("#edit_equipo").val(),
+      edit_serie: $("#edit_serie").val(),
+      edit_part: $("#edit_part").val(),
+      edit_procesador: $("#edit_procesador").val(),
+      edit_disco: $("#edit_disco").val(),
+      edit_memoria: $("#edit_memoria").val(),
+      edit_ethernet: $("#edit_ethernet").val(),
+      edit_wireless: $("#edit_wireless").val(),
+      edit_ip: $("#edit_ip").val(),
+      edit_usuario: $("#edit_usuario").val(),
+      edit_sede: $("#edit_sede").val(),
+      edit_categoria: $("#edit_categoria").val(),
+      edit_centro: $("#edit_centro").val(),
+      edit_area: $("#edit_area").val(),
+      edit_fabricante: $("#edit_fabricante").val(),
+      edit_proveedor: $("#edit_proveedor").val(),
+      edit_condicion: $("#edit_condicion").val(),
+      edit_estado: $("#edit_estado").val(),
+      edit_modelo: $("#edit_modelo").val(),
+      edit_documento: $("#edit_documento").val(),
+    };
+
+    // console.log(formData);
+
+    $.ajax({
+      url: "actualizarActivoPC",
+      type: "POST",
+      data: formData,
+      // data: $(this).serialize(),
+      dataType: "json", // ✅ Asegura que jQuery ya lo parsee
+      success: function (response) {
+        if (response.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Actualizado correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          $("#modalEditarActivoPC").modal("hide");
+          $("#tablaDatosActivoPC").DataTable().ajax.reload(null, false);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: response.message || "Ocurrió un error al actualizar.",
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error AJAX:", error);
+        console.error("Respuesta:", xhr.responseText);
+
+        Swal.fire({
+          icon: "error",
+          title: "Error de servidor",
+          text: "No se pudo procesar la solicitud. Intenta más tarde.",
+        });
+      },
     });
   });
 });

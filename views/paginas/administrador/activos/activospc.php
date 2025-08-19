@@ -56,8 +56,8 @@
 
     <div class="modal fade" id="modalEditarActivoPC" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <!-- id="formEditarUsuario"  -->
-            <form id="formEditarActivoPC" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <!-- id="formEditarUsuario" - action="actualizarActivoPC" method="POST"  -->
+            <form id="formEditarUsuario" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title">Editar Activo PC</h5>
                 </div>

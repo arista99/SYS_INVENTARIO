@@ -10,6 +10,7 @@
         "nesbot/carbon": "^3.9",
         "tecnickcom/tcpdf": "^6.9",
         "phpoffice/phpspreadsheet": "^4.4",
-        "realrashid/sweet-alert": "^7.3"
+        "realrashid/sweet-alert": "^7.3",
+        "milon/barcode": "^12.0"
     }
 }

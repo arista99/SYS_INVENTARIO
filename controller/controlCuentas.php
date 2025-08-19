@@ -5,6 +5,7 @@ require_once('model/modelPerfiles.php');
 require_once('model/modelSede.php');
 require_once('model/modelCentroCostos.php');
 require_once('model/modelAreas.php');
+require_once('model/modelActivosPc.php');
 //DATA
 require_once('data/usuario.php');
 
@@ -16,6 +17,7 @@ class ControlCuentas
     public $SEDES;
     public $CENTRO;
     public $AREA;
+    public $ACTIVO;
 
     public function __construct()
     {
@@ -24,6 +26,7 @@ class ControlCuentas
         $this->SEDES = new ModeloSedes();
         $this->CENTRO = new ModeloCentroCostos();
         $this->AREA = new ModeloAreas();
+        $this->ACTIVO = new ModeloActivosPC();
     }
 
     public function CreacionUsuarios()

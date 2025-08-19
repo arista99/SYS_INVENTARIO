@@ -9,7 +9,7 @@
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionUsuarios">Crear Usuario</a>
         <a class="nav-link active ms-0" href="ListaUsuarios">Lista de Usuarios</a>
-        <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a>
+        <a class="nav-link active ms-0" href="ListaAsignacion">Equipos & Accesorios</a>
     </nav>
     <hr class="mt-0 mb-4">
     <div class="row">

@@ -178,7 +178,7 @@ class ModeloActivosPC
     public function updateActivosPC(Activopc $activopc)
     {
         try {
-            $sql = "UPDATE tbl_desk_lap SET nom_equipo =?,ns =?,numero_part =?,procesador =?,disco =?,memoria =?,mac_ethernet =?,mac_wireless =?,ip =?,id_usuario =?,id_sede =?,id_categoria =?,id_centro_costo =?,id_area =?,id_fabricante =?,id_proveedor =?,id_condicion =?,id_estado =?,id_modelo =?,id_documento =? WHERE id =?";
+            $sql = "UPDATE tbl_desk_lap SET nom_equipo =?,ns =?,numero_part =?,procesador =?,disco =?,memoria =?,mac_ethernet =?,mac_wireless =?,ip =?,id_usuario =?,id_sede =?,id_categoria =?,id_centro_costo =?,id_area =?,id_fabricante =?,id_proveedor =?,id_condicion =?,id_estado =?,id_modelo =?,id_documento =? WHERE id=?";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(

@@ -467,6 +467,16 @@ class ComposerStaticInit287eb239366a16eb599cfb2ae07a0956
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'M' => 
+        array (
+            'Milon\\Barcode' => 
+            array (
+                0 => __DIR__ . '/..' . '/milon/barcode/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -567,6 +577,7 @@ class ComposerStaticInit287eb239366a16eb599cfb2ae07a0956
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit287eb239366a16eb599cfb2ae07a0956::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit287eb239366a16eb599cfb2ae07a0956::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit287eb239366a16eb599cfb2ae07a0956::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit287eb239366a16eb599cfb2ae07a0956::$classMap;
 
         }, null, ClassLoader::class);
