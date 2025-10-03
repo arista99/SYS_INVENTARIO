@@ -70,9 +70,13 @@ CREATE TABLE tbl_fabricantes (
 -- Modelos
 CREATE TABLE tbl_modelos (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    modelo VARCHAR(150) NOT NULL
+    modelo VARCHAR(150) NOT NULL,
+    id_categoria INT UNSIGNED NOT NULL,
+    id_fabricante INT UNSIGNED NOT NULL,
+    FOREIGN KEY (id_categoria) REFERENCES tbl_categorias(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_fabricante) REFERENCES tbl_fabricantes(id) ON DELETE CASCADE
 );
-
+tbl_modelos
 -- Categorías de activos (Laptop, Celular, etc.)
 CREATE TABLE tbl_categorias (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -146,9 +150,9 @@ CREATE TABLE tbl_usuarios (
 -- Equipos Desktop/Laptop
 CREATE TABLE tbl_desk_lap (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nom_equipo VARCHAR(150) NULL,
-    ns VARCHAR(150) NULL,
-    procesador VARCHAR(255) NULL,
+    nom_equipo VARCHAR(150) NULL, -
+    ns VARCHAR(150) NULL,-
+    procesador VARCHAR(255) NULL,-
     id_proveedor INT UNSIGNED NULL,
     disco VARCHAR(255) NULL,
     memoria VARCHAR(255) NULL,
@@ -369,7 +373,6 @@ CREATE TABLE tbl_mantenimientos (
     FOREIGN KEY (id_estado_final) REFERENCES tbl_estados(id),
     FOREIGN KEY (id_tipo_mantenimiento) REFERENCES tbl_tipos_mantenimiento(id)
 );
-
 ====================================================================================
 
 USE sys_inventario_transber;
@@ -515,3 +518,67 @@ INSERT INTO tbl_estados (estado) VALUES
 -- ==========================
 INSERT INTO tbl_proveedores (proveedor, direccion, contacto, email, telefono, id_producto) VALUES
 ('Transber S.A.C', 'Calle Cadmio 129 Urb. Ind. Grimanesa', 'Transber', 'soporteti@transberperu.com', '988600940', 3);
+
+-- ========================================
+-- Modelos (ejemplos)
+-- ========================================
+
+-- Laptops
+INSERT INTO tbl_modelos (modelo, id_categoria, id_fabricante) VALUES
+('Pavilion', 1, 1),   -- HP
+('EliteBook', 1, 1),
+('Inspiron', 1, 2),   -- Dell
+('XPS 13', 1, 2),
+('ThinkPad T14', 1, 3), -- Lenovo
+('IdeaPad 3', 1, 3),
+('MacBook Air', 1, 4), -- Apple
+('MacBook Pro', 1, 4),
+('Galaxy Book Pro', 1, 5), -- Samsung
+('Galaxy Book Flex', 1, 5),
+('MateBook D15', 1, 6), -- Huawei
+('MateBook X Pro', 1, 6);
+
+-- Desktops
+INSERT INTO tbl_modelos (modelo, id_categoria, id_fabricante) VALUES
+('HP ProDesk 400', 2, 1),
+('HP EliteDesk 800', 2, 1),
+('Dell OptiPlex 7090', 2, 2),
+('Dell Vostro 3681', 2, 2),
+('Lenovo ThinkCentre M70', 2, 3),
+('Lenovo Legion Tower', 2, 3),
+('Mac Mini', 2, 4),
+('iMac 24', 2, 4);
+
+-- Celulares
+INSERT INTO tbl_modelos (modelo, id_categoria, id_fabricante) VALUES
+('iPhone 14', 3, 4),   -- Apple
+('iPhone SE', 3, 4),
+('Galaxy S23', 3, 5),  -- Samsung
+('Galaxy A54', 3, 5),
+('P50 Pro', 3, 6),     -- Huawei
+('Mate 50', 3, 6);
+
+-- Impresoras
+INSERT INTO tbl_modelos (modelo, id_categoria, id_fabricante) VALUES
+('HP LaserJet Pro M404', 4, 1),
+('HP DeskJet 2720', 4, 1),
+('Samsung Xpress M2020', 4, 5),
+('Samsung CLP-680', 4, 5);
+
+-- Accesorios
+INSERT INTO tbl_modelos (modelo, id_categoria, id_fabricante) VALUES
+('HP Mouse X3000', 5, 1),
+('Dell Keyboard KB216', 5, 2),
+('Lenovo ThinkVision Monitor', 5, 3),
+('Apple Magic Mouse', 5, 4),
+('Samsung Monitor 27"', 5, 5),
+('Huawei FreeBuds 5i', 5, 6);
+
+-- Infraestructura (Switches, servidores, etc.)
+INSERT INTO tbl_modelos (modelo, id_categoria, id_fabricante) VALUES
+('HP ProLiant DL380', 6, 1),
+('Dell PowerEdge R740', 6, 2),
+('Lenovo ThinkSystem SR650', 6, 3),
+('Apple Xserve (Legacy)', 6, 4),
+('Samsung Network Switch NX500', 6, 5),
+('Huawei CloudEngine S5735', 6, 6);
