@@ -9,7 +9,6 @@
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionActivoPC">Crear Activo PC</a>
         <a class="nav-link active ms-0" href="ListaActivoPC">Lista de PC</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -57,19 +56,9 @@
                         <div id="campos-extra" style="display: none;">
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-4">
-                                    <label class="small mb-1" for="ethernet">Mac Ethernet</label>
-                                    <input class="form-control" id="ethernet" name="ethernet" type="text" placeholder="Ingresar Ethernet">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="wireless">Mac Wireless</label>
-                                    <input class="form-control" id="wireless" name="wireless" type="text" placeholder="Ingresar Wireless">
-                                </div>
-                                <div class="col-md-4">
                                     <label class="small mb-1" for="ip">Ingrese IP</label>
                                     <input class="form-control" id="ip" name="ip" type="text" placeholder="Ingresar Numero de IP">
                                 </div>
-                            </div>
-                            <div class="row gx-3 mb-3">
                                 <div class="col-md-4">
                                     <label class="small mb-1" for="usuario">Usuarios</label>
                                     <select class="form-control text-uppercase" id="usuario" name="usuario">
@@ -80,14 +69,16 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="small mb-1" for="sede">Sedes</label>
-                                    <select class="form-control text-uppercase" id="sede" name="sede">
-                                        <option selected disabled>Seleccionar Sede</option>
-                                        <?php foreach ($lista_sedes as $sedes) : ?>
-                                            <option value="<?php echo $sedes->id ?>"><?php echo $sedes->sede ?></option>
+                                    <label class="small mb-1" for="centro">Centro Costo</label>
+                                    <select class="form-control text-uppercase" id="centro" name="centro">
+                                        <option selected disabled>Seleccionar Centro de Costo</option>
+                                        <?php foreach ($lista_centros as $centros) : ?>
+                                            <option value="<?php echo $centros->id ?>"><?php echo $centros->centro_costo ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="row gx-3 mb-3">
                                 <div class="col-md-4">
                                     <label class="small mb-1" for="categoria">Categorias</label>
                                     <select class="form-control text-uppercase" id="categoria" name="categoria">
@@ -97,32 +88,21 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="centro">Centro Costo</label>
-                                    <select class="form-control text-uppercase" id="centro" name="centro">
-                                        <option selected disabled>Seleccionar Centro de Costo</option>
-                                        <?php foreach ($lista_centros as $centros) : ?>
-                                            <option value="<?php echo $centros->id ?>"><?php echo $centros->centro_costo ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="area">Areas</label>
-                                    <select class="form-control text-uppercase" id="area" name="area">
-                                        <option selected disabled>Seleccionar Area</option>
-                                        <?php foreach ($lista_areas as $areas) : ?>
-                                            <option value="<?php echo $areas->id ?>"><?php echo $areas->area ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
                                 <div class="col-md-4">
                                     <label class="small mb-1" for="fabricante">Fabricantes</label>
                                     <select class="form-control text-uppercase" id="fabricante" name="fabricante">
                                         <option selected disabled>Seleccionar Fabricante</option>
                                         <?php foreach ($lista_fabricantes as $fabricantes) : ?>
                                             <option value="<?php echo $fabricantes->id ?>"><?php echo $fabricantes->fabricante ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="small mb-1" for="modelo">Modelos</label>
+                                    <select class="form-control text-uppercase" id="modelo" name="modelo">
+                                        <option selected disabled>Seleccionar Modelo</option>
+                                        <?php foreach ($lista_modelos as $modelos) : ?>
+                                            <option value="<?php echo $modelos->id ?>"><?php echo $modelos->modelo ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -157,16 +137,7 @@
                                 </div>
                             </div>
                             <div class="row gx-3 mb-3">
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="modelo">Modelos</label>
-                                    <select class="form-control text-uppercase" id="modelo" name="modelo">
-                                        <option selected disabled>Seleccionar Modelo</option>
-                                        <?php foreach ($lista_modelos as $modelos) : ?>
-                                            <option value="<?php echo $modelos->id ?>"><?php echo $modelos->modelo ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="small mb-1" for="documento">Documentos</label>
                                     <select class="form-control text-uppercase" id="documento" name="documento">
                                         <option selected disabled>Seleccionar documento</option>

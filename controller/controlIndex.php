@@ -42,16 +42,19 @@ class ControlIndex
                 // Definir la URL de redirección según el rol
                 $redirectUrl = "";
 
-                if ($_SESSION["id_perfil"] == 2) {
+                if ($_SESSION["id_perfil"] == 1) {
                     $redirectUrl = "DashboardControl"; // Administrador
-                } elseif ($_SESSION["id_perfil"] == 1) {
+                } elseif ($_SESSION["id_perfil"] == 2) {
                     $redirectUrl = "DashboardControl"; // Soporte
-                } else {
+                } elseif ($_SESSION["id_perfil"] == 3) {
                     $redirectUrl = "DashboardControl"; // Usuario general
                 }
 
                 // Devolver respuesta JSON para AJAX
                 echo json_encode([
+                    "id" => $_SESSION["id"] ,
+                    "usuario red" => $_SESSION["usuario_red"] ,
+                    "perfil" => $_SESSION["id_perfil"],
                     "status" => "success",
                     "redirect" => $redirectUrl
                 ]);

@@ -34,7 +34,7 @@ class ModeloCuentas
     public function readUsuario($id)
     {
         try {
-            $sql = "SELECT usuario FROM tbl_usuarios WHERE id = ?";
+            $sql = "SELECT nombre FROM tbl_usuarios WHERE id = ?";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array($id),

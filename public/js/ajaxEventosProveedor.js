@@ -43,7 +43,7 @@ $(document).ready(function () {
     columnDefs: [
       {
         targets: 7,
-        visible: id_perfil == 2, // solo mostrar si rol == 2
+        visible: id_perfil == 1, // solo mostrar si rol es == 1 (Administrador)
         searchable: false,
       },
     ],
