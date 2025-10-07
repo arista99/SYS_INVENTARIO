@@ -34,7 +34,6 @@
                 <a class="collapse-item" href="CreacionLicencias">Licencias</a>
                 <a class="collapse-item" href="CreacionCelulares">Celulares</a>
                 <a class="collapse-item" href="CreacionImpresoras">Impresoras</a>
-                <a class="collapse-item" href="CreacionAccesorios">Accesorios</a>
                 <a class="collapse-item" href="CreacionInfraestructura">Infraestructura</a>
             </div>
         </div>
@@ -66,10 +65,10 @@
         </a>
         <div id="collapsePagesMovimientos" class="collapse" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="CreacionUsuarios">Asignación Activo</a>
-                <a class="collapse-item" href="CreacionProveedores">Asignación Accesorio</a>
-                <a class="collapse-item" href="CreacionDocumentos">Historial Activos</a>
-                <a class="collapse-item" href="CreacionDocumentos">Mantenimientos</a>
+                <a class="collapse-item" href="ControlAsignacionActivo">Asignación Activo</a>
+                <a class="collapse-item" href="ControlAsignacionAccesorio">Asignación Accesorio</a>
+                <a class="collapse-item" href="ControlActivos">Historial Activos</a>
+                <a class="collapse-item" href="ControlMantenimientos">Mantenimientos</a>
             </div>
         </div>
     </li>
@@ -91,7 +90,7 @@
                 <a class="collapse-item" href="CreacionCategorias">Categorias</a>
                 <a class="collapse-item" href="CreacionFabricantes">Fabricantes</a>
                 <a class="collapse-item" href="CreacionModelos">Modelos</a>
-                <a class="collapse-item" href="creacionAreas">Areas</a>
+                <a class="collapse-item" href="CreacionAreas">Areas</a>
                 <a class="collapse-item" href="CreacionCentroCostos">Centro de Costo</a>
             </div>
         </div>
@@ -99,7 +98,7 @@
 
     <!-- Reportes -->  
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="ControlReportesGeneral">
             <i class="fas fa-fw fa-table"></i>
             <span>Reportes</span>
         </a>

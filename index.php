@@ -8,11 +8,11 @@ include_once('controller/controlCentroCostos.php');
 include_once('controller/controlFabricantes.php');
 include_once('controller/controlModelos.php');
 include_once('controller/controlProveedores.php');
-include_once('controller/controlAdjuntos.php');
 include_once('controller/controlDocumentos.php');
 include_once('controller/controlLicencias.php');
 include_once('controller/controlActivosPc.php');
 include_once('controller/controlAccesorio.php');
+include_once('controller/controlReportes.php');
 
 //PARA LOS CARACTERES EXTRAÑOS
 header('Content-Type: text/html; charset=utf-8');
@@ -30,11 +30,11 @@ $controlCentroCostos = new controlCentroCostos();
 $controlFabricantes = new controlFabricantes();
 $controlModelos = new controlModelos();
 $controlProveedores = new ControlProveedores();
-$ControlAdjuntos = new ControlAdjuntos();
 $ControlDocumentos = new ControlDocumentos();
 $ControlLicencias = new ControlLicencias();
 $ControlActivosPc = new ControlActivosPc();
 $ControlAccesorios = new ControlAccesorios();
+$ControlReportes = new ControlReportes();
 
 //LLAMADA DE LOS METODOS
 if (!isset($_REQUEST['ruta'])) {
@@ -59,8 +59,6 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($controlModelos, $peticion));
     }elseif (method_exists($controlProveedores, $peticion)) {
         call_user_func(array($controlProveedores, $peticion));
-    }elseif (method_exists($ControlAdjuntos, $peticion)) {
-        call_user_func(array($ControlAdjuntos, $peticion));
     }elseif (method_exists($ControlDocumentos, $peticion)) {
         call_user_func(array($ControlDocumentos, $peticion));
     }elseif (method_exists($ControlLicencias, $peticion)) {
@@ -69,6 +67,8 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($ControlActivosPc, $peticion));
     }elseif (method_exists($ControlAccesorios, $peticion)) {
         call_user_func(array($ControlAccesorios, $peticion));
+    }elseif (method_exists($ControlReportes, $peticion)) {
+        call_user_func(array($ControlReportes, $peticion));
     }else{
         $controlIndex->Index();
     }

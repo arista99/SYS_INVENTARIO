@@ -18,7 +18,7 @@
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Detalle de PC</div>
+                <div class="card-header">Detalle de PC - Laptop</div>
                 <div class="card-body">
                     <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST"-->
                     <form id="formCrearActivoPC" autocomplete="off">
@@ -49,9 +49,17 @@
                                 <label class="small mb-1" for="memoria">Ingrese Memoria</label>
                                 <input class="form-control" id="memoria" name="memoria" type="text" placeholder="Ingresar Memoria">
                             </div>
-
                         </div>
-
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="fecha_inicio">Fecha Inicio</label>
+                                <input class="form-control" id="fecha_inicio" name="fecha_inicio" type="date">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="fecha_termino">Fecha Termino</label>
+                                <input class="form-control" id="fecha_termino" name="fecha_termino" type="date">
+                            </div>
+                        </div>
                         <!-- INICIO parte oculta -->
                         <div id="campos-extra" style="display: none;">
                             <div class="row gx-3 mb-3">

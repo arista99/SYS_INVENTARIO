@@ -31,7 +31,7 @@ class controlModelos
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/recursos/modelos/modelo.php');
+        include_once('views/paginas/administrador/controlparametros/modelos/modelo.php');
     }
 
     public function vistaModelo()

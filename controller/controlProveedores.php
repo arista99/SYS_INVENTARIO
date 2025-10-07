@@ -43,7 +43,7 @@ class ControlProveedores
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/modulos/proveedores/creacion.php');
+        include_once('views/paginas/administrador/controlgestion/proveedores/creacion.php');
     }
 
     public function ListaProveedores()

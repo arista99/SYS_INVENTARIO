@@ -48,7 +48,7 @@ class ControlCuentas
         $areas_tra = $this->AREA->readAreas();
         $perfiles_tra = $this->PERFILES->readPefiles();
 
-        include_once('views/paginas/administrador/modulos/cuentas/creacion.php');
+        include_once('views/paginas/administrador/controlgestion/cuentas/creacion.php');
     }
 
     public function registrarUsuario()
@@ -102,7 +102,7 @@ class ControlCuentas
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/modulos/cuentas/usuarios.php');
+        include_once('views/paginas/administrador/controlgestion/cuentas/usuarios.php');
     }
 
     public function vistaUsuario()

@@ -40,7 +40,7 @@ class ControlLicencias{
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/modulos/licencias/creacion.php');
+        include_once('views/paginas/administrador/controlactivos/licencias/creacion.php');
     }
 
     public function ListaLicencias()

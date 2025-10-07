@@ -81,7 +81,7 @@ class ControlActivosPc
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/activos/creacion.php');
+        include_once('views/paginas/administrador/controlactivos/desklap/creacion.php');
     }
 
     public function ListaActivoPC()

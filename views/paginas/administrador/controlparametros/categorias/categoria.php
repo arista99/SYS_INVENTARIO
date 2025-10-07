@@ -9,7 +9,7 @@
     <nav class="nav nav-borders">
         <a class="nav-link active ms-0" href="CreacionCategorias">Crear Categorias</a>
         <a class="nav-link active ms-0" href="CreacionFabricantes">Crear Fabricantes</a>
-        <a class="nav-link active ms-0" href="CreacionFabricantes">Crear Modelos</a>
+        <a class="nav-link active ms-0" href="CreacionModelos">Crear Modelos</a>
         <a class="nav-link active ms-0" href="CreacionAreas">Crear Areas</a>
         <a class="nav-link active ms-0" href="CreacionCentroCostos">Crear Centro de Costo</a>
     </nav>

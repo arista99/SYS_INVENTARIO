@@ -3,8 +3,6 @@
 require_once('model/modelDocumentos.php');
 require_once('model/modelCuentas.php');
 
-require_once('model/modelAdjunto.php');
-
 //DATA
 require_once('data/documento.php');
 
@@ -13,13 +11,11 @@ class ControlDocumentos
     //VARIABLE MODELO
     public $CUENTAS;
     public $DOCUMENTOS;
-    public $ADJUNTOS;
 
     public function __construct()
     {
         $this->CUENTAS = new ModeloCuentas();
         $this->DOCUMENTOS = new ModeloDocumentos();
-        $this->ADJUNTOS = new ModeloAdjuntos();
     }
 
     public function CreacionDocumentos()
@@ -34,11 +30,9 @@ class ControlDocumentos
             exit;
         }
 
-        $adjuntos_tra = $this->ADJUNTOS->readAdjunto();
-
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/modulos/documentos/creacion.php');
+        include_once('views/paginas/administrador/controlgestion/documentos/creacion.php');
     }
 
     public function registrarDocumento()
@@ -110,7 +104,7 @@ class ControlDocumentos
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/modulos/documentos/documentos.php');
+        include_once('views/paginas/administrador/controlgestion/documentos/documentos.php');
     }
 
     public function vistaDocumento()
@@ -157,13 +151,5 @@ class ControlDocumentos
             echo json_encode(['success' => false, 'message' => $th->getMessage()]);
             // echo $th->getMessage();
         }
-    }
-
-    public function listaAdjunto()
-    {
-        // Simula datos desde la BD
-        $adjuntos = $this->ADJUNTOS->readAdjunto(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($adjuntos);
     }
 }

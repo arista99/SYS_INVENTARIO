@@ -9,11 +9,10 @@
     <nav class="nav nav-borders">
         <a class="nav-link active ms-0" href="CreacionCategorias">Crear Categorias</a>
         <a class="nav-link active ms-0" href="CreacionFabricantes">Crear Fabricantes</a>
-        <a class="nav-link active ms-0" href="CreacionFabricantes">Crear Modelos</a>
+        <a class="nav-link active ms-0" href="CreacionModelos">Crear Modelos</a>
         <a class="nav-link active ms-0" href="CreacionAreas">Crear Areas</a>
         <a class="nav-link active ms-0" href="CreacionCentroCostos">Crear Centro de Costo</a>
     </nav>
-
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
     </script>
@@ -23,7 +22,7 @@
     <div class="row mb-3">
         <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
             <div>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearModelo">+ Crear nuevo</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearFabricante">+ Crear nuevo</button>
             </div>
 
         </div>
@@ -33,13 +32,13 @@
         <div class="col-xl-8">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Lista de Modelo</div>
+                <div class="card-header">Lista de Fabricante</div>
                 <div class="card-body">
                     <!-- Table -->
-                    <table class="table table-bordered" id="tablaDatosModelo" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tablaDatosFabricante" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center">Nombre de Modelo</th>
+                                <th class="text-center">Nombre de Fabricante</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -53,44 +52,44 @@
     </div>
 
     <!-- Modal Crear -->
-    <div class="modal fade" id="modalCrearModelo" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
+    <div class="modal fade" id="modalCrearFabricante" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
         <div class="modal-dialog">
             <!-- id="formCrear" -->
-            <form id="formCrearModelo" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formCrearFabricante" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Crear nuevo Modelo</h5>
+                    <h5 class="modal-title">Crear nuevo Fabricante</h5>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="modelo" class="form-label">Nombre de Modelo</label>
-                        <input type="text" id="modelo" name="modelo" class="form-control">
+                        <label for="fabricante" class="form-label">Nombre de Fabricante</label>
+                        <input type="text" id="fabricante" name="fabricante" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="saveInfoButtonModelo" id="saveInfoButtonModelo" class="btn btn-success">Guardar</button>
+                    <button type="submit" name="saveInfoButtonFabricante" id="saveInfoButtonFabricante" class="btn btn-success">Guardar</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Modal Editar -->
-    <div class="modal fade" id="modalEditarModelo" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarFabricante" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form id="formEditarModelo" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form id="formEditarFabricante" autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Modelo</h5>
+                    <h5 class="modal-title">Editar Fabricante</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
                     <div class="mb-3">
-                        <label for="edit_modelo" class="form-label">Nombre de Modelo</label>
-                        <input type="text" id="edit_modelo" name="edit_modelo" class="form-control">
+                        <label for="edit_fabricante" class="form-label">Nombre de Fabricante</label>
+                        <input type="text" id="edit_fabricante" name="edit_fabricante" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonModelo" id="updateInfoButtonModelo" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" name="updateInfoButtonFabricante" id="updateInfoButtonFabricante" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
@@ -167,7 +166,7 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxEventosModelo.js"></script>
+<script src="public/js/ajaxEventosFabricante.js"></script>
 
 </body>
 

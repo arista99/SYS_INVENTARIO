@@ -73,7 +73,7 @@ class ControlAccesorios
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/accesorios/creacion.php');
+        include_once('views/paginas/administrador/controlactivos/accesorios/creacion.php');
 
     }
 

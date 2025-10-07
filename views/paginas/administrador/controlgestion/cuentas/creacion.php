@@ -9,7 +9,6 @@
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionUsuarios">Crear Usuario</a>
         <a class="nav-link active ms-0" href="ListaUsuarios">Lista de Usuarios</a>
-        <a class="nav-link active ms-0" href="ListaAsignacion">Equipos & Accesorios</a>
     </nav>
     <hr class="mt-0 mb-4">
     <div class="row">
@@ -31,6 +30,16 @@
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
+                                <label class="small mb-1" for="correo">Email</label>
+                                <input class="form-control" id="correo" name="correo" type="email" placeholder="Ingresa corrreo">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="contrasena">Contraseña</label>
+                                <input class="form-control" id="contrasena" name="contrasena" type="password" placeholder="Ingresa contraseña">
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
                                 <label class="small mb-1" for="filtrarSede">Sede</label>
                                 <select class="form-control text-uppercase" id="filtrarSede">
                                     <option selected disabled>Seleccionar Sede</option>
@@ -40,20 +49,16 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="small mb-1" for="contrasena">Contraseña</label>
-                                <input class="form-control" id="contrasena" name="contrasena" type="password" placeholder="Ingresa contraseña">
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="filtrarCentro">Centro de Costo</label>
-                                <select class="form-control text-uppercase" id="filtrarCentro">
-                                    <option selected disabled>Seleccionar Centro de Costo</option>
-                                    <?php foreach ($centros_tra as $centro) : ?>
-                                        <option value="<?php echo $centro->id ?>"><?php echo $centro->centro_costo ?></option>
+                                <label class="small mb-1" for="filtrarPerfil">Perfil</label>
+                                <select class="form-control text-uppercase" id="filtrarPerfil">
+                                    <option selected disabled>Seleccionar Pefil</option>
+                                    <?php foreach ($perfiles_tra as $perfil) : ?>
+                                        <option value="<?php echo $perfil->id ?>"><?php echo $perfil->perfil ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="filtrarArea">Area</label>
                                 <select class="form-control text-uppercase" id="filtrarArea">
@@ -64,25 +69,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="small mb-1" for="correo">Email</label>
-                            <input class="form-control" id="correo" name="correo" type="email" placeholder="Ingresa corrreo">
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="filtrarPerfil">Perfil</label>
-                                <select class="form-control text-uppercase" id="filtrarPerfil">
-                                    <option selected disabled>Seleccionar Pefil</option>
-                                    <?php foreach ($perfiles_tra as $perfil) : ?>
-                                        <option value="<?php echo $perfil->id ?>"><?php echo $perfil->perfil ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="cargo">Cargo</label>
-                                <input class="form-control" id="cargo" name="cargo" type="text" placeholder="Ingresar Cargo">
-                            </div>
-                        </div>
+                       
                         <button class="btn btn-primary" id="btn-registrar-usuario" name="btn-registrar-usuario" type="button">Crear usuario</button>
                     </form>
                 </div>

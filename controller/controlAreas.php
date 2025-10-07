@@ -31,7 +31,7 @@ class ControlAreas
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/recursos/areas/areas.php');
+        include_once('views/paginas/administrador/controlparametros/areas/areas.php');
     }
 
     public function vistaArea()

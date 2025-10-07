@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
       {
         data: "id",
         render: function (data, type, row) {
-          if (id_perfil == 2) {
+          if (id_perfil == 1) {
             return `
                   <button class="btn btn-sm btn-warning btnEditar"
                   data-id="${row.id}"
@@ -31,7 +31,7 @@ window.addEventListener("DOMContentLoaded", () => {
     columnDefs: [
       {
         targets: 1,
-        visible: id_perfil == 2, // solo mostrar si rol es == 2
+        visible: id_perfil == 1, // solo mostrar si rol es == 1 (Administrador)
         searchable: false,
       },
     ],

@@ -31,7 +31,7 @@ class controlCentroCostos
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/recursos/centro_costos/centro_costo.php');
+        include_once('views/paginas/administrador/controlparametros/centro_costos/centro_costo.php');
     }
 
     

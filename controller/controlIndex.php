@@ -45,16 +45,16 @@ class ControlIndex
                 if ($_SESSION["id_perfil"] == 1) {
                     $redirectUrl = "DashboardControl"; // Administrador
                 } elseif ($_SESSION["id_perfil"] == 2) {
-                    $redirectUrl = "DashboardControl"; // Soporte
+                    $redirectUrl = "DashboardControl"; // Supervisor
                 } elseif ($_SESSION["id_perfil"] == 3) {
-                    $redirectUrl = "DashboardControl"; // Usuario general
+                    $redirectUrl = "DashboardControl"; // Soporte Técnico
                 }
 
                 // Devolver respuesta JSON para AJAX
                 echo json_encode([
-                    "id" => $_SESSION["id"] ,
-                    "usuario red" => $_SESSION["usuario_red"] ,
-                    "perfil" => $_SESSION["id_perfil"],
+                    // "id" => $_SESSION["id"] ,
+                    // "usuario red" => $_SESSION["usuario_red"] ,
+                    // "perfil" => $_SESSION["id_perfil"],
                     "status" => "success",
                     "redirect" => $redirectUrl
                 ]);

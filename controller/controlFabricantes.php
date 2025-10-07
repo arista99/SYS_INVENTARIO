@@ -31,7 +31,7 @@ class controlFabricantes
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/recursos/fabricantes/fabricante.php');
+        include_once('views/paginas/administrador/controlparametros/fabricantes/fabricante.php');
     }
 
     public function vistaFabricante()

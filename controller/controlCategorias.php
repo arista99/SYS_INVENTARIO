@@ -30,7 +30,7 @@ class ControlCategorias
 
         $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
 
-        include_once('views/paginas/administrador/recursos/categorias/categoria.php');
+        include_once('views/paginas/administrador/controlparametros/categorias/categoria.php');
     }
 
     public function vistaCategoria()
