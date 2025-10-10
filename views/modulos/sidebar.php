@@ -29,7 +29,7 @@
         </a>
         <div id="collapsePagesActivos" class="collapse" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="CreacionActivoPC">Laptops & Desktop</a>
+                <a class="collapse-item" href="CreacionDeskLap">Laptops & Desktop</a>
                 <a class="collapse-item" href="CreacionAccesorio">Accesorios</a>
                 <a class="collapse-item" href="CreacionLicencias">Licencias</a>
                 <a class="collapse-item" href="CreacionCelulares">Celulares</a>

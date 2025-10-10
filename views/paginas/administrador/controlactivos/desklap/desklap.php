@@ -7,9 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionActivoPC">Crear Activo PC</a>
-        <a class="nav-link active ms-0" href="ListaActivoPC">Lista de PC</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
+        <a class="nav-link" href="CreacionDeskLap">Crear Desktop & Laptop</a>
+        <a class="nav-link active ms-0" href="ListaDeskLap">Lista de Desktop & Laptos</a>
     </nav>
 
     <script>
@@ -20,20 +19,20 @@
     <!-- Filtro -->
     <div class="row mb-3">
         <div class="col-md-4">
-            <input type="text" name="activopc" id="activopc" class="form-control" placeholder="Nombre Activo">
+            <input type="text" name="desklap" id="desklap" class="form-control" placeholder="Nombre Desktop o Laptop">
         </div>
         <div class="col-md-2">
-            <button id="btnBuscarActivoPC" class="btn btn-primary w-100">Buscar</button>
+            <button id="btnBuscarDeskLap" class="btn btn-primary w-100">Buscar</button>
         </div>
     </div>
     <div class="row">
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Lista de ActivoPC</div>
+                <div class="card-header">Lista de Desktop & Laptop</div>
                 <div class="card-body">
                     <!-- Table -->
-                    <table class="table table-bordered" id="tablaDatosActivoPC" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tablaDatosDeskLap" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th class="text-center">Nombre Equipo</th>
@@ -54,10 +53,10 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalEditarActivoPC" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarDeskLap" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <!-- id="formEditarUsuario" - action="actualizarActivoPC" method="POST"  -->
-            <form id="formEditarUsuario" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title">Editar Activo PC</h5>
                 </div>
@@ -172,7 +171,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonActivoPC" id="updateInfoButtonActivoPC" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" name="updateInfoButtonDeskLap" id="updateInfoButtonDeskLap" class="btn btn-primary">Actualizar</button>
                 </div>
             </form>
         </div>
@@ -253,8 +252,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script src="public/js/ajaxEventosActivopc.js"></script>
-<script src="public/js/ajaxSelectActivopc.js"></script>
+<script src="public/js/ajaxEventosDeskLap.js"></script>
+<script src="public/js/ajaxSelectDeskLap.js"></script>
 
 </body>
 

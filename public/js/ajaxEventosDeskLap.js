@@ -1,11 +1,11 @@
 $(document).ready(function () {
   // Iniciar DataTable de Adjunto
-  var tabla = $("#tablaDatosActivoPC").DataTable({
+  var tabla = $("#tablaDatosDeskLap").DataTable({
     ajax: {
-      url: "vistaActivoPC",
+      url: "ListaDeskLap",
       type: "POST",
       data: function (d) {
-        d.activopc = $("#activopc").val();
+        d.desklap = $("#desklap").val();
       },
     },
     columns: [
@@ -27,21 +27,20 @@ $(document).ready(function () {
                             data-procesador="${row.procesador}"
                             data-disco="${row.disco}"
                             data-memoria="${row.memoria}"
-                            data-sede="${row.sede}"
-                            data-usuario="${row.usuario}"
-                            data-categoria="${row.categoria}"
-                            data-centro_costo="${row.centro_costo}"
-                            data-area="${row.area}"
-                            data-fabricante="${row.fabricante}"
-                            data-proveedor="${row.proveedor}"
-                            data-mac_ethernet="${row.mac_ethernet}"
-                            data-mac_wireless="${row.mac_wireless}"
                             data-ip="${row.ip}"
+                            data-numero_part="${row.numero_part}"
+                            data-fecha_compra="${row.fecha_compra}"
+                            data-fecha_inicio_garantia="${row.fecha_inicio_garantia}"
+                            data-fecha_fin_garantia="${row.fecha_inicio_garantia}"
+                            data-fecha_baja="${row.fecha_baja}"
+                            data-proveedor="${row.proveedor}"
+                            data-centro_costo="${row.centro_costo}"
                             data-condicion="${row.condicion}"
                             data-estado="${row.estado}"
+                            data-categoria="${row.categoria}"
+                            data-fabricante="${row.fabricante}"
                             data-modelo="${row.modelo}"
-                            data-documento="${row.documento}"
-                            data-numero_part="${row.numero_part}">
+                            data-documento="${row.documento}"">
                             ✏️
                             </button>
                             <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
@@ -62,12 +61,12 @@ $(document).ready(function () {
   });
 
   // Botón Buscar
-  $("#btnBuscarActivoPC").click(function () {
+  $("#btnBuscarDeskLap").click(function () {
     tabla.ajax.reload();
   });
 
   // Registrar Adjunto
-  $("#btn-registrar-activoPC").click(function (event) {
+  $("#saveInfoButtonDeskLap").click(function (event) {
     event.preventDefault();
 
     // Obtener los datos del formulario
@@ -78,27 +77,23 @@ $(document).ready(function () {
       procesador: $("#procesador").val(),
       disco: $("#disco").val(),
       memoria: $("#memoria").val(),
-      ethernet: $("#ethernet").val(),
-      wireless: $("#wireless").val(),
+      fecha_compra: $("#fecha_compra").val(),
       ip: $("#ip").val(),
-      usuario: $("#usuario").val(),
-      sede: $("#sede").val(),
-      categoria: $("#categoria").val(),
+      documento: $("#documento").val(),
       centro: $("#centro").val(),
-      area: $("#area").val(),
+      categoria: $("#categoria").val(),
       fabricante: $("#fabricante").val(),
+      modelo: $("#modelo").val(),
       proveedor: $("#proveedor").val(),
       condicion: $("#condicion").val(),
       estado: $("#estado").val(),
-      modelo: $("#modelo").val(),
-      documento: $("#documento").val(),
     };
 
     // console.log(formData);
 
     // Realizar la solicitud AJAX
     $.ajax({
-      url: "registrarActivoPC", // Cambia a la URL de tu controlador
+      url: "RegistrarDeskLap", // Cambia a la URL de tu controlador
       method: "POST",
       data: formData,
       dataType: "json",
@@ -107,7 +102,7 @@ $(document).ready(function () {
         if (response.success) {
           Swal.fire({
             icon: "success",
-            title: "Se creo Activo PC",
+            title: "Se realizo el registro correctamente",
             timer: 1500,
             showConfirmButton: false,
           }).then(function () {
@@ -129,7 +124,7 @@ $(document).ready(function () {
   });
 
   // Evento click para llenar el modal de edición
-  $("#tablaDatosActivoPC").on("click", ".btnEditar", function () {
+  $("#tablaDatosDeskLap").on("click", ".btnEditar", function () {
     let btn = $(this);
 
     // Llenar campos simples
@@ -158,42 +153,38 @@ $(document).ready(function () {
     cargarDocumento( btn.data("documento"));
 
     // Mostrar el modal primero
-    $("#modalEditarActivoPC").modal("show");
+    $("#modalEditarDeskLap").modal("show");
   });
 
   //Actualizar ActivoPC
-  $("#modalEditarActivoPC").on("submit", function (e) {
+  $("#modalEditarDeskLap").on("submit", function (e) {
     e.preventDefault();
 
    // Obtener los datos del formulario
     var formData = {
       id: $("#id").val(),
-      edit_equipo: $("#edit_equipo").val(),
-      edit_serie: $("#edit_serie").val(),
-      edit_part: $("#edit_part").val(),
-      edit_procesador: $("#edit_procesador").val(),
-      edit_disco: $("#edit_disco").val(),
-      edit_memoria: $("#edit_memoria").val(),
-      edit_ethernet: $("#edit_ethernet").val(),
-      edit_wireless: $("#edit_wireless").val(),
-      edit_ip: $("#edit_ip").val(),
-      edit_usuario: $("#edit_usuario").val(),
-      edit_sede: $("#edit_sede").val(),
-      edit_categoria: $("#edit_categoria").val(),
-      edit_centro: $("#edit_centro").val(),
-      edit_area: $("#edit_area").val(),
-      edit_fabricante: $("#edit_fabricante").val(),
-      edit_proveedor: $("#edit_proveedor").val(),
-      edit_condicion: $("#edit_condicion").val(),
-      edit_estado: $("#edit_estado").val(),
-      edit_modelo: $("#edit_modelo").val(),
-      edit_documento: $("#edit_documento").val(),
+      edit_equipo: $("#equipo").val(),
+      edit_serie: $("#serie").val(),
+      edit_part: $("#part").val(),
+      edit_procesador: $("#procesador").val(),
+      edit_disco: $("#disco").val(),
+      edit_memoria: $("#memoria").val(),
+      edit_fecha_compra: $("#fecha_compra").val(),
+      edit_ip: $("#ip").val(),
+      edit_documento: $("#documento").val(),
+      edit_centro: $("#centro").val(),
+      edit_categoria: $("#categoria").val(),
+      edit_fabricante: $("#fabricante").val(),
+      edit_modelo: $("#modelo").val(),
+      edit_proveedor: $("#proveedor").val(),
+      edit_condicion: $("#condicion").val(),
+      edit_estado: $("#estado").val(),
     };
 
     // console.log(formData);
 
     $.ajax({
-      url: "actualizarActivoPC",
+      url: "ActualizarDeskLap",
       type: "POST",
       data: formData,
       // data: $(this).serialize(),
@@ -207,8 +198,8 @@ $(document).ready(function () {
             timer: 1500,
           });
 
-          $("#modalEditarActivoPC").modal("hide");
-          $("#tablaDatosActivoPC").DataTable().ajax.reload(null, false);
+          $("#modalEditarDeskLap").modal("hide");
+          $("#tablaDatosDeskLap").DataTable().ajax.reload(null, false);
         } else {
           Swal.fire({
             icon: "error",

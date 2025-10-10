@@ -1,17 +1,17 @@
 <?php
 //MODEL
-include_once('model/modelCuentas.php');
+include_once('model/modelHelpers.php');
 //DATA
 
 
 class ControlDashboard
 {
     //VARIABLE MODELO
-    public $CUENTAS;
+    public $HELPERS;
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
+        $this->HELPERS = new ModeloHelpers();
     }
     public function DashboardControl()
     {
@@ -25,7 +25,7 @@ class ControlDashboard
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/dashboard/menu.php');
     }

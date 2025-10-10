@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionActivoPC">Crear Activo PC</a>
-        <a class="nav-link active ms-0" href="ListaActivoPC">Lista de PC</a>
+        <a class="nav-link" href="CreacionDeskLap">Crear Desktop & Laptop</a>
+        <a class="nav-link active ms-0" href="ListaDeskLap">Lista de Desktop & Laptos</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -39,7 +39,7 @@
                         <div class="row gx-3 mb-3">
                             <div class="col-md-4">
                                 <label class="small mb-1" for="procesador">Ingrese Procesador</label>
-                                <input class="form-control" id="procesador" name="procesador" type="text" placeholder="Ingresar Procesasdor">
+                                <input class="form-control" id="procesador" name="procesador" type="text" placeholder="Ingresar Procesador">
                             </div>
                             <div class="col-md-4">
                                 <label class="small mb-1" for="disco">Ingrese Disco</label>
@@ -52,35 +52,31 @@
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1" for="fecha_inicio">Fecha Inicio</label>
-                                <input class="form-control" id="fecha_inicio" name="fecha_inicio" type="date">
+                                <label class="small mb-1" for="fecha_compra">Fecha Compra</label>
+                                <input class="form-control" id="fecha_compra" name="fecha_compra" type="date">
                             </div>
                             <div class="col-md-6">
-                                <label class="small mb-1" for="fecha_termino">Fecha Termino</label>
-                                <input class="form-control" id="fecha_termino" name="fecha_termino" type="date">
-                            </div>
+                                    <label class="small mb-1" for="ip">Ingrese IP</label>
+                                    <input class="form-control" id="ip" name="ip" type="text" placeholder="Ingresar Numero de IP">
+                                </div>
                         </div>
                         <!-- INICIO parte oculta -->
                         <div id="campos-extra" style="display: none;">
                             <div class="row gx-3 mb-3">
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="ip">Ingrese IP</label>
-                                    <input class="form-control" id="ip" name="ip" type="text" placeholder="Ingresar Numero de IP">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="usuario">Usuarios</label>
-                                    <select class="form-control text-uppercase" id="usuario" name="usuario">
-                                        <option selected disabled>Seleccionar Usuario</option>
-                                        <?php foreach ($lista_usuarios as $usuarios) : ?>
-                                            <option value="<?php echo $usuarios->id ?>"><?php echo $usuarios->usuario ?></option>
+                            <div class="col-md-6">
+                                    <label class="small mb-1" for="documento">Documentos</label>
+                                    <select class="form-control text-uppercase" id="documento" name="documento">
+                                        <option selected disabled>Seleccionar documento</option>
+                                        <?php foreach ($lista_documentos as $docummentos) : ?>
+                                            <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label class="small mb-1" for="centro">Centro Costo</label>
                                     <select class="form-control text-uppercase" id="centro" name="centro">
                                         <option selected disabled>Seleccionar Centro de Costo</option>
-                                        <?php foreach ($lista_centros as $centros) : ?>
+                                        <?php foreach ($lista_centro_costo as $centros) : ?>
                                             <option value="<?php echo $centros->id ?>"><?php echo $centros->centro_costo ?></option>
                                         <?php endforeach; ?>
                                     </select>
@@ -90,7 +86,7 @@
                                 <div class="col-md-4">
                                     <label class="small mb-1" for="categoria">Categorias</label>
                                     <select class="form-control text-uppercase" id="categoria" name="categoria">
-                                        <option selected disabled>Seleccionar Sede</option>
+                                        <option selected disabled>Seleccionar Categoria</option>
                                         <?php foreach ($lista_categorias as $categorias) : ?>
                                             <option value="<?php echo $categorias->id ?>"><?php echo $categorias->categoria ?></option>
                                         <?php endforeach; ?>
@@ -100,18 +96,12 @@
                                     <label class="small mb-1" for="fabricante">Fabricantes</label>
                                     <select class="form-control text-uppercase" id="fabricante" name="fabricante">
                                         <option selected disabled>Seleccionar Fabricante</option>
-                                        <?php foreach ($lista_fabricantes as $fabricantes) : ?>
-                                            <option value="<?php echo $fabricantes->id ?>"><?php echo $fabricantes->fabricante ?></option>
-                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="small mb-1" for="modelo">Modelos</label>
                                     <select class="form-control text-uppercase" id="modelo" name="modelo">
                                         <option selected disabled>Seleccionar Modelo</option>
-                                        <?php foreach ($lista_modelos as $modelos) : ?>
-                                            <option value="<?php echo $modelos->id ?>"><?php echo $modelos->modelo ?></option>
-                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
@@ -144,17 +134,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row gx-3 mb-3">
-                                <div class="col-md-4">
-                                    <label class="small mb-1" for="documento">Documentos</label>
-                                    <select class="form-control text-uppercase" id="documento" name="documento">
-                                        <option selected disabled>Seleccionar documento</option>
-                                        <?php foreach ($lista_documentos as $docummentos) : ?>
-                                            <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                         <!-- FIN parte oculta -->
 
@@ -164,8 +143,8 @@
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn btn-primary" id="btn-registrar-activoPC" name="btn-registrar-activoPC" type="button">
-                                Crear Activo
+                            <button class="btn btn-primary" id="saveInfoButtonDeskLap" name="saveInfoButtonDeskLap" type="button">
+                                Crear DeskLap
                             </button>
 
                             <div>
@@ -259,10 +238,6 @@
 <!-- Page level plugins -->
 <script src="public/assets/vendor/chart.js/Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<!-- <script src="public/assets/js/demo/chart-area-demo.js"></script>
-    <script src="public/assets/js/demo/chart-pie-demo.js"></script> -->
-
 <!-- Page level plugins -->
 <script src="public/assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="public/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -271,7 +246,7 @@
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
 <script src="public/js/ajaxEventosExcel.js"></script>
-<script src="public/js/ajaxEventosActivopc.js"></script>
+<script src="public/js/ajaxEventosDeskLap.js"></script>
 
 </body>
 

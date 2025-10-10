@@ -1,27 +1,18 @@
 <?php
 //MODEL
-
+include_once('model/modelHelpers.php');
 //DATA
 
 
 class ControlReportes
 {
     //VARIABLE MODELO
-    public $CUENTAS;
-    public $PERFILES;
-    public $SEDES;
-    public $CENTRO;
-    public $AREA;
-    public $ACTIVO;
+    public $HELPERS;
+
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
-        $this->PERFILES = new ModeloPerfiles();
-        $this->SEDES = new ModeloSedes();
-        $this->CENTRO = new ModeloCentroCostos();
-        $this->AREA = new ModeloAreas();
-        $this->ACTIVO = new ModeloActivosPC();
+        $this->HELPERS = new ModeloHelpers();
     }
 
     public function ControlReportesGeneral()
@@ -36,7 +27,7 @@ class ControlReportes
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
         include_once('views/paginas/administrador/reportes/reporte.php');
     }
 }

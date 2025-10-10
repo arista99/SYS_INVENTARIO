@@ -1,93 +1,3 @@
-function cargarSede(selectedValue = null) {
-  $.ajax({
-    url: "listaSede",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      const select = $("#edit_sede");
-
-      // Destruir Select2 si ya estaba inicializado
-      // if ($.fn.select2 && select.hasClass("select2-hidden-accessible")) {
-      //   select.select2("destroy");
-      // }
-
-      // select.empty();
-
-      // Agrega la opción por defecto correctamente (con value vacío)
-      select.append(`<option value="" disabled ${!selectedValue ? "selected" : ""}>Seleccionar Sede</option>`);
-
-      // Agrega las opciones dinámicamente
-      data.forEach((sede) => {
-        const isSelected = selectedValue === sede.sede;
-        const optionText = isSelected
-          ? `${sede.sede} - Opción actual`
-          : sede.sede;
-
-        select.append(
-          `<option value="${sede.id}" ${isSelected ? "selected" : ""}>${optionText}</option>`
-        );
-      });
-
-      // select.select2({
-      //   placeholder: "Seleccionar sede...",
-      //   width: "100%",
-      //   allowClear: true,
-      //   minimumResultsForSearch: 1,
-      //   dropdownParent: $('#modalEditarActivoPC') // <- muy importante dentro de modales
-      // });
-    },
-    error: function (xhr, status, error) {
-      console.error("Error cargando sede:", error);
-    },
-  });
-}
-
-
-function cargarUsuario(selectedValue = null) {
-  $.ajax({
-    url: "listaUsuario",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      let select = $("#edit_usuario");
-      select.empty();
-
-       // Destruir Select2 si ya fue inicializado
-      //  if ($.fn.select2 && select.hasClass("select2-hidden-accessible")) {
-      //   select.select2("destroy");
-      // }
-
-      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-      if (!selectedValue) {
-        select.append(`<option disabled selected>Seleccionar Usuario</option>`);
-      }
-
-      data.forEach((usuarios) => {
-        const isSelected = selectedValue === usuarios.usuario;
-        const optionText = isSelected
-          ? `${usuarios.usuario} - Opción actual`
-          : usuarios.usuario;
-
-        select.append(
-          `<option value="${usuarios.id}" ${isSelected ? "selected" : ""}>${optionText}</option>`
-        );
-      });
-
-      // Reinicializar Select2 después de llenar las opciones
-      // select.select2({
-      //   placeholder: "SELECCIONAR USUARIO",
-      //   width: "100%",
-      //   allowClear: true,
-      //   minimumResultsForSearch: 1,
-      //   dropdownParent: $('#modalEditarActivoPC') // <- muy importante dentro de modales
-      // });
-    },
-    error: function (xhr, status, error) {
-      console.error("Error cargando usuario:", error);
-    },
-  });
-}
-
 function cargarCategoria(selectedValue = null) {
   $.ajax({
     url: "listaCategoria",
@@ -154,39 +64,6 @@ function cargarCentro(selectedValue = null) {
     },
     error: function (xhr, status, error) {
       console.error("Error cargando centro de costo:", error);
-    },
-  });
-}
-
-function cargarArea(selectedValue = null) {
-  $.ajax({
-    url: "listaArea",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      let select = $("#edit_area");
-      select.empty();
-
-      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-      if (!selectedValue) {
-        select.append(`<option disabled selected>Seleccionar Area</option>`);
-      }
-
-      data.forEach((areas) => {
-        const isSelected = selectedValue === areas.area;
-        const optionText = isSelected
-          ? `${areas.area} - Opción actual`
-          : areas.area;
-
-        select.append(
-          `<option value="${areas.id}" ${
-            isSelected ? "selected" : ""
-          }>${optionText}</option>`
-        );
-      });
-    },
-    error: function (xhr, status, error) {
-      console.error("Error cargando centro de area:", error);
     },
   });
 }
@@ -364,7 +241,7 @@ function cargarModelo(selectedValue = null) {
 
 function cargarDocumento(selectedValue = null) {
   $.ajax({
-    url: "listaDocumentosOP",
+    url: "listaDocumentos",
     type: "GET",
     dataType: "json",
     success: function (data) {

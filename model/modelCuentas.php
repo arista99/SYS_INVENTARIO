@@ -16,36 +16,6 @@ class ModeloCuentas
         }
     }
 
-     /*******************************************LISTA USUARIO********************************************/
-     public function listUsuarios()
-     {
-         try {
-             $sql = "SELECT * FROM tbl_usuarios";
-             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
-             $stm->execute();
-             return $stm->fetchAll(PDO::FETCH_OBJ);
-         } catch (Exception $th) {
-             echo $th->getMessage();
-         }
-     }
-     /*********************************************************************************************************/
-     
-    /*******************************************VER USUARIOS - ENCABEZADO********************************************/
-    public function readUsuario($id)
-    {
-        try {
-            $sql = "SELECT nombre FROM tbl_usuarios WHERE id = ?";
-            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
-            $stm->execute(
-                array($id),
-            );
-            return $stm->fetch(PDO::FETCH_OBJ);
-        } catch (Exception $th) {
-            echo $th->getMessage();
-        }
-    }
-    /*********************************************************************************************************/
-
     /*******************************************Lista - Busqueda Usuario*****************************************/
     public function findUsuario($nombre)
     {

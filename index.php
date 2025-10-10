@@ -10,7 +10,7 @@ include_once('controller/controlModelos.php');
 include_once('controller/controlProveedores.php');
 include_once('controller/controlDocumentos.php');
 include_once('controller/controlLicencias.php');
-include_once('controller/controlActivosPc.php');
+include_once('controller/controlDeskLap.php');
 include_once('controller/controlAccesorio.php');
 include_once('controller/controlReportes.php');
 
@@ -32,7 +32,7 @@ $controlModelos = new controlModelos();
 $controlProveedores = new ControlProveedores();
 $ControlDocumentos = new ControlDocumentos();
 $ControlLicencias = new ControlLicencias();
-$ControlActivosPc = new ControlActivosPc();
+$ControlDeskLap = new ControlDeskLap();
 $ControlAccesorios = new ControlAccesorios();
 $ControlReportes = new ControlReportes();
 
@@ -63,8 +63,8 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($ControlDocumentos, $peticion));
     }elseif (method_exists($ControlLicencias, $peticion)) {
         call_user_func(array($ControlLicencias, $peticion));
-    }elseif (method_exists($ControlActivosPc, $peticion)) {
-        call_user_func(array($ControlActivosPc, $peticion));
+    }elseif (method_exists($ControlDeskLap, $peticion)) {
+        call_user_func(array($ControlDeskLap, $peticion));
     }elseif (method_exists($ControlAccesorios, $peticion)) {
         call_user_func(array($ControlAccesorios, $peticion));
     }elseif (method_exists($ControlReportes, $peticion)) {
