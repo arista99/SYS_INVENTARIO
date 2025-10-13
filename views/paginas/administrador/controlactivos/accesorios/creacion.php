@@ -8,7 +8,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionAccesorio">Crear Accesorio</a>
-        <a class="nav-link active ms-0" href="ListaAccesorio">Lista de Accesorio</a>
+        <a class="nav-link active ms-0" href="ListaGeneralAccesorio">Lista de Accesorio</a>
         <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
     <script>
@@ -24,55 +24,25 @@
                     <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST"-->
                     <form id="formCrearAccesorio" autocomplete="off">
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label class="small mb-1" for="nombre">Nombre de Accesorio</label>
                                 <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresar Nombre de Accesorio">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label class="small mb-1" for="serie">Numero de Serie del equipo</label>
                                 <input class="form-control" id="serie" name="serie" type="text" placeholder="Ingresar Numero de Serie">
                             </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="modelo">Modelos</label>
-                                <select class="form-control text-uppercase" id="modelo" name="modelo">
-                                    <option selected disabled>Seleccionar Modelo</option>
-                                    <?php foreach ($lista_modelos as $modelos) : ?>
-                                        <option value="<?php echo $modelos->id ?>"><?php echo $modelos->modelo ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+                            
                         </div>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="area">Areas</label>
-                                <select class="form-control text-uppercase" id="area" name="area">
-                                    <option selected disabled>Seleccionar Area</option>
-                                    <?php foreach ($lista_areas as $areas) : ?>
-                                        <option value="<?php echo $areas->id ?>"><?php echo $areas->area ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="sede">Sedes</label>
-                                <select class="form-control text-uppercase" id="sede" name="sede">
-                                    <option selected disabled>Seleccionar Sede</option>
-                                    <?php foreach ($lista_sedes as $sedes) : ?>
-                                        <option value="<?php echo $sedes->id ?>"><?php echo $sedes->sede ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label class="small mb-1" for="categoria">Categorias</label>
                                 <select class="form-control text-uppercase" id="categoria" name="categoria">
-                                    <option selected disabled>Seleccionar Sede</option>
-                                    <?php foreach ($lista_categorias as $categorias) : ?>
-                                        <option value="<?php echo $categorias->id ?>"><?php echo $categorias->categoria ?></option>
-                                    <?php endforeach; ?>
+                                    <option selected disabled>Seleccionar Categoria</option>
+                                        <option value="<?php echo $lista_categorias->id ?>"><?php echo $lista_categorias->categoria ?></option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label class="small mb-1" for="fabricante">Fabricantes</label>
                                 <select class="form-control text-uppercase" id="fabricante" name="fabricante">
                                     <option selected disabled>Seleccionar Fabricante</option>
@@ -81,16 +51,9 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-md-4">
-                                <label class="small mb-1" for="documento">Documentos</label>
-                                <select class="form-control text-uppercase" id="documento" name="documento">
-                                    <option selected disabled>Seleccionar documento</option>
-                                    <?php foreach ($lista_documentos as $docummentos) : ?>
-                                        <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
                                 <label class="small mb-1" for="proveedor">Proveedores</label>
                                 <select class="form-control text-uppercase" id="proveedor" name="proveedor">
                                     <option selected disabled>Seleccionar Proveedor</option>
@@ -99,9 +62,18 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="documento">Documentos</label>
+                                <select class="form-control text-uppercase" id="documento" name="documento">
+                                    <option selected disabled>Seleccionar documento</option>
+                                    <?php foreach ($lista_documentos as $docummentos) : ?>
+                                        <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label class="small mb-1" for="condicion">Condiciones</label>
                                 <select class="form-control text-uppercase" id="condicion" name="condicion">
                                     <option selected disabled>Seleccionar Condicion</option>
@@ -110,7 +82,7 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label class="small mb-1" for="estado">Estados</label>
                                 <select class="form-control text-uppercase" id="estado" name="estado">
                                     <option selected disabled>Seleccionar Estado</option>

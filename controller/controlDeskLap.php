@@ -40,14 +40,13 @@ class ControlDeskLap
         $lista_proveedores = $this->HELPERS->ListarProveedor();
         $lista_condiciones = $this->HELPERS->ListarCondiciones();
         $lista_estados = $this->HELPERS->ListarEstados();
-        $lista_documentos = $this->HELPERS->ListarDocumentos();
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlactivos/desklap/creacion.php');
     }
 
-    public function ListaDeskLap()
+    public function ListaGeneralDeskLap()
     {
         // Iniciar sesión
         session_start();
@@ -82,12 +81,12 @@ class ControlDeskLap
                 $desklap->setip($_POST['ip']);
 
                 // IDs que podrían ser NULL
+                $desklap->setid_proveedor(!empty($_POST['proveedor']) ? $_POST['proveedor'] : null);
                 $desklap->setid_documento(!empty($_POST['documento']) ? $_POST['documento'] : null);
-                $desklap->setid_centro_costo(!empty($_POST['centro']) ? $_POST['centro'] : null);
                 $desklap->setid_categoria(!empty($_POST['categoria']) ? $_POST['categoria'] : null);
                 $desklap->setid_fabricante(!empty($_POST['fabricante']) ? $_POST['fabricante'] : null);
                 $desklap->setid_modelo(!empty($_POST['modelo']) ? $_POST['modelo'] : null);
-                $desklap->setid_proveedor(!empty($_POST['proveedor']) ? $_POST['proveedor'] : null);
+                $desklap->setid_centro_costo(!empty($_POST['centro']) ? $_POST['centro'] : null);
                 $desklap->setid_condicion(!empty($_POST['condicion']) ? $_POST['condicion'] : null);
                 $desklap->setid_estado(!empty($_POST['estado']) ? $_POST['estado'] : null);
 
@@ -118,7 +117,6 @@ class ControlDeskLap
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $desklap = new DeskLap();
 
-                // Datos simples
                 $desklap->setid($_POST['id']);
                 $desklap->setnom_equipo(!empty($_POST['edit_equipo']) ? $_POST['edit_equipo'] : null);
                 $desklap->setns(!empty($_POST['edit_serie']) ? $_POST['edit_serie'] : null);
@@ -126,18 +124,20 @@ class ControlDeskLap
                 $desklap->setprocesador(!empty($_POST['edit_procesador']) ? $_POST['edit_procesador'] : null);
                 $desklap->setdisco(!empty($_POST['edit_disco']) ? $_POST['edit_disco'] : null);
                 $desklap->setmemoria(!empty($_POST['edit_memoria']) ? $_POST['edit_memoria'] : null);
+                $desklap->setmemoria(!empty($_POST['edit_fecha_compra']) ? $_POST['edit_fecha_compra'] : null);
+                $desklap->setmemoria(!empty($_POST['edit_fecha_baja']) ? $_POST['edit_fecha_baja'] : null);
+                $desklap->setmemoria(!empty($_POST['edit_fecha_inicio']) ? $_POST['edit_fecha_inicio'] : null);
+                $desklap->setmemoria(!empty($_POST['edit_fecha_fin']) ? $_POST['edit_fecha_fin'] : null);
                 $desklap->setip(!empty($_POST['edit_ip']) ? $_POST['edit_ip'] : null);
-
-                // IDs que podrían ser NULL
-                $desklap->setid_categoria(!empty($_POST['edit_categoria']) ? $_POST['edit_categoria'] : null);
-                $desklap->setid_centro_costo(!empty($_POST['edit_centro']) ? $_POST['edit_centro'] : null);
-                $desklap->setid_fabricante(!empty($_POST['edit_fabricante']) ? $_POST['edit_fabricante'] : null);
                 $desklap->setid_proveedor(!empty($_POST['edit_proveedor']) ? $_POST['edit_proveedor'] : null);
+                $desklap->setid_documento(!empty($_POST['edit_documento']) ? $_POST['edit_documento'] : null);
+                $desklap->setid_categoria(!empty($_POST['edit_categoria']) ? $_POST['edit_categoria'] : null);
+                $desklap->setid_fabricante(!empty($_POST['edit_fabricante']) ? $_POST['edit_fabricante'] : null);
+                $desklap->setid_modelo(!empty($_POST['edit_modelo']) ? $_POST['edit_modelo'] : null);
+                $desklap->setid_centro_costo(!empty($_POST['edit_centro']) ? $_POST['edit_centro'] : null);
                 $desklap->setid_condicion(!empty($_POST['edit_condicion']) ? $_POST['edit_condicion'] : null);
                 $desklap->setid_estado(!empty($_POST['edit_estado']) ? $_POST['edit_estado'] : null);
-                $desklap->setid_modelo(!empty($_POST['edit_modelo']) ? $_POST['edit_modelo'] : null);
-                $desklap->setid_documento(!empty($_POST['edit_documento']) ? $_POST['edit_documento'] : null);
-
+              
                 //llamando al insert de modelo activopc
                 $update_desklap = $this->DESKLAP->updateDeskLap($desklap);
 
@@ -208,19 +208,19 @@ class ControlDeskLap
         echo json_encode($categoria);
     }
 
-    public function listaCentro()
-    {
-        $centro = $this->HELPERS->ListarCentrosCosto();
-
-        echo json_encode($centro);
-    }
-
     public function listaFabricante()
     {
         $id_categoria = filter_input(INPUT_POST, 'dato_mandar_servidor');
 
         $fabricante = $this->HELPERS->ListarFabricantes($id_categoria);
+        
+        echo json_encode($fabricante);
+    }
 
+    public function listaFabricanteEdit()
+    {
+        $fabricante = $this->HELPERS->ListarFabricantesEdit();
+        
         echo json_encode($fabricante);
     }
 
@@ -233,11 +233,41 @@ class ControlDeskLap
         echo json_encode($modelo);
     }
 
+    public function listaModeloEdit()
+    {
+        $modelo = $this->HELPERS->ListarModelosEdit();
+
+        echo json_encode($modelo);
+    }
+
+    public function listaCentro()
+    {
+        $centro = $this->HELPERS->ListarCentrosCosto();
+
+        echo json_encode($centro);
+    }
+
     public function listaProveedores()
     {
         $proveedor = $this->HELPERS->ListarProveedor();
 
         echo json_encode($proveedor);
+    }
+
+    public function listaDocumentos()
+    {
+        $id_proveedor = filter_input(INPUT_POST, 'dato_mandar_servidor');
+
+        $documento = $this->HELPERS->ListarDocumentos($id_proveedor);
+
+        echo json_encode($documento);
+    }
+
+    public function listaDocumentosEdit()
+    {
+        $documento = $this->HELPERS->ListarDocumentosEdit();
+
+        echo json_encode($documento);
     }
 
     public function listaCondiciones()
@@ -252,12 +282,5 @@ class ControlDeskLap
         $estado = $this->HELPERS->ListarEstados();
 
         echo json_encode($estado);
-    }
-
-    public function listaDocumentos()
-    {
-        $documento = $this->HELPERS->ListarDocumentos();
-
-        echo json_encode($documento);
     }
 }

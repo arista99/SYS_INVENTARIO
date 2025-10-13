@@ -8,7 +8,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionDeskLap">Crear Desktop & Laptop</a>
-        <a class="nav-link active ms-0" href="ListaDeskLap">Lista de Desktop & Laptos</a>
+        <a class="nav-link active ms-0" href="ListaGeneralDeskLap">Lista de Desktop & Laptos</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -64,22 +64,24 @@
                         <div id="campos-extra" style="display: none;">
                             <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                    <label class="small mb-1" for="documento">Documentos</label>
+                                    <label class="small mb-1" for="proveedor">Proveedores</label>
+                                    <select class="form-control text-uppercase" id="proveedor" name="proveedor">
+                                        <option selected disabled>Seleccionar Proveedor</option>
+                                        <?php foreach ($lista_proveedores as $proveedores) : ?>
+                                            <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                <label class="small mb-1" for="documento">Documentos</label>
                                     <select class="form-control text-uppercase" id="documento" name="documento">
                                         <option selected disabled>Seleccionar documento</option>
                                         <?php foreach ($lista_documentos as $docummentos) : ?>
                                             <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="centro">Centro Costo</label>
-                                    <select class="form-control text-uppercase" id="centro" name="centro">
-                                        <option selected disabled>Seleccionar Centro de Costo</option>
-                                        <?php foreach ($lista_centro_costo as $centros) : ?>
-                                            <option value="<?php echo $centros->id ?>"><?php echo $centros->centro_costo ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    
                                 </div>
                             </div>
                             <div class="row gx-3 mb-3">
@@ -107,11 +109,11 @@
                             </div>
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-4">
-                                    <label class="small mb-1" for="proveedor">Proveedores</label>
-                                    <select class="form-control text-uppercase" id="proveedor" name="proveedor">
-                                        <option selected disabled>Seleccionar Proveedor</option>
-                                        <?php foreach ($lista_proveedores as $proveedores) : ?>
-                                            <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
+                                <label class="small mb-1" for="centro">Centro Costo</label>
+                                    <select class="form-control text-uppercase" id="centro" name="centro">
+                                        <option selected disabled>Seleccionar Centro de Costo</option>
+                                        <?php foreach ($lista_centro_costo as $centros) : ?>
+                                            <option value="<?php echo $centros->id ?>"><?php echo $centros->centro_costo ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -247,6 +249,7 @@
 
 <script src="public/js/ajaxEventosExcel.js"></script>
 <script src="public/js/ajaxEventosDeskLap.js"></script>
+<script src="public/js/ajaxCascada.js"></script>
 
 </body>
 

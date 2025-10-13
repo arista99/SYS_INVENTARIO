@@ -104,8 +104,9 @@ class ModeloHelpers
             echo $th->getMessage();
         }
     }
+
     /*CELULAR*/
-    public function ListarCategoriaCelular()
+    public function ListarCategoriaAccesorio()
     {
         try {
             $sql = "SELECT * FROM tbl_categorias WHERE id = 3";
@@ -118,8 +119,9 @@ class ModeloHelpers
             echo $th->getMessage();
         }
     }
-    /*IMPRESORA*/
-    public function ListarCategoriaImpresora()
+
+    /*CELULAR*/
+    public function ListarCategoriaCelular()
     {
         try {
             $sql = "SELECT * FROM tbl_categorias WHERE id = 4";
@@ -132,8 +134,9 @@ class ModeloHelpers
             echo $th->getMessage();
         }
     }
-    /*ACCESORIO*/
-    public function ListarCategoriaAccesorio()
+    
+    /*IMPRESORA*/
+    public function ListarCategoriaImpresora()
     {
         try {
             $sql = "SELECT * FROM tbl_categorias WHERE id = 5";
@@ -146,6 +149,7 @@ class ModeloHelpers
             echo $th->getMessage();
         }
     }
+
     /*INFRAESTRUCTURA*/
     public function ListarCategoriaInfraestructura()
     {
@@ -179,6 +183,23 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
+    /*====================================FABRICANTES - EDITAR=======================================*/
+    /*FABRICANTES - EDITAR*/
+    public function ListarFabricantesEdit()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_fabricantes";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
     /*====================================MODELOS=======================================*/
     /*MODELOS*/
     public function ListarModelos($id_fabricante)
@@ -188,6 +209,23 @@ class ModeloHelpers
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute([$id_fabricante]);
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+    /*====================================MODELOS - EDITAR=======================================*/
+    /*MODELOS - EDITAR*/
+    public function ListarModelosEdit()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_modelos";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
 
             return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $th) {
@@ -334,7 +372,24 @@ class ModeloHelpers
 
     /*==============================DOCUMENTOS=========================================*/
     /*DOCUMENTOS*/
-    public function ListarDocumentos()
+    public function ListarDocumentos($id_proveedor)
+    {
+        try {
+            $sql = "SELECT * FROM tbl_documentos where id_proveedor=?";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute([$id_proveedor]);
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+     /*==============================DOCUMENTOS - EDITAR=========================================*/
+    /*DOCUMENTOS - EDITAR*/
+    public function ListarDocumentosEdit()
     {
         try {
             $sql = "SELECT * FROM tbl_documentos";
@@ -348,6 +403,5 @@ class ModeloHelpers
         }
     }
     /*=======================================================================================*/
-
 
 }

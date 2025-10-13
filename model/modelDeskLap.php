@@ -68,7 +68,7 @@ class ModeloDeskLap
     public function createDeskLap(DeskLap $desklap)
     {
         try {
-            $sql = "INSERT INTO tbl_desk_lap(nom_equipo,ns,numero_part,procesador,disco,memoria,fecha_compra,ip,id_documento,id_centro_costo,id_categoria,id_fabricante,id_modelo,id_proveedor,id_condicion,id_estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO tbl_desk_lap(nom_equipo,ns,numero_part,procesador,disco,memoria,fecha_compra,ip,id_proveedor,id_documento,id_categoria,id_fabricante,id_modelo,id_centro_costo,id_condicion,id_estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(
@@ -80,12 +80,12 @@ class ModeloDeskLap
                     $desklap->getmemoria(),
                     $desklap->getfecha_compra(),
                     $desklap->getip(),
+                    $desklap->getid_proveedor(),
                     $desklap->getid_documento(),
-                    $desklap->getid_centro_costo(),
                     $desklap->getid_categoria(),
                     $desklap->getid_fabricante(),
                     $desklap->getid_modelo(),
-                    $desklap->getid_proveedor(),
+                    $desklap->getid_centro_costo(),
                     $desklap->getid_condicion(),
                     $desklap->getid_estado()    
                 )
@@ -102,6 +102,7 @@ class ModeloDeskLap
     {
         try {
             $sql = "SELECT
+                        tdl.id,
                         tdl.nom_equipo,
                         tdl.ns,
                         tdl.procesador,
@@ -109,10 +110,10 @@ class ModeloDeskLap
                         tdl.memoria,
                         tdl.ip,
                         tdl.numero_part,
-                        tdl.fecha_compra,
-                        tdl.fecha_inicio_garantia,
-                        tdl.fecha_fin_garantia,
-                        tdl.fecha_baja,
+                        DATE_FORMAT(tdl.fecha_compra, '%Y-%m-%d') AS fecha_compra,
+                        DATE_FORMAT(tdl.fecha_inicio_garantia, '%Y-%m-%d') AS fecha_inicio_garantia,
+                        DATE_FORMAT(tdl.fecha_fin_garantia, '%Y-%m-%d') AS fecha_fin_garantia,
+                        DATE_FORMAT(tdl.fecha_baja, '%Y-%m-%d') AS fecha_baja,
                         tp.proveedor,
                         tcc.centro_costo,
                         tco.condicion,
@@ -152,7 +153,7 @@ class ModeloDeskLap
     public function updateDeskLap(DeskLap $desklap)
     {
         try {
-            $sql = "UPDATE tbl_desk_lap SET nom_equipo =?,ns =?,procesador =?,disco =?,memoria =?,ip =?,numero_part=?,fecha_compra=?,fecha_inicio_garantia=?,fecha_fin_garantia=?,fecha_baja=?,id_proveedor=?,id_centro_costo=?,id_condicion=?,id_estado=?,id_categoria =?,id_fabricante =?,id_modelo =?,id_modelo =?,id_documento =? WHERE id=?";
+            $sql = "UPDATE tbl_desk_lap SET nom_equipo =?,ns =?,procesador =?,disco =?,memoria =?,ip =?,numero_part=?,fecha_compra=?,fecha_inicio_garantia=?,fecha_fin_garantia=?,fecha_baja=?,id_proveedor=?,id_centro_costo=?,id_condicion=?,id_estado=?,id_categoria =?,id_fabricante =?,id_modelo =?,id_documento =? WHERE id=?";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(

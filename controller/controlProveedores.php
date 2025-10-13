@@ -1,10 +1,7 @@
 <?php
 //MODEL
 require_once('model/modelProveedores.php');
-require_once('model/modelCuentas.php');
-
-require_once('model/modelProductos.php');
-require_once('model/modelDocumentos.php');
+require_once('model/modelHelpers.php');
 
 //DATA
 require_once('data/proveedor.php');
@@ -12,17 +9,14 @@ require_once('data/proveedor.php');
 class ControlProveedores
 {
     //VARIABLE MODELO
-    public $CUENTAS;
+    public $HELPERS;
     public $PROVEEDORES;
-    public $PRODUCTOS;
-    public $DOCUMENTOS;
+
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
+        $this->HELPERS = new ModeloHelpers();
         $this->PROVEEDORES = new ModeloProveedores();
-        $this->DOCUMENTOS = new ModeloDocumentos();
-        $this->PRODUCTOS = new ModeloProductos();
     }
 
     public function CreacionProveedores()
@@ -37,16 +31,12 @@ class ControlProveedores
             exit;
         }
 
-        $productos_tra = $this->PRODUCTOS->readProducto();
-        $documentos_tra = $this->DOCUMENTOS->readDocumento();
-
-
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlgestion/proveedores/creacion.php');
     }
 
-    public function ListaProveedores()
+    public function Proveedores()
     {
         // Iniciar sesión
         session_start();
@@ -58,12 +48,12 @@ class ControlProveedores
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/modulos/proveedores/proveedores.php');
     }
 
-    public function vistaProveedor()
+    public function findProveedores()
     {
         // Obtener valores desde la solicitud AJAX
         $proveedor = $_POST['proveedor'] ?? '';
@@ -163,21 +153,5 @@ class ControlProveedores
             http_response_code(500);
             echo json_encode(['error' => 'No se pudo eliminar']);
         }
-    }
-
-    public function listaProducto()
-    {
-        // Simula datos desde la BD
-        $centros = $this->PRODUCTOS->readProducto(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($centros);
-    }
-
-    public function listaDocumento()
-    {
-        // Simula datos desde la BD
-        $sedes = $this->DOCUMENTOS->readDocumento(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($sedes);
     }
 }

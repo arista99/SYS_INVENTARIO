@@ -33,6 +33,58 @@ function cargarCategoria(selectedValue = null) {
   });
 }
 
+function cargarFabricante(selectedValue = null) {
+  $.ajax({
+    url: "listaFabricanteEdit",
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+      let select = $("#edit_fabricante");
+      select.empty();
+
+      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
+      if (!selectedValue) {
+        // Si no hay valor, muestra el placeholder
+        select.append(`<option disabled selected>Seleccionar Fabricante</option>`);
+      } else {
+        // Si hay un valor, muéstralo como la opción actual
+        select.append(
+          `<option selected>${selectedValue} - Opción actual</option>`
+        );
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("Error cargando centro de fabricante:", error);
+    },
+  });
+}
+
+function cargarModelo(selectedValue = null) {
+  $.ajax({
+    url: "listaModeloEdit",
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+      let select = $("#edit_modelo");
+      select.empty();
+
+      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
+      if (!selectedValue) {
+        select.append(`<option disabled selected>Seleccionar Modelo</option>`);
+      }else {
+        // Si hay un valor, muéstralo como la opción actual
+        select.append(
+          `<option selected>${selectedValue} - Opción actual</option>`
+        );
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("Error cargando centro de modelo:", error);
+    },
+  });
+}
+
+
 function cargarCentro(selectedValue = null) {
   $.ajax({
     url: "listaCentro",
@@ -68,44 +120,11 @@ function cargarCentro(selectedValue = null) {
   });
 }
 
-function cargarFabricante(selectedValue = null) {
-  $.ajax({
-    url: "listaFabricante",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      let select = $("#edit_fabricante");
-      select.empty();
 
-      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-      if (!selectedValue) {
-        select.append(
-          `<option disabled selected>Seleccionar Fabricante</option>`
-        );
-      }
-
-      data.forEach((fabricantes) => {
-        const isSelected = selectedValue === fabricantes.fabricante;
-        const optionText = isSelected
-          ? `${fabricantes.fabricante} - Opción actual`
-          : fabricantes.fabricante;
-
-        select.append(
-          `<option value="${fabricantes.id}" ${
-            isSelected ? "selected" : ""
-          }>${optionText}</option>`
-        );
-      });
-    },
-    error: function (xhr, status, error) {
-      console.error("Error cargando centro de fabricante:", error);
-    },
-  });
-}
 
 function cargarProveedor(selectedValue = null) {
   $.ajax({
-    url: "listaProveedoresOP",
+    url: "listaProveedores",
     type: "GET",
     dataType: "json",
     success: function (data) {
@@ -206,42 +225,9 @@ function cargarEstado(selectedValue = null) {
   });
 }
 
-function cargarModelo(selectedValue = null) {
-  $.ajax({
-    url: "listaModelo",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      let select = $("#edit_modelo");
-      select.empty();
-
-      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-      if (!selectedValue) {
-        select.append(`<option disabled selected>Seleccionar Modelo</option>`);
-      }
-
-      data.forEach((modelos) => {
-        const isSelected = selectedValue === modelos.modelo;
-        const optionText = isSelected
-          ? `${modelos.modelo} - Opción actual`
-          : modelos.modelo;
-
-        select.append(
-          `<option value="${modelos.id}" ${
-            isSelected ? "selected" : ""
-          }>${optionText}</option>`
-        );
-      });
-    },
-    error: function (xhr, status, error) {
-      console.error("Error cargando centro de modelo:", error);
-    },
-  });
-}
-
 function cargarDocumento(selectedValue = null) {
   $.ajax({
-    url: "listaDocumentos",
+    url: "listaDocumentosEdit",
     type: "GET",
     dataType: "json",
     success: function (data) {
@@ -253,20 +239,12 @@ function cargarDocumento(selectedValue = null) {
         select.append(
           `<option disabled selected>Seleccionar Documento</option>`
         );
-      }
-
-      data.forEach((documentos) => {
-        const isSelected = selectedValue === documentos.documento;
-        const optionText = isSelected
-          ? `${documentos.documento} - Opción actual`
-          : documentos.documento;
-
+      }else {
+        // Si hay un valor, muéstralo como la opción actual
         select.append(
-          `<option value="${documentos.id}" ${
-            isSelected ? "selected" : ""
-          }>${optionText}</option>`
+          `<option selected>${selectedValue} - Opción actual</option>`
         );
-      });
+      }
     },
     error: function (xhr, status, error) {
       console.error("Error cargando centro de documento:", error);

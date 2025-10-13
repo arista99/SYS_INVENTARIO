@@ -1,7 +1,6 @@
 <?php
 
 //MODEL
-require_once('model/modelCuentas.php');
 require_once('model/modelAccesorio.php');
 include_once('model/modelHelpers.php');
 //DATA
@@ -10,13 +9,11 @@ require_once('data/accesorio.php');
 class ControlAccesorios
 {
     //VARIABLE MODELO
-    public $CUENTAS;
     public $ACCESORIO;
     public $HELPERS;
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
         $this->ACCESORIO = new ModeloAccesorio();
         $this->HELPERS = new ModeloHelpers();
 
@@ -34,24 +31,20 @@ class ControlAccesorios
             exit;
         }
 
-        $lista_usuarios = $this->CUENTAS->listUsuarios();
-        $lista_sedes = $this->SEDES->readSedes();
-        $lista_categorias = $this->CATEGORIAS->readCategoria();
-        $lista_areas = $this->AREAS->readAreas();
-        $lista_fabricantes = $this->FABRICANTES->readFabricante();
-        $lista_proveedores = $this->PROVEEDORES->readProveedores();
-        $lista_condiciones = $this->CONDICIONES->readCondicion();
-        $lista_estados = $this->ESTADOS->readEstado();
-        $lista_modelos = $this->MODELOS->readModelo();
-        $lista_documentos = $this->DOCUMENTOS->readDocumento();
+        $lista_usuarios = $this->HELPERS->ListarUsuario();
+        $lista_centro_costo = $this->HELPERS->ListarCentrosCosto();
+        $lista_categorias = $this->HELPERS->ListarCategoriaAccesorio();
+        $lista_proveedores = $this->HELPERS->ListarProveedor();
+        $lista_condiciones = $this->HELPERS->ListarCondiciones();
+        $lista_estados = $this->HELPERS->ListarEstados();
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlactivos/accesorios/creacion.php');
 
     }
 
-    public function ListaAccesorio()
+    public function ListaGeneralAccesorio()
     {
         // Iniciar sesión
         session_start();
@@ -63,12 +56,8 @@ class ControlAccesorios
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
-        $lista_usuario = $this->CUENTAS->listUsuarios();
-        $lista_activopc = $this->ACTIVO->readActivoPC();
-        $lista_accesorio = $this->ACCESORIO->readAccesorio();
-
-        // include_once('views/paginas/administrador/modulos/cuentas/asignacion.php');
+        include_once('views/paginas/administrador/controlactivos/accesorios/accesorio.php');
     }
 }

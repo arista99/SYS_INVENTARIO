@@ -8,7 +8,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionDeskLap">Crear Desktop & Laptop</a>
-        <a class="nav-link active ms-0" href="ListaDeskLap">Lista de Desktop & Laptos</a>
+        <a class="nav-link active ms-0" href="ListaGeneralDeskLap">Lista de Desktop & Laptos</a>
     </nav>
 
     <script>
@@ -92,33 +92,54 @@
                     </div>
 
                     <div class="row gx-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_ethernet">Mac Ethernet</label>
-                            <input class="form-control" id="edit_ethernet" name="edit_ethernet" type="text" placeholder="Actualizar Ethernet">
+                        <div class="col-md-6">
+                                <label class="small mb-1" for="edit_fecha_compra">Actualizar Fecha Compra</label>
+                                <input class="form-control" id="edit_fecha_compra" name="edit_fecha_compra" type="date">
                         </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_wireless">Mac Wireless</label>
-                            <input class="form-control" id="edit_wireless" name="edit_wireless" type="text" placeholder="Actualizar Wireless">
+                        <div class="col-md-6">
+                                <label class="small mb-1" for="edit_fecha_baja">Actualizar Fecha Baja</label>
+                                <input class="form-control" id="edit_fecha_baja" name="edit_fecha_baja" type="date">
                         </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_ip">Ingrese IP</label>
-                            <input class="form-control" id="edit_ip" name="edit_ip" type="text" placeholder="Actualizar numero de IP">
+                        <div class="col-md-6">
+                                <label class="small mb-1" for="edit_fecha_inicio">Actualizar Fecha Inicio Garantia</label>
+                                <input class="form-control" id="edit_fecha_inicio" name="edit_fecha_inicio" type="date">
                         </div>
+                        <div class="col-md-6">
+                                <label class="small mb-1" for="edit_fecha_fin">Actualizar Fecha Fin Garantia</label>
+                                <input class="form-control" id="edit_fecha_fin" name="edit_fecha_fin" type="date">
+                        </div>
+
                     </div>
                     <div class="row gx-3 mb-3">
                         <div class="col-md-4">
-                            <label class="small mb-1" for="edit_usuario">Actualizar Usuario</label>
-                            <select class="form-control text-uppercase" id="edit_usuario" name="edit_usuario">
+                            <label class="small mb-1" for="edit_ip">Actualizar IP</label>
+                            <input class="form-control" id="edit_ip" name="edit_ip" type="text" placeholder="Actualizar numero de IP">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_proveedor">Actualizar Proveedor</label>
+                            <select class="form-control text-uppercase" id="edit_proveedor" name="edit_proveedor">
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="small mb-1" for="edit_sede">Actualizar Sede</label>
-                            <select class="form-control text-uppercase" id="edit_sede" name="edit_sede">
+                            <label class="small mb-1" for="edit_documento">Actualizar Documento</label>
+                            <select class="form-control text-uppercase" id="edit_documento" name="edit_documento">
                             </select>
-                        </div>
+                        </div> 
+                    </div>
+                    <div class="row gx-3 mb-3">
                         <div class="col-md-4">
                             <label class="small mb-1" for="edit_categoria">Actualizar Categoria</label>
                             <select class="form-control text-uppercase" id="edit_categoria" name="edit_categoria">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_fabricante">Actualizar Fabricante</label>
+                            <select class="form-control text-uppercase" id="edit_fabricante" name="edit_fabricante">
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_modelo">Actualizar Modelo</label>
+                            <select class="form-control text-uppercase" id="edit_modelo" name="edit_modelo">
                             </select>
                         </div>
                     </div>
@@ -129,23 +150,6 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="small mb-1" for="edit_area">Actualizar Area</label>
-                            <select class="form-control text-uppercase" id="edit_area" name="edit_area">
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_fabricante">Actualizar Fabricante</label>
-                            <select class="form-control text-uppercase" id="edit_fabricante" name="edit_fabricante">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_proveedor">Actualizar Proveedor</label>
-                            <select class="form-control text-uppercase" id="edit_proveedor" name="edit_proveedor">
-                            </select>
-                        </div>
-                        <div class="col-md-4">
                             <label class="small mb-1" for="edit_condicion">Actualizar Condición</label>
                             <select class="form-control text-uppercase" id="edit_condicion" name="edit_condicion">
                             </select>
@@ -153,18 +157,6 @@
                         <div class="col-md-4">
                             <label class="small mb-1" for="edit_estado">Actualizar Estado</label>
                             <select class="form-control text-uppercase" id="edit_estado" name="edit_estado">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-6">
-                            <label class="small mb-1" for="edit_modelo">Actualizar Modelo</label>
-                            <select class="form-control text-uppercase" id="edit_modelo" name="edit_modelo">
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="small mb-1" for="edit_documento">Actualizar Documento</label>
-                            <select class="form-control text-uppercase" id="edit_documento" name="edit_documento">
                             </select>
                         </div>
                     </div>
@@ -254,6 +246,7 @@
 
 <script src="public/js/ajaxEventosDeskLap.js"></script>
 <script src="public/js/ajaxSelectDeskLap.js"></script>
+<script src="public/js/ajaxEditCascada.js"></script>
 
 </body>
 

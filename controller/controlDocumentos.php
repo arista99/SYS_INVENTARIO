@@ -90,7 +90,7 @@ class ControlDocumentos
         }
     }
 
-    public function ListaDocumentos()
+    public function Documentos()
     {
         // Iniciar sesión
         session_start();

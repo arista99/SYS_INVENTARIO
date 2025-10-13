@@ -2,7 +2,7 @@ $(document).ready(function () {
   // Iniciar DataTable de Adjunto
   var tabla = $("#tablaDatosDeskLap").DataTable({
     ajax: {
-      url: "ListaDeskLap",
+      url: "findDeskopLaptop",
       type: "POST",
       data: function (d) {
         d.desklap = $("#desklap").val();
@@ -31,7 +31,7 @@ $(document).ready(function () {
                             data-numero_part="${row.numero_part}"
                             data-fecha_compra="${row.fecha_compra}"
                             data-fecha_inicio_garantia="${row.fecha_inicio_garantia}"
-                            data-fecha_fin_garantia="${row.fecha_inicio_garantia}"
+                            data-fecha_fin_garantia="${row.fecha_fin_garantia}"
                             data-fecha_baja="${row.fecha_baja}"
                             data-proveedor="${row.proveedor}"
                             data-centro_costo="${row.centro_costo}"
@@ -79,12 +79,12 @@ $(document).ready(function () {
       memoria: $("#memoria").val(),
       fecha_compra: $("#fecha_compra").val(),
       ip: $("#ip").val(),
+      proveedor: $("#proveedor").val(),
       documento: $("#documento").val(),
-      centro: $("#centro").val(),
       categoria: $("#categoria").val(),
       fabricante: $("#fabricante").val(),
       modelo: $("#modelo").val(),
-      proveedor: $("#proveedor").val(),
+      centro: $("#centro").val(),
       condicion: $("#condicion").val(),
       estado: $("#estado").val(),
     };
@@ -134,25 +134,24 @@ $(document).ready(function () {
     $("#edit_procesador").val(btn.data("procesador"));
     $("#edit_disco").val(btn.data("disco"));
     $("#edit_memoria").val(btn.data("memoria"));
-    $("#edit_ethernet").val(btn.data("mac_ethernet"));
-    $("#edit_wireless").val(btn.data("mac_wireless"));
     $("#edit_ip").val(btn.data("ip"));
     $("#edit_part").val(btn.data("numero_part"));
+    $("#edit_fecha_compra").val(btn.data("fecha_compra"));
+    $("#edit_fecha_baja").val(btn.data("fecha_baja"));
+    $("#edit_fecha_inicio").val(btn.data("fecha_inicio_garantia"));
+    $("#edit_fecha_fin").val(btn.data("fecha_fin_garantia"));
 
     // Guarda los valores en variables temporales
-    cargarSede(btn.data("sede"));
-    cargarUsuario(btn.data("usuario"));
     cargarCategoria(btn.data("categoria"));
-    cargarCentro(btn.data("centro_costo"));
-    cargarArea(btn.data("area"));
     cargarFabricante(btn.data("fabricante"));
+    cargarModelo(btn.data("modelo"));
+    cargarCentro(btn.data("centro_costo"));
     cargarProveedor(btn.data("proveedor"));
     cargarCondicion( btn.data("condicion"));
     cargarEstado(btn.data("estado"));
-    cargarModelo(btn.data("modelo"));
     cargarDocumento( btn.data("documento"));
 
-    // Mostrar el modal primero
+    // Mostrar el modal
     $("#modalEditarDeskLap").modal("show");
   });
 
@@ -163,22 +162,25 @@ $(document).ready(function () {
    // Obtener los datos del formulario
     var formData = {
       id: $("#id").val(),
-      edit_equipo: $("#equipo").val(),
-      edit_serie: $("#serie").val(),
-      edit_part: $("#part").val(),
-      edit_procesador: $("#procesador").val(),
-      edit_disco: $("#disco").val(),
-      edit_memoria: $("#memoria").val(),
-      edit_fecha_compra: $("#fecha_compra").val(),
-      edit_ip: $("#ip").val(),
-      edit_documento: $("#documento").val(),
-      edit_centro: $("#centro").val(),
-      edit_categoria: $("#categoria").val(),
-      edit_fabricante: $("#fabricante").val(),
-      edit_modelo: $("#modelo").val(),
-      edit_proveedor: $("#proveedor").val(),
-      edit_condicion: $("#condicion").val(),
-      edit_estado: $("#estado").val(),
+      edit_equipo: $("#edit_equipo").val(),
+      edit_serie: $("#edit_serie").val(),
+      edit_part: $("#edit_part").val(),
+      edit_procesador: $("#edit_procesador").val(),
+      edit_disco: $("#edit_disco").val(),
+      edit_memoria: $("#edit_memoria").val(),
+      edit_fecha_compra: $("#edit_fecha_compra").val(),
+      edit_fecha_baja: $("#edit_fecha_baja").val(),
+      edit_fecha_inicio: $("#edit_fecha_inicio").val(),
+      edit_fecha_fin: $("#edit_fecha_fin").val(),
+      edit_ip: $("#edit_ip").val(),
+      edit_proveedor: $("#edit_proveedor").val(),
+      edit_documento: $("#edit_documento").val(),
+      edit_categoria: $("#edit_categoria").val(),
+      edit_fabricante: $("#edit_fabricante").val(),
+      edit_modelo: $("#edit_modelo").val(),
+      edit_centro: $("#edit_centro").val(),
+      edit_condicion: $("#edit_condicion").val(),
+      edit_estado: $("#edit_estado").val(),
     };
 
     // console.log(formData);

@@ -1,26 +1,21 @@
 <?php
 //MODEL
 include_once('model/modelLicencias.php');
-include_once('model/modelProveedores.php');
-include_once('model/modelDocumentos.php');
-include_once('model/modelCuentas.php');
+include_once('model/modelHelpers.php');
 
 //DATA
 include_once('data/licencia.php');
 
 class ControlLicencias{
     //VARIABLE MODELO
-    public $CUENTAS;
     public $LICENCIAS;
-    public $PROVEEDORES;
-    public $DOCUMENTOS;
+    public $HELPERS;
+
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
         $this->LICENCIAS = new ModeloLicencias();
-        $this->PROVEEDORES = new ModeloProveedores();
-        $this->DOCUMENTOS = new ModeloDocumentos();
+        $this->HELPERS = new ModeloHelpers();
     }
 
     public function CreacionLicencias()
@@ -38,7 +33,7 @@ class ControlLicencias{
         $proveedores_tra = $this->PROVEEDORES->readProveedores();
         $documentos_tra = $this->DOCUMENTOS->readDocumento();
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario =  $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlactivos/licencias/creacion.php');
     }
