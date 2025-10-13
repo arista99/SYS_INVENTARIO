@@ -23,13 +23,13 @@ USE `sys_inventario_transber`;
 CREATE TABLE IF NOT EXISTS `tbl_accesorios` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ns` varchar(255) NOT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
   `id_categoria` int(10) unsigned NOT NULL,
   `id_fabricante` int(10) unsigned NOT NULL,
   `id_condicion` int(10) unsigned NOT NULL,
   `id_estado` int(10) unsigned NOT NULL,
   `id_proveedor` int(10) unsigned NOT NULL,
   `id_documento` int(10) unsigned DEFAULT NULL,
-  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `id_categoria` (`id_categoria`),
   KEY `id_fabricante` (`id_fabricante`),
@@ -110,6 +110,23 @@ CREATE TABLE IF NOT EXISTS `tbl_asignacion_accesorios` (
 -- Volcando datos para la tabla sys_inventario_transber.tbl_asignacion_accesorios: ~0 rows (aproximadamente)
 DELETE FROM `tbl_asignacion_accesorios`;
 
+-- Volcando estructura para tabla sys_inventario_transber.tbl_categorias
+CREATE TABLE IF NOT EXISTS `tbl_categorias` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla sys_inventario_transber.tbl_categorias: ~6 rows (aproximadamente)
+DELETE FROM `tbl_categorias`;
+INSERT INTO `tbl_categorias` (`id`, `categoria`) VALUES
+	(1, 'Desktop'),
+	(2, 'Laptop'),
+	(3, 'Accesorio'),
+	(4, 'Celular'),
+	(5, 'Impresora'),
+	(6, 'Infraestructura');
+
 -- Volcando estructura para tabla sys_inventario_transber.tbl_celulares
 CREATE TABLE IF NOT EXISTS `tbl_celulares` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -188,6 +205,7 @@ CREATE TABLE IF NOT EXISTS `tbl_desk_lap` (
   `nom_equipo` varchar(150) DEFAULT NULL,
   `ns` varchar(150) DEFAULT NULL,
   `procesador` varchar(255) DEFAULT NULL,
+  `id_proveedor` int(10) unsigned DEFAULT NULL,
   `disco` varchar(255) DEFAULT NULL,
   `memoria` varchar(255) DEFAULT NULL,
   `ip` varchar(50) DEFAULT NULL,
@@ -196,7 +214,6 @@ CREATE TABLE IF NOT EXISTS `tbl_desk_lap` (
   `fecha_inicio_garantia` timestamp NULL DEFAULT NULL,
   `fecha_fin_garantia` timestamp NULL DEFAULT NULL,
   `fecha_baja` timestamp NULL DEFAULT NULL,
-  `id_proveedor` int(10) unsigned DEFAULT NULL,
   `id_centro_costo` int(10) unsigned DEFAULT NULL,
   `id_condicion` int(10) unsigned DEFAULT NULL,
   `id_estado` int(10) unsigned DEFAULT NULL,
@@ -211,20 +228,22 @@ CREATE TABLE IF NOT EXISTS `tbl_desk_lap` (
   KEY `id_categoria` (`id_categoria`),
   KEY `id_fabricante` (`id_fabricante`),
   KEY `id_modelo` (`id_modelo`),
-  KEY `id_documento` (`id_documento`),
   KEY `id_proveedor` (`id_proveedor`),
+  KEY `id_documento` (`id_documento`),
   CONSTRAINT `tbl_desk_lap_ibfk_1` FOREIGN KEY (`id_centro_costo`) REFERENCES `tbl_centro_costo` (`id`),
   CONSTRAINT `tbl_desk_lap_ibfk_2` FOREIGN KEY (`id_condicion`) REFERENCES `tbl_condiciones` (`id`),
   CONSTRAINT `tbl_desk_lap_ibfk_3` FOREIGN KEY (`id_estado`) REFERENCES `tbl_estados` (`id`),
   CONSTRAINT `tbl_desk_lap_ibfk_4` FOREIGN KEY (`id_categoria`) REFERENCES `tbl_categorias` (`id`),
   CONSTRAINT `tbl_desk_lap_ibfk_5` FOREIGN KEY (`id_fabricante`) REFERENCES `tbl_fabricantes` (`id`),
   CONSTRAINT `tbl_desk_lap_ibfk_6` FOREIGN KEY (`id_modelo`) REFERENCES `tbl_modelos` (`id`),
-  CONSTRAINT `tbl_desk_lap_ibfk_7` FOREIGN KEY (`id_documento`) REFERENCES `tbl_documentos` (`id`),
-  CONSTRAINT `tbl_desk_lap_ibfk_8` FOREIGN KEY (`id_proveedor`) REFERENCES `tbl_proveedores` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `tbl_desk_lap_ibfk_7` FOREIGN KEY (`id_proveedor`) REFERENCES `tbl_proveedores` (`id`),
+  CONSTRAINT `tbl_desk_lap_ibfk_8` FOREIGN KEY (`id_documento`) REFERENCES `tbl_documentos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_desk_lap: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_desk_lap: ~1 rows (aproximadamente)
 DELETE FROM `tbl_desk_lap`;
+INSERT INTO `tbl_desk_lap` (`id`, `nom_equipo`, `ns`, `procesador`, `id_proveedor`, `disco`, `memoria`, `ip`, `numero_part`, `fecha_compra`, `fecha_inicio_garantia`, `fecha_fin_garantia`, `fecha_baja`, `id_centro_costo`, `id_condicion`, `id_estado`, `id_categoria`, `id_fabricante`, `id_modelo`, `id_documento`) VALUES
+	(1, 'TBCACNA002', 'MJ0D84HG', 'CORE i5', 1, '512GB SSD', '16GB', '172.16.110.1', 'MJ0D84HG', '2025-10-13 05:00:00', NULL, NULL, NULL, 3, 1, 2, 1, 7, 13, NULL);
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_documentos
 CREATE TABLE IF NOT EXISTS `tbl_documentos` (
@@ -235,9 +254,15 @@ CREATE TABLE IF NOT EXISTS `tbl_documentos` (
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
   `fecha_inicio` timestamp NULL DEFAULT NULL,
   `fecha_termino` timestamp NULL DEFAULT NULL,
+  `id_producto` int(10) unsigned DEFAULT NULL,
+  `id_proveedor` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_tipo_adjunto` (`id_tipo_adjunto`),
-  CONSTRAINT `tbl_documentos_ibfk_1` FOREIGN KEY (`id_tipo_adjunto`) REFERENCES `tbl_tipo_adjuntos` (`id`)
+  KEY `id_producto` (`id_producto`),
+  KEY `id_proveedor` (`id_proveedor`),
+  CONSTRAINT `tbl_documentos_ibfk_1` FOREIGN KEY (`id_tipo_adjunto`) REFERENCES `tbl_tipo_adjuntos` (`id`),
+  CONSTRAINT `tbl_documentos_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `tbl_productos` (`id`),
+  CONSTRAINT `tbl_documentos_ibfk_3` FOREIGN KEY (`id_proveedor`) REFERENCES `tbl_proveedores` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_documentos: ~0 rows (aproximadamente)
@@ -272,6 +297,27 @@ INSERT INTO `tbl_estados` (`id`, `estado`) VALUES
 	(2, 'Asignado'),
 	(3, 'En mantenimiento'),
 	(4, 'Dado de baja');
+
+-- Volcando estructura para tabla sys_inventario_transber.tbl_fabricantes
+CREATE TABLE IF NOT EXISTS `tbl_fabricantes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fabricante` varchar(150) NOT NULL,
+  `id_categoria` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_categoria` (`id_categoria`),
+  CONSTRAINT `tbl_fabricantes_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `tbl_categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla sys_inventario_transber.tbl_fabricantes: ~7 rows (aproximadamente)
+DELETE FROM `tbl_fabricantes`;
+INSERT INTO `tbl_fabricantes` (`id`, `fabricante`, `id_categoria`) VALUES
+	(1, 'Lenovo', 2),
+	(2, 'HP', 2),
+	(3, 'Apple', 4),
+	(4, 'Samsung', 4),
+	(5, 'Canon', 5),
+	(6, 'Epson', 5),
+	(7, 'Lenovo', 1);
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_historial_activos
 CREATE TABLE IF NOT EXISTS `tbl_historial_activos` (
@@ -457,6 +503,33 @@ CREATE TABLE IF NOT EXISTS `tbl_mantenimientos` (
 -- Volcando datos para la tabla sys_inventario_transber.tbl_mantenimientos: ~0 rows (aproximadamente)
 DELETE FROM `tbl_mantenimientos`;
 
+-- Volcando estructura para tabla sys_inventario_transber.tbl_modelos
+CREATE TABLE IF NOT EXISTS `tbl_modelos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `modelo` varchar(150) NOT NULL,
+  `id_fabricante` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_fabricante` (`id_fabricante`),
+  CONSTRAINT `tbl_modelos_ibfk_1` FOREIGN KEY (`id_fabricante`) REFERENCES `tbl_fabricantes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla sys_inventario_transber.tbl_modelos: ~13 rows (aproximadamente)
+DELETE FROM `tbl_modelos`;
+INSERT INTO `tbl_modelos` (`id`, `modelo`, `id_fabricante`) VALUES
+	(1, 'ThinkPad E14', 1),
+	(2, 'IdeaPad 3', 1),
+	(3, 'Pavilion 15', 2),
+	(4, 'Envy x360', 2),
+	(5, 'iPhone 13', 3),
+	(6, 'iPhone SE', 3),
+	(7, 'Galaxy S23', 4),
+	(8, 'Galaxy A54', 4),
+	(9, 'PIXMA G3160', 5),
+	(10, 'MAXIFY GX6010', 5),
+	(11, 'EcoTank L3250', 6),
+	(12, 'WorkForce WF-2850', 6),
+	(13, 'ThinkCentre M80s', 7);
+
 -- Volcando estructura para tabla sys_inventario_transber.tbl_perfiles
 CREATE TABLE IF NOT EXISTS `tbl_perfiles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -493,19 +566,13 @@ CREATE TABLE IF NOT EXISTS `tbl_proveedores` (
   `contacto` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
   `telefono` varchar(150) NOT NULL,
-  `id_producto` int(10) unsigned DEFAULT NULL,
-  `id_documento` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_producto` (`id_producto`),
-  KEY `id_documento` (`id_documento`),
-  CONSTRAINT `tbl_proveedores_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `tbl_productos` (`id`),
-  CONSTRAINT `tbl_proveedores_ibfk_2` FOREIGN KEY (`id_documento`) REFERENCES `tbl_documentos` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_proveedores: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_proveedores: ~1 rows (aproximadamente)
 DELETE FROM `tbl_proveedores`;
-INSERT INTO `tbl_proveedores` (`id`, `proveedor`, `direccion`, `contacto`, `email`, `telefono`, `id_producto`, `id_documento`) VALUES
-	(1, 'Transber S.A.C', 'Calle Cadmio 129 Urb. Ind. Grimanesa', 'Transber', 'soporteti@transberperu.com', '988600940', 3, NULL);
+INSERT INTO `tbl_proveedores` (`id`, `proveedor`, `direccion`, `contacto`, `email`, `telefono`) VALUES
+	(1, 'Transber S.A.C', 'Calle Cadmio 129 Urb. Ind. Grimanesa', 'Transber', 'soporteti@transberperu.com', '988600940');
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_sedes
 CREATE TABLE IF NOT EXISTS `tbl_sedes` (
