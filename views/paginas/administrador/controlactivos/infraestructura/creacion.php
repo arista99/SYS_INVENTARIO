@@ -7,8 +7,9 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionLicencias">Crear Licencia</a>
-        <a class="nav-link active ms-0" href="ListaGeneralLicencias">Lista de Licencias</a>
+        <a class="nav-link" href="CrearInfreestructura">Crear Infreestructura</a>
+        <a class="nav-link active ms-0" href="ListaGeneralInfreestructura">Lista de Infreestructura</a>
+        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -18,80 +19,92 @@
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Detalle de Licencias</div>
+                <div class="card-header">Detalle de Infreestructura</div>
                 <div class="card-body">
-                    <form id="formCrearLicencia" autocomplete="off">
+                    <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST"-->
+                    <form id="formCrearInfreestructura" autocomplete="off">
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1" for="software">Nombre de Software</label>
-                                <input class="form-control" id="software" name="software" type="text" placeholder="Ingresar Nombre de Software">
+                                <label class="small mb-1" for="nombre">Nombre de Accesorio</label>
+                                <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresar Nombre de Accesorio">
                             </div>
                             <div class="col-md-6">
-                                <label class="small mb-1" for="version">Ingrese Version</label>
-                                <input class="form-control" id="version" name="version" type="text" placeholder="Ingresa Version">
+                                <label class="small mb-1" for="serie">Numero de Serie del equipo</label>
+                                <input class="form-control" id="serie" name="serie" type="text" placeholder="Ingresar Numero de Serie">
+                            </div>
+                            
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="categoria">Categorias</label>
+                                <select class="form-control text-uppercase" id="categoria" name="categoria">
+                                    <option selected disabled>Seleccionar Categoria</option>
+                                        <option value="<?php echo $lista_categorias->id ?>"><?php echo $lista_categorias->categoria ?></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="fabricante">Fabricantes</label>
+                                <select class="form-control text-uppercase" id="fabricante" name="fabricante">
+                                    <option selected disabled>Seleccionar Fabricante</option>
+                                    <?php foreach ($lista_fabricantes as $fabricantes) : ?>
+                                        <option value="<?php echo $fabricantes->id ?>"><?php echo $fabricantes->fabricante ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1" for="cantidad">Ingrese Cantidad</label>
-                                <input class="form-control" id="cantidad" name="cantidad" type="text" placeholder="Ingresar Cantidad">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="tipo">Tipo</label>
-                                <input class="form-control" id="tipo" name="tipo" type="text" placeholder="Ingresa Tipo">
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                    <label class="small mb-1" for="fecha_inicio_licencia">Fecha Inicio Licencia</label>
-                                    <input class="form-control" id="fecha_inicio_licencia" name="fecha_inicio_licencia" type="date">
-                            </div>
-                            <div class="col-md-6">
-                                    <label class="small mb-1" for="fecha_fin_licencia">Fecha Fin Licencia</label>
-                                    <input class="form-control" id="fecha_fin_licencia" name="fecha_fin_licencia" type="date">
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="proveedor">Proveedor</label>
+                                <label class="small mb-1" for="proveedor">Proveedores</label>
                                 <select class="form-control text-uppercase" id="proveedor" name="proveedor">
                                     <option selected disabled>Seleccionar Proveedor</option>
-                                    <?php foreach ($lista_proveedor as $proveedores) : ?>
+                                    <?php foreach ($lista_proveedores as $proveedores) : ?>
                                         <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="small mb-1" for="documento">Documento</label>
+                                <label class="small mb-1" for="documento">Documentos</label>
                                 <select class="form-control text-uppercase" id="documento" name="documento">
-                                    <option selected disabled>Seleccionar Documento</option>
-                                    <?php foreach ($documentos_tra as $documento) : ?>
-                                        <option value="<?php echo $documento->id ?>"><?php echo $documento->documento ?></option>
+                                    <option selected disabled>Seleccionar documento</option>
+                                    <?php foreach ($lista_documentos as $docummentos) : ?>
+                                        <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="categoria">Categorias</label>
-                                    <select class="form-control text-uppercase" id="categoria" name="categoria">
-                                        <option selected disabled>Seleccionar Categoria</option>
-                                            <option value="<?php echo $lista_categorias->id ?>"><?php echo $lista_categorias->categoria ?></option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="fabricante">Fabricantes</label>
-                                    <select class="form-control text-uppercase" id="fabricante" name="fabricante">
-                                        <option selected disabled>Seleccionar Fabricante</option>
-                                    </select>
-                                </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="condicion">Condiciones</label>
+                                <select class="form-control text-uppercase" id="condicion" name="condicion">
+                                    <option selected disabled>Seleccionar Condicion</option>
+                                    <?php foreach ($lista_condiciones as $condiciones) : ?>
+                                        <option value="<?php echo $condiciones->id ?>"><?php echo $condiciones->condicion ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
-                        <button class="btn btn-primary" id="btn-registrar-licencia" name="btn-registrar-licencia" type="button">Crear licencia</button>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="estado">Estados</label>
+                                <select class="form-control text-uppercase" id="estado" name="estado">
+                                    <option selected disabled>Seleccionar Estado</option>
+                                    <?php foreach ($lista_estados as $estados) : ?>
+                                        <option value="<?php echo $estados->id ?>"><?php echo $estados->estado ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-primary" id="btn-registrar-Infreestructura" name="btn-registrar-Infreestructura" type="button">
+                                Crear Infreestructura
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+
 </div>
 
 <!-- Footer -->
@@ -138,6 +151,7 @@
         </div>
     </div>
 </div>
+
 <!-- JS SWEETALERT -->
 <script src="vendor/realrashid/sweet-alert/resources/js/sweetalert.all.js"></script>
 
@@ -162,7 +176,8 @@
 <script src="public/assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="public/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<script src="public/js/ajaxEventosLicencia.js"></script>
+<!-- Page level custom scripts -->
+<script src="public/assets/js/demo/datatables-demo.js"></script>
 
 </body>
 

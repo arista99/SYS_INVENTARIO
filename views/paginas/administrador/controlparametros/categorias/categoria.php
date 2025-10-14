@@ -62,7 +62,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="categoria" class="form-label">Nombre de Categoriaa</label>
+                        <label for="categoria" class="form-label">Nombre de Categoria</label>
                         <input type="text" id="categoria" name="categoria" class="form-control">
                     </div>
                 </div>

@@ -1,20 +1,20 @@
 <?php
 //MODEL
 require_once('model/modelAreas.php');
-require_once('model/modelCuentas.php');
+require_once('model/modelHelpers.php');
 //DATA
 require_once('data/area.php');
 
 class ControlAreas
 {
     //VARIABLE MODELO
-    public $CUENTAS;
     public $AREAS;
+    public $HELPERS;
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
         $this->AREAS = new ModeloAreas();
+        $this->HELPERS = new ModeloHelpers();
     }
 
     public function CreacionAreas()
@@ -29,7 +29,7 @@ class ControlAreas
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlparametros/areas/areas.php');
     }

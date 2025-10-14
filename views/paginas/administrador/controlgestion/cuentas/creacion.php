@@ -20,39 +20,39 @@
                     <form id="formCrearUsuario" autocomplete="off">
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1" for="usuarioRed">Usuario de red</label>
-                                <input class="form-control" id="usuarioRed" name="usuarioRed" type="text" placeholder="Ingresar usuario de red">
-                            </div>
-                            <div class="col-md-6">
                                 <label class="small mb-1" for="usuario">Nombre de Usuario</label>
                                 <input class="form-control" id="usuario" name="usuario" type="text" placeholder="Ingresar nombre de usuario">
                             </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="usuario_red">Usuario de red</label>
+                                <input class="form-control" id="usuarioRed" name="usuario_red" type="text" placeholder="Ingresar usuario de red">
+                            </div>
                         </div>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="correo">Email</label>
-                                <input class="form-control" id="correo" name="correo" type="email" placeholder="Ingresa corrreo">
-                            </div>
                             <div class="col-md-6">
                                 <label class="small mb-1" for="contrasena">Contraseña</label>
                                 <input class="form-control" id="contrasena" name="contrasena" type="password" placeholder="Ingresa contraseña">
                             </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="correo">Email</label>
+                                <input class="form-control" id="correo" name="correo" type="email" placeholder="Ingresa corrreo">
+                            </div>
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1" for="filtrarSede">Sede</label>
-                                <select class="form-control text-uppercase" id="filtrarSede">
+                                <label class="small mb-1" for="sede">Sedes</label>
+                                <select class="form-control text-uppercase" id="sede">
                                     <option selected disabled>Seleccionar Sede</option>
-                                    <?php foreach ($sedes_tra as $sede) : ?>
+                                    <?php foreach ($lista_sedes as $sede) : ?>
                                         <option value="<?php echo $sede->id ?>"><?php echo $sede->sede ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="small mb-1" for="filtrarPerfil">Perfil</label>
-                                <select class="form-control text-uppercase" id="filtrarPerfil">
+                                <label class="small mb-1" for="perfil">Perfiles</label>
+                                <select class="form-control text-uppercase" id="perfil">
                                     <option selected disabled>Seleccionar Pefil</option>
-                                    <?php foreach ($perfiles_tra as $perfil) : ?>
+                                    <?php foreach ($lista_perfiles as $perfil) : ?>
                                         <option value="<?php echo $perfil->id ?>"><?php echo $perfil->perfil ?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -60,10 +60,10 @@
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1" for="filtrarArea">Area</label>
-                                <select class="form-control text-uppercase" id="filtrarArea">
+                                <label class="small mb-1" for="area">Areas</label>
+                                <select class="form-control text-uppercase" id="area">
                                     <option selected disabled>Seleccionar Área</option>
-                                    <?php foreach ($areas_tra as $area) : ?>
+                                    <?php foreach ($lista_areas as $area) : ?>
                                         <option value="<?php echo $area->id ?>"><?php echo $area->area ?></option>
                                     <?php endforeach; ?>
                                 </select>

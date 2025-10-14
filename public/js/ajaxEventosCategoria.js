@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Iniciar DataTable de Area
   var tabla = $("#tablaDatosCategoria").DataTable({
     ajax: {
-      url: "vistaCategoria",
+      url: "findCategoria",
       type: "POST",
       // data: function (d) {
       //   d.area = $("#area").val();
@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Realizar la solicitud AJAX
     $.ajax({
-      url: "registrarCategoria", // Cambia a la URL de tu controlador
+      url: "RegistrarCategoria", // Cambia a la URL de tu controlador
       method: "POST",
       data: formData,
       dataType: "json",
@@ -97,7 +97,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // console.log(formData);
     $.ajax({
-      url: "actualizarCategoria",
+      url: "ActualizarCategoria",
       type: "POST",
       // data: formData,
       data: $(this).serialize(),
@@ -149,7 +149,7 @@ window.addEventListener("DOMContentLoaded", () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        $.post("eliminarCategoria", { id }, function () {
+        $.post("EliminarCategoria", { id }, function () {
           Swal.fire("¡Eliminado!", "La categoria ha sido eliminado correctamente.", "success");
           tabla.ajax.reload();
         }).fail(function () {

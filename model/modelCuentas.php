@@ -55,9 +55,7 @@ class ModeloCuentas
                     $usuario->getusuario(),
                     $usuario->getusuario_red(),
                     $usuario->getcontrasena(),
-                    $usuario->getid_centro_costo(),
                     $usuario->getemail(),
-                    $usuario->getcargo(),
                     $usuario->getid_sede(),
                     $usuario->getid_perfil(),
                     $usuario->getid_area()
@@ -79,7 +77,6 @@ class ModeloCuentas
                 array(
                     $usuario->getusuario(),
                     $usuario->getusuario_red(),
-                    $usuario->getid_centro_costo(),
                     $usuario->getemail(),
                     $usuario->getid_sede(),
                     $usuario->getid_perfil(),

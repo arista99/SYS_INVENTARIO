@@ -30,15 +30,15 @@ class ControlLicencias{
             exit;
         }
 
-        $proveedores_tra = $this->PROVEEDORES->readProveedores();
-        $documentos_tra = $this->DOCUMENTOS->readDocumento();
+        $lista_proveedor = $this->HELPERS->ListarProveedor();
+        $lista_categorias = $this->HELPERS->ListarCategoriaLicencia();
 
         $usuario =  $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlactivos/licencias/creacion.php');
     }
 
-    public function ListaLicencias()
+    public function ListaGeneralLicencias()
     {
         // Iniciar sesión
         session_start();
@@ -50,7 +50,7 @@ class ControlLicencias{
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario =$this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/modulos/licencias/licencias.php');
     }
@@ -118,9 +118,7 @@ class ControlLicencias{
         }
     }
 
-    
-
-    public function vistaLicencia()
+    public function findLicencia()
     {
         // Obtener valores desde la solicitud AJAX
         $licencia = $_POST['licencia'] ?? '';
@@ -132,21 +130,5 @@ class ControlLicencias{
         //Enviar respuesta al frontend
         header('Content-Type: application/json');
         echo json_encode(['data' => $resultados]);
-    }
-
-    public function listaProveedor()
-    {
-        // Simula datos desde la BD
-        $proveedores = $this->PROVEEDORES->readProveedores(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($proveedores);
-    }
-
-    public function ListaDocumento()
-    {
-        // Simula datos desde la BD
-        $documentos = $this->DOCUMENTOS->readDocumento(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($documentos);
     }
 }

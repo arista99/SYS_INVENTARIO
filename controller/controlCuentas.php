@@ -1,11 +1,7 @@
 <?php
 //MODEL
 require_once('model/modelCuentas.php');
-require_once('model/modelPerfiles.php');
-require_once('model/modelSede.php');
-require_once('model/modelCentroCostos.php');
-require_once('model/modelAreas.php');
-// require_once('model/modelActivosPc.php');
+require_once('model/modelHelpers.php');
 //DATA
 require_once('data/usuario.php');
 
@@ -13,20 +9,12 @@ class ControlCuentas
 {
     //VARIABLE MODELO
     public $CUENTAS;
-    public $PERFILES;
-    public $SEDES;
-    public $CENTRO;
-    public $AREA;
-    public $ACTIVO;
+    public $HELPERS;
 
     public function __construct()
     {
         $this->CUENTAS = new ModeloCuentas();
-        $this->PERFILES = new ModeloPerfiles();
-        $this->SEDES = new ModeloSedes();
-        $this->CENTRO = new ModeloCentroCostos();
-        $this->AREA = new ModeloAreas();
-        // $this->ACTIVO = new ModeloActivosPC();
+        $this->HELPERS = new ModeloHelpers();
     }
 
     public function CreacionUsuarios()
@@ -41,12 +29,12 @@ class ControlCuentas
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $lista_sedes = $this->HELPERS->ListarSedes();
+        $lista_perfiles = $this->HELPERS->ListarPerfiles();
+        $lista_areas = $this->HELPERS->ListarAreas();
+
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
         
-        $sedes_tra = $this->SEDES->readSedes();
-        $centros_tra = $this->CENTRO->readCentro();
-        $areas_tra = $this->AREA->readAreas();
-        $perfiles_tra = $this->PERFILES->readPefiles();
 
         include_once('views/paginas/administrador/controlgestion/cuentas/creacion.php');
     }
@@ -56,16 +44,14 @@ class ControlCuentas
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $usuario = new Usuario();
-                $usuario->setusuario_red($_POST['usuarioRed']);
                 $usuario->setusuario($_POST['usuario']);
-                $usuario->setid_sede($_POST['filtrarSede']);
+                $usuario->setusuario_red($_POST['usuario_red']);
                 $hash = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
                 $usuario->setcontrasena($hash);
-                $usuario->setid_centro_costo($_POST['filtrarCentro']);
-                $usuario->setid_area($_POST['filtrarArea']);
                 $usuario->setemail($_POST['correo']);
-                $usuario->setid_perfil($_POST['filtrarPerfil']);
-                $usuario->setcargo($_POST['cargo']);
+                $usuario->setid_area($_POST['area']);
+                $usuario->setid_sede($_POST['sede']);
+                $usuario->setid_perfil($_POST['perfil']);
 
                 //llmando al inser de modelo solicitud
                 $create_usuario = $this->CUENTAS->createUsuarios($usuario);
@@ -88,7 +74,7 @@ class ControlCuentas
     }
 
 
-    public function ListaUsuarios()
+    public function ListaGenerealUsuarios()
     {
         // Iniciar sesión
         session_start();
@@ -100,7 +86,7 @@ class ControlCuentas
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlgestion/cuentas/usuarios.php');
     }
@@ -128,7 +114,6 @@ class ControlCuentas
                 $usuario->setid($_POST['id']);
                 $usuario->setusuario($_POST['edit_usuario']);
                 $usuario->setusuario_red($_POST['edit_usu_red']);
-                $usuario->setid_centro_costo($_POST['edit_centro_costo']);
                 $usuario->setemail($_POST['edit_email']);
                 $usuario->setid_sede($_POST['edit_sede']);
                 $usuario->setid_perfil($_POST['edit_perfil']);
@@ -174,34 +159,24 @@ class ControlCuentas
         }
     }
 
-    public function listaCentro()
-    {
-        // Simula datos desde la BD
-        $centros = $this->CENTRO->readCentro(); // Array de objetos con idcentro y centro_costo
-
-        echo json_encode($centros);
-    }
-
     public function listaSede()
     {
-        // Simula datos desde la BD
-        $sedes = $this->SEDES->readSedes(); // Array de objetos con idcentro y centro_costo
+        $sedes = $this->HELPERS->ListarSedes(); 
 
         echo json_encode($sedes);
     }
 
     public function listaPerfil()
     {
-        // Simula datos desde la BD
-        $perfiles = $this->PERFILES->readPefiles(); // Array de objetos con idcentro y centro_costo
+        $perfiles = $this->HELPERS->ListarPerfiles();
 
         echo json_encode($perfiles);
     }
 
     public function listaArea()
     {
-        // Simula datos desde la BD
-        $areas = $this->AREA->readAreas(); // Array de objetos con idcentro y centro_costo
+        
+        $areas = $this->HELPERS->ListarAreas();
 
         echo json_encode($areas);
     }

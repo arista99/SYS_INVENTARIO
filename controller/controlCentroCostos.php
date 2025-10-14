@@ -1,20 +1,20 @@
 <?php
 //MODEL
 require_once('model/modelCentroCostos.php');
-require_once('model/modelCuentas.php');
+require_once('model/modelHelpers.php');
 //DATA
 require_once('data/centro_costo.php');
 
-class controlCentroCostos
+class ControlCentroCostos
 {
     //VARIABLE MODELO
-    public $CUENTAS;
     public $CENTRO;
+    public $HELPERS;
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
         $this->CENTRO = new ModeloCentroCostos();
+        $this->HELPERS = new ModeloHelpers();
     }
 
     public function CreacionCentroCostos()
@@ -29,7 +29,7 @@ class controlCentroCostos
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlparametros/centro_costos/centro_costo.php');
     }

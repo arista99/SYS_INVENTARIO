@@ -1,19 +1,21 @@
 <?php
 //MODEL
 require_once('model/modelCategorias.php');
+require_once('model/modelHelpers.php');
 //DATA
 require_once('data/categoria.php');
 
 class ControlCategorias
 {
     //VARIABLE MODELO
-    public $CUENTAS;
+   
     public $CATEGORIAS;
+    public $HELPERS;
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
         $this->CATEGORIAS = new ModeloCategorias();
+        $this->HELPERS = new ModeloHelpers();
     }
 
     public function CreacionCategorias()
@@ -28,12 +30,12 @@ class ControlCategorias
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlparametros/categorias/categoria.php');
     }
 
-    public function vistaCategoria()
+    public function findCategoria()
     {
         // Obtener valores desde la solicitud AJAX
         $categoria = $_POST['categoria'] ?? '';
@@ -47,7 +49,7 @@ class ControlCategorias
         echo json_encode(['data' => $resultados]);
     }
 
-    public function registrarCategoria()
+    public function RegistrarCategoria()
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -73,7 +75,7 @@ class ControlCategorias
         }
     }
 
-    public function actualizarCategoria()
+    public function ActualizarCategoria()
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -100,7 +102,7 @@ class ControlCategorias
         }
     }
 
-    public function eliminarCategoria()
+    public function EliminarCategoria()
     {
         // Obtener valores desde la solicitud AJAX
         if (!isset($_POST['id'])) {

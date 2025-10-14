@@ -7,8 +7,6 @@ class Usuario
     private $usuario;
     private $usuario_red;
     private $contrasena;
-    private $id_centro_costo;
-    private $cargo;
     private $email;
     private $id_sede;
     private $id_perfil;
@@ -21,8 +19,6 @@ class Usuario
         $this->usuario = "";
         $this->usuario_red = "";
         $this->contrasena = "";
-        $this->id_centro_costo = "";
-        $this->cargo = "";
         $this->email = "";
         $this->id_sede = "";
         $this->id_perfil = "";
@@ -67,26 +63,6 @@ class Usuario
     function getcontrasena()
     {
         return $this->contrasena;
-    }
-
-    function setid_centro_costo($id_centro_costo)
-    {
-        $this->id_centro_costo= $id_centro_costo;
-    }
-
-    function getid_centro_costo()
-    {
-        return $this->id_centro_costo;
-    }
-    
-    function setcargo($cargo)
-    {
-        $this->cargo= $cargo;
-    }
-
-    function getcargo()
-    {
-        return $this->cargo;
     }
 
     function setemail($email)

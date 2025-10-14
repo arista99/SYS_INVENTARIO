@@ -16,20 +16,6 @@ class ModeloAreas
         }
     }
 
-    /*******************************************VER LISTA AREAS********************************************/
-    public function readAreas()
-    {
-        try {
-            $sql = "SELECT * FROM tbl_areas";
-            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
-            $stm->execute();
-            return $stm->fetchAll(PDO::FETCH_OBJ);
-        } catch (Exception $th) {
-            echo $th->getMessage();
-        }
-    }
-    /*********************************************************************************************************/
-
     /*******************************************Lista - Busqueda Area*****************************************/
     public function findArea($area)
     {

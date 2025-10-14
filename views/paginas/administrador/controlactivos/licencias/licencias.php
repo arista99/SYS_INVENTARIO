@@ -8,8 +8,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionLicencias">Crear Licencia</a>
-        <a class="nav-link active ms-0" href="ListaLicencias">Lista de Licencias</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
+        <a class="nav-link active ms-0" href="ListaGeneralLicencias">Lista de Licencias</a>
     </nav>
 
     <script>

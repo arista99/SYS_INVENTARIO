@@ -164,6 +164,21 @@ class ModeloHelpers
             echo $th->getMessage();
         }
     }
+
+    /*LICENCIAS*/
+    public function ListarCategoriaLicencia()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_categorias WHERE id = 7";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetch(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
     /*=======================================================================================*/
 
     /*====================================FABRICANTES=======================================*/
@@ -393,6 +408,39 @@ class ModeloHelpers
     {
         try {
             $sql = "SELECT * FROM tbl_documentos";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+    
+    /*==============================PERFILES=========================================*/
+    /*PERFILES*/
+    public function ListarPerfiles()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_perfiles";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+     /*==============================SEDES=========================================*/
+    /*SEDES*/
+    public function ListarSedes()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_sedes";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();

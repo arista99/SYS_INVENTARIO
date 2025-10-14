@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Iniciar DataTable de Area
     var tabla = $("#tablaDatosFabricante").DataTable({
       ajax: {
-        url: "vistaFabricante",
+        url: "findFabricante",
         type: "POST",
         // data: function (d) {
         //   d.area = $("#area").val();

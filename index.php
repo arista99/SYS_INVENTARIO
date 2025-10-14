@@ -13,6 +13,9 @@ include_once('controller/controlLicencias.php');
 include_once('controller/controlDeskLap.php');
 include_once('controller/controlAccesorio.php');
 include_once('controller/controlReportes.php');
+include_once('controller/controlCelulares.php');
+include_once('controller/controlImpresoras.php');
+include_once('controller/controlInfraestructura.php');
 
 //PARA LOS CARACTERES EXTRAÑOS
 header('Content-Type: text/html; charset=utf-8');
@@ -30,11 +33,14 @@ $controlCentroCostos = new controlCentroCostos();
 $controlFabricantes = new controlFabricantes();
 $controlModelos = new controlModelos();
 $controlProveedores = new ControlProveedores();
-$ControlDocumentos = new ControlDocumentos();
-$ControlLicencias = new ControlLicencias();
-$ControlDeskLap = new ControlDeskLap();
-$ControlAccesorios = new ControlAccesorios();
-$ControlReportes = new ControlReportes();
+$controlDocumentos = new ControlDocumentos();
+$controlLicencias = new ControlLicencias();
+$controlDeskLap = new ControlDeskLap();
+$controlAccesorios = new ControlAccesorios();
+$controlReportes = new ControlReportes();
+$controlCelulares = new ControlCelulares();
+$controlImpresoras = new ControlImpresoras();
+$controlInfraestructuras = new ControlInfraestructuras();
 
 //LLAMADA DE LOS METODOS
 if (!isset($_REQUEST['ruta'])) {
@@ -59,16 +65,22 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($controlModelos, $peticion));
     }elseif (method_exists($controlProveedores, $peticion)) {
         call_user_func(array($controlProveedores, $peticion));
-    }elseif (method_exists($ControlDocumentos, $peticion)) {
-        call_user_func(array($ControlDocumentos, $peticion));
-    }elseif (method_exists($ControlLicencias, $peticion)) {
-        call_user_func(array($ControlLicencias, $peticion));
-    }elseif (method_exists($ControlDeskLap, $peticion)) {
-        call_user_func(array($ControlDeskLap, $peticion));
-    }elseif (method_exists($ControlAccesorios, $peticion)) {
-        call_user_func(array($ControlAccesorios, $peticion));
-    }elseif (method_exists($ControlReportes, $peticion)) {
-        call_user_func(array($ControlReportes, $peticion));
+    }elseif (method_exists($controlDocumentos, $peticion)) {
+        call_user_func(array($controlDocumentos, $peticion));
+    }elseif (method_exists($controlLicencias, $peticion)) {
+        call_user_func(array($controlLicencias, $peticion));
+    }elseif (method_exists($controlDeskLap, $peticion)) {
+        call_user_func(array($controlDeskLap, $peticion));
+    }elseif (method_exists($controlAccesorios, $peticion)) {
+        call_user_func(array($controlAccesorios, $peticion));
+    }elseif (method_exists($controlReportes, $peticion)) {
+        call_user_func(array($controlReportes, $peticion));
+    }elseif (method_exists($controlCelulares, $peticion)) {
+        call_user_func(array($controlCelulares, $peticion));
+    }elseif (method_exists($controlImpresoras, $peticion)) {
+        call_user_func(array($controlImpresoras, $peticion));
+    }elseif (method_exists($controlInfraestructuras, $peticion)) {
+        call_user_func(array($controlInfraestructuras, $peticion));
     }else{
         $controlIndex->Index();
     }

@@ -1,20 +1,20 @@
 <?php
 //MODEL
 require_once('model/modelFabricantes.php');
-require_once('model/modelCuentas.php');
+require_once('model/modelHelpers.php');
 //DATA
 require_once('data/fabricante.php');
 
 class controlFabricantes
 {
     //VARIABLE MODELO
-    public $CUENTAS;
     public $FABRICANTES;
+    public $HELPERS;
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
         $this->FABRICANTES = new ModeloFabricantes();
+        $this->HELPERS = new ModeloHelpers();                                                                        
     }
 
     public function CreacionFabricantes()
@@ -29,12 +29,12 @@ class controlFabricantes
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlparametros/fabricantes/fabricante.php');
     }
 
-    public function vistaFabricante()
+    public function findFabricante()
     {
         // Obtener valores desde la solicitud AJAX
         $fabricante = $_POST['fabricante'] ?? '';
