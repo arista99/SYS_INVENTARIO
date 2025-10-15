@@ -11,7 +11,7 @@ include_once('controller/controlProveedores.php');
 include_once('controller/controlDocumentos.php');
 include_once('controller/controlLicencias.php');
 include_once('controller/controlDeskLap.php');
-include_once('controller/controlAccesorio.php');
+include_once('controller/controlAccesorios.php');
 include_once('controller/controlReportes.php');
 include_once('controller/controlCelulares.php');
 include_once('controller/controlImpresoras.php');

@@ -34,7 +34,7 @@
                 <a class="collapse-item" href="CreacionLicencias">Licencias</a>
                 <a class="collapse-item" href="CreacionCelulares">Celulares</a>
                 <a class="collapse-item" href="CreacionImpresoras">Impresoras</a>
-                <a class="collapse-item" href="CreacionInfraestructura">Infraestructura</a>
+                <a class="collapse-item" href="CreacionInfraestructuras">Infraestructura</a>
             </div>
         </div>
     </li>    

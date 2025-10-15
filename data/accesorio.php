@@ -2,32 +2,26 @@
 
 class accesorio {
     private $id;
-    private $nom_acc;
+    private $nombre;
     private $ns;
-    private $id_modelo;
-    private $id_area;
     private $id_categoria;
     private $id_fabricante;
     private $id_condicion;
     private $id_estado;
     private $id_proveedor;
     private $id_documento;
-    private $id_sede;
 
     public function __construct()
     {
         $this->id = "";
-        $this->nom_acc = "";
+        $this->nombre = "";
         $this->ns = "";
-        $this->id_modelo = "";
-        $this->id_area = "";
         $this->id_categoria = "";
         $this->id_fabricante = "";
         $this->id_condicion = "";
         $this->id_estado = "";
         $this->id_proveedor = "";
         $this->id_documento = "";
-        $this->id_sede = "";
     }
 
     function setid($id)
@@ -40,14 +34,14 @@ class accesorio {
         return $this->id;
     }
 
-    function setnom_acc($nom_acc)
+    function setnombre($nombre)
     {
-        $this->nom_acc = $nom_acc;
+        $this->nombre = $nombre;
     }
 
-    function getnom_acc()
+    function getnombre()
     {
-        return $this->nom_acc;
+        return $this->nombre;
     }
 
     function setns($ns)
@@ -60,26 +54,6 @@ class accesorio {
         return $this->ns;
     }
 
-    function setid_modelo($id_modelo)
-    {
-        $this->id_modelo = $id_modelo;
-    }
-
-    function getid_modelo()
-    {
-        return $this->id_modelo;
-    }
-
-    function setid_area($id_area)
-    {
-        $this->id_area = $id_area;
-    }
-
-    function getid_area()
-    {
-        return $this->id_area;
-    }
-    
     function setid_categoria($id_categoria)
     {
         $this->id_categoria = $id_categoria;
@@ -138,15 +112,5 @@ class accesorio {
     function getid_documento()
     {
         return $this->id_documento;
-    }
-
-    function setid_sede($id_sede)
-    {
-        $this->id_sede = $id_sede;
-    }
-
-    function getid_sede()
-    {
-        return $this->id_sede;
     }
 }

@@ -7,9 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CrearInfreestructura">Crear Infreestructura</a>
-        <a class="nav-link active ms-0" href="ListaGeneralInfreestructura">Lista de Infreestructura</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
+        <a class="nav-link" href="CrearInfraestructura">Crear Infraestructura</a>
+        <a class="nav-link active ms-0" href="ListaGeneralInfraestructura">Lista de Infraestructura</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -19,10 +18,10 @@
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Detalle de Infreestructura</div>
+                <div class="card-header">Detalle de Infraestructura</div>
                 <div class="card-body">
                     <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST"-->
-                    <form id="formCrearInfreestructura" autocomplete="off">
+                    <form id="formCrearInfraestructura" autocomplete="off">
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="nombre">Nombre de Accesorio</label>
@@ -94,8 +93,8 @@
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn btn-primary" id="btn-registrar-Infreestructura" name="btn-registrar-Infreestructura" type="button">
-                                Crear Infreestructura
+                            <button class="btn btn-primary" id="btn-registrar-Infraestructura" name="btn-registrar-Infraestructura" type="button">
+                                Crear Infraestructura
                             </button>
                         </div>
                     </form>

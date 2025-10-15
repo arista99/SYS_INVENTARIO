@@ -9,7 +9,6 @@
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionAccesorio">Crear Accesorio</a>
         <a class="nav-link active ms-0" href="ListaGeneralAccesorio">Lista de Accesorio</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -29,10 +28,9 @@
                                 <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresar Nombre de Accesorio">
                             </div>
                             <div class="col-md-6">
-                                <label class="small mb-1" for="serie">Numero de Serie del equipo</label>
+                                <label class="small mb-1" for="serie">Numero de Serie</label>
                                 <input class="form-control" id="serie" name="serie" type="text" placeholder="Ingresar Numero de Serie">
                             </div>
-                            
                         </div>
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
@@ -46,29 +44,6 @@
                                 <label class="small mb-1" for="fabricante">Fabricantes</label>
                                 <select class="form-control text-uppercase" id="fabricante" name="fabricante">
                                     <option selected disabled>Seleccionar Fabricante</option>
-                                    <?php foreach ($lista_fabricantes as $fabricantes) : ?>
-                                        <option value="<?php echo $fabricantes->id ?>"><?php echo $fabricantes->fabricante ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="proveedor">Proveedores</label>
-                                <select class="form-control text-uppercase" id="proveedor" name="proveedor">
-                                    <option selected disabled>Seleccionar Proveedor</option>
-                                    <?php foreach ($lista_proveedores as $proveedores) : ?>
-                                        <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="documento">Documentos</label>
-                                <select class="form-control text-uppercase" id="documento" name="documento">
-                                    <option selected disabled>Seleccionar documento</option>
-                                    <?php foreach ($lista_documentos as $docummentos) : ?>
-                                        <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
-                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -89,6 +64,23 @@
                                     <?php foreach ($lista_estados as $estados) : ?>
                                         <option value="<?php echo $estados->id ?>"><?php echo $estados->estado ?></option>
                                     <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="proveedor">Proveedores</label>
+                                <select class="form-control text-uppercase" id="proveedor" name="proveedor">
+                                    <option selected disabled>Seleccionar Proveedor</option>
+                                    <?php foreach ($lista_proveedores as $proveedores) : ?>
+                                        <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="documento">Documentos</label>
+                                <select class="form-control text-uppercase" id="documento" name="documento">
+                                    <option selected disabled>Seleccionar documento</option>
                                 </select>
                             </div>
                         </div>
@@ -178,6 +170,9 @@
 
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
+
+<script src="public/js/ajaxEventosAccesorio.js"></script>
+<script src="public/js/ajaxCascada.js"></script>
 
 </body>
 

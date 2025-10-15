@@ -1,51 +1,73 @@
 <?php
-//MODEL
-require_once('model/modelCelulares.php');
-require_once('model/modelHelpers.php');
-//DATA
-require_once('data/celular.php');
 
-class ControlCelulares
+//MODEL
+require_once('model/modelAccesorios.php');
+include_once('model/modelHelpers.php');
+//DATA
+require_once('data/accesorio.php');
+
+class ControlAccesorios
 {
     //VARIABLE MODELO
-
-    public $CELULARES;
+    public $ACCESORIO;
     public $HELPERS;
 
     public function __construct()
     {
-        $this->CELULARES = new ModeloCelulares();
+        $this->ACCESORIO = new ModeloAccesorios();
         $this->HELPERS = new ModeloHelpers();
+
     }
-    
-    public function CreacionCelulares()
+
+    public function CreacionAccesorio()
     {
         // Iniciar sesión
         session_start();
-
+        
         // Verificar si el usuario está autenticado
         if (!isset($_SESSION['id'])) {
         //     Redirigir al login si no está autenticado
            header("Location: Index");
             exit;
         }
-        $lista_categorias = $this->HELPERS->ListarCategoriaCelular();
+
+        $lista_usuarios = $this->HELPERS->ListarUsuario();
+        $lista_centro_costo = $this->HELPERS->ListarCentrosCosto();
+        $lista_categorias = $this->HELPERS->ListarCategoriaAccesorio();
         $lista_proveedores = $this->HELPERS->ListarProveedor();
-        $lista_estados = $this->HELPERS->ListarEstados();
         $lista_condiciones = $this->HELPERS->ListarCondiciones();
+        $lista_estados = $this->HELPERS->ListarEstados();
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
-        include_once('views/paginas/administrador/controlactivos/celulares/creacion.php');
+        include_once('views/paginas/administrador/controlactivos/accesorios/creacion.php');
+
     }
 
-    public function findCelular()
+    public function ListaGeneralAccesorio()
+    {
+        // Iniciar sesión
+        session_start();
+        
+        // Verificar si el usuario está autenticado
+        if (!isset($_SESSION['id'])) {
+        //     Redirigir al login si no está autenticado
+           header("Location: Index");
+            exit;
+        }
+
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
+
+        include_once('views/paginas/administrador/controlactivos/accesorios/accesorio.php');
+    }
+
+    public function findAccesorio()
     {
         // Obtener valores desde la solicitud AJAX
-        $celular = $_POST['numero'] ?? '';
+        $accesorio = $_POST['accesorio'] ?? '';
 
         // Llama al modelo
-        $resultados = $this->CELULARES->findCelular($celular);
+        $resultados = $this->ACCESORIO->findAccesorio($accesorio);
 
         // var_dump($resultados);
         //Enviar respuesta al frontend
@@ -53,37 +75,33 @@ class ControlCelulares
         echo json_encode(['data' => $resultados]);
     }
 
-    public function registrarCelular()
+    public function registrarAccesorio()
     {
         try {
-            // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $celular = new Celular();
-                $celular->setimei($_POST['imei']);
-                $celular->setnumero($_POST['numero']);
-                $celular->setns($_POST['serie']);
-                $celular->setid_categoria($_POST['categoria']);
-                $celular->setid_fabricante($_POST['fabricante']);
-                $celular->setid_modelo($_POST['modelo']);
-                $celular->setid_condicion($_POST['condicion']);
-                $celular->setid_estado($_POST['estado']);
-                $celular->setid_proveedor($_POST['proveedor']);
-                $celular->setid_documento(!empty($_POST['documento']) ? $_POST['documento'] : null);
-                // echo "<pre>";
-                // var_dump($celular);
-                // echo "</pre>";
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $accesorio = new Accesorio();
+                $accesorio->setnombre($_POST['nombre']);
+                $accesorio->setns($_POST['serie']);
+                $accesorio->setid_categoria($_POST['categoria']);
+                $accesorio->setid_fabricante($_POST['fabricante']);
+                $accesorio->setid_condicion($_POST['condicion']);
+                $accesorio->setid_estado($_POST['estado']);
+                $accesorio->setid_proveedor($_POST['proveedor']);
+                $accesorio->setid_documento(!empty($_POST['documento']) ? $_POST['documento'] : null);
+
                 //llamando al insert de modelo solicitud
-                $create_celular= $this->CELULARES->createCelulares($celular);
+                $create_accesorio = $this->ACCESORIO->createAccesorios($accesorio);
 
                 // Responder con JSON para que AJAX pueda manejar la respuesta
-                if ($create_celular) {
-                    echo json_encode(['success' => true, 'message' => 'Celular registrado correctamente']);
+                if ($create_accesorio) {
+                    echo json_encode(['success' => true, 'message' => 'Usuario registrado correctamente']);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error al crear el celular']);
+                    echo json_encode(['success' => false, 'message' => 'Error al crear el usuario']);
                 }
-            // } else {
-            //     // Si no es una solicitud POST, enviar un mensaje de error
-            //     echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-            // }
+            } else {
+                // Si no es una solicitud POST, enviar un mensaje de error
+                echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+            }
         } catch (\Throwable $th) {
             // Manejo de excepciones: devolver el mensaje de error
             echo json_encode(['success' => false, 'message' => $th->getMessage()]);
@@ -91,9 +109,9 @@ class ControlCelulares
         }
     }
 
-    public function listaCategoriaCelular()
+    public function listaCategoriaAccesorio()
     {
-        $categoria = $this->HELPERS->ListarCategoriaCelular();
+        $categoria = $this->HELPERS->ListarCategoriaAccesorio();
 
         echo json_encode($categoria);
     }
@@ -112,22 +130,6 @@ class ControlCelulares
         $fabricante = $this->HELPERS->ListarFabricantesEdit();
         
         echo json_encode($fabricante);
-    }
-
-    public function listaModelo()
-    {
-        $id_fabricante = filter_input(INPUT_POST, 'dato_mandar_servidor');
-
-        $modelo = $this->HELPERS->ListarModelos($id_fabricante);
-
-        echo json_encode($modelo);
-    }
-
-    public function listaModeloEdit()
-    {
-        $modelo = $this->HELPERS->ListarModelosEdit();
-
-        echo json_encode($modelo);
     }
 
     public function listaCondiciones()
@@ -167,4 +169,5 @@ class ControlCelulares
         echo json_encode($documento);
     }
 
+    
 }

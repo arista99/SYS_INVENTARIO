@@ -1,6 +1,6 @@
 function cargarCategoria(selectedValue = null) {
   $.ajax({
-    url: "listaCategoria",
+    url: "listaCategoriaAccesorio",
     type: "GET",
     dataType: "json",
     success: function (data) {
@@ -12,20 +12,12 @@ function cargarCategoria(selectedValue = null) {
         select.append(
           `<option disabled selected>Seleccionar Categoria</option>`
         );
-      }
-
-      data.forEach((categorias) => {
-        const isSelected = selectedValue === categorias.categoria;
-        const optionText = isSelected
-          ? `${categorias.categoria} - Opción actual`
-          : categorias.categoria;
-
+      } else {
+        // Si hay un valor, muéstralo como la opción actual
         select.append(
-          `<option value="${categorias.id}" ${
-            isSelected ? "selected" : ""
-          }>${optionText}</option>`
+          `<option selected>${selectedValue} - Opción actual</option>`
         );
-      });
+      }
     },
     error: function (xhr, status, error) {
       console.error("Error cargando categoria:", error);
@@ -55,67 +47,6 @@ function cargarFabricante(selectedValue = null) {
     },
     error: function (xhr, status, error) {
       console.error("Error cargando centro de fabricante:", error);
-    },
-  });
-}
-
-function cargarModelo(selectedValue = null) {
-  $.ajax({
-    url: "listaModeloEdit",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      let select = $("#edit_modelo");
-      select.empty();
-
-      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-      if (!selectedValue) {
-        select.append(`<option disabled selected>Seleccionar Modelo</option>`);
-      }else {
-        // Si hay un valor, muéstralo como la opción actual
-        select.append(
-          `<option selected>${selectedValue} - Opción actual</option>`
-        );
-      }
-    },
-    error: function (xhr, status, error) {
-      console.error("Error cargando centro de modelo:", error);
-    },
-  });
-}
-
-
-function cargarCentro(selectedValue = null) {
-  $.ajax({
-    url: "listaCentro",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      let select = $("#edit_centro");
-      select.empty();
-
-      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-      if (!selectedValue) {
-        select.append(
-          `<option disabled selected>Seleccionar Centro de Costo</option>`
-        );
-      }
-
-      data.forEach((centros) => {
-        const isSelected = selectedValue === centros.centro_costo;
-        const optionText = isSelected
-          ? `${centros.centro_costo} - Opción actual`
-          : centros.centro_costo;
-
-        select.append(
-          `<option value="${centros.id}" ${
-            isSelected ? "selected" : ""
-          }>${optionText}</option>`
-        );
-      });
-    },
-    error: function (xhr, status, error) {
-      console.error("Error cargando centro de costo:", error);
     },
   });
 }

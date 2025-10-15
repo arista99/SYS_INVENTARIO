@@ -52,7 +52,7 @@ class ControlLicencias{
 
         $usuario =$this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
-        include_once('views/paginas/administrador/modulos/licencias/licencias.php');
+        include_once('views/paginas/administrador/controlactivos/licencias/licencias.php');
     }
 
     public function registrarLicencia()

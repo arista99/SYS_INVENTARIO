@@ -105,7 +105,7 @@ class ModeloHelpers
         }
     }
 
-    /*CELULAR*/
+    /*ACCESORIO*/
     public function ListarCategoriaAccesorio()
     {
         try {

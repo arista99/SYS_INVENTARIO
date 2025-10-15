@@ -8,7 +8,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionDeskLap">Crear Desktop & Laptop</a>
-        <a class="nav-link active ms-0" href="ListaGeneralDeskLap">Lista de Desktop & Laptos</a>
+        <a class="nav-link active ms-0" href="ListaGeneralDeskLap">Lista de Desktop & Laptop</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;

@@ -193,14 +193,7 @@ class ControlDeskLap
         echo json_encode(['data' => $resultados]);
     }
 
-
-    public function listaUsuario()
-    {
-        $usuario = $this->HELPERS->ListarUsuario();
-
-        echo json_encode($usuario);
-    }
-
+    
     public function listaCategoria()
     {
         $categoria = $this->HELPERS->ListarCategoriaDeskLap();
