@@ -36,7 +36,7 @@ class ControlProveedores
         include_once('views/paginas/administrador/controlgestion/proveedores/creacion.php');
     }
 
-    public function Proveedores()
+    public function ListaGeneralProveedores()
     {
         // Iniciar sesión
         session_start();
@@ -50,7 +50,7 @@ class ControlProveedores
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
-        include_once('views/paginas/administrador/modulos/proveedores/proveedores.php');
+        include_once('views/paginas/administrador/controlgestion/proveedores/proveedores.php');
     }
 
     public function findProveedores()

@@ -144,7 +144,7 @@ class ModeloHelpers
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
 
-            return $stm->fetch(PDO::FETCH_OBJ);
+            return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $th) {
             echo $th->getMessage();
         }
@@ -159,7 +159,7 @@ class ModeloHelpers
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
 
-            return $stm->fetch(PDO::FETCH_OBJ);
+            return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $th) {
             echo $th->getMessage();
         }

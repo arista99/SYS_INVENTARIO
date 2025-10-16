@@ -39,6 +39,23 @@ class ControlCelulares
         include_once('views/paginas/administrador/controlactivos/celulares/creacion.php');
     }
 
+    public function ListaGeneralCelular()
+    {
+        // Iniciar sesión
+        session_start();
+        
+        // Verificar si el usuario está autenticado
+        if (!isset($_SESSION['id'])) {
+        //     Redirigir al login si no está autenticado
+           header("Location: Index");
+            exit;
+        }
+
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
+
+        include_once('views/paginas/administrador/controlactivos/celulares/celular.php');
+    }
+
     public function findCelular()
     {
         // Obtener valores desde la solicitud AJAX
@@ -56,7 +73,7 @@ class ControlCelulares
     public function registrarCelular()
     {
         try {
-            // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $celular = new Celular();
                 $celular->setimei($_POST['imei']);
                 $celular->setnumero($_POST['numero']);
@@ -80,10 +97,10 @@ class ControlCelulares
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Error al crear el celular']);
                 }
-            // } else {
-            //     // Si no es una solicitud POST, enviar un mensaje de error
-            //     echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-            // }
+            } else {
+                // Si no es una solicitud POST, enviar un mensaje de error
+                echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+            }
         } catch (\Throwable $th) {
             // Manejo de excepciones: devolver el mensaje de error
             echo json_encode(['success' => false, 'message' => $th->getMessage()]);

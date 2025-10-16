@@ -1,7 +1,7 @@
 <?php
 //MODEL
 require_once('model/modelDocumentos.php');
-require_once('model/modelCuentas.php');
+require_once('model/modelHelpers.php');
 
 //DATA
 require_once('data/documento.php');
@@ -9,13 +9,13 @@ require_once('data/documento.php');
 class ControlDocumentos
 {
     //VARIABLE MODELO
-    public $CUENTAS;
     public $DOCUMENTOS;
+    public $HELPERS;
 
     public function __construct()
     {
-        $this->CUENTAS = new ModeloCuentas();
         $this->DOCUMENTOS = new ModeloDocumentos();
+        $this->HELPERS = new ModeloHelpers();
     }
 
     public function CreacionDocumentos()
@@ -30,7 +30,7 @@ class ControlDocumentos
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario =  $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlgestion/documentos/creacion.php');
     }
@@ -102,7 +102,7 @@ class ControlDocumentos
             exit;
         }
 
-        $usuario = $this->CUENTAS->readUsuario($_SESSION['id']);
+        $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlgestion/documentos/documentos.php');
     }

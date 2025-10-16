@@ -8,7 +8,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionProveedores">Crear Proveedor</a>
-        <a class="nav-link active ms-0" href="ListaProveedores">Lista de Proveedores</a>
+        <a class="nav-link active ms-0" href="ListaGeneralProveedores">Lista de Proveedores</a>
         <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
 

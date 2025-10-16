@@ -48,7 +48,6 @@ class ModeloCelulares
     {
         try {
             $sql = "SELECT 
-                    cel.id,
                     cel.imei,
                     cel.numero,
                     cel.ns,
@@ -58,15 +57,15 @@ class ModeloCelulares
                     con.condicion,
                     est.estado,
                     pro.proveedor,
-                    CONCAT(doc.id, ' ', doc.titulo) AS documento
+                    doc.titulo
                     FROM tbl_celulares AS cel
                     INNER JOIN tbl_categorias AS cat ON cat.id=cel.id_categoria
                     INNER JOIN tbl_fabricantes AS fab ON fab.id=cel.id_fabricante
-                    LEFT JOIN tbl_modelos AS mo ON mo.id=cel.id_modelo
+                    INNER JOIN tbl_modelos AS mo ON mo.id=cel.id_modelo
                     INNER JOIN tbl_condiciones AS con ON con.id=cel.id_condicion
                     INNER JOIN tbl_estados AS est ON est.id=cel.id_estado
                     INNER JOIN tbl_proveedores AS pro ON pro.id=cel.id_proveedor
-                    INNER JOIN tbl_documentos AS doc ON doc.id=cel.id_documento";
+                    LEFT JOIN tbl_documentos AS doc ON doc.id=cel.id_documento";
 
             if (!empty($celular)) {
                 $sql .= " WHERE LOWER(cel.numero) LIKE LOWER(?)";

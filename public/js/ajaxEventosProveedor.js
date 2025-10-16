@@ -2,7 +2,7 @@ $(document).ready(function () {
   //Iniciar Data Table Proveedor
   var tabla = $("#tablaDatosProveedor").DataTable({
     ajax: {
-      url: "vistaProveedor",
+      url: "findProveedores",
       type: "POST",
       data: function (d) {
         d.proveedor = $("#proveedor").val();
@@ -14,8 +14,6 @@ $(document).ready(function () {
       { data: "contacto" },
       { data: "email" },
       { data: "telefono" },
-      { data: "producto" },
-      { data: "documento" },
       {
         data: "id",
         render: function (data, type, row) {
@@ -27,9 +25,7 @@ $(document).ready(function () {
                   data-direccion="${row.direccion}"
                   data-contacto="${row.contacto}"
                   data-email="${row.email}"
-                  data-telefono="${row.telefono}"
-                  data-producto="${row.producto}"
-                  data-documento="${row.documento}">
+                  data-telefono="${row.telefono}">
                   ✏️
                 </button>
                 <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
@@ -42,7 +38,7 @@ $(document).ready(function () {
     ],
     columnDefs: [
       {
-        targets: 7,
+        targets: 5,
         visible: id_perfil == 1, // solo mostrar si rol es == 1 (Administrador)
         searchable: false,
       },

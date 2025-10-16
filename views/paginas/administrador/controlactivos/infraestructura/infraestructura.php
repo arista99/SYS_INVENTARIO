@@ -10,19 +10,58 @@
         <a class="nav-link" href="CrearInfraestructura">Crear Infraestructura</a>
         <a class="nav-link active ms-0" href="ListaGeneralInfraestructura">Lista de Infraestructura</a>
     </nav>
+
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
     </script>
+
     <hr class="mt-0 mb-4">
+    <!-- Filtro -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="modelo" id="modelo" class="form-control" placeholder="Nombre Modelo">
+        </div>
+        <div class="col-md-2">
+            <button id="btnBuscarInfraestructura" class="btn btn-primary w-100">Buscar</button>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Detalle de Infraestructura</div>
+                <div class="card-header">Lista de Infraestructura</div>
                 <div class="card-body">
-                    <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST"-->
-                    <form id="formCrearInfraestructura" autocomplete="off">
-                        <div class="row gx-3 mb-3">
+                    <!-- Table -->
+                    <table class="table table-bordered" id="tablaDatosInfraestructura" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Modelo</th>
+                                <th class="text-center">Numero de IP</th>
+                                <th class="text-center">Numero Serie</th>
+                                <th class="text-center">Fecha de Compra</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se rellena dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarInfraestructura" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <!-- id="formEditarUsuario" - action="actualizarActivoPC" method="POST"  -->
+            <form autocomplete="off" class="modal-content" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Celular</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="id" name="id">
+                    <div class="row gx-3 mb-3">
                             <div class="col-md-4">
                                 <label class="small mb-1" for="nombre">Numero de IP</label>
                                 <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresar Numoero de IP">
@@ -76,21 +115,17 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn btn-primary" id="btn-registrar-Infraestructura" name="btn-registrar-Infraestructura" type="button">
-                                Crear Infraestructura
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+                    <button type="submit" name="updateInfoButtonInfraestructura" id="updateInfoButtonInfraestructura" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
         </div>
     </div>
 
-
-</div>
-
-<!-- Footer -->
+    <!-- Footer -->
 </div>
 <!-- End of Main Content -->
 
@@ -134,7 +169,6 @@
         </div>
     </div>
 </div>
-
 <!-- JS SWEETALERT -->
 <script src="vendor/realrashid/sweet-alert/resources/js/sweetalert.all.js"></script>
 
@@ -161,6 +195,10 @@
 
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
+
+<!-- Select2 CSS y JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </body>
 

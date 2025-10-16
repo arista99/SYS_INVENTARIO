@@ -7,7 +7,7 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionCelular">Crear Celular</a>
+        <a class="nav-link" href="CreacionCelulares">Crear Celular</a>
         <a class="nav-link active ms-0" href="ListaGeneralCelular">Lista de Celulares</a>
         <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
@@ -22,7 +22,7 @@
                 <div class="card-header">Detalle de Celular</div>
                 <div class="card-body">
                     <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST" id="formCrearCelular-->
-                    <form action="registrarCelular" method="POST">
+                    <form id="formCrearCelular" autocomplete="off">
                         <div class="row gx-3 mb-3">
                             <div class="col-md-4">
                                 <label class="small mb-1" for="imei">Ingrese Numero de IMEI</label>
@@ -42,7 +42,9 @@
                                 <label class="small mb-1" for="categoria">Categorias</label>
                                 <select class="form-control text-uppercase" id="categoria" name="categoria">
                                     <option selected disabled>Seleccionar Categoria</option>
-                                        <option value="<?php echo $lista_categorias->id ?>"><?php echo $lista_categorias->categoria ?></option>
+                                    <?php foreach ($lista_categorias as $categorias) : ?>
+                                        <option value="<?php echo $categorias->id ?>"><?php echo $categorias->categoria ?></option>
+                                        <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -182,7 +184,7 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<!-- <script src="public/js/ajaxEventosCelular.js"></script> -->
+<script src="public/js/ajaxEventosCelular.js"></script>
 <script src="public/js/ajaxCascada.js"></script>
 
 </body>

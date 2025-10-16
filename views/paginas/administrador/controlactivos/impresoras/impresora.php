@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionCelulares">Crear Celular</a>
-        <a class="nav-link active ms-0" href="ListaGeneralCelular">Lista de Celular</a>
+        <a class="nav-link" href="CreacionImpresoras">Crear Impresora</a>
+        <a class="nav-link active ms-0" href="ListaGeneralImpresora">Lista de Impresoras</a>
     </nav>
 
     <script>
@@ -19,26 +19,26 @@
     <!-- Filtro -->
     <div class="row mb-3">
         <div class="col-md-4">
-            <input type="text" name="numero" id="numero" class="form-control" placeholder="Nombre Numero">
+            <input type="text" name="modelo" id="modelo" class="form-control" placeholder="Nombre Modelo">
         </div>
         <div class="col-md-2">
-            <button id="btnBuscarCelular" class="btn btn-primary w-100">Buscar</button>
+            <button id="btnBuscarImpresora" class="btn btn-primary w-100">Buscar</button>
         </div>
     </div>
     <div class="row">
         <div class="col-xl-12">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Lista de Celulares</div>
+                <div class="card-header">Lista de Impresoras</div>
                 <div class="card-body">
                     <!-- Table -->
-                    <table class="table table-bordered" id="tablaDatosCelular" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tablaDatosImpresora" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center">Numero de Celular</th>
-                                <th class="text-center">Numero de Serie</th>
                                 <th class="text-center">Modelo</th>
-                                <th class="text-center">Condicion</th>
+                                <th class="text-center">Numero de IP</th>
+                                <th class="text-center">Numero Serie</th>
+                                <th class="text-center">Fecha de Compra</th>
                                 <th class="text-center">Estado</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
@@ -243,7 +243,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script src="public/js/ajaxEventosCelular.js"></script>
+<script src="public/js/ajaxEventosImpresora.js"></script>
 <script src="public/js/ajaxCascada.js"></script>
 
 </body>

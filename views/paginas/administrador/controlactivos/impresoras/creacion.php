@@ -7,9 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CrearImpresora">Crear Impresora</a>
+        <a class="nav-link" href="CreacionImpresoras">Crear Impresora</a>
         <a class="nav-link active ms-0" href="ListaGeneralImpresora">Lista de Impresoras</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -24,51 +23,37 @@
                     <!-- id="formCrearActivoPC"  - action="registrarActivoPC" method="POST"-->
                     <form id="formCrearImpresora" autocomplete="off">
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="nombre">Nombre de Accesorio</label>
-                                <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresar Nombre de Accesorio">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="ip">Numero de IP</label>
+                                <input class="form-control" id="ip" name="ip" type="text" placeholder="Ingresar Numero de IP">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="serie">Numero de Serie del equipo</label>
                                 <input class="form-control" id="serie" name="serie" type="text" placeholder="Ingresar Numero de Serie">
                             </div>
-                            
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="fecha_compra">Fecha Compra</label>
+                                <input class="form-control" id="fecha_compra" name="fecha_compra" type="date">
+                            </div>
                         </div>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="categoria">Categorias</label>
                                 <select class="form-control text-uppercase" id="categoria" name="categoria">
                                     <option selected disabled>Seleccionar Categoria</option>
                                         <option value="<?php echo $lista_categorias->id ?>"><?php echo $lista_categorias->categoria ?></option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="fabricante">Fabricantes</label>
                                 <select class="form-control text-uppercase" id="fabricante" name="fabricante">
                                     <option selected disabled>Seleccionar Fabricante</option>
-                                    <?php foreach ($lista_fabricantes as $fabricantes) : ?>
-                                        <option value="<?php echo $fabricantes->id ?>"><?php echo $fabricantes->fabricante ?></option>
-                                    <?php endforeach; ?>
                                 </select>
                             </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="proveedor">Proveedores</label>
-                                <select class="form-control text-uppercase" id="proveedor" name="proveedor">
-                                    <option selected disabled>Seleccionar Proveedor</option>
-                                    <?php foreach ($lista_proveedores as $proveedores) : ?>
-                                        <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="documento">Documentos</label>
-                                <select class="form-control text-uppercase" id="documento" name="documento">
-                                    <option selected disabled>Seleccionar documento</option>
-                                    <?php foreach ($lista_documentos as $docummentos) : ?>
-                                        <option value="<?php echo $docummentos->id ?>"><?php echo $docummentos->documento ?></option>
-                                    <?php endforeach; ?>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="modelo">Modelos</label>
+                                <select class="form-control text-uppercase" id="modelo" name="modelo">
+                                    <option selected disabled>Seleccionar Modelo</option>
                                 </select>
                             </div>
                         </div>
@@ -92,9 +77,25 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="proveedor">Proveedores</label>
+                                <select class="form-control text-uppercase" id="proveedor" name="proveedor">
+                                    <option selected disabled>Seleccionar Proveedor</option>
+                                    <?php foreach ($lista_proveedores as $proveedores) : ?>
+                                        <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="documento">Documentos</label>
+                                <select class="form-control text-uppercase" id="documento" name="documento">
+                                    <option selected disabled>Seleccionar documento</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn btn-primary" id="btn-registrar-Impresora" name="btn-registrar-Impresora" type="button">
+                            <button class="btn btn-primary" id="btn-registrar-impresora" name="btn-registrar-impresora" type="button">
                                 Crear Impresora
                             </button>
                         </div>
@@ -178,6 +179,10 @@
 
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
+
+<script src="public/js/ajaxEventosImpresora.js"></script>
+<script src="public/js/ajaxSelectImpresora.js"></script>
+<script src="public/js/ajaxCascada.js"></script>
 
 </body>
 

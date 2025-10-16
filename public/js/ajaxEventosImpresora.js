@@ -1,18 +1,18 @@
 window.addEventListener("DOMContentLoaded", () => {
     // Iniciar DataTable de Area
-    var tabla = $("#tablaDatosCelular").DataTable({
+    var tabla = $("#tablaDatosImpresora").DataTable({
       ajax: {
-        url: "findCelular",
+        url: "findImpresora",
         type: "POST",
         data: function (d) {
           d.numero = $("#numero").val();
         },
       },
       columns: [
-        { data: "numero" },
-        { data: "ns" },
         { data: "modelo" },
-        { data: "condicion" },
+        { data: "ip" },
+        { data: "ns" },
+        { data: "fecha_compra"},
         { data: "estado" },
         {
           data: "id",
@@ -20,15 +20,18 @@ window.addEventListener("DOMContentLoaded", () => {
             if (id_perfil == 1) {
               return `
                               <button class="btn btn-sm btn-warning btnEditar"
-                              data-id="${row.id}"
-                              data-imei="${row.imei}"
-                              data-numero="${row.numero}"
+                              data-ip="${row.ip}"
                               data-ns="${row.ns}"
+                              data-fecha_compra="${row.fecha_compra}"
+                              data-fecha_instalacion="${row.fecha_instalacion}"
+                              data-fecha_retiro="${row.fecha_retiro}"
                               data-categoria="${row.categoria}"
                               data-fabricante="${row.fabricante}"
                               data-modelo="${row.modelo}"
-                              data-condicion="${row.condicion}"
+                              data-area="${row.area}"
+                              data-sede="${row.sede}"
                               data-estado="${row.estado}"
+                              data-condicion="${row.condicion}"
                               data-proveedor="${row.proveedor}"
                               data-documento="${row.documento}">
                               ✏️
@@ -51,14 +54,14 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   
     // Registrar area
-    $("#btn-registrar-celular").click(function (event) {
+    $("#btn-registrar-impresora").click(function (event) {
       event.preventDefault();
   
       // Obtener los datos del formulario
       var formData = {
-        imei: $("#imei").val(),
-        numero: $("#numero").val(),
+        ip: $("#ip").val(),
         serie: $("#serie").val(),
+        fecha_compra: $("#fecha_compra").val(),
         categoria: $("#categoria").val(),
         fabricante: $("#fabricante").val(),
         modelo: $("#modelo").val(),
@@ -68,11 +71,11 @@ window.addEventListener("DOMContentLoaded", () => {
         documento: $("#documento").val(),
       };
   
-      console.log(formData);
+      // console.log(formData);
   
       // Realizar la solicitud AJAX
       $.ajax({
-        url: "registrarCelular", // Cambia a la URL de tu controlador
+        url: "registrarImpresora", // Cambia a la URL de tu controlador
         method: "POST",
         data: formData,
         dataType: "json",
@@ -102,7 +105,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     });
   
-    // Evento click para llenar el modal de edición
+    //Evento click para llenar el modal de edición
     // $("#tablaDatosAccesorio").on("click", ".btnEditar", function () {
     //   let btn = $(this);
   

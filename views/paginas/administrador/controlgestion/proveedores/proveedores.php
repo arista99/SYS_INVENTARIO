@@ -8,8 +8,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionProveedores">Crear Proveedor</a>
-        <a class="nav-link active ms-0" href="ListaProveedores">Lista de Proveedores</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
+        <a class="nav-link active ms-0" href="ListaGeneralProveedores">Lista de Proveedores</a>
     </nav>
 
     <script>
@@ -41,8 +40,6 @@
                                 <th class="text-center">Contacto</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Telefono</th>
-                                <th class="text-center">Producto</th>
-                                <th class="text-center">Documento</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
