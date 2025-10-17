@@ -20,15 +20,14 @@ class ModeloCuentas
     public function findUsuario($nombre)
     {
         try {
-            $sql = "SELECT tu.id,tu.usuario,tu.usuario_red,tcc.centro_costo,tu.cargo,tu.email,ts.sede,tp.perfil,ta.area
+            $sql = "SELECT tu.id,tu.nombre,tu.usuario_red,tu.contrasena,tu.email,ts.sede,tp.perfil,ta.`area`
                     FROM tbl_usuarios AS tu
-                    INNER JOIN tbl_centro_costo AS tcc ON tu.id_centro_costo=tcc.id
                     INNER JOIN tbl_sedes AS ts ON tu.id_sede=ts.id
                     INNER JOIN tbl_perfiles AS tp ON tu.id_perfil=tp.id
                     INNER JOIN tbl_areas AS ta ON tu.id_area=ta.id";
             
             if (!empty($nombre)) {
-                $sql .= " WHERE LOWER(tu.usuario) LIKE LOWER(?)";
+                $sql .= " WHERE LOWER(tu.nombre) LIKE LOWER(?)";
                 $stm = $this->MYSQL->ConectarBD()->prepare($sql);
                 $stm->execute(['%' . $nombre . '%']);
             } else {

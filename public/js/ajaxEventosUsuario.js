@@ -10,12 +10,10 @@ $(document).ready(function () {
       },
     },
     columns: [
-      { data: "usuario" },
-      { data: "usuario_red" },
-      { data: "centro_costo" },
+      { data: "nombre" },
       { data: "email" },
       { data: "sede" },
-      { data: "perfil" },
+      { data: "perfil"},
       { data: "area" },
       {
         data: "id",
@@ -24,9 +22,9 @@ $(document).ready(function () {
             return `
                 <button class="btn btn-sm btn-warning btnEditar"
                   data-id="${row.id}"
-                  data-usuario="${row.usuario}"
+                  data-nombre="${row.nombre}"
                   data-usuario_red="${row.usuario_red}"
-                  data-centro_costo="${row.centro_costo}"
+                  data-contrasena="${row.contrasena}"
                   data-email="${row.email}"
                   data-sede="${row.sede}"
                   data-perfil="${row.perfil}"
@@ -43,7 +41,7 @@ $(document).ready(function () {
     ],
     columnDefs: [
       {
-        targets: 7,
+        targets: 5,
         visible: id_perfil == 1, // solo mostrar si rol es == 1 (Administrador)
         searchable: false,
       },

@@ -452,4 +452,54 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
+      /*==============================CELULARES=========================================*/
+    /*CELULARES*/
+    public function ListarCelulares()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_celulares";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+      /*==============================DESKLAP=========================================*/
+    /*DESKLAP*/
+    public function ListarDeskLap()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_desk_lap";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+       /*==============================ENTREGAS=========================================*/
+    /*ENTREGAS*/
+    public function ListarTipoEntregas()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_entregas";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
 }

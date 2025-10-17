@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-    <a class="nav-link" href="CreacionUsuarios">Crear Usuario</a>
-    <a class="nav-link active ms-0" href="ListaGenerealUsuarios">Lista de Usuarios</a>
+        <a class="nav-link" href="CreacionUsuarios">Crear Usuario</a>
+        <a class="nav-link active ms-0" href="ListaGenerealUsuarios">Lista de Usuarios</a>
     </nav>
 
     <script>
@@ -36,8 +36,6 @@
                         <thead>
                             <tr>
                                 <th class="text-center">Usuario</th>
-                                <th class="text-center">Usuario de Red</th>
-                                <th class="text-center">Centro de Costo</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Sede</th>
                                 <th class="text-center">Pefil</th>
