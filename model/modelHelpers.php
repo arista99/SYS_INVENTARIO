@@ -35,7 +35,11 @@ class ModeloHelpers
     public function ListarUsuario()
     {
         try {
-            $sql = "SELECT * FROM tbl_usuarios";
+            $sql = "SELECT tu.id,tu.nombre,tu.usuario_red,tu.contrasena,tu.email,ts.sede,tp.perfil,ta.`area`
+                    FROM tbl_usuarios AS tu
+                    INNER JOIN tbl_sedes AS ts ON tu.id_sede=ts.id
+                    INNER JOIN tbl_perfiles AS tp ON tu.id_perfil=tp.id
+                    INNER JOIN tbl_areas AS ta ON tu.id_area=ta.id";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
@@ -134,7 +138,7 @@ class ModeloHelpers
             echo $th->getMessage();
         }
     }
-    
+
     /*IMPRESORA*/
     public function ListarCategoriaImpresora()
     {
@@ -402,7 +406,7 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
-     /*==============================DOCUMENTOS - EDITAR=========================================*/
+    /*==============================DOCUMENTOS - EDITAR=========================================*/
     /*DOCUMENTOS - EDITAR*/
     public function ListarDocumentosEdit()
     {
@@ -419,7 +423,7 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
-    
+
     /*==============================PERFILES=========================================*/
     /*PERFILES*/
     public function ListarPerfiles()
@@ -435,7 +439,7 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
-     /*==============================SEDES=========================================*/
+    /*==============================SEDES=========================================*/
     /*SEDES*/
     public function ListarSedes()
     {
@@ -452,7 +456,7 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
-      /*==============================CELULARES=========================================*/
+    /*==============================CELULARES=========================================*/
     /*CELULARES*/
     public function ListarCelulares()
     {
@@ -469,7 +473,43 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
-      /*==============================DESKLAP=========================================*/
+    /*==============================CELULARES CON DETALLES=========================================*/
+    /*CELULARES CON DETALLES*/
+    public function ListarCelularesDetalle()
+    {
+        try {
+            $sql = "SELECT 
+                    cel.id,
+                    cel.imei,
+                    cel.numero,
+                    cel.ns,
+                    cat.categoria,
+                    fab.fabricante,
+                    mo.modelo,
+                    con.condicion,
+                    est.estado,
+                    pro.proveedor,
+                    doc.titulo
+                    FROM tbl_celulares AS cel
+                    INNER JOIN tbl_categorias AS cat ON cat.id=cel.id_categoria
+                    INNER JOIN tbl_fabricantes AS fab ON fab.id=cel.id_fabricante
+                    INNER JOIN tbl_modelos AS mo ON mo.id=cel.id_modelo
+                    INNER JOIN tbl_condiciones AS con ON con.id=cel.id_condicion
+                    INNER JOIN tbl_estados AS est ON est.id=cel.id_estado
+                    INNER JOIN tbl_proveedores AS pro ON pro.id=cel.id_proveedor
+                    LEFT JOIN tbl_documentos AS doc ON doc.id=cel.id_documento";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+    /*==============================DESKLAP=========================================*/
     /*DESKLAP*/
     public function ListarDeskLap()
     {
@@ -486,7 +526,53 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
-       /*==============================ENTREGAS=========================================*/
+    /*==============================DESKLAP CON DETALLE=========================================*/
+    /*DESKLAP CON DETALLE*/
+    public function ListarDeskLapDetalle()
+    {
+        try {
+            $sql = "SELECT
+                        tdl.id,
+                        tdl.nom_equipo,
+                        tdl.ns,
+                        tdl.procesador,
+                        tdl.disco,
+                        tdl.memoria,
+                        tdl.ip,
+                        tdl.numero_part,
+                        DATE_FORMAT(tdl.fecha_compra, '%Y-%m-%d') AS fecha_compra,
+                        DATE_FORMAT(tdl.fecha_inicio_garantia, '%Y-%m-%d') AS fecha_inicio_garantia,
+                        DATE_FORMAT(tdl.fecha_fin_garantia, '%Y-%m-%d') AS fecha_fin_garantia,
+                        DATE_FORMAT(tdl.fecha_baja, '%Y-%m-%d') AS fecha_baja,
+                        tp.proveedor,
+                        tcc.centro_costo,
+                        tco.condicion,
+                        te.estado,
+                        tc.categoria,
+                        tf.fabricante,
+                        tm.modelo,
+                        CONCAT(td.id, ' ' ,td.titulo) AS documento
+                        FROM tbl_desk_lap AS tdl
+                        LEFT JOIN tbl_proveedores AS tp ON tp.id = tdl.id_proveedor
+                        LEFT JOIN tbl_centro_costo AS tcc ON tcc.id = tdl.id_centro_costo
+                        LEFT JOIN tbl_condiciones AS tco ON tco.id = tdl.id_condicion
+                        LEFT JOIN tbl_estados AS te ON te.id = tdl.id_estado
+                        LEFT JOIN tbl_categorias AS tc ON tc.id = tdl.id_categoria
+                        LEFT JOIN tbl_fabricantes AS tf ON tf.id = tdl.id_fabricante
+                        LEFT JOIN tbl_modelos AS tm ON tm.id = tdl.id_modelo
+                        LEFT JOIN tbl_documentos AS td ON td.id = tdl.id_documento";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+    /*==============================ENTREGAS=========================================*/
     /*ENTREGAS*/
     public function ListarTipoEntregas()
     {

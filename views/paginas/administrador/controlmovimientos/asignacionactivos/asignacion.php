@@ -7,7 +7,7 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionAsignacionActivo">Crear Asignación de Activo</a>
+        <a class="nav-link" href="ControlAsignacionActivo">Crear Asignación de Activo</a>
         <a class="nav-link active ms-0" href="ListaGenerealAsignacionActivo">Lista de Asignacion de Activo</a>
     </nav>
     <hr class="mt-0 mb-4">
@@ -20,9 +20,7 @@
                     <!-- <form id="formCrearUsuario" autocomplete="off">
                         <button class="btn btn-primary" id="btn-registrar-usuario" name="btn-registrar-usuario" type="button">Asignación de Activo</button>
                     </form> -->
-
-                    <form id="formAsignacion" method="POST" autocomplete="off">
-
+                    <form id="formAsignacion" autocomplete="off">
                         <!-- Usuario -->
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Usuario</label>
@@ -71,6 +69,7 @@
                             <select class="form-control" id="tipo_entrega" name="tipo_entrega" required>
                                 <option value="">Seleccione</option>
                                 <?php foreach ($lista_tipo_entrega as $entregas) : ?>
+                                    <?php if(in_array($entregas->id,[3,4])) continue; ?>
                                     <option value="<?php echo $entregas->id ?>"><?php echo $entregas->entrega ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -82,7 +81,7 @@
                             <textarea id="observacion" name="observacion" rows="3" class="form-control"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-success">
+                        <button  id="btn-registrar-asignacion" name="btn-registrar-asignacion" type="button" class="btn btn-primary">
                             <i class="fas fa-save"></i> Guardar Asignación
                         </button>
                     </form>
@@ -106,6 +105,8 @@
                     <table class="table table-bordered table-striped" id="tablaUsuarios">
                         <thead>
                             <tr>
+                                <th>Sede</th>
+                                <th>Area</th>
                                 <th>Nombre</th>
                                 <th>Acción</th>
                             </tr>
@@ -113,6 +114,8 @@
                         <tbody>
                             <?php foreach ($lista_usuarios as $u): ?>
                                 <tr>
+                                    <td><?php echo $u->sede ?></td>
+                                    <td><?php echo $u->area ?></td>
                                     <td><?php echo $u->nombre ?></td>
                                     <td>
                                         <button class="btn btn-sm btn-success seleccionar-usuario"
@@ -143,18 +146,22 @@
                     <table class="table table-bordered table-striped" id="tablaCelulares">
                         <thead>
                             <tr>
+                                <th>Marca</th>
                                 <th>Modelo</th>
+                                <th>NS</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($lista_celular as $cel): ?>
                                 <tr>
-                                    <td><?php echo $cel->modelo ?></td>
+                                    <td><?php echo $cel->fabricante ?> </td>
+                                    <td><?php echo $cel->modelo ?> </td>
+                                    <td><?php echo $cel->ns ?> </td>
                                     <td>
                                         <button class="btn btn-sm btn-success seleccionar-celular"
-                                            data-id="<?php echo $cel->id ?>"
-                                            data-info="<?php echo $cel->modelo . ' - ' .  $cel->numero ?>">
+                                            data-id="<?php echo $cel->id; ?>"
+                                            data-info="<?php echo $cel->modelo; ?>">
                                             Seleccionar
                                         </button>
                                     </td>
@@ -180,18 +187,22 @@
                     <table class="table table-bordered table-striped" id="tablaDeskLap">
                         <thead>
                             <tr>
-                                <th>Equipo</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>NS</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($lista_desklap as $dl): ?>
                                 <tr>
-                                    <td><?php $dl->nom_equipo ?></td>
+                                    <td><?php echo $dl->fabricante; ?></td>
+                                    <td><?php echo $dl->modelo; ?></td>
+                                    <td><?php echo $dl->ns; ?></td>
                                     <td>
                                         <button class="btn btn-sm btn-success seleccionar-desklap"
-                                            data-id="<?php echo $dl->id ?>"
-                                            data-info="<?php echo $dl->nom_equipo . ' - ' .  $dl->ip ?>">
+                                            data-id="<?php echo $dl->id; ?>"
+                                            data-info="<?php echo $dl->modelo . ' - ' . $dl->ns; ?>">
                                             Seleccionar
                                         </button>
                                     </td>
@@ -203,6 +214,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <!-- Footer -->
@@ -231,6 +243,8 @@
 </a>
 
 <!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleMarcaabel"
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModeloabel"
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -277,6 +291,7 @@
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
 <script src="public/js/ajaxBusqueda.js"></script>
+<script src="public/js/ajaxEventosAsignacionActivo.js"></script>
 </body>
 
 </html>

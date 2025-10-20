@@ -16,20 +16,6 @@ class ModeloProveedores
         }
     }
 
-    /*******************************************VER LISTA PROVEEDORES********************************************/
-    public function readProveedores()
-    {
-        try {
-            $sql = "SELECT * FROM tbl_proveedores";
-            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
-            $stm->execute();
-            return $stm->fetchAll(PDO::FETCH_OBJ);
-        } catch (Exception $th) {
-            echo $th->getMessage();
-        }
-    }
-    /*********************************************************************************************************/
-
     /*******************************************Lista - Busqueda Proveedor*****************************************/
     public function findProveedor($proveedor)
     {

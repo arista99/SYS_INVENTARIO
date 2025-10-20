@@ -8,28 +8,22 @@
 
     // Seleccionar usuario
     $(document).on('click', '.seleccionar-usuario', function(){
-        const id = $(this).data('id');
-        const nombre = $(this).data('nombre');
-        $('#id_usuario').val(id);
-        $('#nombre_usuario').val(nombre);
+        $('#id_usuario').val($(this).data('id'));
+        $('#nombre_usuario').val($(this).data('nombre'));
         $('#modalUsuarios').modal('hide');
     });
 
     // Seleccionar celular
     $(document).on('click', '.seleccionar-celular', function(){
-        const id = $(this).data('id');
-        const info = $(this).data('info');
-        $('#id_celular').val(id);
-        $('#info_celular').val(info);
+        $('#id_celular').val($(this).data('id'));
+        $('#info_celular').val($(this).data('info'));
         $('#modalCelulares').modal('hide');
     });
 
     // Seleccionar desktop/laptop
     $(document).on('click', '.seleccionar-desklap', function(){
-        const id = $(this).data('id');
-        const info = $(this).data('info');
-        $('#id_desklap').val(id);
-        $('#info_desklap').val(info);
+        $('#id_desklap').val($(this).data('id'));
+        $('#info_desklap').val($(this).data('info'));
         $('#modalDeskLap').modal('hide');
     });
 
