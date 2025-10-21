@@ -91,10 +91,12 @@ CREATE TABLE IF NOT EXISTS `tbl_asignaciones` (
   CONSTRAINT `tbl_asignaciones_ibfk_2` FOREIGN KEY (`id_celular`) REFERENCES `tbl_celulares` (`id`),
   CONSTRAINT `tbl_asignaciones_ibfk_3` FOREIGN KEY (`id_desk_lap`) REFERENCES `tbl_desk_lap` (`id`),
   CONSTRAINT `tbl_asignaciones_ibfk_4` FOREIGN KEY (`id_entrega`) REFERENCES `tbl_entregas` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_asignaciones: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_asignaciones: ~1 rows (aproximadamente)
 DELETE FROM `tbl_asignaciones`;
+INSERT INTO `tbl_asignaciones` (`id`, `id_usuario`, `id_celular`, `id_desk_lap`, `observacion`, `ruta_adjunto`, `fecha_movimiento`, `id_entrega`) VALUES
+	(1, 1, 1, 1, 'okay', NULL, '2025-10-21 23:20:25', 6);
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_asignacion_accesorios
 CREATE TABLE IF NOT EXISTS `tbl_asignacion_accesorios` (
@@ -279,15 +281,17 @@ CREATE TABLE IF NOT EXISTS `tbl_entregas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `entrega` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_entregas: ~4 rows (aproximadamente)
 DELETE FROM `tbl_entregas`;
 INSERT INTO `tbl_entregas` (`id`, `entrega`) VALUES
-	(1, 'Asignación'),
+	(1, 'Asignación Celular'),
 	(2, 'Préstamo'),
-	(3, 'Devolución'),
-	(4, 'Reasignación');
+	(3, 'Devolución Completa'),
+	(4, 'Reasignación'),
+	(5, 'Asignación Desktop o Laptop'),
+	(6, 'Asignación Completa');
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_estados
 CREATE TABLE IF NOT EXISTS `tbl_estados` (
@@ -658,12 +662,13 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   CONSTRAINT `tbl_usuarios_ibfk_1` FOREIGN KEY (`id_sede`) REFERENCES `tbl_sedes` (`id`),
   CONSTRAINT `tbl_usuarios_ibfk_2` FOREIGN KEY (`id_perfil`) REFERENCES `tbl_perfiles` (`id`),
   CONSTRAINT `tbl_usuarios_ibfk_3` FOREIGN KEY (`id_area`) REFERENCES `tbl_areas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_usuarios: ~1 rows (aproximadamente)
 DELETE FROM `tbl_usuarios`;
 INSERT INTO `tbl_usuarios` (`id`, `nombre`, `usuario_red`, `contrasena`, `email`, `id_sede`, `id_perfil`, `id_area`) VALUES
-	(1, 'Kevin Torres', 'ktorres', '1234', 'ktorres.arista99@gmail.com', 1, 1, 10);
+	(1, 'Kevin Torres', 'ktorres', '1234', 'ktorres@transberperu.com', 1, 1, 10),
+	(2, 'Sergio Ventura', 'sventura', '1234', 'sventura@transberperu.com', 1, 1, 10);
 
 -- Volcando estructura para disparador sys_inventario_transber.trg_asignaciones_update
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';

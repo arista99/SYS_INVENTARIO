@@ -43,23 +43,33 @@ class ModeloAsignacionActivo
     {
         try {
             $sql = "SELECT
-                asi.id,
-                usu.nombre,
-                cel.numero,
-                mo.modelo,
-                desk.nom_equipo,
-                asi.observacion,
-                asi.fecha_movimiento,
-                ent.entrega
-                FROM tbl_asignaciones AS asi
-                INNER JOIN tbl_usuarios AS usu ON usu.id=asi.id_usuario
-                LEFT JOIN tbl_celulares AS cel ON cel.id=asi.id_celular
-                LEFT JOIN tbl_modelos AS mo ON mo.id=cel.id_modelo
-                LEFT JOIN tbl_desk_lap AS desk ON desk.id=asi.id_desk_lap
-                INNER JOIN tbl_entregas AS ent ON ent.id=asi.id_entrega";
+                    asi.id,
+                    usu.nombre AS nombre_usuario,
+                    are.`area` AS `area_usuario`,
+                    fab.fabricante AS fabricante_celular,
+                    mo.modelo AS modelo_celular,
+                    cel.numero AS numero_celular,
+                    cel.ns AS numero_serie_celular,
+                    fabdl.fabricante AS fabricante_pc,
+                    modl.modelo AS modelo_pc,
+                    desk.nom_equipo AS nombre_equipo,
+                    desk.ns AS numero_serie_pc,
+                    asi.observacion,
+                    DATE_FORMAT(asi.fecha_movimiento,'%Y-%m-%d') AS fecha_movimiento,
+                    ent.entrega AS tipo_entrega
+                    FROM tbl_asignaciones AS asi
+                    INNER JOIN tbl_usuarios AS usu ON usu.id = asi.id_usuario
+                    LEFT JOIN tbl_areas AS are ON are.id=usu.id_area
+                    LEFT JOIN tbl_celulares AS cel ON cel.id = asi.id_celular
+                    LEFT JOIN tbl_modelos AS mo ON mo.id = cel.id_modelo
+                    LEFT JOIN tbl_fabricantes AS fab ON fab.id = mo.id_fabricante
+                    LEFT JOIN tbl_desk_lap AS desk ON desk.id = asi.id_desk_lap
+                    LEFT JOIN tbl_modelos AS modl ON modl.id = desk.id_modelo
+                    LEFT JOIN tbl_fabricantes AS fabdl ON fabdl.id = modl.id_fabricante
+                    INNER JOIN tbl_entregas AS ent ON ent.id = asi.id_entrega";
 
             if (!empty($asignado)) {
-                $sql .= " WHERE LOWER(usu.nombre) LIKE LOWER(?)";
+                $sql .= " WHERE LOWER(nombre_usuario) LIKE LOWER(?)";
                 $stm = $this->MYSQL->ConectarBD()->prepare($sql);
                 $stm->execute(['%' . $asignado . '%']);
             } else {

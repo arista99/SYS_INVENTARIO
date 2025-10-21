@@ -9,26 +9,34 @@ $(document).ready(function () {
       },
     },
     columns: [
-      { data: "nombre" },
-      { data: "modelo" },
-      { data: "numero" },
-      { data: "nom_equipo" },
-      { data: "entrega" },
+      { data: "nombre_usuario" },
+      { data: "fabricante_celular" },
+      { data: "modelo_celular" },
+      { data: "fabricante_pc" },
+      { data: "modelo_pc" },
+      { data: "tipo_entrega" },
       {
         data: "id",
         render: function (data, type, row) {
           if (id_perfil == 1) {
             return `
-                    <button class="btn btn-sm btn-warning btnEditar"
+                    <button class="btn btn-sm btn-warning btnEditar mx-auto d-block"
                     data-id="${row.id}"
-                    data-nombre="${row.nombre}"
-                    data-numero="${row.numero}"
-                    data-modelo="${row.modelo}"
-                    data-nom_equipo="${row.nom_equipo}"
-                    data-nom_equipo="${row.observacion}"
-                    data-entrega="${row.entrega}">
+                    data-nombre_usuario="${row.nombre_usuario}"
+                    data-area_usuario="${row.area_usuario}"
+                    data-fabricante_celular="${row.fabricante_celular}"
+                    data-modelo_celular="${row.modelo_celular}"
+                    data-numero_celular="${row.numero_celular}"
+                    data-numero_serie_celular="${row.numero_serie_celular}"
+                    data-fabricante_pc="${row.fabricante_pc}"
+                    data-modelo_pc="${row.modelo_pc}"
+                    data-nombre_equipo="${row.nombre_equipo}"
+                    data-numero_serie_pc="${row.numero_serie_pc}"
+                    data-observacion="${row.observacion}"
+                    data-fecha_movimiento="${row.fecha_movimiento}"
+                    data-tipo_entrega="${row.tipo_entrega}">
                     ✏️
-                    </button>   
+                    </button>
                 `;
           } else {
             return "";
@@ -38,7 +46,7 @@ $(document).ready(function () {
     ],
     columnDefs: [
       {
-        targets: 5,
+        targets: 6,
         visible: id_perfil == 1, // solo mostrar si rol es == 1 (Administrador)
         searchable: false,
       },
@@ -54,14 +62,14 @@ $(document).ready(function () {
   $("#btn-registrar-asignacion").click(function (event) {
     event.preventDefault();
 
-   // Obtener los datos del formulario
-        var formData = {
-            id_usuario: $("#id_usuario").val(),
-            id_celular: $("#id_celular").val(),
-            id_desklap: $("#id_desklap").val(),
-            tipo_entrega: $("#tipo_entrega").val(),
-            observacion: $("#observacion").val(),
-        };
+    // Obtener los datos del formulario
+    var formData = {
+      id_usuario: $("#id_usuario").val(),
+      id_celular: $("#id_celular").val(),
+      id_desklap: $("#id_desklap").val(),
+      tipo_entrega: $("#tipo_entrega").val(),
+      observacion: $("#observacion").val(),
+    };
 
     // Realizar la solicitud AJAX
     $.ajax({
@@ -100,11 +108,16 @@ $(document).ready(function () {
     let btn = $(this);
 
     $("#id").val(btn.data("id"));
-    $("#edit_documento").val(btn.data("documento"));
-    $("#edit_fecha_ini").val(btn.data("fecha_inicio"));
-    $("#edit_fecha_fin").val(btn.data("fecha_termino"));
+    $("#edit_nombre_usuario").val(btn.data("nombre_usuario") + ' - ' + btn.data("area_usuario"));
+    $("#edit_info_celular").val(btn.data("fabricante_celular") + ' - ' + btn.data("modelo_celular") + ' - ' + btn.data("numero_serie_celular"));
+    $("#edit_info_desklap").val(btn.data("fabricante_pc") + ' - ' + btn.data("modelo_pc") + ' - ' + btn.data("numero_serie_pc"));
+    $("#edit_observacion").val(btn.data("observacion"));
+    $("#edit_fecha_movimiento").val(btn.data("fecha_movimiento"));
 
-    $("#modalEditarDocumento").modal("show"); // Bootstrap 4/5
+    // Guarda los valores en variables temporales
+    cargarTipoEntrega(btn.data("tipo_entrega"));
+
+    $("#modalEditarAsignacionActivo").modal("show"); // Bootstrap 4/5
   });
 
   //Actualizar Documento

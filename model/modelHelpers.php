@@ -588,4 +588,21 @@ class ModeloHelpers
         }
     }
     /*=======================================================================================*/
+
+    /*==============================ENTREGAS DETALLE=========================================*/
+    /*ENTREGAS*/
+    public function ListarTipoEntregasDetalle()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_entregas WHERE id IN (3,4);";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
 }

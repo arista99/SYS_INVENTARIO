@@ -102,4 +102,11 @@ class ControlAsignacionActivo
         }
     }
 
+    public function listarEntregas()
+    {
+        $entregas = $this->HELPERS->ListarTipoEntregas();
+
+        echo json_encode($entregas);
+    }
+
 }

@@ -20,7 +20,7 @@
                     <!-- <form id="formCrearUsuario" autocomplete="off">
                         <button class="btn btn-primary" id="btn-registrar-usuario" name="btn-registrar-usuario" type="button">Asignación de Activo</button>
                     </form> -->
-                    <form id="formAsignacion" autocomplete="off">
+                    <form id="formAsignacionActivo" autocomplete="off">
                         <!-- Usuario -->
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Usuario</label>
@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label for="tipo_entrega">Tipo de Entrega</label>
                             <select class="form-control" id="tipo_entrega" name="tipo_entrega" required>
-                                <option value="">Seleccione</option>
+                                <option selected disabled>Seleccione Tipo de Entrega</option>
                                 <?php foreach ($lista_tipo_entrega as $entregas) : ?>
                                     <?php if(in_array($entregas->id,[3,4])) continue; ?>
                                     <option value="<?php echo $entregas->id ?>"><?php echo $entregas->entrega ?></option>
@@ -120,7 +120,7 @@
                                     <td>
                                         <button class="btn btn-sm btn-success seleccionar-usuario"
                                             data-id="<?php echo $u->id ?>"
-                                            data-nombre="<?php echo $u->nombre ?>">
+                                            data-nombre="<?php echo $u->nombre . ' - ' . $u->area; ?>">
                                             Seleccionar
                                         </button>
                                     </td>
@@ -161,7 +161,7 @@
                                     <td>
                                         <button class="btn btn-sm btn-success seleccionar-celular"
                                             data-id="<?php echo $cel->id; ?>"
-                                            data-info="<?php echo $cel->modelo; ?>">
+                                            data-info="<?php echo $cel->fabricante . ' - ' . $cel->modelo . ' - ' . $cel->ns; ?>">
                                             Seleccionar
                                         </button>
                                     </td>
@@ -202,7 +202,7 @@
                                     <td>
                                         <button class="btn btn-sm btn-success seleccionar-desklap"
                                             data-id="<?php echo $dl->id; ?>"
-                                            data-info="<?php echo $dl->modelo . ' - ' . $dl->ns; ?>">
+                                            data-info="<?php echo $dl->fabricante . ' - ' . $dl->modelo . ' - ' . $dl->ns; ?>">
                                             Seleccionar
                                         </button>
                                     </td>

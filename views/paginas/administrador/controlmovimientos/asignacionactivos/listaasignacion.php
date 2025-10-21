@@ -35,12 +35,13 @@
                     <table class="table table-bordered" id="tablaDatosAsignacionActivo" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center">Nombre Software</th>
-                                <th class="text-center">Modelo</th>
-                                <th class="text-center">Numero</th>
-                                <th class="text-center">Nombre de Equipo</th>
+                                <th class="text-center">Usuario</th>
+                                <th class="text-center">Marca celular</th>
+                                <th class="text-center">Modelo Celular</th>
+                                <th class="text-center">Marca Equipo</th>
+                                <th class="text-center">Modelo Equipo</th>
                                 <th class="text-center">Tipo de Entrega</th>
-                                <th class="text-center">Acciones</th>
+                                <th class="text-center">Ver Detalles</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,6 +50,83 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarAsignacionActivo" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <!-- id="formEditarUsuario" - action="actualizarActivoPC" method="POST"  -->
+            <form autocomplete="off" class="modal-content" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalles de Asignacion de Activo</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Usuario</label>
+                        <div class="col-sm-8">
+                            <input type="hidden" id="edit_id_usuario" name="usuario">
+                            <input type="text" id="edit_nombre_usuario" class="form-control" placeholder="Seleccione un usuario" readonly>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#modalUsuarios">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Celular -->
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Celular</label>
+                        <div class="col-sm-8">
+                            <input type="hidden" id="edit_id_celular" name="celular">
+                            <input type="text" id="edit_info_celular" class="form-control" placeholder="Seleccione un celular" readonly>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#modalCelulares">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Desktop/Laptop -->
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Desktop / Laptop</label>
+                        <div class="col-sm-8">
+                            <input type="hidden" id="edit_id_desklap" name="desklap">
+                            <input type="text" id="edit_info_desklap" class="form-control" placeholder="Seleccione un equipo" readonly>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#modalDeskLap">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="small mb-1" for="edit_fecha_movimiento">Fecha Asignación</label>
+                        <input class="form-control" id="edit_fecha_movimiento" name="edit_fecha_movimiento" type="date" readonly>
+                    </div>
+
+                    <!-- Tipo de entrega -->
+                    <div class="form-group">
+                        <label for="edit_tipo_entrega">Tipo de Entrega</label>
+                        <select class="form-control" id="edit_tipo_entrega" name="edit_tipo_entrega" required>
+                            <option selected disabled>Seleccione Tipo de Entrega</option>
+                        </select>
+                    </div>
+
+                    <!-- Observación -->
+                    <div class="form-group">
+                        <label for="edit_observacion">Observación</label>
+                        <textarea id="edit_observacion" name="edit_observacion" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+                        <button type="submit" name="updateInfoButtonAsignacionActivo" id="updateInfoButtonAsignacionActivo" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -124,6 +202,7 @@
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
 <script src="public/js/ajaxEventosAsignacionActivo.js"></script>
+<script src="public/js/ajaxSelectAsignacionActivo.js"></script>
 
 </body>
 
