@@ -120,46 +120,57 @@ $(document).ready(function () {
     $("#modalEditarAsignacionActivo").modal("show"); // Bootstrap 4/5
   });
 
-  //Actualizar Documento
-  // $("#formEditarDocumento").on("submit", function (e) {
-  //   e.preventDefault();
+   //Actualizar ActivoPC
+   $("#modalEditarAsignacionActivo").on("submit", function (e) {
+    e.preventDefault();
 
-  //   // console.log(formData);
-  //   $.ajax({
-  //     url: "actualizarDocumento",
-  //     type: "POST",
-  //     // data: formData,
-  //     data: $(this).serialize(),
-  //     dataType: "json", // ✅ Asegura que jQuery ya lo parsee
-  //     success: function (response) {
-  //       if (response.success) {
-  //         Swal.fire({
-  //           icon: "success",
-  //           title: "Actualizado correctamente",
-  //           showConfirmButton: false,
-  //           timer: 1500,
-  //         });
+   // Obtener los datos del formulario
+    var formData = {
+      id: $("#id").val(),
+      edit_id_usuario: $("#edit_id_usuario").val(),
+      edit_id_celular: $("#edit_id_celular").val(),
+      edit_id_desklap: $("#edit_id_desklap").val(),
+      edit_tipo_entrega: $("#edit_tipo_entrega").val(),
+      edit_observacion: $("#edit_observacion").val(),
+    };
 
-  //         $("#modalEditarDocumento").modal("hide");
-  //         $("#tablaDatosDocumento").DataTable().ajax.reload(null, false);
-  //       } else {
-  //         Swal.fire({
-  //           icon: "error",
-  //           title: "Error",
-  //           text: response.message || "Ocurrió un error al actualizar.",
-  //         });
-  //       }
-  //     },
-  //     error: function (xhr, status, error) {
-  //       console.error("Error AJAX:", error);
-  //       console.error("Respuesta:", xhr.responseText);
+    // console.log(formData);
 
-  //       Swal.fire({
-  //         icon: "error",
-  //         title: "Error de servidor",
-  //         text: "No se pudo procesar la solicitud. Intenta más tarde.",
-  //       });
-  //     },
-  //   });
-  // });
+    $.ajax({
+      url: "actualizarAsignacionActivo",
+      type: "POST",
+      data: formData,
+      // data: $(this).serialize(),
+      dataType: "json", 
+      success: function (response) {
+        if (response.success) {
+          Swal.fire({
+            icon: "success",
+            title: response.message || "Operación exitosa",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          $("#modalEditarAsignacionActivo").modal("hide");
+          $("#tablaDatosAsignacionActivo").DataTable().ajax.reload(null, false);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: response.message || "Ocurrió un error al actualizar.",
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error AJAX:", error);
+        console.error("Respuesta:", xhr.responseText);
+
+        Swal.fire({
+          icon: "error",
+          title: "Error de servidor",
+          text: "No se pudo procesar la solicitud. Intenta más tarde.",
+        });
+      },
+    });
+  });
 });

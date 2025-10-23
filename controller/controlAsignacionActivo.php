@@ -9,7 +9,7 @@ include_once('data/asignacion_activo.php');
 class ControlAsignacionActivo
 {
     //VARIABLE MODELO
-   
+
     public $ASIGNACION;
     public $HELPERS;
 
@@ -23,14 +23,14 @@ class ControlAsignacionActivo
     {
         // Iniciar sesión
         session_start();
-        
+
         // Verificar si el usuario está autenticado
         if (!isset($_SESSION['id'])) {
-        //     Redirigir al login si no está autenticado
-           header("Location: Index");
+            //     Redirigir al login si no está autenticado
+            header("Location: Index");
             exit;
         }
-        
+
         $lista_usuarios = $this->HELPERS->ListarUsuario();
         $lista_celular = $this->HELPERS->ListarCelularesDetalle();
         $lista_desklap = $this->HELPERS->ListarDeskLapDetalle();
@@ -45,13 +45,17 @@ class ControlAsignacionActivo
     {
         // Iniciar sesión
         session_start();
-        
+
         // Verificar si el usuario está autenticado
         if (!isset($_SESSION['id'])) {
-        //     Redirigir al login si no está autenticado
-           header("Location: Index");
+            //     Redirigir al login si no está autenticado
+            header("Location: Index");
             exit;
         }
+
+        $lista_usuarios = $this->HELPERS->ListarUsuario();
+        $lista_celular = $this->HELPERS->ListarCelularesDetalle();
+        $lista_desklap = $this->HELPERS->ListarDeskLapDetalle();
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
@@ -102,11 +106,48 @@ class ControlAsignacionActivo
         }
     }
 
+    public function actualizarAsignacionActivo()
+    {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $asignacionactivo = new AsignacionActivo();
+                $asignacionactivo->setid($_POST['id']);
+                $asignacionactivo->setid_usuario($_POST['edit_id_usuario']);
+                $asignacionactivo->setid_celular($_POST['edit_id_celular']);
+                $asignacionactivo->setid_desk_lap($_POST['edit_id_desklap']);
+                $asignacionactivo->setobservacion($_POST['edit_observacion']);
+                $asignacionactivo->setid_entrega($_POST['edit_tipo_entrega']);
+
+                $edit_tipo_entra = $_POST['edit_tipo_entrega'];
+
+                if ($edit_tipo_entra !== 3 ) {
+                    $update_asignacion = $this->ASIGNACION->updateAsignacionActivo($asignacionactivo);
+                    $message = 'Asignación actualizada correctamente.';
+                }else{
+                    $delete_asignacion = $this->ASIGNACION->deleteAsignacionActivo($asignacionactivo);
+                    $message = 'Asignación eliminada correctamente.';
+                }
+
+                echo json_encode([
+                    'success' => true,
+                    'message' => $message
+                ]);
+
+            } else {
+                // Si no es una solicitud POST, enviar un mensaje de error
+                echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+            }
+        } catch (Exception $th) {
+            // Manejo de excepciones: devolver el mensaje de error
+            echo json_encode(['success' => false, 'message' => $th->getMessage()]);
+            // echo $th->getMessage();
+        }
+    }
+
     public function listarEntregas()
     {
         $entregas = $this->HELPERS->ListarTipoEntregas();
 
         echo json_encode($entregas);
     }
-
 }

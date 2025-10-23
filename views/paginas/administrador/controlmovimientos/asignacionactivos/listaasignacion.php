@@ -130,6 +130,130 @@
         </div>
     </div>
 
+    <!-- MODAL DE BUSQUEDA - USUARIOS -->
+
+    <div class="modal fade" id="modalUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Buscar Usuario</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" id="tablaUsuarios">
+                        <thead>
+                            <tr>
+                                <th>Sede</th>
+                                <th>Area</th>
+                                <th>Nombre</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista_usuarios as $u): ?>
+                                <tr>
+                                    <td><?php echo $u->sede ?></td>
+                                    <td><?php echo $u->area ?></td>
+                                    <td><?php echo $u->nombre ?></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success seleccionar-usuario"
+                                            data-id="<?php echo $u->id ?>"
+                                            data-nombre="<?php echo $u->nombre . ' - ' . $u->area; ?>">
+                                            Seleccionar
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE BUSQUEDA - CELULARES -->
+
+    <div class="modal fade" id="modalCelulares" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Buscar Celular</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" id="tablaCelulares">
+                        <thead>
+                            <tr>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>NS</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista_celular as $cel): ?>
+                                <tr>
+                                    <td><?php echo $cel->fabricante ?> </td>
+                                    <td><?php echo $cel->modelo ?> </td>
+                                    <td><?php echo $cel->ns ?> </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success seleccionar-celular"
+                                            data-id="<?php echo $cel->id; ?>"
+                                            data-info="<?php echo $cel->fabricante . ' - ' . $cel->modelo . ' - ' . $cel->ns; ?>">
+                                            Seleccionar
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE BUSQUEDA - DESKTOP - LAPTOP -->
+
+    <div class="modal fade" id="modalDeskLap" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Buscar Desktop / Laptop</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" id="tablaDeskLap">
+                        <thead>
+                            <tr>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>NS</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista_desklap as $dl): ?>
+                                <tr>
+                                    <td><?php echo $dl->fabricante; ?></td>
+                                    <td><?php echo $dl->modelo; ?></td>
+                                    <td><?php echo $dl->ns; ?></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success seleccionar-desklap"
+                                            data-id="<?php echo $dl->id; ?>"
+                                            data-info="<?php echo $dl->fabricante . ' - ' . $dl->modelo . ' - ' . $dl->ns; ?>">
+                                            Seleccionar
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Footer -->
 </div>
 <!-- End of Main Content -->
@@ -174,6 +298,7 @@
         </div>
     </div>
 </div>
+
 <!-- JS SWEETALERT -->
 <script src="vendor/realrashid/sweet-alert/resources/js/sweetalert.all.js"></script>
 
@@ -203,6 +328,7 @@
 
 <script src="public/js/ajaxEventosAsignacionActivo.js"></script>
 <script src="public/js/ajaxSelectAsignacionActivo.js"></script>
+<script src="public/js/ajaxBusquedaEdicion.js"></script>
 
 </body>
 

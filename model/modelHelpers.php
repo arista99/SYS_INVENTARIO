@@ -39,7 +39,8 @@ class ModeloHelpers
                     FROM tbl_usuarios AS tu
                     INNER JOIN tbl_sedes AS ts ON tu.id_sede=ts.id
                     INNER JOIN tbl_perfiles AS tp ON tu.id_perfil=tp.id
-                    INNER JOIN tbl_areas AS ta ON tu.id_area=ta.id";
+                    INNER JOIN tbl_areas AS ta ON tu.id_area=ta.id
+                    WHERE tu.id NOT IN (SELECT id_usuario FROM tbl_asignaciones)";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
@@ -497,7 +498,8 @@ class ModeloHelpers
                     INNER JOIN tbl_condiciones AS con ON con.id=cel.id_condicion
                     INNER JOIN tbl_estados AS est ON est.id=cel.id_estado
                     INNER JOIN tbl_proveedores AS pro ON pro.id=cel.id_proveedor
-                    LEFT JOIN tbl_documentos AS doc ON doc.id=cel.id_documento";
+                    LEFT JOIN tbl_documentos AS doc ON doc.id=cel.id_documento
+                    WHERE cel.id NOT IN (SELECT id_celular FROM tbl_asignaciones)";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
@@ -560,7 +562,8 @@ class ModeloHelpers
                         LEFT JOIN tbl_categorias AS tc ON tc.id = tdl.id_categoria
                         LEFT JOIN tbl_fabricantes AS tf ON tf.id = tdl.id_fabricante
                         LEFT JOIN tbl_modelos AS tm ON tm.id = tdl.id_modelo
-                        LEFT JOIN tbl_documentos AS td ON td.id = tdl.id_documento";
+                        LEFT JOIN tbl_documentos AS td ON td.id = tdl.id_documento
+                        WHERE tdl.id NOT IN (SELECT id_desk_lap FROM tbl_asignaciones)";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();

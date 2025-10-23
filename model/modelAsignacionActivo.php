@@ -66,10 +66,11 @@ class ModeloAsignacionActivo
                     LEFT JOIN tbl_desk_lap AS desk ON desk.id = asi.id_desk_lap
                     LEFT JOIN tbl_modelos AS modl ON modl.id = desk.id_modelo
                     LEFT JOIN tbl_fabricantes AS fabdl ON fabdl.id = modl.id_fabricante
-                    INNER JOIN tbl_entregas AS ent ON ent.id = asi.id_entrega";
+                    INNER JOIN tbl_entregas AS ent ON ent.id = asi.id_entrega
+                    WHERE ent.entrega <> '3'";
 
             if (!empty($asignado)) {
-                $sql .= " WHERE LOWER(nombre_usuario) LIKE LOWER(?)";
+                $sql .= " AND LOWER(nombre_usuario) LIKE LOWER(?)";
                 $stm = $this->MYSQL->ConectarBD()->prepare($sql);
                 $stm->execute(['%' . $asignado . '%']);
             } else {
@@ -84,4 +85,45 @@ class ModeloAsignacionActivo
     }
 
     /******************************************************************************************************/
+
+    /*******************************************EDITAR ASIGNACION ACTIVO********************************************/
+    public function updateAsignacionActivo(AsignacionActivo $asignacionactivo)
+    {
+        try {
+            $sql = "UPDATE tbl_asignaciones SET id_usuario = ? , id_celular = ? , id_desk_lap = ? , observacion = ? , id_entrega = ? WHERE id = ? ";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute(
+                array(
+                    $asignacionactivo->getid_usuario(),
+                    $asignacionactivo->getid_celular(),
+                    $asignacionactivo->getid_desk_lap(),
+                    $asignacionactivo->getobservacion(),
+                    $asignacionactivo->getid_entrega(),
+                    $asignacionactivo->getid()
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*********************************************************************************************************/
+
+    /*******************************************ELIMINAR ASIGNACION ACTIVO********************************************/
+    public function deleteAsignacionActivo($idasignacion)
+    {
+        try {
+            $sql = "DELETE FROM tbl_asignaciones WHERE id = ?";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
+                array(
+                    $idasignacion
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+
+    /*********************************************************************************************************/
 }
