@@ -10,6 +10,9 @@
         <a class="nav-link" href="ControlAsignacionActivo">Crear Asignación de Activo</a>
         <a class="nav-link active ms-0" href="ListaGenerealAsignacionActivo">Lista de Asignacion de Activo</a>
     </nav>
+    <script>
+        const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
+    </script>
     <hr class="mt-0 mb-4">
     <div class="row">
         <div class="col-xl-12">
@@ -69,7 +72,7 @@
                             <select class="form-control" id="tipo_entrega" name="tipo_entrega" required>
                                 <option selected disabled>Seleccione Tipo de Entrega</option>
                                 <?php foreach ($lista_tipo_entrega as $entregas) : ?>
-                                    <?php if(in_array($entregas->id,[3,4])) continue; ?>
+                                    <?php if (in_array($entregas->id, [3, 4])) continue; ?>
                                     <option value="<?php echo $entregas->id ?>"><?php echo $entregas->entrega ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -81,9 +84,9 @@
                             <textarea id="observacion" name="observacion" rows="3" class="form-control"></textarea>
                         </div>
 
-                        <button  id="btn-registrar-asignacion" name="btn-registrar-asignacion" type="button" class="btn btn-primary">
+                        <button class="btn btn-primary" id="saveInfoButtonAsignacionActivo" name="saveInfoButtonAsignacionActivo" type="button">
                             <i class="fas fa-save"></i> Guardar Asignación
-                        </button>
+                                </button>
                     </form>
 
                 </div>
@@ -261,35 +264,20 @@
         </div>
     </div>
 </div>
-<!-- JS SWEETALERT -->
-<script src="vendor/realrashid/sweet-alert/resources/js/sweetalert.all.js"></script>
 
-<!-- Bootstrap core JavaScript-->
+<!-- ... -->
+<script src="vendor/realrashid/sweet-alert/resources/js/sweetalert.all.js"></script>
 <script src="public/assets/vendor/jquery/jquery.min.js"></script>
 <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
 <script src="public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
 <script src="public/assets/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
 <script src="public/assets/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<!-- <script src="public/assets/js/demo/chart-area-demo.js"></script>
-    <script src="public/assets/js/demo/chart-pie-demo.js"></script> -->
-
-<!-- Page level plugins -->
 <script src="public/assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="public/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxBusqueda.js"></script>
+<!-- ✅ Tu script personalizado VA AQUÍ, después de jQuery -->
 <script src="public/js/ajaxEventosAsignacionActivo.js"></script>
+<script src="public/js/ajaxBusqueda.js"></script>
 </body>
-
 </html>

@@ -22,12 +22,15 @@ $(document).ready(function () {
             return `
                     <button class="btn btn-sm btn-warning btnEditar mx-auto d-block"
                     data-id="${row.id}"
+                    data-id_usuario="${row.id_usuario}"
                     data-nombre_usuario="${row.nombre_usuario}"
                     data-area_usuario="${row.area_usuario}"
+                    data-id_celular="${row.id_celular}"
                     data-fabricante_celular="${row.fabricante_celular}"
                     data-modelo_celular="${row.modelo_celular}"
                     data-numero_celular="${row.numero_celular}"
                     data-numero_serie_celular="${row.numero_serie_celular}"
+                    data-id_desk_lap="${row.id_desk_lap}"
                     data-fabricante_pc="${row.fabricante_pc}"
                     data-modelo_pc="${row.modelo_pc}"
                     data-nombre_equipo="${row.nombre_equipo}"
@@ -58,8 +61,8 @@ $(document).ready(function () {
     tabla.ajax.reload();
   });
 
-  // Registrar Documento
-  $("#btn-registrar-asignacion").click(function (event) {
+  // Registrar Asignacion
+  $("#saveInfoButtonAsignacionActivo").click(function (event) {
     event.preventDefault();
 
     // Obtener los datos del formulario
@@ -70,6 +73,8 @@ $(document).ready(function () {
       tipo_entrega: $("#tipo_entrega").val(),
       observacion: $("#observacion").val(),
     };
+
+    // console.log(formData);
 
     // Realizar la solicitud AJAX
     $.ajax({
@@ -108,9 +113,26 @@ $(document).ready(function () {
     let btn = $(this);
 
     $("#id").val(btn.data("id"));
-    $("#edit_nombre_usuario").val(btn.data("nombre_usuario") + ' - ' + btn.data("area_usuario"));
-    $("#edit_info_celular").val(btn.data("fabricante_celular") + ' - ' + btn.data("modelo_celular") + ' - ' + btn.data("numero_serie_celular"));
-    $("#edit_info_desklap").val(btn.data("fabricante_pc") + ' - ' + btn.data("modelo_pc") + ' - ' + btn.data("numero_serie_pc"));
+    $("#edit_id_usuario").val(btn.data("id_usuario"));
+    $("#edit_nombre_usuario").val(
+      btn.data("nombre_usuario") + " - " + btn.data("area_usuario")
+    );
+    $("#edit_id_celular").val(btn.data("id_celular"));
+    $("#edit_info_celular").val(
+      btn.data("fabricante_celular") +
+        " - " +
+        btn.data("modelo_celular") +
+        " - " +
+        btn.data("numero_serie_celular")
+    );
+    $("#edit_id_desklap").val(btn.data("id_desk_lap"));
+    $("#edit_info_desklap").val(
+      btn.data("fabricante_pc") +
+        " - " +
+        btn.data("modelo_pc") +
+        " - " +
+        btn.data("numero_serie_pc")
+    );
     $("#edit_observacion").val(btn.data("observacion"));
     $("#edit_fecha_movimiento").val(btn.data("fecha_movimiento"));
 
@@ -120,11 +142,11 @@ $(document).ready(function () {
     $("#modalEditarAsignacionActivo").modal("show"); // Bootstrap 4/5
   });
 
-   //Actualizar ActivoPC
-   $("#modalEditarAsignacionActivo").on("submit", function (e) {
+  //Actualizar
+  $("#modalEditarAsignacionActivo").on("submit", function (e) {
     e.preventDefault();
 
-   // Obtener los datos del formulario
+    // Obtener los datos del formulario
     var formData = {
       id: $("#id").val(),
       edit_id_usuario: $("#edit_id_usuario").val(),
@@ -141,7 +163,7 @@ $(document).ready(function () {
       type: "POST",
       data: formData,
       // data: $(this).serialize(),
-      dataType: "json", 
+      dataType: "json",
       success: function (response) {
         if (response.success) {
           Swal.fire({

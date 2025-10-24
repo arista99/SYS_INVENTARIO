@@ -118,13 +118,14 @@ class ControlAsignacionActivo
                 $asignacionactivo->setobservacion($_POST['edit_observacion']);
                 $asignacionactivo->setid_entrega($_POST['edit_tipo_entrega']);
 
+                $idasignacion = $_POST['id'];
                 $edit_tipo_entra = $_POST['edit_tipo_entrega'];
 
-                if ($edit_tipo_entra !== 3 ) {
+                if ((int)$edit_tipo_entra !== 3) {
                     $update_asignacion = $this->ASIGNACION->updateAsignacionActivo($asignacionactivo);
                     $message = 'Asignación actualizada correctamente.';
-                }else{
-                    $delete_asignacion = $this->ASIGNACION->deleteAsignacionActivo($asignacionactivo);
+                } else {
+                    $delete_asignacion = $this->ASIGNACION->deleteAsignacionActivo($idasignacion);
                     $message = 'Asignación eliminada correctamente.';
                 }
 

@@ -16,6 +16,26 @@
         $('#modalEditarAsignacionActivo').removeClass('slide-right');
     });
 
+    // Cuando se abre el modal de celulares
+    $('#modalCelulares').on('show.bs.modal', function () {
+        $('#modalEditarAsignacionActivo').addClass('slide-right');
+    });
+
+    // Cuando se cierra el modal de celulares
+    $('#modalCelulares').on('hidden.bs.modal', function () {
+        $('#modalEditarAsignacionActivo').removeClass('slide-right');
+    });
+
+    // Cuando se abre el modal de desklap
+    $('#modalDeskLap').on('show.bs.modal', function () {
+        $('#modalEditarAsignacionActivo').addClass('slide-right');
+    });
+
+    // Cuando se cierra el modal de desklap
+    $('#modalDeskLap').on('hidden.bs.modal', function () {
+        $('#modalEditarAsignacionActivo').removeClass('slide-right');
+    });
+
 
     // Seleccionar usuario
     $(document).on('click', '.seleccionar-usuario', function(){
