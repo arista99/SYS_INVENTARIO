@@ -91,12 +91,10 @@ CREATE TABLE IF NOT EXISTS `tbl_asignaciones` (
   CONSTRAINT `tbl_asignaciones_ibfk_2` FOREIGN KEY (`id_celular`) REFERENCES `tbl_celulares` (`id`),
   CONSTRAINT `tbl_asignaciones_ibfk_3` FOREIGN KEY (`id_desk_lap`) REFERENCES `tbl_desk_lap` (`id`),
   CONSTRAINT `tbl_asignaciones_ibfk_4` FOREIGN KEY (`id_entrega`) REFERENCES `tbl_entregas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_asignaciones: ~1 rows (aproximadamente)
 DELETE FROM `tbl_asignaciones`;
-INSERT INTO `tbl_asignaciones` (`id`, `id_usuario`, `id_celular`, `id_desk_lap`, `observacion`, `ruta_adjunto`, `fecha_movimiento`, `id_entrega`) VALUES
-	(1, 1, 1, 1, 'okay', NULL, '2025-10-21 23:20:25', 6);
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_asignacion_accesorios
 CREATE TABLE IF NOT EXISTS `tbl_asignacion_accesorios` (
@@ -246,12 +244,14 @@ CREATE TABLE IF NOT EXISTS `tbl_desk_lap` (
   CONSTRAINT `tbl_desk_lap_ibfk_6` FOREIGN KEY (`id_modelo`) REFERENCES `tbl_modelos` (`id`),
   CONSTRAINT `tbl_desk_lap_ibfk_7` FOREIGN KEY (`id_proveedor`) REFERENCES `tbl_proveedores` (`id`),
   CONSTRAINT `tbl_desk_lap_ibfk_8` FOREIGN KEY (`id_documento`) REFERENCES `tbl_documentos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_desk_lap: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_desk_lap: ~1 rows (aproximadamente)
 DELETE FROM `tbl_desk_lap`;
 INSERT INTO `tbl_desk_lap` (`id`, `nom_equipo`, `ns`, `procesador`, `id_proveedor`, `disco`, `memoria`, `ip`, `numero_part`, `fecha_compra`, `fecha_inicio_garantia`, `fecha_fin_garantia`, `fecha_baja`, `id_centro_costo`, `id_condicion`, `id_estado`, `id_categoria`, `id_fabricante`, `id_modelo`, `id_documento`) VALUES
-	(1, 'TBCACNA002', 'MJ0D84HG', 'CORE i5', 1, '512GB SSD', '16GB', '172.16.110.1', 'MJ0D84HG', '2025-10-13 05:00:00', NULL, NULL, NULL, 3, 1, 2, 1, 7, 13, NULL);
+	(1, 'TBCACNA002', 'MJ0D84HG', 'CORE i5', 1, '512GB SSD', '16GB', '172.16.110.1', 'MJ0D84HG', '2025-10-13 05:00:00', NULL, NULL, NULL, 3, 1, 2, 1, 7, 13, NULL),
+	(2, 'TBGAFRCP001', 'MJ0D89PK', 'CORE i5', 1, '512GB SSD', '16GB', '172.16.110.1', 'MJ0D89PK', '2025-10-23 05:00:00', NULL, NULL, NULL, 11, 2, 2, 1, 7, 13, NULL),
+	(3, 'TBGRGCEHSE004', 'PF4FKCA8', 'CORE i7', 1, '512GB SSD', '16GB', '172.16.110.1', 'PF4FKCA8', '2025-10-24 05:00:00', NULL, NULL, NULL, 12, 2, 2, 2, 1, 16, NULL);
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_documentos
 CREATE TABLE IF NOT EXISTS `tbl_documentos` (
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `tbl_entregas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_entregas: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_entregas: ~6 rows (aproximadamente)
 DELETE FROM `tbl_entregas`;
 INSERT INTO `tbl_entregas` (`id`, `entrega`) VALUES
 	(1, 'Asignación Celular'),
@@ -336,24 +336,33 @@ INSERT INTO `tbl_fabricantes` (`id`, `fabricante`, `id_categoria`) VALUES
 CREATE TABLE IF NOT EXISTS `tbl_historial_activos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_asignacion` int(10) unsigned NOT NULL,
+  `tipo_activo` enum('DeskLap','Celular','Accesorio','Completo') NOT NULL,
   `id_usuario_anterior` int(10) unsigned DEFAULT NULL,
   `id_usuario_nuevo` int(10) unsigned DEFAULT NULL,
-  `tipo_activo` enum('DeskLap','Celular','Accesorio') NOT NULL,
   `id_entrega` int(10) unsigned DEFAULT NULL,
   `fecha_movimiento` timestamp NULL DEFAULT NULL,
+  `observacion` text DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_asignacion` (`id_asignacion`),
   KEY `id_usuario_anterior` (`id_usuario_anterior`),
   KEY `id_usuario_nuevo` (`id_usuario_nuevo`),
   KEY `id_entrega` (`id_entrega`),
-  CONSTRAINT `tbl_historial_activos_ibfk_1` FOREIGN KEY (`id_asignacion`) REFERENCES `tbl_asignaciones` (`id`),
   CONSTRAINT `tbl_historial_activos_ibfk_2` FOREIGN KEY (`id_usuario_anterior`) REFERENCES `tbl_usuarios` (`id`),
   CONSTRAINT `tbl_historial_activos_ibfk_3` FOREIGN KEY (`id_usuario_nuevo`) REFERENCES `tbl_usuarios` (`id`),
   CONSTRAINT `tbl_historial_activos_ibfk_4` FOREIGN KEY (`id_entrega`) REFERENCES `tbl_entregas` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_historial_activos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_historial_activos: ~6 rows (aproximadamente)
 DELETE FROM `tbl_historial_activos`;
+INSERT INTO `tbl_historial_activos` (`id`, `id_asignacion`, `tipo_activo`, `id_usuario_anterior`, `id_usuario_nuevo`, `id_entrega`, `fecha_movimiento`, `observacion`) VALUES
+	(1, 1, 'DeskLap', 1, 1, 4, '2025-10-24 16:55:17', 'Modificación de asignación (DeskLap). Desk/Laptop: de 1 a 2. Entrega: de 6 a 4. '),
+	(2, 1, 'DeskLap', 1, 1, 3, '2025-10-24 16:59:12', 'Modificación de asignación (DeskLap). Entrega: de 4 a 3. '),
+	(3, 1, 'DeskLap', 1, 1, 4, '2025-10-24 17:06:11', 'Modificación de asignación (DeskLap). Desk/Laptop: de 2 a 1. Entrega: de 3 a 4. '),
+	(4, 1, 'DeskLap', 1, 1, 3, '2025-10-24 17:06:20', 'Modificación de asignación (DeskLap). Entrega: de 4 a 3. '),
+	(5, 1, 'DeskLap', 1, 1, 4, '2025-10-24 17:44:28', 'Modificación de asignación (DeskLap). Desk/Laptop: de 1 a 2. Entrega: de 3 a 4. '),
+	(6, 1, 'DeskLap', 1, 1, 4, '2025-10-24 17:45:17', 'Modificación de asignación (DeskLap). Desk/Laptop: de 2 a 1. '),
+	(7, 1, 'Completo', 1, NULL, 4, '2025-10-24 20:30:35', 'Eliminación de asignación completa. Usuario ID: 1, Desk/Laptop ID: 1, Celular ID: 1'),
+	(8, 4, 'DeskLap', 1, 1, 4, '2025-10-24 22:03:45', 'Modificación de asignación (DeskLap). Desk/Laptop: de 1 a 3. Entrega: de 6 a 4. '),
+	(9, 4, 'Completo', 1, NULL, 4, '2025-10-24 22:04:23', 'Eliminación de asignación completa. Usuario ID: 1, Desk/Laptop ID: 3, Celular ID: 1');
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_impresoras
 CREATE TABLE IF NOT EXISTS `tbl_impresoras` (
@@ -526,7 +535,7 @@ CREATE TABLE IF NOT EXISTS `tbl_modelos` (
   PRIMARY KEY (`id`),
   KEY `id_fabricante` (`id_fabricante`),
   CONSTRAINT `tbl_modelos_ibfk_1` FOREIGN KEY (`id_fabricante`) REFERENCES `tbl_fabricantes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla sys_inventario_transber.tbl_modelos: ~15 rows (aproximadamente)
 DELETE FROM `tbl_modelos`;
@@ -545,7 +554,8 @@ INSERT INTO `tbl_modelos` (`id`, `modelo`, `id_fabricante`) VALUES
 	(12, 'WorkForce WF-2850', 6),
 	(13, 'ThinkCentre M80s', 7),
 	(14, 'Blade A54', 9),
-	(15, 'WorkCentre 3655i', 11);
+	(15, 'WorkCentre 3655i', 11),
+	(16, 'V15 G3 IAP', 1);
 
 -- Volcando estructura para tabla sys_inventario_transber.tbl_perfiles
 CREATE TABLE IF NOT EXISTS `tbl_perfiles` (
@@ -664,11 +674,48 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   CONSTRAINT `tbl_usuarios_ibfk_3` FOREIGN KEY (`id_area`) REFERENCES `tbl_areas` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla sys_inventario_transber.tbl_usuarios: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla sys_inventario_transber.tbl_usuarios: ~2 rows (aproximadamente)
 DELETE FROM `tbl_usuarios`;
 INSERT INTO `tbl_usuarios` (`id`, `nombre`, `usuario_red`, `contrasena`, `email`, `id_sede`, `id_perfil`, `id_area`) VALUES
 	(1, 'Kevin Torres', 'ktorres', '1234', 'ktorres@transberperu.com', 1, 1, 10),
 	(2, 'Sergio Ventura', 'sventura', '1234', 'sventura@transberperu.com', 1, 1, 10);
+
+-- Volcando estructura para disparador sys_inventario_transber.trg_asignaciones_delete
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER trg_asignaciones_delete
+AFTER DELETE ON tbl_asignaciones
+FOR EACH ROW
+BEGIN
+    DECLARE descripcion TEXT;
+
+    SET descripcion = CONCAT(
+        'Eliminación de asignación completa. ',
+        'Usuario ID: ', IFNULL(OLD.id_usuario, 'N/A'),
+        ', Desk/Laptop ID: ', IFNULL(OLD.id_desk_lap, 'N/A'),
+        ', Celular ID: ', IFNULL(OLD.id_celular, 'N/A')
+    );
+
+    INSERT INTO tbl_historial_activos (
+        id_asignacion,
+        tipo_activo,
+        id_usuario_anterior,
+        id_usuario_nuevo,
+        id_entrega,
+        fecha_movimiento,
+        observacion
+    ) VALUES (
+        OLD.id,
+        'Completo', 
+        OLD.id_usuario,
+        NULL,
+        OLD.id_entrega,
+        NOW(),
+        descripcion
+    );
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Volcando estructura para disparador sys_inventario_transber.trg_asignaciones_update
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
@@ -677,12 +724,41 @@ CREATE TRIGGER trg_asignaciones_update
 AFTER UPDATE ON tbl_asignaciones
 FOR EACH ROW
 BEGIN
-    -- Cambio de usuario
+    DECLARE cambios TEXT DEFAULT '';
+    DECLARE descripcion TEXT;
+    DECLARE tipoActivo VARCHAR(50);
+
+    -- Detectar tipo de activo predominante (según los campos no nulos)
+    SET tipoActivo = CASE
+        WHEN NEW.id_desk_lap IS NOT NULL THEN 'DeskLap'
+        WHEN NEW.id_celular IS NOT NULL THEN 'Celular'
+        ELSE 'Completo'
+    END;
+
+    -- Verificar cambios
     IF OLD.id_usuario <> NEW.id_usuario THEN
+        SET cambios = CONCAT(cambios, 'Usuario: de ', IFNULL(OLD.id_usuario, 'N/A'), ' a ', IFNULL(NEW.id_usuario, 'N/A'), '. ');
+    END IF;
+
+    IF OLD.id_desk_lap <> NEW.id_desk_lap THEN
+        SET cambios = CONCAT(cambios, 'Desk/Laptop: de ', IFNULL(OLD.id_desk_lap, 'N/A'), ' a ', IFNULL(NEW.id_desk_lap, 'N/A'), '. ');
+    END IF;
+
+    IF OLD.id_celular <> NEW.id_celular THEN
+        SET cambios = CONCAT(cambios, 'Celular: de ', IFNULL(OLD.id_celular, 'N/A'), ' a ', IFNULL(NEW.id_celular, 'N/A'), '. ');
+    END IF;
+
+    IF OLD.id_entrega <> NEW.id_entrega THEN
+        SET cambios = CONCAT(cambios, 'Entrega: de ', IFNULL(OLD.id_entrega, 'N/A'), ' a ', IFNULL(NEW.id_entrega, 'N/A'), '. ');
+    END IF;
+
+    -- Solo registrar si hubo algún cambio
+    IF cambios <> '' THEN
+        SET descripcion = CONCAT('Modificación de asignación (', tipoActivo, '). ', cambios);
+
         INSERT INTO tbl_historial_activos (
             id_asignacion,
             tipo_activo,
-            id_activo,
             id_usuario_anterior,
             id_usuario_nuevo,
             id_entrega,
@@ -690,182 +766,14 @@ BEGIN
             observacion
         ) VALUES (
             NEW.id,
-            'Usuario',
-            NULL,
+            tipoActivo,
             OLD.id_usuario,
             NEW.id_usuario,
             NEW.id_entrega,
-            NEW.fecha_movimiento,
-            'Cambio de usuario'
+            NOW(),
+            descripcion
         );
     END IF;
-
-    -- Cambio de Desk/Lap
-    IF OLD.id_desk_lap <> NEW.id_desk_lap THEN
-        INSERT INTO tbl_historial_activos (
-            id_asignacion,
-            tipo_activo,
-            id_activo,
-            id_usuario_anterior,
-            id_usuario_nuevo,
-            id_entrega,
-            fecha_movimiento,
-            observacion
-        ) VALUES (
-            NEW.id,
-            'DeskLap',
-            NEW.id_desk_lap,
-            NEW.id_usuario,
-            NEW.id_usuario,
-            NEW.id_entrega,
-            NEW.fecha_movimiento,
-            'Cambio de equipo Desk/Lap'
-        );
-    END IF;
-
-    -- Cambio de Celular
-    IF OLD.id_celular <> NEW.id_celular THEN
-        INSERT INTO tbl_historial_activos (
-            id_asignacion,
-            tipo_activo,
-            id_activo,
-            id_usuario_anterior,
-            id_usuario_nuevo,
-            id_entrega,
-            fecha_movimiento,
-            observacion
-        ) VALUES (
-            NEW.id,
-            'Celular',
-            NEW.id_celular,
-            NEW.id_usuario,
-            NEW.id_usuario,
-            NEW.id_entrega,
-            NEW.fecha_movimiento,
-            'Cambio de celular'
-        );
-    END IF;
-
-END//
-DELIMITER ;
-SET SQL_MODE=@OLDTMP_SQL_MODE;
-
--- Volcando estructura para disparador sys_inventario_transber.trg_asignacion_accesorio_delete
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
-DELIMITER //
-CREATE TRIGGER trg_asignacion_accesorio_delete
-AFTER DELETE ON tbl_asignacion_accesorios
-FOR EACH ROW
-BEGIN
-    DECLARE usuario_asignado INT;
-
-    -- Usuario que tenía el accesorio
-    SELECT id_usuario INTO usuario_asignado
-    FROM tbl_asignaciones
-    WHERE id = OLD.id_asignacion;
-
-    -- Insertar en historial
-    INSERT INTO tbl_historial_activos (
-        id_asignacion,
-        tipo_activo,
-        id_activo,
-        id_usuario_anterior,
-        id_usuario_nuevo,
-        id_entrega,
-        fecha_movimiento,
-        observacion
-    ) VALUES (
-        OLD.id_asignacion,
-        'Accesorio',
-        OLD.id_accesorio,
-        usuario_asignado,
-        NULL,  -- Queda sin usuario
-        (SELECT id_entrega FROM tbl_asignaciones WHERE id = OLD.id_asignacion),
-        NOW(),
-        'Retiro de accesorio'
-    );
-END//
-DELIMITER ;
-SET SQL_MODE=@OLDTMP_SQL_MODE;
-
--- Volcando estructura para disparador sys_inventario_transber.trg_asignacion_accesorio_insert
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
-DELIMITER //
-CREATE TRIGGER trg_asignacion_accesorio_insert
-AFTER INSERT ON tbl_asignacion_accesorios
-FOR EACH ROW
-BEGIN
-    DECLARE usuario_asignado INT;
-
-    -- Obtener el usuario al que se le asignó el accesorio
-    SELECT id_usuario INTO usuario_asignado
-    FROM tbl_asignaciones
-    WHERE id = NEW.id_asignacion;
-
-    -- Insertar en historial
-    INSERT INTO tbl_historial_activos (
-        id_asignacion,
-        tipo_activo,
-        id_activo,
-        id_usuario_anterior,
-        id_usuario_nuevo,
-        id_entrega,
-        fecha_movimiento,
-        observacion
-    ) VALUES (
-        NEW.id_asignacion,
-        'Accesorio',
-        NEW.id_accesorio,
-        NULL,  -- No había usuario antes (es nuevo)
-        usuario_asignado,
-        (SELECT id_entrega FROM tbl_asignaciones WHERE id = NEW.id_asignacion),
-        NOW(),
-        'Asignación de accesorio'
-    );
-END//
-DELIMITER ;
-SET SQL_MODE=@OLDTMP_SQL_MODE;
-
--- Volcando estructura para disparador sys_inventario_transber.trg_asignacion_accesorio_update
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
-DELIMITER //
-CREATE TRIGGER trg_asignacion_accesorio_update
-AFTER UPDATE ON tbl_asignacion_accesorios
-FOR EACH ROW
-BEGIN
-    DECLARE usuario_anterior INT;
-    DECLARE usuario_nuevo INT;
-
-    -- Usuario de la asignación anterior
-    SELECT id_usuario INTO usuario_anterior
-    FROM tbl_asignaciones
-    WHERE id = OLD.id_asignacion;
-
-    -- Usuario de la asignación nueva
-    SELECT id_usuario INTO usuario_nuevo
-    FROM tbl_asignaciones
-    WHERE id = NEW.id_asignacion;
-
-    -- Insertar en historial
-    INSERT INTO tbl_historial_activos (
-        id_asignacion,
-        tipo_activo,
-        id_activo,
-        id_usuario_anterior,
-        id_usuario_nuevo,
-        id_entrega,
-        fecha_movimiento,
-        observacion
-    ) VALUES (
-        NEW.id_asignacion,
-        'Accesorio',
-        NEW.id_accesorio,
-        usuario_anterior,
-        usuario_nuevo,
-        (SELECT id_entrega FROM tbl_asignaciones WHERE id = NEW.id_asignacion),
-        NOW(),
-        'Cambio de asignación de accesorio'
-    );
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
