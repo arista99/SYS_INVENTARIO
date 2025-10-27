@@ -17,6 +17,7 @@ include_once('controller/controlCelulares.php');
 include_once('controller/controlImpresoras.php');
 include_once('controller/controlInfraestructura.php');
 include_once('controller/controlAsignacionActivo.php');
+include_once('controller/controlAsignacionAccesorios.php');
 
 //PARA LOS CARACTERES EXTRAÑOS
 header('Content-Type: text/html; charset=utf-8');
@@ -43,6 +44,7 @@ $controlCelulares = new ControlCelulares();
 $controlImpresoras = new ControlImpresoras();
 $controlInfraestructuras = new ControlInfraestructuras();
 $controlAsignacionActivo = new ControlAsignacionActivo();
+$controlAsignacionAccesorio = new ControlAsignacionAccesorio();
 
 //LLAMADA DE LOS METODOS
 if (!isset($_REQUEST['ruta'])) {
@@ -85,6 +87,8 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($controlInfraestructuras, $peticion));
     }elseif (method_exists($controlAsignacionActivo, $peticion)) {
         call_user_func(array($controlAsignacionActivo, $peticion));
+    }elseif (method_exists($controlAsignacionAccesorio, $peticion)) {
+        call_user_func(array($controlAsignacionAccesorio, $peticion));
     }else{
         $controlIndex->Index();
     }

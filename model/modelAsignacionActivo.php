@@ -16,7 +16,7 @@ class ModeloAsignacionActivo
         }
     }
 
-    /*******************************************CREAR CELULAR********************************************/
+    /*******************************************CREAR ASIGNACION ACTIVO********************************************/
     public function createAsignacionActivo(AsignacionActivo $asignacionactivo)
     {
         try {
@@ -38,7 +38,7 @@ class ModeloAsignacionActivo
     }
     /*********************************************************************************************************/
 
-    /*******************************************Lista - Busqueda Celular*****************************************/
+    /*******************************************Lista - BUSQUEDA ASIGNACION ACTIVO*****************************************/
     public function findAsignacionActivo($asignado)
     {
         try {
