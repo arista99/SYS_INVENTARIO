@@ -21,11 +21,11 @@
                 <div class="card-header">Detalle de Asignación de Accesorio</div>
                 <div class="card-body">
                     <form id="formAsignacionAccesorio" autocomplete="off">
-                        <!-- Usuario -->
-                        <div class="form-group row">
+                         <!-- Usuario -->
+                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Usuario</label>
                             <div class="col-sm-8">
-                                <input type="hidden" id="id_asignacion" name="usuario">
+                                <input type="hidden" id="id_usuario" name="usuario">
                                 <input type="text" id="nombre_usuario" class="form-control" placeholder="Seleccione un usuario" readonly>
                             </div>
                             <div class="col-sm-2">
@@ -43,7 +43,7 @@
                                 <input type="text" id="info_accesorio" class="form-control" placeholder="Seleccione un Accesorio" readonly>
                             </div>
                             <div class="col-sm-2">
-                                <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#modalCelulares">
+                                <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#modalAccesorios">
                                     <i class="fas fa-search"></i> Buscar
                                 </button>
                             </div>
@@ -55,7 +55,7 @@
                             <select class="form-control" id="tipo_entrega" name="tipo_entrega" required>
                                 <option selected disabled>Seleccione Tipo de Entrega</option>
                                 <?php foreach ($lista_tipo_entrega as $entregas) : ?>
-                                    <?php if (in_array($entregas->id, [3, 4])) continue; ?>
+                                    <?php if (in_array($entregas->id, [1, 3, 4, 5])) continue; ?>
                                     <option value="<?php echo $entregas->id ?>"><?php echo $entregas->entrega ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -72,6 +72,88 @@
                                 </button>
                     </form>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- MODAL DE BUSQUEDA - USUARIOS -->
+
+     <div class="modal fade" id="modalUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Buscar Usuario</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" id="tablaUsuarios">
+                        <thead>
+                            <tr>
+                                <th>Sede</th>
+                                <th>Area</th>
+                                <th>Nombre</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista_usuarios as $u): ?>
+                                <tr>
+                                    <td><?php echo $u->sede ?></td>
+                                    <td><?php echo $u->area ?></td>
+                                    <td><?php echo $u->nombre ?></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success seleccionar-usuario"
+                                            data-id="<?php echo $u->id ?>"
+                                            data-nombre="<?php echo $u->nombre . ' - ' . $u->area; ?>">
+                                            Seleccionar
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE BUSQUEDA - ACCESORIOS -->
+
+    <div class="modal fade" id="modalAccesorios" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Buscar Accesorio</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" id="tablaAccesorios">
+                        <thead>
+                            <tr>
+                                <th>Marca</th>
+                                <th>Equipo</th>
+                                <th>NS</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista_accesorios as $acc): ?>
+                                <tr>
+                                    <td><?php echo $acc->fabricante ?> </td>
+                                    <td><?php echo $acc->nombre ?> </td>
+                                    <td><?php echo $acc->ns ?> </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success seleccionar-accesorio"
+                                            data-id="<?php echo $acc->id; ?>"
+                                            data-info="<?php echo $acc->fabricante . ' - ' . $acc->nombre . ' - ' . $acc->ns; ?>">
+                                            Seleccionar
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -132,6 +214,8 @@
 <script src="public/assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="public/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="public/assets/js/demo/datatables-demo.js"></script>
-
+<!-- ✅ Tu script personalizado VA AQUÍ, después de jQuery -->
+<script src="public/js/ajaxEventosAsignacionAccesorio.js"></script>
+<script src="public/js/ajaxBusqueda.js"></script>
 </body>
 </html>

@@ -36,7 +36,6 @@
         $('#modalEditarAsignacionActivo').removeClass('slide-right');
     });
 
-
     // Seleccionar usuario
     $(document).on('click', '.seleccionar-usuario', function(){
         $('#edit_id_usuario').val($(this).data('id'));

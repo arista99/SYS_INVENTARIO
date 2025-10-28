@@ -67,7 +67,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="ControlAsignacionActivo">Asignación Activo</a>
                 <a class="collapse-item" href="ControlAsignacionAccesorio">Asignación Accesorio</a>
-                <a class="collapse-item" href="ControlActivos">Historial Activos</a>
+                <a class="collapse-item" href="HistorialActivos">Historial Activos</a>
                 <a class="collapse-item" href="ControlMantenimientos">Mantenimientos</a>
             </div>
         </div>

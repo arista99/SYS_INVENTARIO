@@ -5,7 +5,7 @@ require_once('model/modelHelpers.php');
 //DATA
 require_once('data/modelo.php');
 
-class controlModelos
+class ControlModelos
 {
     //VARIABLE MODELO
     public $MODELOS;

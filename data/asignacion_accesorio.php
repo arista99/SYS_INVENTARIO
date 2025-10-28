@@ -4,7 +4,7 @@ class AsignacionAccesorio
 {
 
     private $id;
-    private $id_asignacion;
+    private $id_usuario;
     private $id_accesorio;
     private $observacion;
     private $ruta_adjunto;
@@ -14,7 +14,7 @@ class AsignacionAccesorio
     public function __construct()
     {
         $this->id = "";
-        $this->id_asignacion = "";
+        $this->id_usuario = "";
         $this->id_accesorio = "";
         $this->observacion = "";
         $this->ruta_adjunto = "";
@@ -32,14 +32,14 @@ class AsignacionAccesorio
         return $this->id;
     }
 
-    function setid_asignacion($id_asignacion)
+    function setid_usuario($id_usuario)
     {
-        $this->id_asignacion= $id_asignacion;
+        $this->id_usuario= $id_usuario;
     }
 
-    function getid_asignacion()
+    function getid_usuario()
     {
-        return $this->id_asignacion;
+        return $this->id_usuario;
     }
 
     function setid_accesorio($id_accesorio)

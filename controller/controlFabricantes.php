@@ -5,7 +5,7 @@ require_once('model/modelHelpers.php');
 //DATA
 require_once('data/fabricante.php');
 
-class controlFabricantes
+class ControlFabricantes
 {
     //VARIABLE MODELO
     public $FABRICANTES;

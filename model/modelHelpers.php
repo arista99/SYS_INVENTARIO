@@ -50,6 +50,25 @@ class ModeloHelpers
             echo $th->getMessage();
         }
     }
+     /*USUARIOS GENERAL ASIGNACIONES*/
+     public function ListarUsuarioAsignaciones()
+     {
+         try {
+             $sql = "SELECT tu.id,tu.nombre,tu.usuario_red,tu.contrasena,tu.email,ts.sede,tp.perfil,ta.`area`
+                     FROM tbl_usuarios AS tu
+                     INNER JOIN tbl_sedes AS ts ON tu.id_sede=ts.id
+                     INNER JOIN tbl_perfiles AS tp ON tu.id_perfil=tp.id
+                     INNER JOIN tbl_areas AS ta ON tu.id_area=ta.id
+                     WHERE tu.id IN (SELECT id_usuario FROM tbl_asignaciones)";
+ 
+             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+             $stm->execute();
+ 
+             return $stm->fetchAll(PDO::FETCH_OBJ);
+         } catch (Exception $th) {
+             echo $th->getMessage();
+         }
+     }
     /*USUARIOS ADMINISTRADOR*/
     public function ListarUsuarioAdministrador()
     {
@@ -324,10 +343,26 @@ class ModeloHelpers
 
     /*==============================ACCESORIO=========================================*/
     /*ACCESORIO*/
-    public function ListarAccesorio()
+    public function ListarAccesoriosDetalle()
     {
         try {
-            $sql = "SELECT * FROM tbl_accesorios";
+            $sql = "SELECT
+                    acc.id,
+                    acc.nombre,
+                    acc.ns,
+                    cat.categoria,
+                    fab.fabricante,
+                    con.condicion,
+                    est.estado,
+                    pro.proveedor,
+                    doc.titulo
+                    FROM tbl_accesorios AS acc
+                    INNER JOIN tbl_categorias AS cat ON cat.id=acc.id_categoria
+                    INNER JOIN tbl_fabricantes AS fab ON fab.id=acc.id_fabricante
+                    INNER JOIN tbl_condiciones AS con ON con.id=acc.id_condicion
+                    INNER JOIN tbl_estados AS est ON est.id=acc.id_estado
+                    INNER JOIN tbl_proveedores AS pro ON pro.id=acc.id_proveedor
+                    LEFT JOIN tbl_documentos AS doc ON doc.id=acc.id_documento";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();

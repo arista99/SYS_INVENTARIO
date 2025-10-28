@@ -1,6 +1,6 @@
 
     // Activar DataTables
-    $('#tablaUsuarios, #tablaCelulares, #tablaDeskLap').DataTable({
+    $('#tablaUsuarios, #tablaCelulares, #tablaDeskLap','#tablaAccesorios').DataTable({
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
         }
@@ -27,3 +27,9 @@
         $('#modalDeskLap').modal('hide');
     });
 
+    // Seleccionar accesorios
+    $(document).on('click', '.seleccionar-accesorio', function(){
+        $('#id_accesorio').val($(this).data('id'));
+        $('#info_accesorio').val($(this).data('info'));
+        $('#modalAccesorios').modal('hide');
+    });

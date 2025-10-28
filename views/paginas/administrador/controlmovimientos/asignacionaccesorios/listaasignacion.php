@@ -35,10 +35,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center">Usuario</th>
-                                <th class="text-center">Marca celular</th>
-                                <th class="text-center">Modelo Celular</th>
-                                <th class="text-center">Marca Equipo</th>
-                                <th class="text-center">Modelo Equipo</th>
+                                <th class="text-center">Accesorio</th>
+                                <th class="text-center">Observación</th>
                                 <th class="text-center">Tipo de Entrega</th>
                                 <th class="text-center">Ver Detalles</th>
                             </tr>
@@ -52,12 +50,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalEditarAsignacionActivo" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarAsignacionAccesorio" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <!-- id="formEditarUsuario" - action="actualizarActivoPC" method="POST"  -->
             <form autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Detalles de Asignacion de Activo</h5>
+                    <h5 class="modal-title">Detalles de Asignacion de Accesorio</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
@@ -74,29 +71,15 @@
                         </div>
                     </div>
 
-                    <!-- Celular -->
+                    <!-- Accesorio -->
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Celular</label>
+                        <label class="col-sm-2 col-form-label">Accesorio</label>
                         <div class="col-sm-8">
-                            <input type="hidden" id="edit_id_celular" name="celular">
-                            <input type="text" id="edit_info_celular" class="form-control" placeholder="Seleccione un celular" readonly>
+                            <input type="hidden" id="edit_id_accesorio" name="accesorio">
+                            <input type="text" id="edit_info_accesorio" class="form-control" placeholder="Seleccione un Accesorio" readonly>
                         </div>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#modalCelulares">
-                                <i class="fas fa-search"></i> Buscar
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Desktop/Laptop -->
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Desktop / Laptop</label>
-                        <div class="col-sm-8">
-                            <input type="hidden" id="edit_id_desklap" name="desklap">
-                            <input type="text" id="edit_info_desklap" class="form-control" placeholder="Seleccione un equipo" readonly>
-                        </div>
-                        <div class="col-sm-2">
-                            <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#modalDeskLap">
+                            <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#modalAccesorios">
                                 <i class="fas fa-search"></i> Buscar
                             </button>
                         </div>
@@ -122,10 +105,92 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                        <button type="submit" name="updateInfoButtonAsignacionActivo" id="updateInfoButtonAsignacionActivo" class="btn btn-primary">Actualizar</button>
+                        <button type="submit" name="updateInfoButtonAsignacionAccesorio" id="updateInfoButtonAsignacionAccesorio" class="btn btn-primary">Actualizar</button>
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+     <!-- MODAL DE BUSQUEDA - USUARIOS -->
+
+     <div class="modal fade" id="modalUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Buscar Usuario</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" id="tablaUsuarios">
+                        <thead>
+                            <tr>
+                                <th>Sede</th>
+                                <th>Area</th>
+                                <th>Nombre</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista_usuarios as $u): ?>
+                                <tr>
+                                    <td><?php echo $u->sede ?></td>
+                                    <td><?php echo $u->area ?></td>
+                                    <td><?php echo $u->nombre ?></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success seleccionar-usuario"
+                                            data-id="<?php echo $u->id ?>"
+                                            data-nombre="<?php echo $u->nombre . ' - ' . $u->area; ?>">
+                                            Seleccionar
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE BUSQUEDA - ACCESORIOS -->
+
+    <div class="modal fade" id="modalAccesorios" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Buscar Accesorio</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" id="tablaAccesorios">
+                        <thead>
+                            <tr>
+                                <th>Marca</th>
+                                <th>Equipo</th>
+                                <th>NS</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista_accesorios as $acc): ?>
+                                <tr>
+                                    <td><?php echo $acc->fabricante ?> </td>
+                                    <td><?php echo $acc->nombre ?> </td>
+                                    <td><?php echo $acc->ns ?> </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success seleccionar-accesorio"
+                                            data-id="<?php echo $acc->id; ?>"
+                                            data-info="<?php echo $acc->fabricante . ' - ' . $acc->nombre . ' - ' . $acc->ns; ?>">
+                                            Seleccionar
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -201,9 +266,9 @@
 <!-- Page level custom scripts -->
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
-<script src="public/js/ajaxEventosAsignacionActivo.js"></script>
-<script src="public/js/ajaxSelectAsignacionActivo.js"></script>
-<script src="public/js/ajaxBusquedaEdicion.js"></script>
+<script src="public/js/ajaxEventosAsignacionAccesorio.js"></script>
+<script src="public/js/ajaxSelectAsignacionAccesorio.js"></script>
+<script src="public/js/ajaxBusquedaEdicionAccesorio.js"></script>
 
 </body>
 
