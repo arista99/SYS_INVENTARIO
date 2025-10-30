@@ -7,7 +7,7 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="ControlAsignacionAccesorio">Crear Asignación de Accesorio</a>
+        <a class="nav-link " href="ControlAsignacionAccesorio">Crear Asignación de Accesorio</a>
         <a class="nav-link active ms-0" href="ListaGenerealAsignacionAccesorio">Lista de Asignacion de Accesorio</a>
     </nav>
     <script>
@@ -104,8 +104,8 @@
                         <textarea id="edit_observacion" name="edit_observacion" rows="3" class="form-control"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                        <button type="submit" name="updateInfoButtonAsignacionAccesorio" id="updateInfoButtonAsignacionAccesorio" class="btn btn-primary">Actualizar</button>
+                        <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
+                        <button type="submit" name="updateInfoButtonAsignacionAccesorio" id="updateInfoButtonAsignacionAccesorio" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
                     </div>
                 </div>
             </form>

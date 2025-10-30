@@ -2,7 +2,7 @@ $(document).ready(function () {
   // Iniciar DataTable de Licencia
   var tabla = $("#tablaDatosLicencia").DataTable({
     ajax: {
-      url: "vistaLicencia",
+      url: "findLicencia",
       type: "POST",
       data: function (d) {
         d.licencia = $("#licencia").val();
@@ -10,12 +10,12 @@ $(document).ready(function () {
     },
     columns: [
       { data: "software" },
-      { data: "version" },
+      { data: "nro_version" },
       { data: "cantidad" },
       { data: "tipo" },
       { data: "proveedor" },
-      { data: "documento" },
-      { data: "fecha_compra" },
+      { data: "fecha_inicio_licencia" },
+      { data: "fecha_fin_licencia" },
       {
         data: "id",
         render: function (data, type, row) {
@@ -45,7 +45,12 @@ $(document).ready(function () {
         searchable: false,
       },
     ],
+    responsive: true,
+    language: {
+      url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+    },
   });
+  
   //<button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
   // Registrar Licencia
   $("#btn-registrar-licencia").click(function (event) {

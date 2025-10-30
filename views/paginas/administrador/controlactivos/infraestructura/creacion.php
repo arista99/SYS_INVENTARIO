@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CrearInfraestructura">Crear Infraestructura</a>
-        <a class="nav-link active ms-0" href="ListaGeneralInfraestructura">Lista de Infraestructura</a>
+        <a class="nav-link active ms-0" href="CreacionInfraestructura">Crear Infraestructura</a>
+        <a class="nav-link" href="ListaGeneralInfraestructura">Lista de Infraestructura</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -78,7 +78,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-primary" id="btn-registrar-Infraestructura" name="btn-registrar-Infraestructura" type="button">
-                                Crear Infraestructura
+                            <i class="fas fa-save"></i> Crear Infraestructura
                             </button>
                         </div>
                     </form>
@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-
+ 
 
 </div>
 

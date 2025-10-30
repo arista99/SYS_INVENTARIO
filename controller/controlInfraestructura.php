@@ -5,7 +5,7 @@ require_once('model/modelHelpers.php');
 //DATA
 require_once('data/impresora.php');
 
-class ControlInfraestructuras
+class ControlInfraestructura
 {
     //VARIABLE MODELO
 
@@ -18,7 +18,7 @@ class ControlInfraestructuras
         $this->HELPERS = new ModeloHelpers();
     }
     
-    public function CrearInfraestructura()
+    public function CreacionInfraestructura()
     {
         // Iniciar sesión
         session_start();

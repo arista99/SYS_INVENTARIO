@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionLicencias">Crear Licencia</a>
-        <a class="nav-link active ms-0" href="ListaGeneralLicencias">Lista de Licencias</a>
+        <a class="nav-link active ms-0" href="CreacionLicencias">Crear Licencia</a>
+        <a class="nav-link" href="ListaGeneralLicencias">Lista de Licencias</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -86,7 +86,7 @@
                                     </select>
                                 </div>
                             </div>
-                        <button class="btn btn-primary" id="btn-registrar-licencia" name="btn-registrar-licencia" type="button">Crear licencia</button>
+                        <button class="btn btn-primary" id="btn-registrar-licencia" name="btn-registrar-licencia" type="button"><i class="fas fa-save"></i> Crear licencia</button>
                     </form>
                 </div>
             </div>

@@ -7,9 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionCelulares">Crear Celular</a>
-        <a class="nav-link active ms-0" href="ListaGeneralCelular">Lista de Celulares</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
+        <a class="nav-link active ms-0" href="CreacionCelulares">Crear Celular</a>
+        <a class="nav-link" href="ListaGeneralCelular">Lista de Celulares</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -44,7 +43,7 @@
                                     <option selected disabled>Seleccionar Categoria</option>
                                     <?php foreach ($lista_categorias as $categorias) : ?>
                                         <option value="<?php echo $categorias->id ?>"><?php echo $categorias->categoria ?></option>
-                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -100,7 +99,7 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-primary" id="btn-registrar-celular" name="btn-registrar-celular" type="submit">
-                                Crear Celular
+                            <i class="fas fa-save"></i> Crear Celular
                             </button>
                         </div>
                     </form>

@@ -33,10 +33,17 @@ class ModeloLicencias
     public function findLicencia($software)
     {
         try {
-            $sql = "SELECT tl.id,tl.software,tl.version,tl.cantidad,tl.tipo,tp.proveedor,td.documento,tl.fecha_compra
-                    FROM tbl_licencias tl
-                    INNER JOIN tbl_proveedores AS tp ON tp.id=tl.id_proveedor
-                    INNER JOIN tbl_documentos AS td ON td.id=tl.id_documento";
+            $sql = "SELECT 
+						  tl.id,
+						  tl.software,
+						  tl.nro_version,
+						  tl.cantidad,
+						  tl.tipo,
+						  tp.proveedor,
+						  tl.fecha_inicio_licencia,
+						  tl.fecha_fin_licencia
+                    FROM tbl_licencias AS tl
+                    INNER JOIN tbl_proveedores AS tp ON tp.id=tl.id_proveedor";
 
             if (!empty($software)) {
                 $sql .= " WHERE LOWER(tl.software) LIKE LOWER(?)";

@@ -34,7 +34,7 @@
 
         <!-- Asignar Activo -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="AsignarActivo" class="text-decoration-none">
+            <a href="ControlAsignacionActivo" class="text-decoration-none">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -74,7 +74,7 @@
 
         <!-- Reportes -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="Reportes" class="text-decoration-none">
+            <a href="ControlReportesGeneral" class="text-decoration-none">
                 <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -113,7 +113,7 @@
         </div>
 
         <!-- Garantías -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
             <a href="GarantiasActivos" class="text-decoration-none">
                 <div class="card border-left-secondary shadow h-100 py-2">
                     <div class="card-body">
@@ -130,7 +130,7 @@
                     </div>
                 </div>
             </a>
-        </div>
+        </div> -->
 
     </div> <!-- Fin fila de botones -->
 

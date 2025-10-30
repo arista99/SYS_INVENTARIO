@@ -50,7 +50,7 @@ class ModeloProveedores
     public function createProveedores(Proveedor $proveedor)
     {
         try {
-            $sql = "INSERT INTO tbl_proveedores(proveedor,direccion,contacto,email,telefono,id_producto,id_documento) values (?,?,?,?,?,?,?) ";
+            $sql = "INSERT INTO tbl_proveedores(proveedor,direccion,contacto,email,telefono) values (?,?,?,?,?) ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(
@@ -58,9 +58,7 @@ class ModeloProveedores
                     $proveedor->getdireccion(),
                     $proveedor->getcontacto(),
                     $proveedor->getemail(),
-                    $proveedor->gettelefono(),
-                    $proveedor->getid_producto(),
-                    $proveedor->getid_documento()
+                    $proveedor->gettelefono()
                 )
             );
             return $stm;
@@ -74,7 +72,7 @@ class ModeloProveedores
     public function updateProveedores(Proveedor $proveedor)
     {
         try {
-            $sql = "UPDATE tbl_proveedores SET proveedor =?, direccion =?, contacto =?, email =?, telefono =?, id_producto =?, id_documento=? WHERE id =?";
+            $sql = "UPDATE tbl_proveedores SET proveedor =?, direccion =?, contacto =?, email =?, telefono =? WHERE id =?";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(
@@ -83,8 +81,6 @@ class ModeloProveedores
                     $proveedor->getcontacto(),
                     $proveedor->getemail(),
                     $proveedor->gettelefono(),
-                    $proveedor->getid_producto(),
-                    $proveedor->getid_documento(),
                     $proveedor->getid()
                 )
             );

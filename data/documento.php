@@ -4,24 +4,24 @@ class Documento
 {
 
     private $id;
-    private $documento;
-    private $id_adjunto;
+    private $titulo;
+    private $id_tipo_adjunto;
     private $ruta_adjunto;
-    private $id_usuario_create;
-    private $id_usuario_update;
-    // private $fecha_registro;
     private $fecha_inicio;
     private $fecha_termino;
+    private $id_producto;
+    private $id_proveedor;
 
     public function __construct()
     {
         $this->id = "";
-        $this->documento = "";
-        $this->id_adjunto = "";
+        $this->titulo = "";
+        $this->id_tipo_adjunto = "";
         $this->ruta_adjunto = "";
-        // $this->fecha_registro = "";
         $this->fecha_inicio = "";
         $this->fecha_termino = "";
+        $this->id_producto = "";
+        $this->id_proveedor = "";
     }
 
     function setid($id)
@@ -34,24 +34,24 @@ class Documento
         return $this->id;
     }
 
-    function setdocumento($documento)
+    function settitulo($titulo)
     {
-        $this->documento= $documento;
+        $this->titulo= $titulo;
     }
 
-    function getdocumento()
+    function gettitulo()
     {
-        return $this->documento;
+        return $this->titulo;
     }
 
-    function setid_adjunto($id_adjunto)
+    function setid_tipo_adjunto($id_tipo_adjunto)
     {
-        $this->id_adjunto= $id_adjunto;
+        $this->id_tipo_adjunto= $id_tipo_adjunto;
     }
 
-    function getid_adjunto()
+    function getid_tipo_adjunto()
     {
-        return $this->id_adjunto;
+        return $this->id_tipo_adjunto;
     }
 
     function setruta_adjunto($ruta_adjunto)
@@ -64,30 +64,11 @@ class Documento
         return $this->ruta_adjunto;
     }
 
-    function setid_usuario_create($id_usuario_create)
-    {
-        $this->id_usuario_create= $id_usuario_create;
-    }
-
-    function getid_usuario_create()
-    {
-        return $this->id_usuario_create;
-    }
-
-    function setid_usuario_update($id_usuario_update)
-    {
-        $this->id_usuario_update= $id_usuario_update;
-    }
-
-    function getid_usuario_update()
-    {
-        return $this->id_usuario_update;
-    }
-
     function setfecha_inicio($fecha_inicio)
     {
         $this->fecha_inicio= $fecha_inicio;
     }
+
 
     function getfecha_inicio()
     {
@@ -102,5 +83,26 @@ class Documento
     function getfecha_termino()
     {
         return $this->fecha_termino;
+    }
+
+    function setid_producto($id_producto)
+    {
+        $this->id_producto= $id_producto;
+    }
+
+
+    function getid_producto()
+    {
+        return $this->id_producto;
+    }
+
+    function setid_proveedor($id_proveedor)
+    {
+        $this->id_proveedor= $id_proveedor;
+    }
+
+    function getid_proveedor()
+    {
+        return $this->id_proveedor;
     }
 }

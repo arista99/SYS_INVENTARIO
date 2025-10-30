@@ -40,8 +40,8 @@
                                 <th class="text-center">Cantidad</th>
                                 <th class="text-center">Tipo</th>
                                 <th class="text-center">Proveevor</th>
-                                <th class="text-center">Documento</th>
-                                <th class="text-center">Fecha Registro</th>
+                                <th class="text-center">Inicio de Licencia</th>
+                                <th class="text-center">Termino de Licencia</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -97,8 +97,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonLicencia" id="updateInfoButtonLicencia" class="btn btn-primary">Actualizar</button>
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
+                    <button type="submit" name="updateInfoButtonLicencia" id="updateInfoButtonLicencia" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
                 </div>
             </form>
         </div>

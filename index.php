@@ -16,9 +16,9 @@ include_once('controller/controlReportes.php');
 include_once('controller/controlCelulares.php');
 include_once('controller/controlImpresoras.php');
 include_once('controller/controlInfraestructura.php');
-include_once('controller/controlAsignacionActivo.php');
+include_once('controller/controlAsignacionActivos.php');
 include_once('controller/controlAsignacionAccesorios.php');
-include_once('controller/controlHistorialActivos.php');
+include_once('controller/controlHistorialMovimientos.php');
 
 //PARA LOS CARACTERES EXTRAÑOS
 header('Content-Type: text/html; charset=utf-8');
@@ -43,10 +43,10 @@ $controlAccesorios = new ControlAccesorios();
 $controlReportes = new ControlReportes();
 $controlCelulares = new ControlCelulares();
 $controlImpresoras = new ControlImpresoras();
-$controlInfraestructuras = new ControlInfraestructuras();
-$controlAsignacionActivo = new ControlAsignacionActivo();
-$controlAsignacionAccesorio = new ControlAsignacionAccesorio();
-$controlHistorialActivos = new ControlHistorialActivos();
+$controlInfraestructura = new ControlInfraestructura();
+$controlAsignacionActivos = new ControlAsignacionActivos();
+$controlAsignacionAccesorios = new ControlAsignacionAccesorios();
+$controlHistorialMovimientos = new ControlHistorialMovimientos();
 
 //LLAMADA DE LOS METODOS
 if (!isset($_REQUEST['ruta'])) {
@@ -85,14 +85,14 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($controlCelulares, $peticion));
     }elseif (method_exists($controlImpresoras, $peticion)) {
         call_user_func(array($controlImpresoras, $peticion));
-    }elseif (method_exists($controlInfraestructuras, $peticion)) {
-        call_user_func(array($controlInfraestructuras, $peticion));
-    }elseif (method_exists($controlAsignacionActivo, $peticion)) {
-        call_user_func(array($controlAsignacionActivo, $peticion));
-    }elseif (method_exists($controlAsignacionAccesorio, $peticion)) {
-        call_user_func(array($controlAsignacionAccesorio, $peticion));
-    }elseif (method_exists($controlHistorialActivos, $peticion)) {
-        call_user_func(array($controlHistorialActivos, $peticion));
+    }elseif (method_exists($controlInfraestructura, $peticion)) {
+        call_user_func(array($controlInfraestructura, $peticion));
+    }elseif (method_exists($controlAsignacionActivos, $peticion)) {
+        call_user_func(array($controlAsignacionActivos, $peticion));
+    }elseif (method_exists($controlAsignacionAccesorios, $peticion)) {
+        call_user_func(array($controlAsignacionAccesorios, $peticion));
+    }elseif (method_exists($controlHistorialMovimientos, $peticion)) {
+        call_user_func(array($controlHistorialMovimientos, $peticion));
     }else{
         $controlIndex->Index();
     }

@@ -7,9 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionDocumentos">Crear Documento</a>
-        <a class="nav-link active ms-0" href="ListaDocumentos">Lista de Documentos</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
+        <a class="nav-link active ms-0" href="CreacionDocumentos">Crear Documento</a>
+        <a class="nav-link" href="ListaGeneralDocumentos">Lista de Documentos</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -32,7 +31,7 @@
                                 <label class="small mb-1" for="filtrarAdjunto">Tipo Adjunto</label>
                                 <select class="form-control text-uppercase" id="filtrarAdjunto" name="filtrarAdjunto">
                                     <option selected disabled>Seleccionar Tipo Adjunto</option>
-                                    <?php foreach ($adjuntos_tra as $adjunto) : ?>
+                                    <?php foreach ($lista_adjuntos as $adjunto) : ?>
                                         <option value="<?php echo $adjunto->id ?>"><?php echo $adjunto->adjunto ?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -52,7 +51,7 @@
                                 <input class="form-control" id="fecha_termino" name="fecha_termino" type="date">
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="btn-registrar-documento" name="btn-registrar-documento" type="button">Crear documento</button>
+                        <button class="btn btn-primary" id="btn-registrar-documento" name="btn-registrar-documento" type="button"><i class="fas fa-save"></i> Crear documento</button>
                     </form>
                 </div>
             </div>

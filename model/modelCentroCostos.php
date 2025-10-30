@@ -16,24 +16,6 @@ class ModeloCentroCostos
         }
     }
 
-    /*******************************************Lista - Busqueda Categoria*****************************************/
-    public function readCentro()
-    {
-        try {
-            $sql = "SELECT * FROM tbl_centro_costo";
-
-            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
-            $stm->execute();
-
-
-            return $stm->fetchAll(PDO::FETCH_OBJ);
-        } catch (Exception $th) {
-            echo $th->getMessage();
-        }
-    }
-    /******************************************************************************************************/
-
-
     /*******************************************Lista - Busqueda Centro*****************************************/
     public function findCentroCosto($centro)
     {

@@ -7,7 +7,7 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CrearInfraestructura">Crear Infraestructura</a>
+        <a class="nav-link" href="CreacionInfraestructura">Crear Infraestructura</a>
         <a class="nav-link active ms-0" href="ListaGeneralInfraestructura">Lista de Infraestructura</a>
     </nav>
 
@@ -118,8 +118,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonInfraestructura" id="updateInfoButtonInfraestructura" class="btn btn-primary">Actualizar</button>
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
+                    <button type="submit" name="updateInfoButtonInfraestructura" id="updateInfoButtonInfraestructura" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
                 </div>
             </form>
         </div>

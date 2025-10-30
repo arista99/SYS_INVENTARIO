@@ -6,8 +6,53 @@
 
 
 <div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <nav class="nav nav-borders">
+        <a class="nav-link" href="HistorialActivos">Lista de Historial de Activos</a>
+        <a class="nav-link active ms-0" href="HistorialAccesorios">Lista de Historial de Accesorios</a>
+    </nav>
 
-<!-- Footer -->
+    <script>
+        const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
+    </script>
+
+    <hr class="mt-0 mb-4">
+    <!-- Filtro -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="asignacion" id="asignacion" class="form-control" placeholder="Nombre asignacion">
+        </div>
+        <div class="col-md-2">
+            <button id="btnBuscarAsignacion" class="btn btn-primary w-100">Buscar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Historial de movimientos de Accesorios</div>
+                <div class="card-body">
+                    <!-- Table -->
+                    <table class="table table-bordered" id="tablaDatosHistorialAccesorios" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Tipo de Activo</th>
+                                <th class="text-center">Usuario Anterior</th>
+                                <th class="text-center">Usuario Nuevo</th>
+                                <th class="text-center">Tipo de Entrega</th>
+                                <th class="text-center">Fecha Movimiento</th>
+                                <th class="text-center">Observación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se rellena dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
 </div>
 <!-- End of Main Content -->
 
@@ -63,5 +108,7 @@
 <script src="public/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="public/assets/js/demo/datatables-demo.js"></script>
 
+<script src="public/js/ajaxHistorialMovimiento.js"></script>
 </body>
+
 </html>

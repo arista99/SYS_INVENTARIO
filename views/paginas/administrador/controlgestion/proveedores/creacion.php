@@ -7,9 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionProveedores">Crear Proveedor</a>
-        <a class="nav-link active ms-0" href="ListaGeneralProveedores">Lista de Proveedores</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
+        <a class="nav-link active ms-0" href="CreacionProveedores">Crear Proveedor</a>
+        <a class="nav-link" href="ListaGeneralProveedores">Lista de Proveedores</a>
     </nav>
 
     <script>
@@ -50,27 +49,7 @@
                                 <input class="form-control" id="telefono" name="telefono" type="text" placeholder="Ingresar Telefono">
                             </div>
                         </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="filtrarProducto">Tipo Producto</label>
-                                <select class="form-control text-uppercase" id="filtrarProducto" name="filtrarProducto">
-                                    <option selected disabled>Seleccionar Producto</option>
-                                    <?php foreach ($productos_tra as $producto) : ?>
-                                        <option value="<?php echo $producto->id ?>"><?php echo $producto->producto ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="filtrarDocumento">Tipo Documento</label>
-                                <select class="form-control text-uppercase" id="filtrarDocumento">
-                                    <option selected disabled>Seleccionar Documento</option>
-                                    <?php foreach ($documentos_tra as $documento) : ?>
-                                        <option value="<?php echo $documento->id ?>"><?php echo $documento->documento ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" id="btn-registrar-proveedor" name="btn-registrar-proveedor" type="button">Crear proveedor</button>
+                        <button class="btn btn-primary" id="btn-registrar-proveedor" name="btn-registrar-proveedor" type="button"><i class="fas fa-save"></i> Crear proveedor</button>
                     </form>
                 </div>
             </div>

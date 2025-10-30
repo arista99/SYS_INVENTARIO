@@ -16,24 +16,6 @@ class ModeloModelos
         }
     }
 
-    /*******************************************Lista Modelo*****************************************/
-    public function readModelo()
-    {
-        try {
-            $sql = "SELECT * FROM tbl_modelos";
-
-            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
-            $stm->execute();
-
-
-            return $stm->fetchAll(PDO::FETCH_OBJ);
-        } catch (Exception $th) {
-            echo $th->getMessage();
-        }
-    }
-
-    /******************************************************************************************************/
-
     /*******************************************Lista - Busqueda Area*****************************************/
     public function findModelo($modelo)
     {

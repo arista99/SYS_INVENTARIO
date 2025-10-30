@@ -43,6 +43,10 @@ $(document).ready(function () {
         searchable: false,
       },
     ],
+    responsive: true,
+    language: {
+      url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+    },
   });
 
   // Botón Buscar
@@ -61,8 +65,6 @@ $(document).ready(function () {
       contacto: $("#contacto").val(),
       correo: $("#correo").val(),
       telefono: $("#telefono").val(),
-      filtrarProducto: $("#filtrarProducto").val(),
-      filtrarDocumento: $("#filtrarDocumento").val(),
     };
     
     // console.log(formData);
@@ -107,11 +109,7 @@ $(document).ready(function () {
     $("#edit_contacto").val(btn.data("contacto"));
     $("#edit_email").val(btn.data("email"));
     $("#edit_telefono").val(btn.data("telefono"));
-
-    // Llenar selects con valor seleccionado correctamente usando los IDs
-    cargarProducto(btn.data("producto"));
-    cargarDocumento(btn.data("documento"));
-
+    
     $("#modalEditarProveedor").modal("show"); // Bootstrap 4/5
   });
 

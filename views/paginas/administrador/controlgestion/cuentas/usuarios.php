@@ -106,8 +106,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonUsuario" id="updateInfoButtonUsuario" class="btn btn-primary">Actualizar</button>
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
+                    <button type="submit" name="updateInfoButtonUsuario" id="updateInfoButtonUsuario" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
                 </div>
             </form>
         </div>

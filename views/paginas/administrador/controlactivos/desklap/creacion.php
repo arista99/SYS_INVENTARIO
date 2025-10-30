@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionDeskLap">Crear Desktop & Laptop</a>
-        <a class="nav-link active ms-0" href="ListaGeneralDeskLap">Lista de Desktop & Laptop</a>
+        <a class="nav-link active ms-0" href="CreacionDeskLap">Crear Desktop & Laptop</a>
+        <a class="nav-link" href="ListaGeneralDeskLap">Lista de Desktop & Laptop</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -146,7 +146,7 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-primary" id="saveInfoButtonDeskLap" name="saveInfoButtonDeskLap" type="button">
-                                Crear DeskLap
+                            <i class="fas fa-save"></i> Crear DeskLap
                             </button>
 
                             <div>

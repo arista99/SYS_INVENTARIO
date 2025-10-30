@@ -153,7 +153,7 @@ class ModeloHelpers
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
 
-            return $stm->fetch(PDO::FETCH_OBJ);
+            return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $th) {
             echo $th->getMessage();
         }
@@ -632,7 +632,24 @@ class ModeloHelpers
     public function ListarTipoEntregasDetalle()
     {
         try {
-            $sql = "SELECT * FROM tbl_entregas WHERE id IN (3,4);";
+            $sql = "SELECT * FROM tbl_entregas WHERE id IN (3,4)";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+     /*==============================LISTA LICENCIAS=========================================*/
+    /*LICENCIAS*/
+    public function ListarLicencias()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_licencias";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();

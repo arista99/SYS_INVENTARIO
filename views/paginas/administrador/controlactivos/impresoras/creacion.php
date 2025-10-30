@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionImpresoras">Crear Impresora</a>
-        <a class="nav-link active ms-0" href="ListaGeneralImpresora">Lista de Impresoras</a>
+        <a class="nav-link active ms-0" href="CreacionImpresoras">Crear Impresora</a>
+        <a class="nav-link" href="ListaGeneralImpresora">Lista de Impresoras</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -41,7 +41,9 @@
                                 <label class="small mb-1" for="categoria">Categorias</label>
                                 <select class="form-control text-uppercase" id="categoria" name="categoria">
                                     <option selected disabled>Seleccionar Categoria</option>
-                                        <option value="<?php echo $lista_categorias->id ?>"><?php echo $lista_categorias->categoria ?></option>
+                                    <?php foreach ($lista_categorias as $categorias) : ?>
+                                        <option value="<?php echo $categorias->id ?>"><?php echo $categorias->categoria ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -96,7 +98,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-primary" id="btn-registrar-impresora" name="btn-registrar-impresora" type="button">
-                                Crear Impresora
+                            <i class="fas fa-save"></i> Crear Impresora
                             </button>
                         </div>
                     </form>
@@ -104,8 +106,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
 <!-- Footer -->

@@ -8,8 +8,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link" href="CreacionDocumentos">Crear Documento</a>
-        <a class="nav-link active ms-0" href="ListaDocumentos">Lista de Documentos</a>
-        <!-- <a class="nav-link active ms-0" href="ListaEquiAcce">Equipos & Accesorios</a> -->
+        <a class="nav-link active ms-0" href="ListaGeneralDocumentos">Lista de Documentos</a>
     </nav>
 
     <script>
@@ -38,9 +37,10 @@
                             <tr>
                                 <th class="text-center">Documento</th>
                                 <th class="text-center">Tipo de Ajunto</th>
-                                <th class="text-center">Fecha de Registro</th>
                                 <th class="text-center">Fecha Inicio</th>
                                 <th class="text-center">Fecha Termino</th>
+                                <th class="text-center">Producto</th>
+                                <th class="text-center">Proveedor</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -86,8 +86,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonDocumento" id="updateInfoButtonDocumento" class="btn btn-primary">Actualizar</button>
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
+                    <button type="submit" name="updateInfoButtonDocumento" id="updateInfoButtonDocumento" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
                 </div>
             </form>
         </div>

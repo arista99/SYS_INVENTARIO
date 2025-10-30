@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionAccesorio">Crear Accesorio</a>
-        <a class="nav-link active ms-0" href="ListaGeneralAccesorio">Lista de Accesorio</a>
+        <a class="nav-link active ms-0" href="CreacionAccesorio">Crear Accesorio</a>
+        <a class="nav-link" href="ListaGeneralAccesorio">Lista de Accesorio</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -87,7 +87,7 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-primary" id="btn-registrar-accesorio" name="btn-registrar-accesorio" type="button">
-                                Crear Accesorio
+                            <i class="fas fa-save"></i> Crear Accesorio
                             </button>
                         </div>
                     </form>

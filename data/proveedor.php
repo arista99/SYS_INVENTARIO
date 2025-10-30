@@ -9,8 +9,6 @@ class Proveedor
     private $contacto;
     private $email;
     private $telefono;
-    private $id_producto;
-    private $id_documento;
 
     public function __construct()
     {
@@ -20,8 +18,6 @@ class Proveedor
         $this->contacto = "";
         $this->email = "";
         $this->telefono = "";
-        $this->id_producto = "";
-        $this->id_documento = "";
     }
 
     function setid($id)
@@ -82,25 +78,5 @@ class Proveedor
     function gettelefono()
     {
         return $this->telefono;
-    }
-
-    function setid_producto($id_producto)
-    {
-        $this->id_producto= $id_producto;
-    }
-
-    function getid_producto()
-    {
-        return $this->id_producto;
-    }
-
-    function setid_documento($id_documento)
-    {
-        $this->id_documento= $id_documento;
-    }
-
-    function getid_documento()
-    {
-        return $this->id_documento;
     }
 }

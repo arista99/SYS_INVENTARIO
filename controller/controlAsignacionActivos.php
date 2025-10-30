@@ -6,7 +6,7 @@ include_once('model/modelHelpers.php');
 //DATA
 include_once('data/asignacion_activo.php');
 
-class ControlAsignacionActivo
+class ControlAsignacionActivos
 {
     //VARIABLE MODELO
 

@@ -77,8 +77,6 @@ class ControlProveedores
                 $proveedor->setcontacto($_POST['contacto']);
                 $proveedor->setemail($_POST['correo']);
                 $proveedor->settelefono($_POST['telefono']);
-                $proveedor->setid_producto($_POST['filtrarProducto']);
-                $proveedor->setid_documento($_POST['filtrarDocumento']);
 
                 //llamando al insert de modelo proveedor
                 $create_proveeedor = $this->PROVEEDORES->createProveedores($proveedor);
@@ -111,8 +109,6 @@ class ControlProveedores
                 $proveedor->setcontacto($_POST['edit_contacto']);
                 $proveedor->setemail($_POST['edit_email']);
                 $proveedor->settelefono($_POST['edit_telefono']);
-                $proveedor->setid_producto($_POST['edit_producto']);
-                $proveedor->setid_documento($_POST['edit_documento']);
 
                 //llamando al insert de modelo proveedor
                 $update_proveeedor = $this->PROVEEDORES->updateProveedores($proveedor);

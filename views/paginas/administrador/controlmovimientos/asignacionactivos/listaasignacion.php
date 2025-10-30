@@ -122,8 +122,8 @@
                         <textarea id="edit_observacion" name="edit_observacion" rows="3" class="form-control"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                        <button type="submit" name="updateInfoButtonAsignacionActivo" id="updateInfoButtonAsignacionActivo" class="btn btn-primary">Actualizar</button>
+                        <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
+                        <button type="submit" name="updateInfoButtonAsignacionActivo" id="updateInfoButtonAsignacionActivo" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
                     </div>
                 </div>
             </form>

@@ -8,10 +8,10 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link active ms-0" href="CreacionCategorias">Crear Categorias</a>
-        <a class="nav-link active ms-0" href="CreacionFabricantes">Crear Fabricantes</a>
-        <a class="nav-link active ms-0" href="CreacionModelos">Crear Modelos</a>
-        <a class="nav-link active ms-0" href="CreacionAreas">Crear Areas</a>
-        <a class="nav-link active ms-0" href="CreacionCentroCostos">Crear Centro de Costo</a>
+        <a class="nav-link" href="CreacionFabricantes">Crear Fabricantes</a>
+        <a class="nav-link" href="CreacionModelos">Crear Modelos</a>
+        <a class="nav-link" href="CreacionAreas">Crear Areas</a>
+        <a class="nav-link" href="CreacionCentroCostos">Crear Centro de Costo</a>
     </nav>
 
     <script>
@@ -67,8 +67,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="saveInfoButtonCategoria" id="saveInfoButtonCategoria" class="btn btn-success">Guardar</button>
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
+                    <button type="submit" name="saveInfoButtonCategoria" id="saveInfoButtonCategoria" class="btn btn-success"><i class="fas fa-save"></i>Guardar</button>
                 </div>
             </form>
         </div>
@@ -89,8 +89,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
-                    <button type="submit" name="updateInfoButtonCategoria" id="updateInfoButtonCategoria" class="btn btn-primary">Actualizar</button>
+                    <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
+                    <button type="submit" name="updateInfoButtonCategoria" id="updateInfoButtonCategoria" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
                 </div>
             </form>
         </div>

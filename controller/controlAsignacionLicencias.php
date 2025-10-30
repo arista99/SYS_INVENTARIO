@@ -1,12 +1,12 @@
 <?php
 //MODEL
-include_once('model/modelAsignacionAccesorio.php');
+include_once('model/modelLicencias.php');
 include_once('model/modelHelpers.php');
 
 //DATA
-include_once('data/asignacion_accesorio.php');
+include_once('data/asignacion_licencia.php');
 
-class ControlAsignacionAccesorios
+class ControlAsignacionLicencias
 {
     //VARIABLE MODELO
 
@@ -19,7 +19,7 @@ class ControlAsignacionAccesorios
         $this->HELPERS = new ModeloHelpers();
     }
 
-    public function ControlAsignacionAccesorio()
+    public function ControlAsignacionLicencia()
     {
         // Iniciar sesión
         session_start();
@@ -31,16 +31,15 @@ class ControlAsignacionAccesorios
             exit;
         }
 
-        $lista_usuarios = $this->HELPERS->ListarUsuarioAsignaciones();
-        $lista_accesorios = $this->HELPERS->ListarAccesoriosDetalle();
-        $lista_tipo_entrega = $this->HELPERS->ListarTipoEntregas();
+        $lista_desklap = $this->HELPERS->ListarDeskLapDetalle();
+        $lista_licencia = $this->HELPERS->ListarLicencias();
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
-        include_once('views/paginas/administrador/controlmovimientos/asignacionaccesorios/asignacion.php');
+        include_once('views/paginas/administrador/controlmovimientos/asignacionlicencias/asignacion.php');
     }
 
-    public function ListaGenerealAsignacionAccesorio()
+    public function ListaGenerealAsignacionLicencia()
     {
         // Iniciar sesión
         session_start();
@@ -52,22 +51,21 @@ class ControlAsignacionAccesorios
             exit;
         }
 
-        $lista_usuarios = $this->HELPERS->ListarUsuario();
-        $lista_accesorios = $this->HELPERS->ListarAccesoriosDetalle();
-        $lista_tipo_entrega = $this->HELPERS->ListarTipoEntregas();
+        $lista_desklap = $this->HELPERS->ListarDeskLapDetalle();
+        $lista_licencia = $this->HELPERS->ListarLicencias();
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
-        include_once('views/paginas/administrador/controlmovimientos/asignacionaccesorios/listaasignacion.php');
+        include_once('views/paginas/administrador/controlmovimientos/asignacionlicencias/listaasignacion.php');
     }
 
-    public function findAsignacionAccesorio()
+    public function findAsignacionLicencia()
     {
         // Obtener valores desde la solicitud AJAX
         $asignacion = $_POST['asignacion'] ?? '';
 
         // Llama al modelo
-        $resultados = $this->ASIGNACION->findAsignacionAccesorio($asignacion);
+        $resultados = $this->ASIGNACION->findAsignacionLicencia($asignacion);
 
         // var_dump($resultados);
         //Enviar respuesta al frontend
@@ -75,20 +73,19 @@ class ControlAsignacionAccesorios
         echo json_encode(['data' => $resultados]);
     }
 
-    public function registrarAsignacionAccesorio()
+    public function registrarAsignacionActivo()
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $asignacionaccesorio = new AsignacionAccesorio();
-                $asignacionaccesorio->setid_usuario($_POST['id_usuario']);
-                $asignacionaccesorio->setid_accesorio($_POST['id_accesorio']);
-                $asignacionaccesorio->setobservacion($_POST['observacion']);
-                $asignacionaccesorio->setid_entrega($_POST['tipo_entrega']);
+                $asignacionlicencia = new AsignacionLicencia();
+                $asignacionlicencia->setid_desk_lap($_POST['id_usuario']);
+                $asignacionlicencia->setid_licencia($_POST['id_celular']);
+                $asignacionlicencia->setfecha_asignacion($_POST['id_desklap']);
 
                 //llamando al insert de asignacion 
-                $create_accesorio = $this->ASIGNACION->createAsignacionAccesorio($asignacionaccesorio);
+                $create_asignacion = $this->ASIGNACION->createAsignacionLicencia($asignacionlicencia);
                 // Responder con JSON para que AJAX pueda manejar la respuesta
-                if ($create_accesorio) {
+                if ($create_asignacion) {
                     echo json_encode(['success' => true, 'message' => 'Asignacion registrada correctamento']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Error al registrar Asignacion']);
@@ -102,12 +99,5 @@ class ControlAsignacionAccesorios
             echo json_encode(['success' => false, 'message' => $th->getMessage()]);
             // echo $th->getMessage();
         }
-    }
-
-    public function listarEntregas()
-    {
-        $entregas = $this->HELPERS->ListarTipoEntregas();
-
-        echo json_encode($entregas);
     }
 }

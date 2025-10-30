@@ -30,6 +30,8 @@ class ControlDocumentos
             exit;
         }
 
+        $lista_adjuntos = $this->HELPERS->ListarTipoAdjuntos();
+
         $usuario =  $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
 
         include_once('views/paginas/administrador/controlgestion/documentos/creacion.php');
@@ -40,11 +42,12 @@ class ControlDocumentos
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $documento = new Documento();
-                $documento->setdocumento($_POST['documento']);
-                $documento->setid_adjunto($_POST['filtrarAdjunto']);
+                $documento->settitulo($_POST['documento']);
+                $documento->setid_tipo_adjunto($_POST['filtrarAdjunto']);
                 $documento->setfecha_inicio($_POST['fecha_inicio']);
                 $documento->setfecha_termino($_POST['fecha_termino']);
-                $documento->setid_usuario_create($_POST['idusuario']);
+                $documento->setid_producto($_POST['producto']);
+                $documento->setid_proveedor($_POST['proveedor']);
 
                 if (isset($_FILES['formFileAdjunto']) && $_FILES['formFileAdjunto']['error'] === UPLOAD_ERR_OK) {
                     $nombreOriginal = $_FILES['formFileAdjunto']['name'];
@@ -90,7 +93,7 @@ class ControlDocumentos
         }
     }
 
-    public function Documentos()
+    public function ListaGeneralDocumentos()
     {
         // Iniciar sesión
         session_start();

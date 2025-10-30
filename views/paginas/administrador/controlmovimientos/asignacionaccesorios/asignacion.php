@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="ControlAsignacionAccesorio">Crear Asignación de Accesorio</a>
-        <a class="nav-link active ms-0" href="ListaGenerealAsignacionAccesorio">Lista de Asignacion de Accesorio</a>
+        <a class="nav-link active ms-0" href="ControlAsignacionAccesorio">Crear Asignación de Accesorio</a>
+        <a class="nav-link" href="ListaGenerealAsignacionAccesorio">Lista de Asignacion de Accesorio</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -69,7 +69,7 @@
 
                         <button class="btn btn-primary" id="saveInfoButtonAsignacionAccesorio" name="saveInfoButtonAsignacionAccesorio" type="button">
                             <i class="fas fa-save"></i> Guardar Asignación
-                                </button>
+                        </button>
                     </form>
 
                 </div>

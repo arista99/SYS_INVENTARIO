@@ -9,11 +9,12 @@ $(document).ready(function () {
       },
     },
     columns: [
-      { data: "documento" },
+      { data: "titulo" },
       { data: "adjunto" },
-      { data: "fecha_registro" },
-      { data: "fecha_ini" },
-      { data: "fecha_fin" },
+      { data: "fecha_inicio" },
+      { data: "fecha_termino" },
+      { data: "producto" },
+      { data: "proveedor" },
       {
         data: "id",
         render: function (data, type, row) {
@@ -41,6 +42,10 @@ $(document).ready(function () {
         searchable: false,
       },
     ],
+    responsive: true,
+    language: {
+      url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+    },
   });
   // <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
   // Botón Buscar
