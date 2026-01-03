@@ -1,6 +1,6 @@
 <?php
 //MODEL
-include_once('model/modelLicencias.php');
+include_once('model/modelAsignacionLicencia.php');
 include_once('model/modelHelpers.php');
 
 //DATA
@@ -15,7 +15,7 @@ class ControlAsignacionLicencias
 
     public function __construct()
     {
-        $this->ASIGNACION = new ModeloAsignacionAccesorio();
+        $this->ASIGNACION = new ModeloAsignacionLicencia();
         $this->HELPERS = new ModeloHelpers();
     }
 
@@ -31,7 +31,7 @@ class ControlAsignacionLicencias
             exit;
         }
 
-        $lista_desklap = $this->HELPERS->ListarDeskLapDetalle();
+        $lista_desklap = $this->HELPERS->ListarDeskLapLic();
         $lista_licencia = $this->HELPERS->ListarLicencias();
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
@@ -39,7 +39,7 @@ class ControlAsignacionLicencias
         include_once('views/paginas/administrador/controlmovimientos/asignacionlicencias/asignacion.php');
     }
 
-    public function ListaGenerealAsignacionLicencia()
+    public function ListaGeneralAsignacionLicencia()
     {
         // Iniciar sesión
         session_start();
@@ -51,7 +51,7 @@ class ControlAsignacionLicencias
             exit;
         }
 
-        $lista_desklap = $this->HELPERS->ListarDeskLapDetalle();
+        $lista_desklap = $this->HELPERS->ListarDeskLapLic();
         $lista_licencia = $this->HELPERS->ListarLicencias();
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
@@ -73,14 +73,14 @@ class ControlAsignacionLicencias
         echo json_encode(['data' => $resultados]);
     }
 
-    public function registrarAsignacionActivo()
+    public function registrarAsignacionLicencia()
     {
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $asignacionlicencia = new AsignacionLicencia();
-                $asignacionlicencia->setid_desk_lap($_POST['id_usuario']);
-                $asignacionlicencia->setid_licencia($_POST['id_celular']);
-                $asignacionlicencia->setfecha_asignacion($_POST['id_desklap']);
+                $asignacionlicencia->setid_desk_lap($_POST['id_desklap']);
+                $asignacionlicencia->setid_licencia($_POST['id_licencia']);
+                $asignacionlicencia->setfecha_asignacion(date('Y-m-d'));
 
                 //llamando al insert de asignacion 
                 $create_asignacion = $this->ASIGNACION->createAsignacionLicencia($asignacionlicencia);

@@ -119,9 +119,12 @@ class ModeloDeskLap
                         tco.condicion,
                         te.estado,
                         tc.categoria,
+                        tdl.id_fabricante,
                         tf.fabricante,
+                        tdl.id_modelo,
                         tm.modelo,
-                        CONCAT(td.id, ' ' ,td.titulo) AS documento
+                        tdl.id_documento,
+                        td.titulo
                         FROM tbl_desk_lap AS tdl
                         LEFT JOIN tbl_proveedores AS tp ON tp.id = tdl.id_proveedor
                         LEFT JOIN tbl_centro_costo AS tcc ON tcc.id = tdl.id_centro_costo
@@ -184,5 +187,23 @@ class ModeloDeskLap
             echo $th->getMessage();
         }
     }
+    /*********************************************************************************************************/
+
+    /*******************************************ELIMINAR DESKLAP********************************************/
+    public function deleteDeskLap($iddesklap)
+    {
+        try {
+            $sql = "DELETE FROM tbl_desk_lap WHERE id = ?";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
+                array(
+                    $iddesklap
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+
     /*********************************************************************************************************/
 }

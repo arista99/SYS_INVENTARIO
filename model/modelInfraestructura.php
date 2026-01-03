@@ -45,36 +45,39 @@ class ModeloInfraestructura
     public function findInfraestructura($infraestructura)
     {
         try {
-            $sql = "SELECT
-                    imp.ip,
-                    imp.ns,
-                    DATE_FORMAT(imp.fecha_compra, '%Y-%m-%d') AS fecha_compra,
-                    DATE_FORMAT(imp.fecha_instalacion, '%Y-%m-%d') AS fecha_instalacion,
-                    DATE_FORMAT(imp.fecha_retiro, '%Y-%m-%d') AS fecha_retiro,
-                    cat.categoria,
-                    fab.fabricante,
-                    mo.modelo,
-                    are.`area`,
-                    sed.sede,
-                    est.estado,
-                    con.condicion,
-                    pro.proveedor,
-                    doc.titulo
-                    FROM tbl_impresoras AS imp
-                    INNER JOIN tbl_categorias AS cat ON cat.id=imp.id_categoria
-                    INNER JOIN tbl_fabricantes AS fab ON fab.id=imp.id_fabricante
-                    INNER JOIN tbl_modelos AS mo ON mo.id=imp.id_modelo
-                    LEFT JOIN tbl_areas AS are ON are.id=imp.id_area
-                    LEFT JOIN tbl_sedes AS sed ON sed.id=imp.id_sede
-                    INNER JOIN tbl_estados AS est ON est.id=imp.id_estado
-                    INNER JOIN tbl_condiciones AS con ON con.id=imp.id_condicion
-                    INNER JOIN tbl_proveedores AS pro ON pro.id=imp.id_proveedor
-                    LEFT JOIN tbl_documentos AS doc ON doc.id=imp.id_documento";
+            $sql = "SELECT 
+                    ti.id,
+                    ti.ip,
+                    ti.ns,
+                    ti.dns,
+                    ti.enlace,
+                    ti.mac,
+                    ti.fecha_compra,
+                    ta.`area`,
+                    ts.sede,
+                    tc.categoria,
+                    tf.fabricante,
+                    tm.modelo,
+                    tco.condicion,
+                    te.estado,
+                    tp.proveedor,
+                    ti.id_documento,
+                    td.titulo
+                    FROM tbl_infraestructura AS ti
+                    LEFT JOIN tbl_areas AS ta ON ta.id=ti.id_area
+                    LEFT JOIN tbl_sedes AS ts ON ts.id=ti.id_sede
+                    INNER JOIN tbl_categorias AS tc ON tc.id=ti.id_categoria
+                    INNER JOIN tbl_fabricantes AS tf ON tf.id=ti.id_fabricante
+                    INNER JOIN tbl_modelos AS tm ON tm.id=ti.id_modelo
+                    INNER JOIN tbl_condiciones AS tco ON tco.id=ti.id_condicion
+                    INNER JOIN tbl_estados AS te ON te.id=ti.id_estado
+                    INNER JOIN tbl_proveedores AS tp ON tp.id=ti.id_proveedor
+                    LEFT JOIN tbl_documentos AS td ON td.id=ti.id_documento";
 
-            if (!empty($impresora)) {
-                $sql .= " WHERE LOWER(mo.modelo) LIKE LOWER(?)";
+            if (!empty($infraestructura)) {
+                $sql .= " WHERE LOWER(ti.mac) LIKE LOWER(?)";
                 $stm = $this->MYSQL->ConectarBD()->prepare($sql);
-                $stm->execute(['%' . $impresora . '%']);
+                $stm->execute(['%' . $infraestructura . '%']);
             } else {
                 $stm = $this->MYSQL->ConectarBD()->prepare($sql);
                 $stm->execute();

@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="CreacionLicencias">Crear Licencia</a>
         <a class="nav-link" href="ListaGeneralLicencias">Lista de Licencias</a>
+        <a class="nav-link active ms-0" href="CreacionLicencias">Crear Licencia</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -32,11 +32,15 @@
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="cantidad">Ingrese Cantidad</label>
                                 <input class="form-control" id="cantidad" name="cantidad" type="text" placeholder="Ingresar Cantidad">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="disponible">Ingrese Disponible</label>
+                                <input class="form-control" id="disponible" name="disponible" type="text" placeholder="Ingresar Disponible">
+                            </div>
+                            <div class="col-md-4">
                                 <label class="small mb-1" for="tipo">Tipo</label>
                                 <input class="form-control" id="tipo" name="tipo" type="text" placeholder="Ingresa Tipo">
                             </div>
@@ -85,7 +89,7 @@
                                         <option selected disabled>Seleccionar Fabricante</option>
                                     </select>
                                 </div>
-                            </div>
+                        </div>
                         <button class="btn btn-primary" id="btn-registrar-licencia" name="btn-registrar-licencia" type="button"><i class="fas fa-save"></i> Crear licencia</button>
                     </form>
                 </div>
@@ -163,6 +167,7 @@
 <script src="public/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <script src="public/js/ajaxEventosLicencia.js"></script>
+<script src="public/js/ajaxCascada.js"></script>
 
 </body>
 

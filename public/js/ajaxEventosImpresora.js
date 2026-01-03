@@ -16,26 +16,11 @@ window.addEventListener("DOMContentLoaded", () => {
         { data: "estado" },
         {
           data: "id",
+          className: "text-center",
           render: function (data, type, row) {
             if (id_perfil == 1) {
               return `
-                              <button class="btn btn-sm btn-warning btnEditar"
-                              data-ip="${row.ip}"
-                              data-ns="${row.ns}"
-                              data-fecha_compra="${row.fecha_compra}"
-                              data-fecha_instalacion="${row.fecha_instalacion}"
-                              data-fecha_retiro="${row.fecha_retiro}"
-                              data-categoria="${row.categoria}"
-                              data-fabricante="${row.fabricante}"
-                              data-modelo="${row.modelo}"
-                              data-area="${row.area}"
-                              data-sede="${row.sede}"
-                              data-estado="${row.estado}"
-                              data-condicion="${row.condicion}"
-                              data-proveedor="${row.proveedor}"
-                              data-documento="${row.documento}">
-                              ✏️
-                              </button>
+                       
                               <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
                           `;
             } else {
@@ -127,5 +112,34 @@ window.addEventListener("DOMContentLoaded", () => {
     
     //   $("#modalEditarAccesorio").modal("show"); // Bootstrap 4/5
     // });
+
+       // Acciones de eliminar
+   $("#tablaDatosImpresora").on("click", ".btnEliminar", function () {
+    const id = $(this).data("id");
+
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.post("eliminarImpresora", { id }, function () {
+          Swal.fire("¡Eliminado!", "La impresora ha sido eliminado correctamente.", "success");
+          tabla.ajax.reload();
+        }).fail(function () {
+          Swal.fire(
+            "Error",
+            "Hubo un problema al eliminar el fabricante.",
+            "error"
+          );
+        });
+      }
+    });
+  });
 });
   

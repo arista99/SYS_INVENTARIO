@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
+        <a class="nav-link active ms-0" href="ListaGeneralAsignacionActivo">Lista de Asignacion de Activo</a>
         <a class="nav-link" href="ControlAsignacionActivo">Crear Asignación de Activo</a>
-        <a class="nav-link active ms-0" href="ListaGenerealAsignacionActivo">Lista de Asignacion de Activo</a>
     </nav>
 
     <script>
@@ -254,7 +254,9 @@
     </div>
 
 
-    <!-- Footer -->
+</div>
+
+<!-- Footer -->
 </div>
 <!-- End of Main Content -->
 

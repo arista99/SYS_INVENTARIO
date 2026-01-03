@@ -47,11 +47,11 @@ class ModeloCuentas
     public function createUsuarios(Usuario $usuario)
     {
         try {
-            $sql = "INSERT INTO tbl_usuarios(usuario,usuario_red,contrasena,id_centro_costo,email,cargo,id_sede,id_perfil,id_area) values(?,?,?,?,?,?,?,?,?) ";
+            $sql = "INSERT INTO tbl_usuarios(nombre,usuario_red,contrasena,email,id_sede,id_perfil,id_area) values(?,?,?,?,?,?,?) ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(
-                    $usuario->getusuario(),
+                    $usuario->getnombre(),
                     $usuario->getusuario_red(),
                     $usuario->getcontrasena(),
                     $usuario->getemail(),
@@ -74,7 +74,7 @@ class ModeloCuentas
             $sql = "UPDATE tbl_usuarios SET usuario = ? , usuario_red = ? , id_centro_costo = ? , email = ?, id_sede = ?, id_perfil = ?, id_area = ? WHERE id = ?";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
                 array(
-                    $usuario->getusuario(),
+                    $usuario->getnombre(),
                     $usuario->getusuario_red(),
                     $usuario->getemail(),
                     $usuario->getid_sede(),

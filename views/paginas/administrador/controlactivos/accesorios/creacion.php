@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="CreacionAccesorio">Crear Accesorio</a>
         <a class="nav-link" href="ListaGeneralAccesorio">Lista de Accesorio</a>
+        <a class="nav-link active ms-0" href="CreacionAccesorio">Crear Accesorio</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -98,6 +98,7 @@
 
 
 </div>
+
 
 <!-- Footer -->
 </div>

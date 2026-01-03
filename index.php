@@ -18,7 +18,9 @@ include_once('controller/controlImpresoras.php');
 include_once('controller/controlInfraestructura.php');
 include_once('controller/controlAsignacionActivos.php');
 include_once('controller/controlAsignacionAccesorios.php');
+include_once('controller/controlAsignacionLicencias.php');
 include_once('controller/controlHistorialMovimientos.php');
+include_once('controller/controlMantenimientos.php');
 
 //PARA LOS CARACTERES EXTRAÑOS
 header('Content-Type: text/html; charset=utf-8');
@@ -46,7 +48,9 @@ $controlImpresoras = new ControlImpresoras();
 $controlInfraestructura = new ControlInfraestructura();
 $controlAsignacionActivos = new ControlAsignacionActivos();
 $controlAsignacionAccesorios = new ControlAsignacionAccesorios();
+$controlAsignacionLicencias = new ControlAsignacionLicencias();
 $controlHistorialMovimientos = new ControlHistorialMovimientos();
+$controlMantenimientos = new ControlMantenimientos();
 
 //LLAMADA DE LOS METODOS
 if (!isset($_REQUEST['ruta'])) {
@@ -91,8 +95,12 @@ if (!isset($_REQUEST['ruta'])) {
         call_user_func(array($controlAsignacionActivos, $peticion));
     }elseif (method_exists($controlAsignacionAccesorios, $peticion)) {
         call_user_func(array($controlAsignacionAccesorios, $peticion));
+    }elseif (method_exists($controlAsignacionLicencias, $peticion)) {
+        call_user_func(array($controlAsignacionLicencias, $peticion));
     }elseif (method_exists($controlHistorialMovimientos, $peticion)) {
         call_user_func(array($controlHistorialMovimientos, $peticion));
+    }elseif (method_exists($controlMantenimientos, $peticion)) {
+        call_user_func(array($controlMantenimientos, $peticion));
     }else{
         $controlIndex->Index();
     }

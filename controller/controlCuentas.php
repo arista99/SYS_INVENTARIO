@@ -44,7 +44,7 @@ class ControlCuentas
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $usuario = new Usuario();
-                $usuario->setusuario($_POST['usuario']);
+                $usuario->setnombre($_POST['usuario']);
                 $usuario->setusuario_red($_POST['usuario_red']);
                 $hash = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
                 $usuario->setcontrasena($hash);
@@ -53,6 +53,8 @@ class ControlCuentas
                 $usuario->setid_sede($_POST['sede']);
                 $usuario->setid_perfil($_POST['perfil']);
 
+                // var_dump($usuario);
+                // exit();
                 //llmando al inser de modelo solicitud
                 $create_usuario = $this->CUENTAS->createUsuarios($usuario);
 
@@ -112,7 +114,7 @@ class ControlCuentas
 
                 $usuario = new Usuario();
                 $usuario->setid($_POST['id']);
-                $usuario->setusuario($_POST['edit_usuario']);
+                $usuario->setnombre($_POST['edit_usuario']);
                 $usuario->setusuario_red($_POST['edit_usu_red']);
                 $usuario->setemail($_POST['edit_email']);
                 $usuario->setid_sede($_POST['edit_sede']);
@@ -157,6 +159,14 @@ class ControlCuentas
             http_response_code(500);
             echo json_encode(['error' => 'No se pudo eliminar']);
         }
+    }
+
+    public function alertaPersonalContratos()
+    {
+        $personalFinContrato = $this->HELPERS->fechaAlertaContrato();
+
+        // var_dump($personalFinContrato);
+        echo json_encode($personalFinContrato);
     }
 
     public function listaSede()

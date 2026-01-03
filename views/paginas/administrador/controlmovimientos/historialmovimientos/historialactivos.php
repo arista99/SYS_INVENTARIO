@@ -9,7 +9,7 @@
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
         <a class="nav-link active ms-0" href="HistorialActivos">Lista de Historial de Activos</a>
-        <a class="nav-link" href="HistorialAccesorios">Lista de Historial de Accesorios</a>
+        <!-- <a class="nav-link" href="HistorialAccesorios">Lista de Historial de Accesorios</a> -->
     </nav>
 
     <script>

@@ -10,25 +10,35 @@ $(document).ready(function () {
     },
     columns: [
       { data: "software" },
-      { data: "nro_version" },
-      { data: "cantidad" },
+      { data: "version" },
+      { data: "cantidad_total" },
+      { data: "cantidad_disponible" },
       { data: "tipo" },
       { data: "proveedor" },
       { data: "fecha_inicio_licencia" },
       { data: "fecha_fin_licencia" },
       {
         data: "id",
+        className: "text-center",
         render: function (data, type, row) {
           if (id_perfil == 1) {
             return `
-                                <button class="btn btn-sm btn-warning btnEditar"
+                                <button class="btn btn-sm btn-warning btnEditar mx-auto d-block"
                                 data-id="${row.id}"
                                 data-software="${row.software}"
                                 data-version="${row.version}"
-                                data-cantidad="${row.cantidad}"
+                                data-cantidad_total="${row.cantidad_total}"
+                                data-cantidad_disponible="${row.cantidad_disponible}"
                                 data-tipo="${row.tipo}"
+                                data-fecha_inicio_licencia="${row.fecha_inicio_licencia}"
+                                data-fecha_fin_licencia="${row.fecha_fin_licencia}"
                                 data-proveedor="${row.proveedor}"
-                                data-documento="${row.documento}">
+                                data-id_documento="${row.id_documento}"
+                                data-titulo="${row.titulo}"
+                                data-id_categoria="${row.id_categoria}"
+                                data-categoria="${row.categoria}"
+                                data-id_fabricante="${row.id_fabricante}"
+                                data-fabricante="${row.fabricante}">
                                 ✏️
                                 </button>
                             `;
@@ -40,7 +50,7 @@ $(document).ready(function () {
     ],
     columnDefs: [
       {
-        targets: 7,
+        targets: 8,
         visible: id_perfil == 1, // solo mostrar si rol es == 1 (Administrador)
         searchable: false,
       },
@@ -61,9 +71,14 @@ $(document).ready(function () {
       software: $("#software").val(),
       version: $("#version").val(),
       cantidad: $("#cantidad").val(),
+      disponible: $("#disponible").val(),
       tipo: $("#tipo").val(),
+      fecha_inicio_licencia: $("#fecha_inicio_licencia").val(),
+      fecha_fin_licencia: $("#fecha_fin_licencia").val(),
       proveedor: $("#proveedor").val(),
       documento: $("#documento").val(),
+      categoria: $("#categoria").val(),
+      fabricante: $("#fabricante").val(),
     };
 
     // console.log(formData);
@@ -107,12 +122,17 @@ $(document).ready(function () {
     $("#id").val(btn.data("id"));
     $("#edit_software").val(btn.data("software"));
     $("#edit_version").val(btn.data("version"));
-    $("#edit_cantidad").val(btn.data("cantidad"));
+    $("#edit_cantidad").val(btn.data("cantidad_total"));
+    $("#edit_disponible").val(btn.data("cantidad_disponible"));
     $("#edit_tipo").val(btn.data("tipo"));
+    $("#edit_fecha_inicio_licencia").val(btn.data("fecha_inicio_licencia"));
+    $("#edit_fecha_fin_licencia").val(btn.data("fecha_fin_licencia"));
 
     // Llenar selects con valor seleccionado correctamente usando los IDs
     cargarProveedor(btn.data("proveedor"));
-    cargarDocumento(btn.data("documento"));
+    cargarDocumento(btn.data("id_documento"),btn.data("titulo"));
+    cargarCategoria(btn.data("id_categoria"),btn.data("categoria"));
+    cargarFabricante(btn.data("fabricante"));
 
     $("#modalEditarLicencia").modal("show"); // Bootstrap 4/5
   });
@@ -120,6 +140,22 @@ $(document).ready(function () {
   //Actualizar Documento
   $("#formEditarLicencia").on("submit", function (e) {
     e.preventDefault();
+
+    // Obtener los datos del formulario
+      var formData = {
+        ip: $("#ip").val(),
+        software: $("#software").val(),
+        version: $("#version").val(),
+        cantidad: $("#cantidad").val(),
+        disponible: $("#disponible").val(),
+        tipo: $("#tipo").val(),
+        fecha_inicio_licencia: $("#fecha_inicio_licencia").val(),
+        fecha_fin_licencia: $("#fecha_fin_licencia").val(),
+        proveedor: $("#proveedor").val(),
+        documento: $("#documento").val(),
+        categoria: $("#categoria").val(),
+        fabricante: $("#fabricante").val(),
+      };
 
     // console.log(formData);
     $.ajax({

@@ -37,7 +37,7 @@ $(document).ready(function () {
       },
     },
     columns: [
-      { data: "accesorio" },
+      { data: "id_accesorio" },
       { data: "usuario_anterior" },
       { data: "usuario_nuevo" },
       { data: "entrega" },

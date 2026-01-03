@@ -41,7 +41,7 @@ class ControlAsignacionActivos
         include_once('views/paginas/administrador/controlmovimientos/asignacionactivos/asignacion.php');
     }
 
-    public function ListaGenerealAsignacionActivo()
+    public function ListaGeneralAsignacionActivo()
     {
         // Iniciar sesión
         session_start();
@@ -82,8 +82,8 @@ class ControlAsignacionActivos
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $asignacionactivo = new AsignacionActivo();
                 $asignacionactivo->setid_usuario($_POST['id_usuario']);
-                $asignacionactivo->setid_celular($_POST['id_celular']);
-                $asignacionactivo->setid_desk_lap($_POST['id_desklap']);
+                $asignacionactivo->setid_celular(!empty($_POST['id_celular'])? $_POST['id_celular'] : null);
+                $asignacionactivo->setid_desk_lap(!empty($_POST['id_desklap'])? $_POST['id_desklap'] : null);
                 $asignacionactivo->setobservacion($_POST['observacion']);
                 $asignacionactivo->setid_entrega($_POST['tipo_entrega']);
 

@@ -12,6 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
         { data: "modelo" },
         {
           data: "id",
+          className: "text-center",
           render: function (data, type, row) {
             if (id_perfil == 1) {
               return `

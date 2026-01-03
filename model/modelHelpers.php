@@ -106,7 +106,7 @@ class ModeloHelpers
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
 
-            return $stm->fetch(PDO::FETCH_OBJ);
+            return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $th) {
             echo $th->getMessage();
         }
@@ -224,10 +224,28 @@ class ModeloHelpers
 
     /*====================================FABRICANTES - EDITAR=======================================*/
     /*FABRICANTES - EDITAR*/
-    public function ListarFabricantesEdit()
+    public function  
+    ListarFabricantesEdit()
     {
         try {
             $sql = "SELECT * FROM tbl_fabricantes";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+        /*====================================FABRICANTES - EDITAR - LICENCI=======================================*/
+    /*FABRICANTES - EDITAR*/
+    public function ListarFabricantesEditLicencia()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_fabricantes WHERE id_categoria =7";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
@@ -248,6 +266,23 @@ class ModeloHelpers
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute([$id_fabricante]);
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+    /*====================================MANTENIMIENTOS=======================================*/
+    /*MODELOS*/
+    public function ListarMantenimiento()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_tipos_mantenimiento";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
 
             return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $th) {
@@ -341,6 +376,23 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
+        /*==============================TIPO DE MANTENIMIENTO=========================================*/
+    /*TIPO DE PRODUCTOS*/
+    public function ListarTipoMantenimiento()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_tipos_mantenimiento";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
     /*==============================ACCESORIO=========================================*/
     /*ACCESORIO*/
     public function ListarAccesoriosDetalle()
@@ -363,6 +415,40 @@ class ModeloHelpers
                     INNER JOIN tbl_estados AS est ON est.id=acc.id_estado
                     INNER JOIN tbl_proveedores AS pro ON pro.id=acc.id_proveedor
                     LEFT JOIN tbl_documentos AS doc ON doc.id=acc.id_documento";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+    /*==============================ACCESORIO=========================================*/
+    /*ACCESORIO*/
+    public function ListarAccesoriosDetalleAsignacion()
+    {
+        try {
+            $sql = "SELECT
+                    acc.id,
+                    acc.nombre,
+                    acc.ns,
+                    cat.categoria,
+                    fab.fabricante,
+                    con.condicion,
+                    est.estado,
+                    pro.proveedor,
+                    doc.titulo
+                    FROM tbl_accesorios AS acc
+                    INNER JOIN tbl_categorias AS cat ON cat.id=acc.id_categoria
+                    INNER JOIN tbl_fabricantes AS fab ON fab.id=acc.id_fabricante
+                    INNER JOIN tbl_condiciones AS con ON con.id=acc.id_condicion
+                    INNER JOIN tbl_estados AS est ON est.id=acc.id_estado
+                    INNER JOIN tbl_proveedores AS pro ON pro.id=acc.id_proveedor
+                    LEFT JOIN tbl_documentos AS doc ON doc.id=acc.id_documento
+                    WHERE acc.id NOT IN (SELECT id_accesorio FROM tbl_asignacion_accesorios)";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
@@ -413,7 +499,24 @@ class ModeloHelpers
     public function ListarEstados()
     {
         try {
-            $sql = "SELECT * FROM tbl_estados";
+            $sql = "SELECT * FROM tbl_estados WHERE id IN (1,2)";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+      /*==============================ESTADO MANTENIMIENTO=========================================*/
+    /*ESTADO*/
+    public function ListarEstadosMantenimiento()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_estados WHERE id IN (3,4,5)";
 
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
@@ -563,6 +666,70 @@ class ModeloHelpers
     }
     /*=======================================================================================*/
 
+     /*==============================DESKLAP - LICENCIAS=========================================*/
+    /*DESKLAP*/
+    public function ListarDeskLapLic()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_desk_lap WHERE id NOT IN (SELECT id_desk_lap FROM tbl_licencias_asignada)";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
+    /*==============================DESKLAP CON DETALLE MANTENIMIENTO=========================================*/
+    /*DESKLAP CON DETALLE*/
+    public function ListarDeskLapDetalleMantenimiento()
+    {
+        try {
+            $sql = "SELECT
+                        tdl.id,
+                        tdl.nom_equipo,
+                        tdl.ns,
+                        tdl.procesador,
+                        tdl.disco,
+                        tdl.memoria,
+                        tdl.ip,
+                        tdl.numero_part,
+                        DATE_FORMAT(tdl.fecha_compra, '%Y-%m-%d') AS fecha_compra,
+                        DATE_FORMAT(tdl.fecha_inicio_garantia, '%Y-%m-%d') AS fecha_inicio_garantia,
+                        DATE_FORMAT(tdl.fecha_fin_garantia, '%Y-%m-%d') AS fecha_fin_garantia,
+                        DATE_FORMAT(tdl.fecha_baja, '%Y-%m-%d') AS fecha_baja,
+                        tp.proveedor,
+                        tcc.centro_costo,
+                        tco.condicion,
+                        te.estado,
+                        tc.categoria,
+                        tf.fabricante,
+                        tm.modelo,
+                        CONCAT(td.id, ' ' ,td.titulo) AS documento
+                        FROM tbl_desk_lap AS tdl
+                        LEFT JOIN tbl_proveedores AS tp ON tp.id = tdl.id_proveedor
+                        LEFT JOIN tbl_centro_costo AS tcc ON tcc.id = tdl.id_centro_costo
+                        LEFT JOIN tbl_condiciones AS tco ON tco.id = tdl.id_condicion
+                        LEFT JOIN tbl_estados AS te ON te.id = tdl.id_estado
+                        LEFT JOIN tbl_categorias AS tc ON tc.id = tdl.id_categoria
+                        LEFT JOIN tbl_fabricantes AS tf ON tf.id = tdl.id_fabricante
+                        LEFT JOIN tbl_modelos AS tm ON tm.id = tdl.id_modelo
+                        LEFT JOIN tbl_documentos AS td ON td.id = tdl.id_documento
+                        WHERE tdl.id_estado NOT IN (3, 4)";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+    /*=======================================================================================*/
+
     /*==============================DESKLAP CON DETALLE=========================================*/
     /*DESKLAP CON DETALLE*/
     public function ListarDeskLapDetalle()
@@ -660,4 +827,24 @@ class ModeloHelpers
         }
     }
     /*=======================================================================================*/
+
+    /*========================ALERTA FIN DE CONTRATO=========================================*/
+    public function fechaAlertaContrato()
+    {
+        try {
+            $sql = "SELECT 
+                    id, 
+                    nombre,
+                    DATE_FORMAT(fecha_fin_contrato, '%Y-%m-%d') AS fecha_fin_contrato
+                    FROM tbl_usuarios 
+                    ORDER BY fecha_fin_contrato DESC";
+
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
+            $stm->execute();
+
+            return $stm->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
 }

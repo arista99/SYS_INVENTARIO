@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="CreacionCelulares">Crear Celular</a>
         <a class="nav-link" href="ListaGeneralCelular">Lista de Celulares</a>
+        <a class="nav-link active ms-0" href="CreacionCelulares">Crear Celular</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;

@@ -106,6 +106,27 @@ class ControlImpresoras
         }
     }
 
+    public function eliminarImpresora()
+    {
+        // Obtener valores desde la solicitud AJAX
+        if (!isset($_POST['id'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'ID no proporcionado']);
+            exit;
+        }
+
+        $idimpresora = $_POST['id'] ?? '';
+
+        $resultado = $this->IMPRESORAS->deleteImpresora($idimpresora);
+
+        if ($resultado) {
+            echo json_encode(['success' => true]);
+        } else {
+            http_response_code(500);
+            echo json_encode(['error' => 'No se pudo eliminar']);
+        }
+    }
+
     public function listaCategoriaImpresora()
     {
         $categoria = $this->HELPERS->ListarCategoriaImpresora();

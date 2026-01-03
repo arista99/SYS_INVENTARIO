@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionAccesorio">Crear Accesorio</a>
         <a class="nav-link active ms-0" href="ListaGeneralAccesorio">Lista de Accesorio</a>
+        <a class="nav-link" href="CreacionAccesorio">Crear Accesorio</a>
     </nav>
 
     <script>
@@ -54,7 +54,6 @@
 
     <div class="modal fade" id="modalEditarAccesorio" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <!-- id="formEditarUsuario" - action="actualizarActivoPC" method="POST"  -->
             <form autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title">Editar Accesorio</h5>
@@ -75,13 +74,11 @@
                             <div class="col-md-6">
                                 <label class="small mb-1" for="edit_categoria">Categorias</label>
                                 <select class="form-control text-uppercase" id="edit_categoria" name="categoria">
-                                    <option selected disabled>Seleccionar Categoria</option>
                                  </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1" for="edit_fabricante">Fabricantes</label>
                                 <select class="form-control text-uppercase" id="edit_fabricante" name="fabricante">
-                                    <option selected disabled>Seleccionar Fabricante</option>
                                 </select>
                             </div>
                         </div>
@@ -89,19 +86,11 @@
                             <div class="col-md-6">
                                 <label class="small mb-1" for="edit_condicion">Condiciones</label>
                                 <select class="form-control text-uppercase" id="edit_condicion" name="condicion">
-                                    <option selected disabled>Seleccionar Condicion</option>
-                                    <?php foreach ($lista_condiciones as $condiciones) : ?>
-                                        <option value="<?php echo $condiciones->id ?>"><?php echo $condiciones->condicion ?></option>
-                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1" for="edit_estado">Estados</label>
                                 <select class="form-control text-uppercase" id="edit_estado" name="estado">
-                                    <option selected disabled>Seleccionar Estado</option>
-                                    <?php foreach ($lista_estados as $estados) : ?>
-                                        <option value="<?php echo $estados->id ?>"><?php echo $estados->estado ?></option>
-                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -109,10 +98,6 @@
                             <div class="col-md-6">
                                 <label class="small mb-1" for="edit_proveedor">Proveedores</label>
                                 <select class="form-control text-uppercase" id="edit_proveedor" name="proveedor">
-                                    <option selected disabled>Seleccionar Proveedor</option>
-                                    <?php foreach ($lista_proveedores as $proveedores) : ?>
-                                        <option value="<?php echo $proveedores->id ?>"><?php echo $proveedores->proveedor ?></option>
-                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -134,7 +119,7 @@
     <!-- Footer -->
 </div>
 <!-- End of Main Content -->
-
+</div>
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">

@@ -6,15 +6,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
             // Obtener los datos del formulario
             var formData = {
-                usuarioRed: $("#usuarioRed").val(),
+                usuario_red: $("#usuario_red").val(),
                 usuario: $("#usuario").val(),
-                filtrarSede: $("#filtrarSede").val(),
+                sede: $("#sede").val(),
                 contrasena: $("#contrasena").val(),
-                filtrarCentro: $("#filtrarCentro").val(),
-                filtrarArea: $("#filtrarArea").val(),
+                area: $("#area").val(),
                 correo: $("#correo").val(),
-                filtrarPerfil: $("#filtrarPerfil").val(),
-                cargo: $("#cargo").val(),
+                perfil: $("#perfil").val(),
             };
 
             //console.log(formData);

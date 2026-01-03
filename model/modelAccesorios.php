@@ -49,12 +49,18 @@ class ModeloAccesorios
                     acc.id,
                     acc.nombre,
                     acc.ns,
+                    acc.id_categoria,
                     cat.categoria,
+                    acc.id_fabricante,
                     fab.fabricante,
+                    acc.id_condicion,
                     con.condicion,
+                    acc.id_estado,
                     est.estado,
+                    acc.id_proveedor,
                     pro.proveedor,
-                    CONCAT(doc.id, ' - ',doc.titulo) AS documento
+                    acc.id_documento,
+                    doc.titulo
                     FROM tbl_accesorios AS acc
                     INNER JOIN tbl_categorias AS cat ON cat.id=acc.id_categoria
                     INNER JOIN tbl_fabricantes AS fab ON fab.id=acc.id_fabricante
@@ -104,5 +110,23 @@ class ModeloAccesorios
             echo $th->getMessage();
         }
     }
+    /*********************************************************************************************************/
+
+      /*******************************************ELIMINAR ACCESORIO********************************************/
+    public function deleteAccesorio($idaccesorio)
+    {
+        try {
+            $sql = "DELETE FROM tbl_accesorios WHERE id = ?";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
+                array(
+                    $idaccesorio
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+
     /*********************************************************************************************************/
 }

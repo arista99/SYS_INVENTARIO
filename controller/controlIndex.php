@@ -47,7 +47,7 @@ class ControlIndex
                 } elseif ($_SESSION["id_perfil"] == 2) {
                     $redirectUrl = "DashboardControl"; // Supervisor
                 } elseif ($_SESSION["id_perfil"] == 3) {
-                    $redirectUrl = "DashboardControl"; // Soporte Técnico
+                    $redirectUrl = "ControlMantenimientos"; // Soporte Técnico
                 }
 
                 // Devolver respuesta JSON para AJAX

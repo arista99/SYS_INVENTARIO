@@ -6,22 +6,30 @@ class Licencia
     private $id;
     private $software;
     private $version;
-    private $cantidad;
+    private $cantidad_total;
+    private $cantidad_disponible;
     private $tipo;
     private $id_proveedor;
     private $id_documento;
-    private $fecha_compra;
+    private $id_categoria;
+    private $id_fabricante;
+    private $fecha_inicio_licencia;
+    private $fecha_fin_licencia;
 
     public function __construct()
     {
         $this->id = "";
         $this->software = "";
         $this->version = "";
-        $this->cantidad = "";
+        $this->cantidad_total = "";
+        $this->cantidad_disponible = "";
         $this->tipo = "";
         $this->id_proveedor = "";
         $this->id_documento = "";
-        $this->fecha_compra = "";
+        $this->id_categoria = "";
+        $this->id_fabricante = "";
+        $this->fecha_inicio_licencia = "";
+        $this->fecha_fin_licencia = "";
     }
 
     function setid($id)
@@ -54,14 +62,24 @@ class Licencia
         return $this->version;
     }
 
-    function setcantidad($cantidad)
+    function setcantidad_total($cantidad_total)
     {
-        $this->cantidad= $cantidad;
+        $this->cantidad_total= $cantidad_total;
     }
 
-    function getcantidad()
+    function getcantidad_total()
     {
-        return $this->cantidad;
+        return $this->cantidad_total;
+    }
+
+    function setcantidad_disponible($cantidad_disponible)
+    {
+        $this->cantidad_disponible= $cantidad_disponible;
+    }
+
+    function getcantidad_disponible()
+    {
+        return $this->cantidad_disponible;
     }
 
     function settipo($tipo)
@@ -94,13 +112,42 @@ class Licencia
         return $this->id_documento;
     }
 
-    function setfecha_compra($fecha_compra)
+    function setid_categoria($id_categoria)
     {
-        $this->fecha_compra= $fecha_compra;
+        $this->id_categoria= $id_categoria;
     }
 
-    function getfecha_compra()
+    function getid_categoria()
     {
-        return $this->fecha_compra;
+        return $this->id_categoria;
+    }
+    function setid_fabricante($id_fabricante)
+    {
+        $this->id_fabricante= $id_fabricante;
+    }
+
+    function getid_fabricante()
+    {
+        return $this->id_fabricante;
+    }
+
+    function setfecha_inicio_licencia($fecha_inicio_licencia)
+    {
+        $this->fecha_inicio_licencia= $fecha_inicio_licencia;
+    }
+
+    function getfecha_inicio_licencia()
+    {
+        return $this->fecha_inicio_licencia;
+    }
+
+    function setfecha_fin_licencia($fecha_fin_licencia)
+    {
+        $this->fecha_fin_licencia= $fecha_fin_licencia;
+    }
+
+    function getfecha_fin_licencia()
+    {
+        return $this->fecha_fin_licencia;
     }
 }

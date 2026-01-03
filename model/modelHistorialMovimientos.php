@@ -55,7 +55,7 @@ class ModeloHistorialMovimientos
      {
          try {
              $sql = "SELECT
-                    hac.accesorio,
+                    hac.id_accesorio,
                     usua.nombre AS usuario_anterior,
                     usun.nombre AS usuario_nuevo,
                     ent.entrega,

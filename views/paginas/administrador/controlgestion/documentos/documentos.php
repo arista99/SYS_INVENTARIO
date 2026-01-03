@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionDocumentos">Crear Documento</a>
         <a class="nav-link active ms-0" href="ListaGeneralDocumentos">Lista de Documentos</a>
+        <a class="nav-link" href="CreacionDocumentos">Crear Documento</a>
     </nav>
 
     <script>
@@ -92,7 +92,7 @@
             </form>
         </div>
     </div>
-
+</div>
     <!-- Footer -->
 </div>
 <!-- End of Main Content -->

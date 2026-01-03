@@ -16,6 +16,7 @@ $(document).ready(function () {
       { data: "telefono" },
       {
         data: "id",
+        className: "text-center",
         render: function (data, type, row) {
           if (id_perfil == 1) {
             return `

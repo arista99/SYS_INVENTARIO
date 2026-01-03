@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionImpresoras">Crear Impresora</a>
         <a class="nav-link active ms-0" href="ListaGeneralImpresora">Lista de Impresoras</a>
+        <a class="nav-link" href="CreacionImpresoras">Crear Impresora</a>
     </nav>
 
     <script>
@@ -171,7 +171,7 @@
     <!-- Footer -->
 </div>
 <!-- End of Main Content -->
-
+</div>
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">

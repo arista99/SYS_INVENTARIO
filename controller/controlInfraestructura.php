@@ -57,10 +57,10 @@ class ControlInfraestructura
         include_once('views/paginas/administrador/controlactivos/infraestructura/infraestructura.php');
     }
 
-    public function findCelular()
+    public function findInfraestructura()
     {
         // Obtener valores desde la solicitud AJAX
-        $infraestructura = $_POST['modelo'] ?? '';
+        $infraestructura = $_POST['infraestructura'] ?? '';
 
         // Llama al modelo
         $resultados = $this->INFRAESTRUCTURA->findInfraestructura($infraestructura);

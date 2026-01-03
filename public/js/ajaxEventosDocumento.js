@@ -17,6 +17,7 @@ $(document).ready(function () {
       { data: "proveedor" },
       {
         data: "id",
+        className: "text-center",
         render: function (data, type, row) {
           if (id_perfil == 2) {
             return `

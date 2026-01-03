@@ -16,6 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
       { data: "proveedor" },
       {
         data: "id",
+        className: "text-center",
         render: function (data, type, row) {
           if (id_perfil == 1) {
             return `
@@ -23,11 +24,15 @@ window.addEventListener("DOMContentLoaded", () => {
                               data-id="${row.id}"
                               data-nombre="${row.nombre}"
                               data-ns="${row.ns}"
+                              data-id_categoria="${row.id_categoria}"
                               data-categoria="${row.categoria}"
+                              data-id_fabricante="${row.id_fabricante}"
                               data-fabricante="${row.fabricante}"
                               data-condicion="${row.condicion}"
                               data-estado="${row.estado}"
-                              data-proveedor="${row.proveedor}">
+                              data-proveedor="${row.proveedor}"
+                              data-id_documento="${row.edit_documento}"
+                              data-titulo="${row.titulo}">
                               ✏️
                               </button>
                               <button class="btn btn-sm btn-danger btnEliminar" data-id="${row.id}">🗑️</button>
@@ -110,13 +115,97 @@ window.addEventListener("DOMContentLoaded", () => {
     $("#edit_serie").val(btn.data("ns"));
 
     // Guarda los valores en variables temporales
-    cargarCategoria(btn.data("categoria"));
-    cargarFabricante(btn.data("fabricante"));
+    cargarCategoria(btn.data("id_categoria"),btn.data("categoria"));
+    cargarFabricante(btn.data("id_fabricante"),btn.data("fabricante"));
     cargarCondicion(btn.data("condicion"));
     cargarEstado(btn.data("estado"));
     cargarProveedor(btn.data("proveedor"));
-    cargarDocumento(btn.data("documento"));
+    cargarDocumento(btn.data("id_documento"),btn.data("titulo"));
 
     $("#modalEditarAccesorio").modal("show"); // Bootstrap 4/5
+  });
+
+  //Actualizar ActivoPC
+  $("#modalEditarAccesorio").on("submit", function (e) {
+    e.preventDefault();
+
+   // Obtener los datos del formulario
+    var formData = {
+      id: $("#id").val(),
+      edit_nombre: $("#edit_nombre").val(),
+      edit_serie: $("#edit_serie").val(),
+      edit_categoria: $("#edit_categoria").val(),
+      edit_fabricante: $("#edit_fabricante").val(),
+      edit_condicion: $("#edit_condicion").val(),
+      edit_estado: $("#edit_estado").val(),
+      edit_proveedor: $("#edit_proveedor").val(),
+      edit_documento: $("#edit_documento").val(),
+    };
+
+    $.ajax({
+      url: "actualizarAccesorio",
+      type: "POST",
+      data: formData,
+      // data: $(this).serialize(),
+      dataType: "json",
+      success: function (response) {
+        if (response.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Actualizado correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          $("#modalEditarAccesorio").modal("hide");
+          $("#tablaDatosAccesorio").DataTable().ajax.reload(null, false);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: response.message || "Ocurrió un error al actualizar.",
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error AJAX:", error);
+        console.error("Respuesta:", xhr.responseText);
+
+        Swal.fire({
+          icon: "error",
+          title: "Error de servidor",
+          text: "No se pudo procesar la solicitud. Intenta más tarde.",
+        });
+      },
+    });
+  });
+
+    // Acciones de eliminar
+  $("#tablaDatosAccesorio").on("click", ".btnEliminar", function () {
+    const id = $(this).data("id");
+
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.post("eliminarAccesorio", { id }, function () {
+          Swal.fire("¡Eliminado!", "El accesorio ha sido eliminado correctamente.", "success");
+          tabla.ajax.reload();
+        }).fail(function () {
+          Swal.fire(
+            "Error",
+            "Hubo un problema al eliminar el accesorio.",
+            "error"
+          );
+        });
+      }
+    });
   });
 });

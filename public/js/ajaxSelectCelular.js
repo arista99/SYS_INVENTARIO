@@ -224,29 +224,30 @@ function cargarCategoria(selectedValue = null) {
   }
   
   function cargarDocumento(selectedValue = null) {
-    $.ajax({
-      url: "listaDocumentosEdit",
-      type: "GET",
-      dataType: "json",
-      success: function (data) {
-        let select = $("#edit_documento");
-        select.empty();
-  
-        // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-        if (!selectedValue) {
-          select.append(
-            `<option disabled selected>Seleccionar Documento</option>`
-          );
-        }else {
-          // Si hay un valor, muéstralo como la opción actual
-          select.append(
-            `<option selected>${selectedValue} - Opción actual</option>`
-          );
-        }
-      },
-      error: function (xhr, status, error) {
-        console.error("Error cargando centro de documento:", error);
-      },
-    });
-  }
+  $.ajax({
+    url: "listaDocumentosEdit",
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+      let select = $("#edit_documento");
+      select.empty();
+
+      // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
+      if (!selectedValue) {
+        select.append(
+          `<option disabled selected>Seleccionar Documento</option>`
+        );
+      }else {
+        // Si hay un valor, muéstralo como la opción actual
+        select.append(
+          `<option selected>${selectedValue} - Opción actual</option>`
+        );
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("Error cargando centro de documento:", error);
+    },
+  });
+}
+
   

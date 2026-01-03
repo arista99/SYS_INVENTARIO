@@ -52,6 +52,7 @@
             </div>
         </div>
     </div>
+    </div>
     <!-- Footer -->
 </div>
 <!-- End of Main Content -->

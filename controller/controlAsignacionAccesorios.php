@@ -32,7 +32,7 @@ class ControlAsignacionAccesorios
         }
 
         $lista_usuarios = $this->HELPERS->ListarUsuarioAsignaciones();
-        $lista_accesorios = $this->HELPERS->ListarAccesoriosDetalle();
+        $lista_accesorios = $this->HELPERS->ListarAccesoriosDetalleAsignacion();
         $lista_tipo_entrega = $this->HELPERS->ListarTipoEntregas();
 
         $usuario = $this->HELPERS->ListarUsuarioEncabezado($_SESSION['id']);
@@ -40,7 +40,7 @@ class ControlAsignacionAccesorios
         include_once('views/paginas/administrador/controlmovimientos/asignacionaccesorios/asignacion.php');
     }
 
-    public function ListaGenerealAsignacionAccesorio()
+    public function ListaGeneralAsignacionAccesorio()
     {
         // Iniciar sesión
         session_start();

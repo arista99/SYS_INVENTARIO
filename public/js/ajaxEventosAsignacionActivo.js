@@ -17,10 +17,11 @@ $(document).ready(function () {
       { data: "tipo_entrega" },
       {
         data: "id",
+        className: "text-center",
         render: function (data, type, row) {
           if (id_perfil == 1) {
             return `
-                    <button class="btn btn-sm btn-warning btnEditar mx-auto d-block"
+                    <button class="btn btn-sm btn-warning btnEditar"
                     data-id="${row.id}"
                     data-id_usuario="${row.id_usuario}"
                     data-nombre_usuario="${row.nombre_usuario}"

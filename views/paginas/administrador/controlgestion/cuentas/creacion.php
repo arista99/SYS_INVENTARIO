@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
+        <a class="nav-link" href="ListaGenerealUsuarios">Lista de Usuarios</a>
     <a class="nav-link active ms-0" href="CreacionUsuarios">Crear Usuario</a>
-    <a class="nav-link" href="ListaGenerealUsuarios">Lista de Usuarios</a>
     </nav>
     <hr class="mt-0 mb-4">
     <div class="row">
@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1" for="usuario_red">Usuario de red</label>
-                                <input class="form-control" id="usuarioRed" name="usuario_red" type="text" placeholder="Ingresar usuario de red">
+                                <input class="form-control" id="usuario_red" name="usuario_red" type="text" placeholder="Ingresar usuario de red">
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">
@@ -36,6 +36,16 @@
                             <div class="col-md-6">
                                 <label class="small mb-1" for="correo">Email</label>
                                 <input class="form-control" id="correo" name="correo" type="email" placeholder="Ingresa corrreo">
+                            </div>
+                        </div>
+                         <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="fecha_inicio_contrato">Fecha Inicio Contrato</label>
+                                <input class="form-control" id="fecha_inicio_contrato" name="fecha_inicio_contrato" type="date">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="fecha_fin_contrato">Fecha Fin Contrato</label>
+                                <input class="form-control" id="fecha_fin_contrato" name="fecha_fin_contrato" type="date">
                             </div>
                         </div>
                         <div class="row gx-3 mb-3">

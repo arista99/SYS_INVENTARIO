@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="CreacionDeskLap">Crear Desktop & Laptop</a>
         <a class="nav-link" href="ListaGeneralDeskLap">Lista de Desktop & Laptop</a>
+        <a class="nav-link active ms-0" href="CreacionDeskLap">Crear Desktop & Laptop</a>
     </nav>
     <script>
         const id_perfil = <?= json_encode($_SESSION['id_perfil']) ?>;
@@ -63,7 +63,7 @@
                         <!-- INICIO parte oculta -->
                         <div id="campos-extra" style="display: none;">
                             <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
+                                <div class="col-md-6">
                                     <label class="small mb-1" for="proveedor">Proveedores</label>
                                     <select class="form-control text-uppercase" id="proveedor" name="proveedor">
                                         <option selected disabled>Seleccionar Proveedor</option>
@@ -149,12 +149,12 @@
                             <i class="fas fa-save"></i> Crear DeskLap
                             </button>
 
-                            <div>
+                            <!-- <div>
                                 <label for="inputImportExcel" class="btn btn-success mb-0">
                                     <i class="fas fa-file-excel"></i> Importar Inventario Excel
                                 </label>
                                 <input class="form-control d-none" type="file" id="inputImportExcel" name="inputImportExcel" accept=".xls,.xlsx">
-                            </div>
+                            </div> -->
                         </div>
                     </form>
                 </div>

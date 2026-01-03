@@ -124,10 +124,10 @@ class ControlDeskLap
                 $desklap->setprocesador(!empty($_POST['edit_procesador']) ? $_POST['edit_procesador'] : null);
                 $desklap->setdisco(!empty($_POST['edit_disco']) ? $_POST['edit_disco'] : null);
                 $desklap->setmemoria(!empty($_POST['edit_memoria']) ? $_POST['edit_memoria'] : null);
-                $desklap->setmemoria(!empty($_POST['edit_fecha_compra']) ? $_POST['edit_fecha_compra'] : null);
-                $desklap->setmemoria(!empty($_POST['edit_fecha_baja']) ? $_POST['edit_fecha_baja'] : null);
-                $desklap->setmemoria(!empty($_POST['edit_fecha_inicio']) ? $_POST['edit_fecha_inicio'] : null);
-                $desklap->setmemoria(!empty($_POST['edit_fecha_fin']) ? $_POST['edit_fecha_fin'] : null);
+                $desklap->setfecha_compra(!empty($_POST['edit_fecha_compra']) ? $_POST['edit_fecha_compra'] : null);
+                $desklap->setfecha_baja(!empty($_POST['edit_fecha_baja']) ? $_POST['edit_fecha_baja'] : null);
+                $desklap->setfecha_inicio_garantia(!empty($_POST['edit_fecha_inicio']) ? $_POST['edit_fecha_inicio'] : null);
+                $desklap->setfecha_fin_garantia(!empty($_POST['edit_fecha_fin']) ? $_POST['edit_fecha_fin'] : null);
                 $desklap->setip(!empty($_POST['edit_ip']) ? $_POST['edit_ip'] : null);
                 $desklap->setid_proveedor(!empty($_POST['edit_proveedor']) ? $_POST['edit_proveedor'] : null);
                 $desklap->setid_documento(!empty($_POST['edit_documento']) ? $_POST['edit_documento'] : null);
@@ -139,6 +139,8 @@ class ControlDeskLap
                 $desklap->setid_estado(!empty($_POST['edit_estado']) ? $_POST['edit_estado'] : null);
               
                 //llamando al insert de modelo activopc
+                // var_dump($desklap);
+                // exit();
                 $update_desklap = $this->DESKLAP->updateDeskLap($desklap);
 
                 // Responder con JSON para que AJAX pueda manejar la respuesta
@@ -175,6 +177,27 @@ class ControlDeskLap
             echo "Importación exitosa";
         } else {
             echo "No se recibió el archivo.";
+        }
+    }
+
+    public function eliminarDeskLap()
+    {
+        // Obtener valores desde la solicitud AJAX
+        if (!isset($_POST['id'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'ID no proporcionado']);
+            exit;
+        }
+
+        $iddesklap = $_POST['id'] ?? '';
+
+        $resultado = $this->DESKLAP->deleteDeskLap($iddesklap);
+
+        if ($resultado) {
+            echo json_encode(['success' => true]);
+        } else {
+            http_response_code(500);
+            echo json_encode(['error' => 'No se pudo eliminar']);
         }
     }
 

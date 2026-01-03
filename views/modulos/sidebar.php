@@ -3,6 +3,9 @@
 $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); 
 $current_raw = basename($uri_path); 
 
+// --- obtener usuario global
+// $usuario = $_SESSION["id_perfil"];
+
 // --- whitelist de páginas válidas ---
 $allowed_pages = [
     'DashboardControl',
@@ -15,14 +18,14 @@ $allowed_pages = [
     'CreacionUsuarios','ListaGenerealUsuarios',
     'CreacionProveedores','ListaGeneralProveedores',
     'CreacionDocumentos','ListaGeneralDocumentos',
-    'ControlAsignacionActivo','ListaGenerealAsignacionActivo',
-    'ControlAsignacionAccesorio','ListaGenerealAsignacionAccesorio',
-    'ControlAsignacionLicencia','ListaGenerealAsignacionLicencia',
+    'ControlAsignacionActivo','ListaGeneralAsignacionActivo',
+    'ControlAsignacionAccesorio','ListaGeneralAsignacionAccesorio',
+    'ControlAsignacionLicencia','ListaGeneralAsignacionLicencia',
     'HistorialActivos','HistorialAccesorios',
     'CreacionCategorias','CreacionFabricantes','CreacionModelos',
     'CreacionAreas','CreacionCentroCostos',
     'ControlReportesGeneral',
-    'ControlMantenimientos'
+    'ControlMantenimientos','ListaGeneralMantenimiento'
 ];
 
 // Determinar página actual
@@ -53,10 +56,11 @@ $gestion_pages = [
 ];
 
 $movimientos_pages = [
-    'ControlAsignacionActivo','ListaGenerealAsignacionActivo',
-    'ControlAsignacionAccesorio','ListaGenerealAsignacionAccesorio',
+    'ControlAsignacionActivo','ListaGeneralAsignacionActivo',
+    'ControlAsignacionAccesorio','ListaGeneralAsignacionAccesorio',
+    'ControlAsignacionLicencia','ListaGeneralAsignacionLicencia',
     'HistorialActivos','HistorialAccesorios',
-    'ControlMantenimientos'
+    'ControlMantenimientos','ListaGeneralMantenimiento'
 ];
 
 $parametros_pages = [
@@ -106,12 +110,12 @@ $collapse_parametros  = getCollapseState($parametros_pages, $current);
              class="collapse <?= $collapse_activos['show'] ?>"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item <?= in_array($current, ['CreacionDeskLap','ListaGeneralDeskLap'], true) ? 'active' : '' ?>" href="CreacionDeskLap">Laptops & Desktop</a>
-                <a class="collapse-item <?= in_array($current, ['CreacionAccesorio','ListaGeneralAccesorio'], true) ? 'active' : '' ?>" href="CreacionAccesorio">Accesorios</a>
-                <a class="collapse-item <?= in_array($current, ['CreacionLicencias','ListaGeneralLicencias'], true) ? 'active' : '' ?>" href="CreacionLicencias">Licencias</a>
-                <a class="collapse-item <?= in_array($current, ['CreacionCelulares','ListaGeneralCelular'], true) ? 'active' : '' ?>" href="CreacionCelulares">Celulares</a>
-                <a class="collapse-item <?= in_array($current, ['CreacionImpresoras','ListaGeneralImpresora'], true) ? 'active' : '' ?>" href="CreacionImpresoras">Impresoras</a>
-                <a class="collapse-item <?= in_array($current, ['CreacionInfraestructura','ListaGeneralInfraestructura'], true) ? 'active' : '' ?>" href="CreacionInfraestructura">Infraestructura</a>
+                <a class="collapse-item <?= in_array($current, ['CreacionDeskLap','ListaGeneralDeskLap'], true) ? 'active' : '' ?>" href="ListaGeneralDeskLap">Laptops & Desktop</a>
+                <a class="collapse-item <?= in_array($current, ['CreacionAccesorio','ListaGeneralAccesorio'], true) ? 'active' : '' ?>" href="ListaGeneralAccesorio">Accesorios</a>
+                <a class="collapse-item <?= in_array($current, ['CreacionLicencias','ListaGeneralLicencias'], true) ? 'active' : '' ?>" href="ListaGeneralLicencias">Licencias</a>
+                <a class="collapse-item <?= in_array($current, ['CreacionCelulares','ListaGeneralCelular'], true) ? 'active' : '' ?>" href="ListaGeneralCelular">Celulares</a>
+                <a class="collapse-item <?= in_array($current, ['CreacionImpresoras','ListaGeneralImpresora'], true) ? 'active' : '' ?>" href="ListaGeneralImpresora">Impresoras</a>
+                <!-- <a class="collapse-item <?= in_array($current, ['CreacionInfraestructura','ListaGeneralInfraestructura'], true) ? 'active' : '' ?>" href="ListaGeneralInfraestructura">Infraestructura</a> -->
             </div>
         </div>
     </li>
@@ -129,9 +133,9 @@ $collapse_parametros  = getCollapseState($parametros_pages, $current);
              class="collapse <?= $collapse_gestion['show'] ?>"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item <?= in_array($current, ['CreacionUsuarios','ListaGenerealUsuarios'], true) ? 'active' : '' ?>" href="CreacionUsuarios">Usuarios</a>
-                <a class="collapse-item <?= in_array($current, ['CreacionProveedores','ListaGeneralProveedores'], true) ? 'active' : '' ?>" href="CreacionProveedores">Proveedores</a>
-                <a class="collapse-item <?= in_array($current, ['CreacionDocumentos','ListaGeneralDocumentos'], true) ? 'active' : '' ?>" href="CreacionDocumentos">Documentos</a>
+                <a class="collapse-item <?= in_array($current, ['CreacionUsuarios','ListaGenerealUsuarios'], true) ? 'active' : '' ?>" href="ListaGenerealUsuarios">Usuarios</a>
+                <a class="collapse-item <?= in_array($current, ['CreacionProveedores','ListaGeneralProveedores'], true) ? 'active' : '' ?>" href="ListaGeneralProveedores">Proveedores</a>
+                <a class="collapse-item <?= in_array($current, ['CreacionDocumentos','ListaGeneralDocumentos'], true) ? 'active' : '' ?>" href="ListaGeneralDocumentos">Documentos</a>
             </div>
         </div>
     </li>
@@ -149,11 +153,11 @@ $collapse_parametros  = getCollapseState($parametros_pages, $current);
              class="collapse <?= $collapse_movimientos['show'] ?>"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item <?= in_array($current, ['ControlAsignacionActivo','ListaGenerealAsignacionActivo'], true) ? 'active' : '' ?>" href="ControlAsignacionActivo">Asignación Activo</a>
-                <a class="collapse-item <?= in_array($current, ['ControlAsignacionAccesorio','ListaGenerealAsignacionAccesorio'], true) ? 'active' : '' ?>" href="ControlAsignacionAccesorio">Asignación Accesorio</a>
-                <a class="collapse-item <?= in_array($current, ['ControlAsignacionLicencia','ListaGenerealAsignacionLicencia'], true) ? 'active' : '' ?>" href="ControlAsignacionLicencia">Asignación Licencia</a>
+                <a class="collapse-item <?= in_array($current, ['ControlAsignacionActivo','ListaGeneralAsignacionActivo'], true) ? 'active' : '' ?>" href="ListaGeneralAsignacionActivo">Asignación Activo</a>
+                <a class="collapse-item <?= in_array($current, ['ControlAsignacionAccesorio','ListaGeneralAsignacionAccesorio'], true) ? 'active' : '' ?>" href="ListaGeneralAsignacionAccesorio">Asignación Accesorio</a>
+                <a class="collapse-item <?= in_array($current, ['ControlAsignacionLicencia','ListaGeneralAsignacionLicencia'], true) ? 'active' : '' ?>" href="ListaGeneralAsignacionLicencia">Asignación Licencia</a>
                 <a class="collapse-item <?= in_array($current, ['HistorialActivos','HistorialAccesorios'], true) ? 'active' : '' ?>" href="HistorialActivos">Historial</a>
-                <a class="collapse-item <?= in_array($current, ['ControlMantenimientos'], true) ? 'active' : '' ?>" href="ControlMantenimientos">Mantenimientos</a>
+                <a class="collapse-item <?= in_array($current, ['ControlMantenimientos','ListaGeneralMantenimiento'], true) ? 'active' : '' ?>" href="ListaGeneralMantenimiento">Mantenimientos</a>
             </div>
         </div>
     </li>

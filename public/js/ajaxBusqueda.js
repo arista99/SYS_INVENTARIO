@@ -33,3 +33,11 @@
         $('#info_accesorio').val($(this).data('info'));
         $('#modalAccesorios').modal('hide');
     });
+
+    
+    // Seleccionar licencias
+    $(document).on('click', '.seleccionar-licencia', function(){
+        $('#id_licencia').val($(this).data('id'));
+        $('#info_licencia').val($(this).data('info'));
+        $('#modalLicencias').modal('hide');
+    });

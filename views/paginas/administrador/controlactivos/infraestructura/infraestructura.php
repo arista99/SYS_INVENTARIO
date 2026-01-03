@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionInfraestructura">Crear Infraestructura</a>
         <a class="nav-link active ms-0" href="ListaGeneralInfraestructura">Lista de Infraestructura</a>
+        <a class="nav-link" href="CreacionInfraestructura">Crear Infraestructura</a>
     </nav>
 
     <script>
@@ -200,6 +200,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+
+<script src="public/js/ajaxEventosInfraestructura.js"></script>
 </body>
 
 </html>

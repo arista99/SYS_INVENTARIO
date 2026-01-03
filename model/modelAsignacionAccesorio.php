@@ -47,12 +47,12 @@ class ModeloAsignacionAccesorio
                     usu.nombre,
                     taa.id_accesorio,
                     CONCAT(acc.nombre , ' - ' , acc.ns) AS equipo,
-                    DATE_FORMAT(taa.fecha_asignacion, '%Y-%m-%d') AS fecha_asignacion,
+                    DATE_FORMAT(taa.fecha_movimiento, '%Y-%m-%d') AS fecha_movimiento,
                     taa.observacion,
                     taa.id_entrega,
                     ent.entrega
                     FROM tbl_asignacion_accesorios AS taa
-                    INNER JOIN tbl_usuarios AS usu ON usu.id = taa.id_usuario
+                    INNER JOIN tbl_usuarios AS usu ON usu.id =taa.id_usuario
                     INNER JOIN tbl_accesorios AS acc ON acc.id = taa.id_accesorio
                     INNER JOIN tbl_entregas AS ent ON ent.id = taa.id_entrega
                     WHERE ent.entrega <> '3'";

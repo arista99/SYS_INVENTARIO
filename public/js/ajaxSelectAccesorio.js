@@ -1,4 +1,4 @@
-function cargarCategoria(selectedValue = null) {
+function cargarCategoria(selectedId = null,selectedValue = null) {
   $.ajax({
     url: "listaCategoriaAccesorio",
     type: "GET",
@@ -15,7 +15,7 @@ function cargarCategoria(selectedValue = null) {
       } else {
         // Si hay un valor, muéstralo como la opción actual
         select.append(
-          `<option selected>${selectedValue} - Opción actual</option>`
+          `<option value="${selectedId}" selected>${selectedValue} - Opción actual</option>`
         );
       }
     },
@@ -25,7 +25,7 @@ function cargarCategoria(selectedValue = null) {
   });
 }
 
-function cargarFabricante(selectedValue = null) {
+function cargarFabricante(selectedId = null,selectedValue = null) {
   $.ajax({
     url: "listaFabricanteEdit",
     type: "GET",
@@ -41,7 +41,7 @@ function cargarFabricante(selectedValue = null) {
       } else {
         // Si hay un valor, muéstralo como la opción actual
         select.append(
-          `<option selected>${selectedValue} - Opción actual</option>`
+          `<option value="${selectedId}" selected>${selectedValue} - Opción actual</option>`
         );
       }
     },
@@ -154,7 +154,22 @@ function cargarProveedor(selectedValue = null) {
   });
 }
 
-function cargarDocumento(selectedValue = null) {
+function normalizeValue(v) {
+  if (v === null || v === undefined) return null;
+
+  // si viene como string "null", "undefined" o vacío
+  if (typeof v === "string") {
+    const s = v.trim().toLowerCase();
+    if (s === "" || s === "null" || s === "undefined") return null;
+  }
+  return v;
+}
+
+function cargarDocumento(selectedId =null,selectedValue = null) {
+  // Normalizar valores recibidos
+  selectedId = normalizeValue(selectedId);
+  selectedValue = normalizeValue(selectedValue);
+
   $.ajax({
     url: "listaDocumentosEdit",
     type: "GET",
@@ -164,14 +179,14 @@ function cargarDocumento(selectedValue = null) {
       select.empty();
 
       // Opcional: si no hay valor seleccionado, mostrar el mensaje por defecto
-      if (!selectedValue) {
+      if (selectedValue == null || selectedId == null) {
         select.append(
           `<option disabled selected>Seleccionar Documento</option>`
         );
       }else {
         // Si hay un valor, muéstralo como la opción actual
         select.append(
-          `<option selected>${selectedValue} - Opción actual</option>`
+          `<option value="${selectedId}" selected>${selectedValue} - Opción actual</option>`
         );
       }
     },
@@ -180,3 +195,4 @@ function cargarDocumento(selectedValue = null) {
     },
   });
 }
+

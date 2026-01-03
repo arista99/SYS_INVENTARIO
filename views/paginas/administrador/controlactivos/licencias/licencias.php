@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionLicencias">Crear Licencia</a>
         <a class="nav-link active ms-0" href="ListaGeneralLicencias">Lista de Licencias</a>
+        <a class="nav-link" href="CreacionLicencias">Crear Licencia</a>
     </nav>
 
     <script>
@@ -37,7 +37,8 @@
                             <tr>
                                 <th class="text-center">Nombre Software</th>
                                 <th class="text-center">Version</th>
-                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Cantidad Total</th>
+                                <th class="text-center">Cantidad Disponibles</th>
                                 <th class="text-center">Tipo</th>
                                 <th class="text-center">Proveevor</th>
                                 <th class="text-center">Inicio de Licencia</th>
@@ -57,7 +58,7 @@
     <!---Modal Actualizar---->
     <div class="modal fade" id="modalEditarLicencia" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <form id="formEditarLicencia" autocomplete="off" class="modal-content" enctype="multipart/form-data">
+            <form autocomplete="off" class="modal-content" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title">Editar Licencia</h5>
                 </div>
@@ -65,33 +66,59 @@
                     <input type="hidden" id="id" name="id">
                     <div class="row gx-3 mb-3">
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_software">Actualizar Nombre de Software</label>
-                            <input class="form-control" id="edit_software" name="edit_software" type="text">
+                            <label class="small mb-1" for="edit_software">Nombre de Software</label>
+                            <input class="form-control" id="edit_software" name="edit_software" type="text" placeholder="Ingresar Nombre de Software">
                         </div>
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_version">Actualizar Version</label>
-                            <input class="form-control" id="edit_version" name="edit_version">
+                            <label class="small mb-1" for="edit_version">Ingrese Version</label>
+                            <input class="form-control" id="edit_version" name="edit_version" type="text" placeholder="Ingresa Version">
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_cantidad">Ingrese Cantidad</label>
+                            <input class="form-control" id="edit_cantidad" name="edit_cantidad" type="text" placeholder="Ingresar Cantidad">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_disponible">Ingrese Disponible</label>
+                            <input class="form-control" id="edit_disponible" name="edit_disponible" type="text" placeholder="Ingresar Disponible" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="edit_tipo">Tipo</label>
+                            <input class="form-control" id="edit_tipo" name="edit_tipo" type="text" placeholder="Ingresa Tipo">
                         </div>
                     </div>
                     <div class="row gx-3 mb-3">
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_cantidad">Actualizar Cantidad</label>
-                            <input class="form-control" id="edit_cantidad" name="edit_cantidad" type="text">
+                            <label class="small mb-1" for="edit_fecha_inicio_licencia">Fecha Inicio Licencia</label>
+                            <input class="form-control" id="edit_fecha_inicio_licencia" name="edit_fecha_inicio_licencia" type="date">
                         </div>
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_tipo">Actualizar Tipo</label>
-                            <input class="form-control" id="edit_tipo" name="edit_tipo" type="text">
+                            <label class="small mb-1" for="edit_fecha_fin_licencia">Fecha Fin Licencia</label>
+                            <input class="form-control" id="edit_fecha_fin_licencia" name="edit_fecha_fin_licencia" type="date">
                         </div>
                     </div>
                     <div class="row gx-3 mb-3">
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_proveedor">Actualizar Proveedor</label>
+                            <label class="small mb-1" for="edit_proveedor">Proveedor</label>
                             <select class="form-control text-uppercase" id="edit_proveedor" name="edit_proveedor">
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="small mb-1" for="edit_documento">Actualizar Documento</label>
+                            <label class="small mb-1" for="edit_documento">Documento</label>
                             <select class="form-control text-uppercase" id="edit_documento" name="edit_documento">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="edit_categoria">Categorias</label>
+                            <select class="form-control text-uppercase" id="edit_categoria" name="edit_categoria">
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="edit_fabricante">Fabricantes</label>
+                            <select class="form-control text-uppercase" id="edit_fabricante" name="edit_fabricante">
                             </select>
                         </div>
                     </div>
@@ -107,7 +134,7 @@
     <!-- Footer -->
 </div>
 <!-- End of Main Content -->
-
+</div>
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -177,6 +204,7 @@
 
 <script src="public/js/ajaxEventosLicencia.js"></script>
 <script src="public/js/ajaxSelectLicencia.js"></script>
+<script src="public/js/ajaxEditCascada.js"></script>
 
 </body>
 

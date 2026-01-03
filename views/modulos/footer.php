@@ -65,6 +65,8 @@
 
     <!-- Page level custom scripts -->
     <script src="public/assets/js/demo/datatables-demo.js"></script>
+    
+    <script src="public/js/ajaxAlerta.js"></script>
 
 </body>
 

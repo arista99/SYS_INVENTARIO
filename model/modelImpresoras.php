@@ -89,4 +89,19 @@ class ModeloImpresoras
     }
 
     /******************************************************************************************************/
+
+      public function deleteImpresora($idimpresora)
+     {
+         try {
+             $sql = "DELETE FROM tbl_impresoras WHERE id = ?";
+             $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
+                 array(
+                     $idimpresora
+                 )
+             );
+             return $stm;
+         } catch (Exception $th) {
+             echo $th->getMessage();
+         }
+     }
 }

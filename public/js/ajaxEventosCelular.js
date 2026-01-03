@@ -16,6 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
         { data: "estado" },
         {
           data: "id",
+          className: "text-center",
           render: function (data, type, row) {
             if (id_perfil == 1) {
               return `
@@ -107,22 +108,24 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   
     // Evento click para llenar el modal de edición
-    // $("#tablaDatosAccesorio").on("click", ".btnEditar", function () {
-    //   let btn = $(this);
+    $("#tablaDatosCelular").on("click", ".btnEditar", function () {
+      let btn = $(this);
   
-    //   $("#id").val(btn.data("id"));
-    //   $("#edit_nombre").val(btn.data("nombre"));
-    //   $("#edit_serie").val(btn.data("ns"));
+      $("#id").val(btn.data("id"));
+      $("#edit_imei").val(btn.data("imei"));
+      $("#edit_numero").val(btn.data("numero"));
+      $("#edit_serie").val(btn.data("ns"));
 
-    //   // Guarda los valores en variables temporales
-    //   cargarCategoria(btn.data("categoria"));
-    //   cargarFabricante(btn.data("fabricante"));
-    //   cargarCondicion( btn.data("condicion"));
-    //   cargarEstado(btn.data("estado"));
-    //   cargarProveedor(btn.data("proveedor"));
-    //   cargarDocumento( btn.data("documento"));
+      // Guarda los valores en variables temporales
+      cargarCategoria(btn.data("categoria"));
+      cargarFabricante(btn.data("fabricante"));
+      cargarModelo(btn.data("modelo"));
+      cargarCondicion( btn.data("condicion"));
+      cargarEstado(btn.data("estado"));
+      cargarProveedor(btn.data("proveedor"));
+      cargarDocumento( btn.data("documento"));
     
-    //   $("#modalEditarAccesorio").modal("show"); // Bootstrap 4/5
-    // });
+      $("#modalEditarCelular").modal("show"); // Bootstrap 4/5
+    });
 });
   

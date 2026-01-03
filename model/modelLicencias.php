@@ -16,37 +16,36 @@ class ModeloLicencias
         }
     }
 
-    /*******************************************VER LISTA LICENCIAS********************************************/
-    public function readLicencia()
-    {
-        try {
-            $sql = "SELECT * FROM tbl_licencias";
-            $stm = $this->MYSQL->ConectarBD()->prepare($sql);
-            $stm->execute();
-            return $stm->fetchAll(PDO::FETCH_OBJ);
-        } catch (Exception $th) {
-            echo $th->getMessage();
-        }
-    }
-    /*********************************************************************************************************/
     /*******************************************Lista - Busqueda licencia*****************************************/
     public function findLicencia($software)
     {
         try {
-            $sql = "SELECT 
-						  tl.id,
-						  tl.software,
-						  tl.nro_version,
-						  tl.cantidad,
-						  tl.tipo,
-						  tp.proveedor,
-						  tl.fecha_inicio_licencia,
-						  tl.fecha_fin_licencia
-                    FROM tbl_licencias AS tl
-                    INNER JOIN tbl_proveedores AS tp ON tp.id=tl.id_proveedor";
+            $sql = "SELECT
+                    lic.software,
+                    lic.`version`,
+                    lic.cantidad_total,
+                    lic.cantidad_disponible,
+                    lic.tipo,
+                    DATE_FORMAT(lic.fecha_inicio_licencia, '%Y-%m-%d') AS fecha_inicio_licencia,
+                    DATE_FORMAT(lic.fecha_fin_licencia, '%Y-%m-%d') AS fecha_fin_licencia,
+                    pro.proveedor,
+                    lic.id_documento,
+                    doc.titulo,
+                    lic.id_categoria,
+                    cat.categoria,
+                    lic.id_fabricante,
+                    fab.fabricante,
+                    tmod.modelo
+                    FROM tbl_licencias AS lic
+                    INNER JOIN tbl_proveedores AS pro ON pro.id=lic.id_proveedor
+                    LEFT JOIN tbl_documentos AS doc ON doc.id=lic.id_documento
+                    INNER JOIN tbl_categorias AS cat ON cat.id=lic.id_categoria
+                    LEFT JOIN tbl_fabricantes AS fab ON fab.id=lic.id_fabricante
+                    LEFT JOIN tbl_modelos AS tmod ON tmod.id=lic.id_modelo
+                    ";
 
             if (!empty($software)) {
-                $sql .= " WHERE LOWER(tl.software) LIKE LOWER(?)";
+                $sql .= " WHERE LOWER(lic.software) LIKE LOWER(?)";
                 $stm = $this->MYSQL->ConectarBD()->prepare($sql);
                 $stm->execute(['%' . $software . '%']);
             } else {
@@ -66,18 +65,22 @@ class ModeloLicencias
     public function createLicencias(Licencia $licencia)
     {
         try {
-            $fecha = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO tbl_licencias(software,`version`,cantidad,tipo,id_proveedor,id_documento,fecha_compra) values (?,?,?,?,?,?,?) ";
+            // $fecha = date('Y-m-d H:i:s');
+            $sql = "INSERT INTO tbl_licencias(software,`version`,cantidad_total,cantidad_disponible,tipo,fecha_inicio_licencia,fecha_fin_licencia,id_proveedor,id_documento,id_categoria,id_fabricante) values (?,?,?,?,?,?,?,?,?,?,?) ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(
                     $licencia->getsoftware(),
                     $licencia->getversion(),
-                    $licencia->getcantidad(),
+                    $licencia->getcantidad_total(),
+                    $licencia->getcantidad_disponible(),
                     $licencia->gettipo(),
+                    $licencia->getfecha_inicio_licencia(),
+                    $licencia->getfecha_fin_licencia(),
                     $licencia->getid_proveedor(),
                     $licencia->getid_documento(),
-                    $fecha
+                    $licencia->getid_categoria(),
+                    $licencia->getid_fabricante()
                 )
             );
             return $stm;
@@ -91,13 +94,14 @@ class ModeloLicencias
     public function updateLicencias(Licencia $licencia)
     {
         try {
-            $sql = "UPDATE tbl_licencias SET software =?,`version` =?, cantidad =?,tipo =?,id_proveedor =?,id_documento =? WHERE id =? ";
+            $sql = "UPDATE tbl_licencias SET software =?,`version` =?, cantidad_total =?, cantidad_disponible =?,tipo =?,id_proveedor =?,id_documento =? WHERE id =? ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(
                 array(
                     $licencia->getsoftware(),
                     $licencia->getversion(),
-                    $licencia->getcantidad(),
+                    $licencia->getcantidad_total(),
+                    $licencia->getcantidad_disponible(),
                     $licencia->gettipo(),
                     $licencia->getid_proveedor(),
                     $licencia->getid_documento(),

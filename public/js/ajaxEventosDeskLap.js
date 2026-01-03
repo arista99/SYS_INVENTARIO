@@ -17,6 +17,7 @@ $(document).ready(function () {
       { data: "numero_part" },
       {
         data: "id",
+        className: "text-center",
         render: function (data, type, row) {
           if (id_perfil == 1) {
             return `
@@ -38,8 +39,11 @@ $(document).ready(function () {
                             data-condicion="${row.condicion}"
                             data-estado="${row.estado}"
                             data-categoria="${row.categoria}"
+                            data-id_fabricante="${row.id_fabricante}"
                             data-fabricante="${row.fabricante}"
+                            data-id_modelo="${row.id_modelo}"
                             data-modelo="${row.modelo}"
+                            data-id_documento="${row.id_documento}"
                             data-documento="${row.documento}"">
                             ✏️
                             </button>
@@ -147,13 +151,13 @@ $(document).ready(function () {
 
     // Guarda los valores en variables temporales
     cargarCategoria(btn.data("categoria"));
-    cargarFabricante(btn.data("fabricante"));
-    cargarModelo(btn.data("modelo"));
+    cargarFabricante(btn.data("id_fabricante"), btn.data("fabricante"));
+    cargarModelo(btn.data("id_modelo"), btn.data("modelo"));
     cargarCentro(btn.data("centro_costo"));
     cargarProveedor(btn.data("proveedor"));
     cargarCondicion( btn.data("condicion"));
     cargarEstado(btn.data("estado"));
-    cargarDocumento( btn.data("documento"));
+    cargarDocumento(btn.data("id_documento"), btn.data("documento"));
 
     // Mostrar el modal
     $("#modalEditarDeskLap").modal("show");
@@ -224,6 +228,35 @@ $(document).ready(function () {
           text: "No se pudo procesar la solicitud. Intenta más tarde.",
         });
       },
+    });
+  });
+
+    // Acciones de eliminar
+  $("#tablaDatosDeskLap").on("click", ".btnEliminar", function () {
+    const id = $(this).data("id");
+
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.post("eliminarDeskLap", { id }, function () {
+          Swal.fire("¡Eliminado!", "El activo ha sido eliminado correctamente.", "success");
+          tabla.ajax.reload();
+        }).fail(function () {
+          Swal.fire(
+            "Error",
+            "Hubo un problema al eliminar el activo.",
+            "error"
+          );
+        });
+      }
     });
   });
 });

@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionCelulares">Crear Celular</a>
         <a class="nav-link active ms-0" href="ListaGeneralCelular">Lista de Celular</a>
+        <a class="nav-link" href="CreacionCelulares">Crear Celular</a>
     </nav>
 
     <script>
@@ -62,103 +62,61 @@
                 <div class="modal-body">
                     <input type="hidden" id="id" name="id">
                     <div class="row gx-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_equipo">Actualizar nombre del equipo</label>
-                            <input class="form-control" id="edit_equipo" name="edit_equipo" type="text" placeholder="Actualizar Nombre de Equipo">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="edit_imei">Ingrese Numero de IMEI</label>
+                                <input class="form-control" id="edit_imei" name="edit_imei" type="text" placeholder="Ingresar numero">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="edit_numero">Ingrese N° de Celular</label>
+                                <input class="form-control" id="edit_numero" name="edit_numero" type="text" placeholder="Ingresar numero de celular">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="edit_serie">Ingrese Numero de Serie</label>
+                                <input class="form-control" id="edit_serie" name="edit_serie" type="text" placeholder="Ingresar numero de serie">
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_serie">Actualizar numero de serie del equipo</label>
-                            <input class="form-control" id="edit_serie" name="edit_serie" type="text" placeholder="Actualizar numero de Serie">
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="edit_categoria">Categorias</label>
+                                <select class="form-control text-uppercase" id="edit_categoria" name="edit_categoria">
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="edit_fabricante">Fabricantes</label>
+                                <select class="form-control text-uppercase" id="edit_fabricante" name="edit_fabricante">
+                            
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="edit_modelo">Modelos</label>
+                                <select class="form-control text-uppercase" id="edit_modelo" name="edit_modelo">
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_part">Actualizar Numero de Part</label>
-                            <input class="form-control" id="edit_part" name="edit_part" type="text" placeholder="Actualizar Numero de Part">
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="edit_condicion">Condiciones</label>
+                                <select class="form-control text-uppercase" id="edit_condicion" name="edit_condicion">
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="edit_estado">Estados</label>
+                                <select class="form-control text-uppercase" id="edit_estado" name="edit_estado">
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_procesador">Actualizar Procesador</label>
-                            <input class="form-control" id="edit_procesador" name="edit_procesador" type="text" placeholder="Actualizar Procesasdor">
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="edit_proveedor">Proveedores</label>
+                                <select class="form-control text-uppercase" id="edit_proveedor" name="edit_proveedor">
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="edit_documento">Documentos</label>
+                                <select class="form-control text-uppercase" id="edit_documento" name="edit_documento">
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_disco">Actualizar Disco</label>
-                            <input class="form-control" id="edit_disco" name="edit_disco" type="text" placeholder="Actualizar Disco">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_memoria">Actualizar Memoria</label>
-                            <input class="form-control" id="edit_memoria" name="edit_memoria" type="text" placeholder="Actualizar Memoria">
-                        </div>
-                    </div>
-
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-6">
-                                <label class="small mb-1" for="edit_fecha_compra">Actualizar Fecha Compra</label>
-                                <input class="form-control" id="edit_fecha_compra" name="edit_fecha_compra" type="date">
-                        </div>
-                        <div class="col-md-6">
-                                <label class="small mb-1" for="edit_fecha_baja">Actualizar Fecha Baja</label>
-                                <input class="form-control" id="edit_fecha_baja" name="edit_fecha_baja" type="date">
-                        </div>
-                        <div class="col-md-6">
-                                <label class="small mb-1" for="edit_fecha_inicio">Actualizar Fecha Inicio Garantia</label>
-                                <input class="form-control" id="edit_fecha_inicio" name="edit_fecha_inicio" type="date">
-                        </div>
-                        <div class="col-md-6">
-                                <label class="small mb-1" for="edit_fecha_fin">Actualizar Fecha Fin Garantia</label>
-                                <input class="form-control" id="edit_fecha_fin" name="edit_fecha_fin" type="date">
-                        </div>
-
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_ip">Actualizar IP</label>
-                            <input class="form-control" id="edit_ip" name="edit_ip" type="text" placeholder="Actualizar numero de IP">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_proveedor">Actualizar Proveedor</label>
-                            <select class="form-control text-uppercase" id="edit_proveedor" name="edit_proveedor">
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_documento">Actualizar Documento</label>
-                            <select class="form-control text-uppercase" id="edit_documento" name="edit_documento">
-                            </select>
-                        </div> 
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_categoria">Actualizar Categoria</label>
-                            <select class="form-control text-uppercase" id="edit_categoria" name="edit_categoria">
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_fabricante">Actualizar Fabricante</label>
-                            <select class="form-control text-uppercase" id="edit_fabricante" name="edit_fabricante">
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_modelo">Actualizar Modelo</label>
-                            <select class="form-control text-uppercase" id="edit_modelo" name="edit_modelo">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row gx-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_centro">Actualizar Centro Costo</label>
-                            <select class="form-control text-uppercase" id="edit_centro" name="edit_centro">
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_condicion">Actualizar Condición</label>
-                            <select class="form-control text-uppercase" id="edit_condicion" name="edit_condicion">
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="small mb-1" for="edit_estado">Actualizar Estado</label>
-                            <select class="form-control text-uppercase" id="edit_estado" name="edit_estado">
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-warning" data-dismiss="modal" aria-label="Cerrar"><i class="fas fa-window-close"></i> Cerrar</button>
@@ -171,7 +129,7 @@
     <!-- Footer -->
 </div>
 <!-- End of Main Content -->
-
+</div>
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -244,6 +202,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script src="public/js/ajaxEventosCelular.js"></script>
+<script src="public/js/ajaxSelectCelular.js"></script>
 <script src="public/js/ajaxCascada.js"></script>
 
 </body>

@@ -4,7 +4,7 @@ class Usuario
 {
 
     private $id;
-    private $usuario;
+    private $nombre;
     private $usuario_red;
     private $contrasena;
     private $email;
@@ -16,7 +16,7 @@ class Usuario
     public function __construct()
     {
         $this->id = "";
-        $this->usuario = "";
+        $this->nombre = "";
         $this->usuario_red = "";
         $this->contrasena = "";
         $this->email = "";
@@ -35,14 +35,14 @@ class Usuario
         return $this->id;
     }
 
-    function setusuario($usuario)
+    function setnombre($nombre)
     {
-        $this->usuario= $usuario;
+        $this->nombre= $nombre;
     }
 
-    function getusuario()
+    function getnombre()
     {
-        return $this->usuario;
+        return $this->nombre;
     }
 
     function setusuario_red($usuario_red)

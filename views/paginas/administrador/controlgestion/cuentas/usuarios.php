@@ -7,8 +7,8 @@
 <div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link" href="CreacionUsuarios">Crear Usuario</a>
         <a class="nav-link active ms-0" href="ListaGenerealUsuarios">Lista de Usuarios</a>
+        <a class="nav-link" href="CreacionUsuarios">Crear Usuario</a>
     </nav>
 
     <script>
@@ -112,7 +112,7 @@
             </form>
         </div>
     </div>
-
+</div>
     <!-- Footer -->
 </div>
 <!-- End of Main Content -->
